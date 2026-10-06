@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Escolha 2: hero</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #f5f5f7; color: #1d1d1f; font-family: -apple-system, "SF Pro Display", "Inter", system-ui, sans-serif; }
+  canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+
+  .bar { position: fixed; top: 0; left: 0; right: 0; z-index: 10; display: flex; gap: 8px; align-items: center;
+    padding: 10px 16px; background: rgba(245,245,247,.8); backdrop-filter: blur(20px); font-size: 14px; }
+  .bar strong { margin-right: auto; font-weight: 600; }
+  .bar a { color: #1d1d1f; text-decoration: none; padding: 6px 12px; border-radius: 999px; }
+  .bar a:hover { background: rgba(0,0,0,.06); }
+  .bar a[aria-current] { background: #1d1d1f; color: #fff; }
+  .bar small { color: #6e6e73; margin-left: 8px; }
+
+  section { position: relative; z-index: 1; pointer-events: none; }
+  #hero { height: 400vh; }
+  .sticky { position: sticky; top: 0; height: 100vh; display: grid; justify-items: center; align-content: start; padding-top: 16vh; text-align: center; gap: 12px; }
+  h1 { font-size: clamp(48px, 9vw, 112px); font-weight: 600; letter-spacing: -0.035em; line-height: 1; }
+  .sub { font-size: clamp(19px, 2.2vw, 26px); color: #6e6e73; }
+  .hint { position: absolute; bottom: 32px; font-size: 13px; color: #86868b; }
+  #explode { height: 250vh; }
+  #explode .sticky { align-content: end; padding: 0 16px 10vh; }
+  #explode h2 { font-size: clamp(32px, 5vw, 56px); font-weight: 600; letter-spacing: -0.03em; }
+  .fim { height: 60vh; display: grid; place-items: center; color: #86868b; }
+</style>
+</head>
+<body>
+<nav class="bar">
+  <strong>Escolha 2: hero</strong>
+  <a href="?v=a">A · Reveal</a>
+  <a href="?v=b">B · Zoom de detalhe</a>
+  <a href="?v=c">C · Estático + parallax</a>
+  <small id="desc"></small>
+</nav>
+
+<section id="hero">
+  <div class="sticky">
+    <h1 class="titulo">FORGE 75</h1>
+    <p class="sub">Alumínio. Gasket. Silêncio.</p>
+    <p class="hint">Role para baixo</p>
+  </div>
+</section>
+
+<section id="explode">
+  <div class="sticky"><h2 class="exp-titulo">Cada camada tem um motivo.</h2></div>
+</section>
+
+<div class="fim">(protótipo, o roteiro continua daqui)</div>
+
+<script type="module" src="./hero.js"></script>
+</body>
+</html>

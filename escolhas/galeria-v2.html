@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mango FORGE 75</title>
+<link rel="icon" href="/mango.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap" rel="stylesheet">
+<style>
+  /* ---------- tokens: escala Apple traduzida para Inter (Inter é mais larga que SF, tracking um pouco mais fechado) ---------- */
+  :root {
+    --ink: #1d1d1f;
+    --ink-2: #6e6e73;
+    --ink-3: #86868b;
+    --paper: #ffffff;
+    --tile: #f5f5f7;
+    --line: #d2d2d7;
+    --blue: #0071e3;
+    --blue-press: #0062c4;
+    --link: #0066cc;
+    --cobalt: #2563eb;           /* a cor do próprio teclado: aparece só no produto */
+    --ease: cubic-bezier(0.28, 0.11, 0.32, 1);   /* curva das páginas da Apple */
+    --gutter: max(22px, calc((100vw - 980px) / 2));
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; overflow-x: clip; }
+  body {
+    background: var(--paper); color: var(--ink);
+    font: 400 17px/1.47 "Inter", system-ui, sans-serif; letter-spacing: -0.022em;
+    font-optical-sizing: auto; font-feature-settings: "cv11", "ss01"; /* a e l mais limpos, mais perto da SF */
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: rgba(0, 113, 227, 0.18); }
+  :focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 6px; }
+  img { display: block; }
+  a { color: inherit; text-decoration: none; }
+
+  /* ---------- tipografia ---------- */
+  .hero-title { font-size: clamp(48px, 7.2vw, 80px); line-height: 1.05; font-weight: 600; letter-spacing: -0.03em; }
+  .headline   { font-size: clamp(32px, 4.6vw, 56px); line-height: 1.07; font-weight: 600; letter-spacing: -0.028em; }
+  .tile-title { font-size: clamp(28px, 3.2vw, 40px); line-height: 1.1;  font-weight: 600; letter-spacing: -0.024em; }
+  .subhead    { font-size: clamp(21px, 2.4vw, 28px); line-height: 1.14; font-weight: 400; letter-spacing: -0.012em; }
+  .lede       { font-size: 21px; line-height: 1.38; color: var(--ink-2); letter-spacing: -0.016em; max-width: 34ch; text-wrap: balance; }
+  h1, h2, h3 { text-wrap: balance; }
+
+  /* ---------- nav global: material translúcido ---------- */
+  .globalnav {
+    position: sticky; top: 0; z-index: 20; height: 44px;
+    background: rgba(250, 250, 252, 0.8);
+    backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px);
+  }
+  .globalnav ul { list-style: none; height: 100%; max-width: 1024px; margin: 0 auto; padding: 0 22px;
+    display: flex; align-items: center; justify-content: space-between; font-size: 12px; letter-spacing: -0.01em; }
+  .globalnav a { color: rgba(0, 0, 0, 0.8); transition: color 0.2s var(--ease); }
+  .globalnav a:hover { color: #000; }
+  .wordmark { display: block; width: 14px; height: 16px; background: currentColor; color: rgba(0, 0, 0, 0.8);
+    -webkit-mask: url(/mango.svg) center / contain no-repeat; mask: url(/mango.svg) center / contain no-repeat; }
+  .wordmark:hover { color: #000; }
+
+  /* nav do produto: título à esquerda, links e o botão à direita */
+  .localnav { position: sticky; top: 44px; z-index: 19; height: 52px;
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08); }
+  .localnav div { height: 100%; max-width: 1024px; margin: 0 auto; padding: 0 22px; display: flex; align-items: center; gap: 24px; }
+  .localnav strong { font-size: 21px; font-weight: 600; letter-spacing: -0.02em; margin-right: auto; }
+  .localnav a:not(.pill) { font-size: 12px; color: rgba(0, 0, 0, 0.72); }
+  .localnav a:not(.pill):hover { color: var(--link); }
+  .localnav .pill { font-size: 12px; padding: 4px 11px; }
+  @media (max-width: 734px) { .localnav a:not(.pill) { display: none; } .globalnav li.opt { display: none; } }
+
+  /* ---------- botões ---------- */
+  .pill { display: inline-block; background: var(--blue); color: #fff; border: 1px solid var(--blue);
+    border-radius: 980px; padding: 11px 22px; font-size: 17px; line-height: 1.18; letter-spacing: -0.022em;
+    transition: background-color 0.2s var(--ease), transform 0.1s ease-out; }
+  .pill:hover { background: var(--blue-press); border-color: var(--blue-press); }
+  .pill:active { transform: scale(0.97); }
+  .pill.ghost { background: transparent; color: var(--blue); }
+  .pill.ghost:hover { background: var(--blue); color: #fff; }
+  .ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .more { color: var(--link); font-size: 17px; }
+  .more:hover { text-decoration: underline; text-underline-offset: 0.18em; }
+  .more::after { content: ""; display: inline-block; width: 0.42em; height: 0.42em; margin-left: 0.32em; vertical-align: 0.12em;
+    border-right: 1.5px solid currentColor; border-top: 1.5px solid currentColor; transform: rotate(45deg); }
+
+  /* ---------- hero ---------- */
+  .hero { text-align: center; padding: 72px var(--gutter) 0; display: grid; justify-items: center; gap: 6px; overflow: hidden; }
+  .hero .subhead { margin-top: 4px; }
+  .hero .ctas { margin-top: 26px; }
+  .hero .price { margin-top: 14px; font-size: 14px; color: var(--ink-2); letter-spacing: -0.016em; }
+  .hero figure { width: min(1180px, 100%); margin-top: 8px; aspect-ratio: 2 / 1; overflow: hidden;
+    /* a foto não tem fundo branco puro: as bordas se dissolvem no papel */
+    -webkit-mask: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent), linear-gradient(transparent, #000 8%, #000 88%, transparent);
+    -webkit-mask-composite: source-in; mask-composite: intersect; }
+  .hero img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 58%; mix-blend-mode: multiply; }
+
+  /* o único momento de movimento: o produto assenta ao carregar */
+  @media (prefers-reduced-motion: no-preference) {
+    .hero figure { animation: settle 1.4s var(--ease) 0.15s both; }
+    .hero > :not(figure) { animation: rise 0.9s var(--ease) both; }
+    .hero > :nth-child(2) { animation-delay: 0.06s; }
+    .hero > :nth-child(3) { animation-delay: 0.12s; }
+    .hero > :nth-child(4) { animation-delay: 0.18s; }
+  }
+  @keyframes settle { from { opacity: 0; transform: translateY(48px) scale(0.96); filter: blur(12px); } }
+  @keyframes rise   { from { opacity: 0; transform: translateY(14px); } }
+
+  /* ---------- seções ---------- */
+  .band { padding: 120px var(--gutter); text-align: center; display: grid; justify-items: center; gap: 18px; }
+  .band.tile { background: var(--tile); }
+  .band .lede { margin-inline: auto; }
+
+  /* recorte de detalhe a partir da mesma foto: --x/--y = ponto focal (0 a 1), --s = zoom */
+  .crop { position: relative; overflow: hidden; width: 100%; aspect-ratio: var(--ar, 16 / 9); }
+  .crop img { position: absolute; width: calc(var(--s) * 100%); height: auto; max-width: none;
+    left: calc(50% - var(--x) * var(--s) * 100%); top: 50%; transform: translateY(calc(var(--y) * -100%)); }
+  .tile .crop img, .grid .crop img { mix-blend-mode: multiply; } /* some com o branco da foto sobre o cinza */
+  .band .crop { max-width: 980px; margin-top: 40px; border-radius: 28px; }
+
+  /* grade de tiles, como a home da Apple */
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 12px; }
+  .grid article { background: var(--tile); border-radius: 28px; overflow: hidden; padding: 56px 32px 0;
+    display: grid; justify-items: center; align-content: start; gap: 10px; text-align: center; min-height: 560px; }
+  .grid .crop { --ar: 4 / 3; margin-top: 24px; }
+  .grid p { color: var(--ink-2); font-size: 19px; line-height: 1.32; max-width: 28ch; }
+  @media (max-width: 734px) { .grid { grid-template-columns: 1fr; } .grid article { min-height: 0; } }
+
+  /* números: prova, não argumento */
+  .specs { padding: 120px var(--gutter); display: grid; gap: 64px; }
+  .specs h2 { text-align: center; }
+  .specs dl { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
+  .specs dl > div { padding: 32px 24px 0 0; }
+  .specs dt { font-size: 14px; color: var(--ink-2); letter-spacing: -0.016em; }
+  .specs dd { font-size: clamp(40px, 5vw, 64px); font-weight: 600; letter-spacing: -0.035em; line-height: 1; font-variant-numeric: tabular-nums; margin-bottom: 10px; order: -1; }
+  .specs dd small { font-size: max(17px, 0.42em); font-weight: 600; letter-spacing: -0.01em; margin-left: 0.12em; }
+  .specs dl > div { display: flex; flex-direction: column; }
+  @media (max-width: 734px) { .specs dl { grid-template-columns: 1fr; } .specs dl > div { padding: 24px 0; border-bottom: 1px solid var(--line); } }
+
+  /* fechamento */
+  .closing { text-align: center; padding: 120px var(--gutter) 140px; display: grid; justify-items: center; gap: 22px; }
+
+  footer { background: var(--tile); color: var(--ink-2); font-size: 12px; line-height: 1.34; letter-spacing: -0.01em; padding: 18px var(--gutter) 28px; }
+  footer p + p { margin-top: 10px; }
+  footer .rule { border-top: 1px solid var(--line); margin: 16px 0; }
+</style>
+</head>
+<body>
+
+<nav class="globalnav" aria-label="Global">
+  <ul>
+    <li><a class="wordmark" href="#" aria-label="Mango"></a></li>
+    <li class="opt"><a href="#">Teclados</a></li>
+    <li class="opt"><a href="#">Switches</a></li>
+    <li class="opt"><a href="#">Keycaps</a></li>
+    <li class="opt"><a href="#">Acessórios</a></li>
+    <li class="opt"><a href="#">Suporte</a></li>
+    <li><a href="#">Reservas</a></li>
+  </ul>
+</nav>
+
+<nav class="localnav" aria-label="FORGE 75">
+  <div>
+    <strong>FORGE 75</strong>
+    <a href="#por-dentro">Por dentro</a>
+    <a href="#detalhes">Detalhes</a>
+    <a href="#specs">Especificações</a>
+    <a class="pill" href="#reservar">Reservar</a>
+  </div>
+</nav>
+
+<main>
+  <section class="hero">
+    <h1 class="hero-title">FORGE 75</h1>
+    <p class="subhead">Pesado do jeito certo.</p>
+    <div class="ctas">
+      <a class="pill" href="#reservar">Reservar</a>
+      <a class="pill ghost" href="#por-dentro">Saiba mais</a>
+    </div>
+    <p class="price">Pré-venda a partir de novembro.</p>
+    <figure><img src="/refs/teclado.png" alt="Mango FORGE 75: teclado 75% em alumínio grafite, com Esc e Enter azuis e um knob prateado" width="1024" height="683"></figure>
+  </section>
+
+  <section class="band tile" id="por-dentro">
+    <h2 class="headline">Um bloco de alumínio.<br>Nenhum atalho.</h2>
+    <p class="lede">O case sai inteiro de 1,8 kg de alumínio usinado. Por isso ele não torce, não range e não sai do lugar.</p>
+    <a class="more" href="#specs">Ver como é feito</a>
+    <div class="crop" style="--x:.5; --y:.62; --s:1.9; --ar:21/9"><img src="/refs/teclado.png" alt="Detalhe da lateral do case, com a faixa prateada polida e a faixa azul" loading="lazy"></div>
+  </section>
+
+  <section class="grid" id="detalhes" aria-label="Detalhes">
+    <article>
+      <h3 class="tile-title">Knob maciço.</h3>
+      <p>Alumínio escovado, serrilha fina e cliques que você sente na ponta do dedo.</p>
+      <div class="crop" style="--x:.76; --y:.24; --s:4.2"><img src="/refs/teclado.png" alt="Close do knob prateado no canto do teclado" loading="lazy"></div>
+    </article>
+    <article>
+      <h3 class="tile-title">Gasket mount.</h3>
+      <p>A plate flutua sobre Poron. Cada tecla pousa macio, e o som fica fundo.</p>
+      <div class="crop" style="--x:.16; --y:.5; --s:3.4"><img src="/refs/teclado.png" alt="Close da tecla Esc azul e das teclas cinza ao lado" loading="lazy"></div>
+    </article>
+  </section>
+
+  <section class="specs" id="specs">
+    <h2 class="headline">Rápido. Mesmo.</h2>
+    <dl>
+      <div><dt>Polling rate: oito vezes o padrão.</dt><dd>8000<small>Hz</small></dd></div>
+      <div><dt>Da tecla até a tela.</dt><dd>0,125<small>ms</small></dd></div>
+      <div><dt>Switches hot-swap, sem solda.</dt><dd>82</dd></div>
+    </dl>
+  </section>
+
+  <section class="closing tile band" id="reservar">
+    <h2 class="headline">O seu está esperando.</h2>
+    <p class="lede">Reserve agora e receba entre os primeiros.</p>
+    <div class="ctas"><a class="pill" href="#">Reservar</a><a class="more" href="#specs">Comparar modelos</a></div>
+  </section>
+</main>
+
+<footer>
+  <p>Mango e FORGE 75 são uma paródia fictícia, criada como projeto de portfólio, sem relação com a Apple. Números, datas e reservas são ilustrativos.</p>
+  <div class="rule"></div>
+  <p>Copyright © 2026 Mango Inc. Todos os direitos reservados.</p>
+</footer>
+
+</body>
+</html>

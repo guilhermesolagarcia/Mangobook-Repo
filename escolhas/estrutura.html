@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Escolha 5: estrutura</title>
+<link rel="icon" href="/mango.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #1d1d1f; --ink-2: #6e6e73; --ink-3: #86868b; --tile: #f5f5f7; --line: #d2d2d7; --blue: #0071e3; --link: #0066cc; --cobalt: #2563eb; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #fff; color: var(--ink); font: 400 17px/1.47 "Inter", system-ui, sans-serif; letter-spacing: -0.022em;
+    font-optical-sizing: auto; font-feature-settings: "cv11", "ss01"; -webkit-font-smoothing: antialiased; }
+  ::selection { background: rgba(0, 113, 227, 0.18); }
+
+  .top { position: sticky; top: 0; z-index: 5; display: flex; align-items: center; gap: 12px; padding: 12px 22px;
+    background: rgba(255,255,255,.8); backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid #0000000f; font-size: 14px; }
+  .top i { width: 14px; height: 16px; background: var(--ink); -webkit-mask: url(/mango.svg) center / contain no-repeat; mask: url(/mango.svg) center / contain no-repeat; }
+  .top strong { font-weight: 600; }
+  .top span { color: var(--ink-2); margin-left: auto; }
+
+  .intro { padding: 72px 22px 40px; max-width: 1180px; margin: 0 auto; display: grid; gap: 10px; }
+  .intro h1 { font-size: 48px; line-height: 1.08; font-weight: 600; letter-spacing: -0.03em; }
+  .intro p { color: var(--ink-2); font-size: 21px; line-height: 1.38; max-width: 52ch; }
+
+  /* cada cena: miniatura à esquerda, anotação à direita */
+  .scene { max-width: 1180px; margin: 0 auto; padding: 40px 22px; display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 48px; align-items: start; border-top: 1px solid var(--line); }
+  @media (max-width: 860px) { .scene { grid-template-columns: 1fr; gap: 24px; } }
+
+  .notes { display: grid; gap: 18px; position: sticky; top: 80px; }
+  .notes h2 { font-size: 28px; line-height: 1.14; font-weight: 600; letter-spacing: -0.02em; }
+  .notes dl { display: grid; gap: 14px; }
+  .notes dt { font-size: 12px; font-weight: 600; color: var(--ink-2); letter-spacing: 0; }
+  .notes dd { font-size: 15px; line-height: 1.45; letter-spacing: -0.012em; margin-top: 2px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chips b { font-size: 12px; font-weight: 500; padding: 4px 10px; border-radius: 980px; background: var(--tile); letter-spacing: 0; }
+  .chips b.new { background: #e8f1fc; color: #0058b0; }
+
+  /* ---------- a miniatura: uma "tela" 16:10 com a identidade real ---------- */
+  .frame { aspect-ratio: 16 / 10; border-radius: 18px; overflow: hidden; position: relative; background: #fff;
+    box-shadow: 0 0 0 1px #0000000f, 0 18px 40px -18px rgba(0,0,0,.22); container-type: inline-size; }
+  .frame.tile { background: var(--tile); }
+  /* tamanhos em cqi: a miniatura escala como a página de verdade */
+  .f-nav { position: absolute; inset: 0 0 auto; height: 3.4cqi; display: flex; align-items: center; justify-content: space-between;
+    padding: 0 9cqi; font-size: 1cqi; color: rgba(0,0,0,.75); background: rgba(250,250,252,.55); backdrop-filter: blur(10px) saturate(180%); z-index: 2;
+    box-shadow: inset 0 -1px 0 rgba(255,255,255,.7), 0 1px 0 rgba(0,0,0,.05); }
+  .f-nav i { width: 1.1cqi; height: 1.3cqi; background: currentColor; -webkit-mask: url(/mango.svg) center / contain no-repeat; mask: url(/mango.svg) center / contain no-repeat; }
+  .f-local { position: absolute; top: 3.4cqi; left: 0; right: 0; height: 4cqi; display: flex; align-items: center; gap: 2cqi; padding: 0 9cqi;
+    font-size: 1cqi; color: rgba(0,0,0,.7); background: rgba(255,255,255,.7); border-bottom: 1px solid #00000010; z-index: 2; }
+  .f-local strong { font-size: 1.7cqi; font-weight: 600; color: var(--ink); margin-right: auto; letter-spacing: -0.02em; }
+  .f-pill { display: inline-block; background: var(--blue); color: #fff; border-radius: 980px; padding: .5em 1.2em; font-size: 1.2cqi; line-height: 1; }
+  .f-pill.ghost { background: transparent; color: var(--blue); box-shadow: inset 0 0 0 1px var(--blue); }
+  .f-local .f-pill { font-size: .9cqi; padding: .4em .9em; }
+  .f-center { position: absolute; inset: 0; display: grid; justify-items: center; align-content: start; text-align: center; gap: 1cqi; padding-top: 13cqi; }
+  .f-h1 { font-size: 6cqi; line-height: 1.04; font-weight: 600; letter-spacing: -0.035em; }
+  .f-h2 { font-size: 4cqi; line-height: 1.07; font-weight: 600; letter-spacing: -0.03em; }
+  .f-sub { font-size: 2cqi; color: var(--ink); letter-spacing: -0.015em; }
+  .f-p { font-size: 1.4cqi; color: var(--ink-2); max-width: 40ch; line-height: 1.4; }
+  .f-ctas { display: flex; gap: 1.2cqi; margin-top: .8cqi; }
+  .f-img { mix-blend-mode: multiply; }
+  .tag3d { position: absolute; z-index: 3; font-size: 1cqi; font-weight: 600; color: #0058b0; background: #e8f1fcde; border-radius: 980px; padding: .35em .8em; letter-spacing: 0; }
+
+  /* 1 hero */
+  .s-hero .glow { position: absolute; inset: 30% 10% -20%; border-radius: 50%; filter: blur(4cqi);
+    background: radial-gradient(closest-side, rgba(37,99,235,.16), rgba(160,190,255,.10) 55%, transparent); }
+  .s-hero img { position: absolute; width: 74cqi; left: 13cqi; top: 26cqi; }
+
+  /* 2 destaques: carrossel de cards grandes */
+  .s-high .rail { position: absolute; left: 9cqi; top: 15cqi; display: flex; gap: 1.6cqi; }
+  .s-high .card { width: 30cqi; aspect-ratio: 3 / 4; border-radius: 2.2cqi; background: #fff; position: relative; overflow: hidden; padding: 2.2cqi; display: grid; align-content: start; gap: .6cqi; }
+  .s-high .card b { font-size: 1.9cqi; line-height: 1.1; letter-spacing: -0.02em; font-weight: 600; }
+  .s-high .card span { font-size: 1.1cqi; color: var(--ink-2); }
+  .s-high .card img { position: absolute; width: 60cqi; left: -14cqi; bottom: -4cqi; }
+  .s-high .card.c2 img { width: 110cqi; left: -66cqi; bottom: -30cqi; }
+  .s-high .card b, .s-high .card span { position: relative; z-index: 1; }
+  .s-high .card.c3 { background: #000; color: #f5f5f7; }
+  .s-high .card.c3 big { font-size: 6cqi; font-weight: 600; letter-spacing: -0.04em; position: absolute; bottom: 3cqi; left: 2.2cqi; }
+  .s-high .dots { position: absolute; bottom: 3.2cqi; left: 50%; transform: translateX(-50%); display: flex; gap: .6cqi; align-items: center;
+    background: rgba(255,255,255,.6); backdrop-filter: blur(8px); border-radius: 980px; padding: .8cqi 1.2cqi; box-shadow: inset 0 0 0 1px rgba(255,255,255,.8), 0 .4cqi 1.2cqi rgba(0,0,0,.08); }
+  .s-high .dots i { width: .7cqi; height: .7cqi; border-radius: 50%; background: #0000003a; }
+  .s-high .dots i:first-child { width: 3cqi; border-radius: 980px; background: var(--ink); }
+  .h-left { position: absolute; left: 9cqi; top: 9cqi; text-align: left; }
+
+  /* 3 detalhes: 3D desmontado com rótulos */
+  .s-exp .layers { position: absolute; left: 40%; top: 14cqi; transform: translateX(-50%); width: 50cqi; display: grid; gap: 1.6cqi; }
+  .s-exp .layer { height: 1.6cqi; border-radius: .5cqi; position: relative; }
+  .s-exp .layer:nth-child(1) { background: repeating-linear-gradient(90deg, #5b6068 0 2.4cqi, transparent 2.4cqi 2.9cqi); }
+  .s-exp .layer:nth-child(2) { background: #45484d; box-shadow: inset 0 0 0 .5cqi #3a3d42, inset 0 -0.3cqi 0 .5cqi #c8cacd; }
+  .s-exp .layer:nth-child(3) { background: repeating-linear-gradient(90deg, #34363b 0 1.6cqi, transparent 1.6cqi 2.9cqi); }
+  .s-exp .layer:nth-child(4) { background: #c4c7cc; }
+  .s-exp .layer:nth-child(5) { background: #26272a; width: 96%; margin: 0 auto; }
+  .s-exp .layer:nth-child(6) { background: #141516; }
+  .s-exp .layer:nth-child(7) { background: #3a3b3e; }
+  .s-exp .layer:nth-child(8) { background: #45484d; box-shadow: inset 0 -0.5cqi 0 var(--cobalt); }
+  .s-exp .lbl { position: absolute; right: -14cqi; top: 50%; transform: translateY(-50%); font-size: 1.1cqi; color: var(--ink-2); white-space: nowrap; }
+  .s-exp .lbl::before { content: ""; display: inline-block; width: 4cqi; height: 1px; background: var(--line); vertical-align: middle; margin-right: .6cqi; }
+  .s-exp .tabs { position: absolute; bottom: 3cqi; left: 50%; transform: translateX(-50%); display: flex; gap: .4cqi; padding: .5cqi;
+    border-radius: 980px; background: rgba(255,255,255,.55); backdrop-filter: blur(10px) saturate(180%); box-shadow: inset 0 0 0 1px rgba(255,255,255,.9), 0 .6cqi 2cqi rgba(0,0,0,.1); font-size: 1.1cqi; }
+  .s-exp .tabs span { padding: .5cqi 1.4cqi; border-radius: 980px; }
+  .s-exp .tabs span:first-child { background: var(--ink); color: #fff; }
+
+  /* 4 cores: troca de material com seletor de vidro */
+  .s-cor img { position: absolute; width: 70cqi; left: 15cqi; top: 15cqi; }
+  .s-cor .swatches { position: absolute; bottom: 4cqi; left: 50%; transform: translateX(-50%); display: flex; gap: 1.2cqi; padding: 1cqi 1.6cqi; border-radius: 980px;
+    background: rgba(255,255,255,.5); backdrop-filter: blur(12px) saturate(180%); box-shadow: inset 0 0 0 1px rgba(255,255,255,.9), 0 .8cqi 2.4cqi rgba(0,0,0,.12); }
+  .s-cor .swatches i { width: 2.4cqi; height: 2.4cqi; border-radius: 50%; box-shadow: inset 0 0 0 1px #0000001a; }
+  .s-cor .swatches i:first-child { outline: 2px solid var(--blue); outline-offset: 2px; }
+
+  /* 5 switch: curva de força */
+  .s-sw .sw { position: absolute; left: 12cqi; top: 15cqi; width: 22cqi; aspect-ratio: 1; }
+  .s-sw .sw .top { position: absolute; inset: 8% 14% 46%; border-radius: 1.4cqi 1.4cqi .6cqi .6cqi; background: linear-gradient(#e7ecf5cc, #c9d3e3aa); box-shadow: inset 0 0 0 1px #ffffffaa; }
+  .s-sw .sw .stem { position: absolute; left: 44%; width: 12%; top: 0; height: 22%; background: var(--cobalt); border-radius: .3cqi; }
+  .s-sw .sw .bot { position: absolute; inset: 52% 10% 6%; border-radius: .6cqi .6cqi 1.4cqi 1.4cqi; background: #34363b; }
+  .s-sw svg { position: absolute; right: 9cqi; top: 15cqi; width: 40cqi; overflow: visible; }
+  .s-sw .key { position: absolute; left: 14cqi; bottom: 5cqi; font-size: 1.1cqi; color: var(--ink-2); }
+  .s-sw .key kbd { font: inherit; font-weight: 600; color: var(--ink); background: #fff; border-radius: .5cqi; padding: .3em .7em; box-shadow: 0 .2cqi 0 #0000001f, inset 0 0 0 1px #00000014; }
+
+  /* 6 specs */
+  .s-spec .row { position: absolute; left: 9cqi; right: 9cqi; top: 26cqi; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
+  .s-spec .row div { padding-top: 2.4cqi; }
+  .s-spec .row b { display: block; font-size: 6cqi; font-weight: 600; letter-spacing: -0.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+  .s-spec .row b small { font-size: .42em; }
+  .s-spec .row span { font-size: 1.2cqi; color: var(--ink-2); }
+
+  /* 7 reserva com shadergradient */
+  .s-cta .grad { position: absolute; inset: 0; background:
+    radial-gradient(60% 70% at 25% 30%, #dfe9ff, transparent 70%),
+    radial-gradient(50% 60% at 80% 70%, #c9d8ff, transparent 70%),
+    radial-gradient(40% 50% at 60% 20%, #fff3e6, transparent 70%), #f5f5f7; filter: saturate(110%); }
+  .s-cta .f-center { padding-top: 17cqi; }
+</style>
+</head>
+<body>
+
+<header class="top"><i aria-hidden="true"></i><strong>Mango FORGE 75: estrutura da página</strong><span>7 cenas · rascunho para aprovar</span></header>
+
+<section class="intro">
+  <h1>Do topo à reserva.</h1>
+  <p>A ordem segue a página do MacBook Pro: uma frase, os destaques e depois o produto por dentro. As miniaturas já usam a identidade Mango. Onde está escrito <b>3D</b>, a foto vai virar o modelo em tempo real.</p>
+</section>
+
+<!-- 1 -->
+<section class="scene">
+  <div class="frame s-hero">
+    <div class="glow"></div>
+    <div class="f-nav"><i></i><span>Teclados</span><span>Switches</span><span>Keycaps</span><span>Acessórios</span><span>Suporte</span><span>Reservas</span></div>
+    <div class="f-local"><strong>FORGE 75</strong><span>Visão geral</span><span>Especificações</span><span class="f-pill">Reservar</span></div>
+    <div class="f-center">
+      <div class="f-h1">Pesado do jeito certo.</div>
+      <div class="f-ctas"><span class="f-pill">Reservar</span><span class="f-pill ghost">Saiba mais</span></div>
+    </div>
+    <img class="f-img" src="/refs/teclado.png" alt="">
+    <span class="tag3d" style="left:46%;top:62%">3D</span>
+  </div>
+  <div class="notes">
+    <h2>1. Abertura</h2>
+    <dl>
+      <div><dt>O que acontece</dt><dd>A frase entra primeiro. O teclado sobe de baixo, assenta e gira levemente com o scroll até mostrar o topo. Fica girando bem devagar se ninguém rolar.</dd></div>
+      <div><dt>Da Apple</dt><dd>"A velocidade é de família.": a frase no lugar do nome do produto, que fica só na barra local.</dd></div>
+      <div><dt>Tecnologia</dt><dd class="chips"><b class="new">react-three-fiber</b><b class="new">shadergradient (luz de estúdio azulada, bem sutil)</b><b class="new">liquid glass nas barras</b><b>GSAP scrub</b></dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- 2 -->
+<section class="scene">
+  <div class="frame tile s-high">
+    <div class="h-left f-h2">Comece pelos destaques.</div>
+    <div class="rail">
+      <div class="card"><b>Um bloco de alumínio.</b><span>1,8 kg, usinado inteiro.</span><img class="f-img" src="/refs/teclado.png" alt=""></div>
+      <div class="card c2"><b>Knob maciço.</b><span>Cliques que você sente.</span><img class="f-img" src="/refs/teclado.png" alt=""></div>
+      <div class="card c3"><b>Rápido. Mesmo.</b><span style="color:#a1a1a6">Polling de 8000 Hz.</span><big>8000</big></div>
+    </div>
+    <div class="dots"><i></i><i></i><i></i><i></i></div>
+  </div>
+  <div class="notes">
+    <h2>2. Destaques</h2>
+    <dl>
+      <div><dt>O que acontece</dt><dd>Carrossel horizontal de cards grandes, que avança sozinho e se arrasta com o dedo, com momentum e encaixe (as regras da skill apple-design).</dd></div>
+      <div><dt>Da Apple</dt><dd>"Comece pelos destaques.": a galeria com controle de pontos e play/pause.</dd></div>
+      <div><dt>Tecnologia</dt><dd class="chips"><b>CSS scroll-snap</b><b class="new">liquid glass no controle de pontos</b></dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- 3 -->
+<section class="scene">
+  <div class="frame s-exp">
+    <div class="f-center" style="padding-top:5cqi"><div class="f-h2" style="font-size:3.2cqi">Explore os detalhes.</div></div>
+    <div class="layers">
+      <div class="layer"><span class="lbl">Keycaps PBT</span></div>
+      <div class="layer"><span class="lbl">Moldura + knob</span></div>
+      <div class="layer"><span class="lbl">82 switches</span></div>
+      <div class="layer"><span class="lbl">Plate de alumínio</span></div>
+      <div class="layer"><span class="lbl">Gaskets de Poron</span></div>
+      <div class="layer"><span class="lbl">PCB hot-swap</span></div>
+      <div class="layer"><span class="lbl">Espuma</span></div>
+      <div class="layer"><span class="lbl">Base</span></div>
+    </div>
+    <div class="tabs"><span>Camadas</span><span>Cores</span><span>Knob</span><span>Portas</span></div>
+    <span class="tag3d" style="left:20%;top:40%">3D</span>
+  </div>
+  <div class="notes">
+    <h2>3. Por dentro</h2>
+    <dl>
+      <div><dt>O que acontece</dt><dd>A seção trava na tela e o scroll desmonta o teclado camada por camada, cada uma ganhando o nome. No fim a câmera gira para mostrar de lado. As abas embaixo trocam a vista sem sair dali.</dd></div>
+      <div><dt>Da Apple</dt><dd>"Explore os detalhes.": o visualizador 3D interativo com abas.</dd></div>
+      <div><dt>Tecnologia</dt><dd class="chips"><b class="new">react-three-fiber</b><b>modelo de src/teclado</b><b>GSAP ScrollTrigger pin</b><b class="new">liquid glass nas abas</b></dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- 4 -->
+<section class="scene">
+  <div class="frame tile s-cor">
+    <div class="f-center" style="padding-top:5cqi"><div class="f-h2" style="font-size:3.2cqi">É seu.</div></div>
+    <img class="f-img" src="/refs/teclado.png" alt="">
+    <div class="swatches"><i style="background:#45484d"></i><i style="background:#d7d9dc"></i><i style="background:#1f2a44"></i><i style="background:#e9e1d3"></i></div>
+    <span class="tag3d" style="left:46%;top:46%">3D</span>
+  </div>
+  <div class="notes">
+    <h2>4. Cores</h2>
+    <dl>
+      <div><dt>O que acontece</dt><dd>Um toque na cor e o case e as keycaps trocam de material com uma transição suave, sem recarregar e sem trocar de foto: é o mesmo modelo.</dd></div>
+      <div><dt>Da Apple</dt><dd>O seletor de cores do iPhone/MacBook: bolinhas, o nome da cor aparece embaixo.</dd></div>
+      <div><dt>Tecnologia</dt><dd class="chips"><b class="new">react-three-fiber</b><b class="new">liquid glass no seletor</b></dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- 5 -->
+<section class="scene">
+  <div class="frame s-sw">
+    <div class="f-center" style="padding-top:5cqi"><div class="f-h2" style="font-size:3.2cqi">Você sente a diferença.</div></div>
+    <div class="sw"><div class="stem"></div><div class="top"></div><div class="bot"></div></div>
+    <svg viewBox="0 0 400 220" fill="none" aria-hidden="true">
+      <path d="M0 200 H400 M0 200 V0" stroke="#d2d2d7"/>
+      <path d="M0 170 C60 150 110 120 150 95 C175 80 185 88 200 100 C240 120 300 80 400 30" stroke="#2563eb" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="150" cy="95" r="7" fill="#2563eb"/>
+      <text x="160" y="80" fill="#6e6e73" font-size="16" font-family="Inter">acionamento · 2,0 mm</text>
+      <text x="0" y="216" fill="#86868b" font-size="13" font-family="Inter">curso</text>
+    </svg>
+    <div class="key">Segure <kbd>espaço</kbd> para pressionar</div>
+    <span class="tag3d" style="left:14%;top:30%">3D</span>
+  </div>
+  <div class="notes">
+    <h2>5. O switch</h2>
+    <dl>
+      <div><dt>O que acontece</dt><dd>Close num switch translúcido. Segurar a barra de espaço (ou o dedo na tela) aperta o switch de verdade, e a curva de força acompanha em tempo real, em menos de 100 ms.</dd></div>
+      <div><dt>Da Apple</dt><dd>As seções de chip/câmera que explicam uma peça só, de perto.</dd></div>
+      <div><dt>Tecnologia</dt><dd class="chips"><b class="new">react-three-fiber</b><b>SVG da curva</b></dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- 6 -->
+<section class="scene">
+  <div class="frame s-spec">
+    <div class="f-center" style="padding-top:9cqi"><div class="f-h2">Rápido. Mesmo.</div></div>
+    <div class="row">
+      <div><b>8000<small>Hz</small></b><span>Polling rate</span></div>
+      <div><b>0,125<small>ms</small></b><span>Da tecla até a tela</span></div>
+      <div><b>82</b><span>Switches hot-swap</span></div>
+    </div>
+  </div>
+  <div class="notes">
+    <h2>6. Números</h2>
+    <dl>
+      <div><dt>O que acontece</dt><dd>Os números contam até o valor final quando entram na tela, uma vez só.</dd></div>
+      <div><dt>Da Apple</dt><dd>"Bateria para o dia todo.": um número grande que serve de prova, com pouco texto.</dd></div>
+      <div><dt>Tecnologia</dt><dd class="chips"><b>GSAP</b></dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- 7 -->
+<section class="scene">
+  <div class="frame s-cta">
+    <div class="grad"></div>
+    <div class="f-center">
+      <div class="f-h2">O seu está esperando.</div>
+      <div class="f-p">Reserve agora e receba entre os primeiros.</div>
+      <div class="f-ctas"><span class="f-pill">Reservar</span></div>
+    </div>
+  </div>
+  <div class="notes">
+    <h2>7. Reserva + rodapé</h2>
+    <dl>
+      <div><dt>O que acontece</dt><dd>O único fundo com cor da página: um gradiente que se move devagar atrás do convite final. Depois vem o rodapé Mango, com o aviso de paródia.</dd></div>
+      <div><dt>Da Apple</dt><dd>O fechamento de página de produto: um convite, um botão.</dd></div>
+      <div><dt>Tecnologia</dt><dd class="chips"><b class="new">shadergradient</b></dd></div>
+    </dl>
+  </div>
+</section>
+
+</body>
+</html>
