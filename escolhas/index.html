@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Escolha 1: direção visual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500&family=Russo+One&family=Chakra+Petch:wght@400;500;600&family=Geist:wght@400;500;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: #111; color: #eee; font-family: system-ui, sans-serif; }
+
+  /* ---------- barra de escolha ---------- */
+  .bar {
+    position: fixed; inset: 12px 12px auto 12px; z-index: 10;
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    padding: 8px 8px 8px 16px; border-radius: 14px;
+    background: rgba(20,20,22,.82); backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,.1); font-size: 14px;
+  }
+  .bar strong { margin-right: auto; font-weight: 600; }
+  .bar a {
+    color: #ddd; text-decoration: none; padding: 6px 12px; border-radius: 8px;
+    border: 1px solid rgba(255,255,255,.12);
+  }
+  .bar a:hover { background: rgba(255,255,255,.08); }
+  .bar a.is-chosen { background: #fff; color: #111; }
+
+  /* ---------- estrutura de cada visão ---------- */
+  .vision { position: relative; min-height: 100vh; padding: 96px 6vw 48px; display: grid; overflow: hidden; }
+  .meta {
+    position: absolute; right: 16px; bottom: 16px; z-index: 3; width: min(340px, calc(100% - 32px));
+    padding: 16px; border-radius: 12px; font: 13px/1.5 system-ui, sans-serif;
+    background: rgba(18,18,20,.88); color: #e8e8e8; border: 1px solid rgba(255,255,255,.12);
+    backdrop-filter: blur(8px);
+  }
+  .meta h3 { font-size: 15px; margin-bottom: 4px; }
+  .meta .from { color: #9a9a9a; margin-bottom: 10px; }
+  .meta ul { list-style: none; display: grid; gap: 4px; margin-bottom: 12px; }
+  .meta .sw { display: flex; gap: 6px; margin-bottom: 12px; }
+  .meta .sw span { width: 22px; height: 22px; border-radius: 6px; border: 1px solid rgba(255,255,255,.2); }
+  .meta button {
+    width: 100%; padding: 10px; border-radius: 8px; border: 0; cursor: pointer;
+    font: 600 14px system-ui, sans-serif; background: #fff; color: #111;
+  }
+  .vision.is-chosen .meta button { background: #2bb673; color: #fff; }
+
+  /* ---------- teclado (placeholder em CSS) ---------- */
+  .kb {
+    width: min(760px, 88vw); padding: 2.2%; border-radius: var(--case-r, 14px);
+    background: var(--case); box-shadow: var(--case-shadow, none);
+    display: grid; gap: 1.1%;
+  }
+  .kb .row { display: flex; gap: 1.1%; }
+  .kb .row.gap { margin-bottom: 1.6%; }
+  .kb i {
+    aspect-ratio: var(--ar, 1); border-radius: var(--key-r, 5px);
+    background: var(--key); box-shadow: var(--key-shadow, none);
+  }
+  .kb i.mod { background: var(--mod); }
+  .kb i.acc { background: var(--acc); box-shadow: var(--acc-shadow, var(--key-shadow, none)); }
+
+  /* ---------- A: Galeria (Apple) ---------- */
+  #a { background: #f5f5f7; color: #1d1d1f; font-family: "Inter Tight", system-ui, sans-serif; place-items: center; text-align: center; }
+  #a .copy { display: grid; gap: 12px; justify-items: center; }
+  #a h1 { font-size: clamp(48px, 8vw, 96px); font-weight: 600; letter-spacing: -0.03em; line-height: 1; }
+  #a p { font-size: clamp(19px, 2.2vw, 26px); color: #6e6e73; }
+  #a .ctas { display: flex; gap: 20px; align-items: center; margin-top: 8px; }
+  #a .btn { background: #0071e3; color: #fff; padding: 10px 20px; border-radius: 999px; font-size: 17px; }
+  #a .link { color: #0066cc; font-size: 17px; }
+  #a .kb {
+    --case: linear-gradient(#e3e4e8, #c9cbd0); --key: #fbfbfd; --mod: #e6e6ea; --acc: #fbfbfd;
+    --key-shadow: 0 2px 0 #c2c3c8; --case-shadow: 0 40px 60px -30px rgba(0,0,0,.35);
+    margin-top: 48px; transform: perspective(1400px) rotateX(28deg);
+  }
+
+  /* ---------- B: Pista (Ferrari / SpaceX) ---------- */
+  #b {
+    background: radial-gradient(ellipse at 70% 40%, #2a2a2a 0%, #181818 60%); color: #fff;
+    font-family: "Barlow", sans-serif; align-items: end; grid-template-columns: 1fr;
+  }
+  #b .kb {
+    --case: linear-gradient(#3a3b3e, #232427); --key: #2c2d30; --mod: #1f2023; --acc: #da291c;
+    --key-shadow: inset 0 -3px 0 rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.06);
+    --case-shadow: 0 60px 80px -40px rgba(0,0,0,.9); --case-r: 10px; --key-r: 4px;
+    position: absolute; right: -6vw; top: 18%; width: min(900px, 80vw);
+    transform: perspective(1600px) rotateX(38deg) rotateZ(-14deg);
+  }
+  #b .copy { position: relative; z-index: 2; max-width: 620px; display: grid; gap: 16px; padding-bottom: 6vh; }
+  #b h1 {
+    font-family: "Barlow Condensed", sans-serif; font-weight: 700; text-transform: uppercase;
+    font-size: clamp(64px, 11vw, 150px); line-height: .9; letter-spacing: -0.01em;
+  }
+  #b p { font-size: 18px; color: #bdbdbd; max-width: 40ch; }
+  #b .rule { width: 56px; height: 3px; background: #da291c; }
+  #b .btn {
+    justify-self: start; font-family: "Barlow Condensed", sans-serif; font-weight: 600; text-transform: uppercase;
+    letter-spacing: .12em; font-size: 16px; color: #fff; padding: 14px 28px; background: #da291c;
+  }
+
+  /* ---------- C: Arena (ui-ux-pro-max) ---------- */
+  #c {
+    background:
+      radial-gradient(circle at 20% 20%, rgba(124,58,237,.35), transparent 45%),
+      radial-gradient(circle at 85% 80%, rgba(244,63,94,.25), transparent 45%), #0f0f23;
+    color: #e2e8f0; font-family: "Chakra Petch", sans-serif;
+    grid-template-columns: 1fr 1.2fr; align-items: center; gap: 4vw;
+  }
+  #c .copy { display: grid; gap: 18px; }
+  #c .tag { color: #a78bfa; letter-spacing: .2em; text-transform: uppercase; font-size: 13px; font-weight: 600; }
+  #c h1 { font-family: "Russo One", sans-serif; font-size: clamp(56px, 8vw, 110px); line-height: .95; font-weight: 400; }
+  #c h1 span { color: #f43f5e; }
+  #c p { font-size: 19px; color: #94a3b8; max-width: 36ch; }
+  #c .btn {
+    justify-self: start; padding: 14px 30px; background: #7c3aed; color: #fff; font-weight: 600; text-transform: uppercase;
+    letter-spacing: .1em; clip-path: polygon(12px 0, 100% 0, calc(100% - 12px) 100%, 0 100%);
+  }
+  #c .kb {
+    --case: #1e1c35; --key: #27273b; --mod: #1b1a2e; --acc: #f43f5e;
+    --key-shadow: 0 0 10px rgba(124,58,237,.55), inset 0 0 0 1px rgba(167,139,250,.35);
+    --acc-shadow: 0 0 16px rgba(244,63,94,.8);
+    --case-shadow: 0 0 60px rgba(124,58,237,.45), inset 0 0 0 1px #4c1d95;
+    width: 100%; transform: perspective(1400px) rotateY(-18deg) rotateX(12deg);
+  }
+
+  /* ---------- D: Laboratório (NVIDIA + taste-skill) ---------- */
+  #d {
+    background-color: #0c0c0d; color: #f1f1ef; font-family: "Geist", sans-serif;
+    background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+    background-size: 64px 64px; grid-template-rows: auto 1fr; gap: 40px;
+  }
+  #d .top { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; border-bottom: 1px solid rgba(255,255,255,.14); padding-bottom: 24px; }
+  #d h1 { font-size: clamp(52px, 8vw, 104px); font-weight: 700; letter-spacing: -0.04em; line-height: 1; }
+  #d p { color: #a3a3a0; font-size: 18px; max-width: 34ch; margin-top: 12px; }
+  #d .specs { font-family: "Geist Mono", monospace; font-size: 13px; display: grid; gap: 6px; color: #a3a3a0; text-align: right; }
+  #d .specs b { color: #76b900; font-weight: 500; }
+  #d .btn { display: inline-block; margin-top: 20px; background: #76b900; color: #0c0c0d; padding: 12px 22px; border-radius: 2px; font-weight: 700; }
+  #d .stage { display: grid; place-items: center; position: relative; }
+  #d .kb {
+    --case: #1a1b1c; --key: #2a2b2d; --mod: #202123; --acc: #76b900; --case-r: 2px; --key-r: 2px;
+    --key-shadow: inset 0 -2px 0 rgba(0,0,0,.5);
+    outline: 1px solid rgba(255,255,255,.14); outline-offset: 18px;
+    transform: perspective(1400px) rotateX(20deg);
+  }
+  #d .stage::before, #d .stage::after {
+    content: ""; position: absolute; width: 10px; height: 10px; background: #76b900;
+  }
+  #d .stage::before { top: 0; left: 0; }
+  #d .stage::after { bottom: 0; right: 0; }
+
+  @media (max-width: 760px) {
+    #c { grid-template-columns: 1fr; }
+    #b .kb { position: relative; right: auto; top: auto; width: 100%; margin-bottom: 24px; transform: perspective(1000px) rotateX(30deg); }
+    #b { align-items: start; }
+    .meta { position: relative; right: auto; bottom: auto; width: 100%; margin-top: 32px; }
+    #d .specs { text-align: left; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .kb { transition: transform .5s cubic-bezier(.4,0,.2,1); }
+  }
+</style>
+</head>
+<body>
+
+<nav class="bar" aria-label="Visões">
+  <strong>Escolha 1 de N: direção visual</strong>
+  <a href="#a" data-pick="a">A · Galeria</a>
+  <a href="#b" data-pick="b">B · Pista</a>
+  <a href="#c" data-pick="c">C · Arena</a>
+  <a href="#d" data-pick="d">D · Laboratório</a>
+</nav>
+
+<!-- A -->
+<section class="vision" id="a">
+  <div class="copy">
+    <h1>FORGE 75</h1>
+    <p>Pesado no lugar certo.</p>
+    <div class="ctas"><span class="btn">Reservar</span><span class="link">Ver por dentro ›</span></div>
+    <div class="kb" data-kb></div>
+  </div>
+  <aside class="meta">
+    <h3>A · Galeria</h3>
+    <div class="from">Fonte: awesome-design-md / apple</div>
+    <div class="sw"><span style="background:#f5f5f7"></span><span style="background:#1d1d1f"></span><span style="background:#0071e3"></span><span style="background:#c9cbd0"></span></div>
+    <ul>
+      <li>Fundo claro, produto em destaque, sem ruído.</li>
+      <li>Fonte: Inter Tight (no lugar da SF Pro).</li>
+      <li>A favor: a referência que você citou ("estilo Apple").</li>
+      <li>Contra: menos cara de e-sports.</li>
+    </ul>
+    <button data-choose="a">Escolher A</button>
+  </aside>
+</section>
+
+<!-- B -->
+<section class="vision" id="b">
+  <div class="kb" data-kb></div>
+  <div class="copy">
+    <div class="rule"></div>
+    <h1>Forge 75</h1>
+    <p>Usinado em um bloco de alumínio. Montado em sete camadas.</p>
+    <span class="btn">Reservar</span>
+  </div>
+  <aside class="meta">
+    <h3>B · Pista</h3>
+    <div class="from">Fonte: awesome-design-md / ferrari + spacex</div>
+    <div class="sw"><span style="background:#181818"></span><span style="background:#ffffff"></span><span style="background:#da291c"></span><span style="background:#2c2d30"></span></div>
+    <ul>
+      <li>Cinema escuro, um único vermelho usado com economia.</li>
+      <li>Fonte: Barlow Condensed (parecida com a D-DIN da SpaceX).</li>
+      <li>A favor: dramático, ótimo para o exploded view.</li>
+      <li>Contra: vermelho no escuro já é bem usado por marcas gamer.</li>
+    </ul>
+    <button data-choose="b">Escolher B</button>
+  </aside>
+</section>
+
+<!-- C -->
+<section class="vision" id="c">
+  <div class="copy">
+    <span class="tag">Feito para competir</span>
+    <h1>FORGE<span>75</span></h1>
+    <p>Feito para quem joga para ganhar.</p>
+    <span class="btn">Reservar</span>
+  </div>
+  <div class="kb" data-kb></div>
+  <aside class="meta">
+    <h3>C · Arena</h3>
+    <div class="from">Fonte: ui-ux-pro-max (--design-system "gaming hardware")</div>
+    <div class="sw"><span style="background:#0f0f23"></span><span style="background:#7c3aed"></span><span style="background:#f43f5e"></span><span style="background:#e2e8f0"></span></div>
+    <ul>
+      <li>Neon roxo e rosa, brilho, cantos cortados.</li>
+      <li>Fonte: Russo One + Chakra Petch.</li>
+      <li>A favor: fala direto com o público de e-sports.</li>
+      <li>Contra: a taste-skill aponta esse visual como o mais "cara de IA".</li>
+    </ul>
+    <button data-choose="c">Escolher C</button>
+  </aside>
+</section>
+
+<!-- D -->
+<section class="vision" id="d">
+  <div class="top">
+    <div>
+      <h1>FORGE 75</h1>
+      <p>Sete camadas. Nenhuma por acaso.</p>
+      <span class="btn">Reservar</span>
+    </div>
+    <div class="specs">
+      <span>POLLING <b>8000 Hz</b></span>
+      <span>LATÊNCIA <b>0,125 ms</b></span>
+      <span>CASE <b>1,8 kg alumínio</b></span>
+    </div>
+  </div>
+  <div class="stage"><div class="kb" data-kb></div></div>
+  <aside class="meta">
+    <h3>D · Laboratório</h3>
+    <div class="from">Fonte: awesome-design-md / nvidia + taste-skill</div>
+    <div class="sw"><span style="background:#0c0c0d"></span><span style="background:#f1f1ef"></span><span style="background:#76b900"></span><span style="background:#2a2b2d"></span></div>
+    <ul>
+      <li>Técnico e anguloso: grade, cantos de 2px, números em mono.</li>
+      <li>Fonte: Geist + Geist Mono.</li>
+      <li>A favor: combina com o lado "engenharia" do exploded view.</li>
+      <li>Contra: mais frio, menos emocional.</li>
+    </ul>
+    <button data-choose="d">Escolher D</button>
+  </aside>
+</section>
+
+<script>
+  // Layout 75%: larguras em unidades de tecla (1u)
+  const rows = [
+    Array(16).fill(1),
+    [...Array(13).fill(1), 2, 1],
+    [1.5, ...Array(12).fill(1), 1.5, 1],
+    [1.75, ...Array(11).fill(1), 2.25, 1],
+    [2.25, ...Array(10).fill(1), 1.75, 1, 1],
+    [1.25, 1.25, 1.25, 6.25, 1, 1, 1, 1, 1, 1],
+  ];
+  const isMod = (r, i, w, row) => w !== 1 || i === row.length - 1 || r === 5 || (r === 4 && i >= 11);
+  const isAcc = (r, i) => (r === 0 && i === 0) || (r === 3 && i === 12);
+
+  document.querySelectorAll('[data-kb]').forEach((kb) => {
+    rows.forEach((row, r) => {
+      const el = document.createElement('div');
+      el.className = 'row' + (r === 0 ? ' gap' : '');
+      row.forEach((w, i) => {
+        const k = document.createElement('i');
+        k.style.flex = `${w} 1 0`;
+        k.style.setProperty('--ar', w);
+        if (isAcc(r, i)) k.className = 'acc';
+        else if (isMod(r, i, w, row)) k.className = 'mod';
+        el.append(k);
+      });
+      kb.append(el);
+    });
+  });
+
+  // Escolha (só marca na tela; a decisão você me conta no terminal)
+  function mark(id) {
+    document.querySelectorAll('.vision').forEach((v) => v.classList.toggle('is-chosen', v.id === id));
+    document.querySelectorAll('[data-pick]').forEach((a) => a.classList.toggle('is-chosen', a.dataset.pick === id));
+    document.querySelectorAll('[data-choose]').forEach((b) => {
+      b.textContent = b.dataset.choose === id ? 'Escolhida ✓ (me conta no terminal)' : `Escolher ${b.dataset.choose.toUpperCase()}`;
+    });
+    try { localStorage.setItem('escolha-visual', id); } catch {}
+  }
+  document.querySelectorAll('[data-choose]').forEach((b) => b.addEventListener('click', () => mark(b.dataset.choose)));
+  try { const saved = localStorage.getItem('escolha-visual'); if (saved) mark(saved); } catch {}
+</script>
+</body>
+</html>
