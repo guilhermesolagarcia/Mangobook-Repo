@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 116" fill="#f5f5f7">
+  <!-- Mango: a manga cortada, com o caroço vazado (regra evenodd). -->
+  <path fill-rule="evenodd" d="M47 27 C67 21 88 35 89 59 C90 86 74 108 50 112 C33 115 16 105 13 87 C11 73 19 66 23 56 C28 43 32 31 47 27 Z M53 56 C61 56 66 65 65 76 C64 87 58 93 52 92 C46 91 43 84 44 75 C45 65 48 56 53 56 Z"/>
+  <path d="M50 23 C53 11 64 3 79 4 C76 16 65 24 50 23 Z"/>
+</svg>
