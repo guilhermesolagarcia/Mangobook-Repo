@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teclado 3D: passes</title>
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  html, body { height: 100%; }
+  body { background: #e9eaec; color: #1c1d1f; font: 14px/1.4 system-ui, sans-serif; overflow: hidden; }
+  canvas { display: block; }
+  .panel {
+    position: fixed; left: 16px; top: 16px; width: 280px; padding: 16px; border-radius: 12px;
+    background: rgba(255,255,255,.88); backdrop-filter: blur(8px); box-shadow: 0 4px 20px rgba(0,0,0,.08);
+    display: grid; gap: 12px;
+  }
+  .panel h1 { font-size: 15px; }
+  .panel .pass { color: #6b6e74; font-size: 13px; }
+  .panel label { display: grid; gap: 6px; font-weight: 600; }
+  .panel input[type=range] { width: 100%; }
+  .views { display: flex; flex-wrap: wrap; gap: 6px; }
+  .views button {
+    padding: 6px 10px; border-radius: 8px; border: 1px solid #c9cbcf; background: #fff; cursor: pointer; font: inherit;
+  }
+  .views button:hover { background: #f1f2f4; }
+  .picked { min-height: 20px; color: #2563eb; font-weight: 600; }
+  .ref {
+    position: fixed; right: 16px; top: 16px; width: min(320px, 40vw); border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,.12); background: #fff;
+  }
+  .ref figcaption { padding: 6px 10px; font-size: 12px; color: #6b6e74; }
+  .ref img { width: 100%; display: block; border-radius: 10px 10px 0 0; }
+  body.escuro { background: #0e0f11; }
+  @media (max-width: 640px) { .ref { display: none; } .panel { right: 16px; width: auto; } }
+</style>
+</head>
+<body>
+<div class="panel">
+  <div>
+    <h1>FORGE 75: modelo 3D</h1>
+    <div class="pass">Passe 3 de 6: materiais (alumínio, PBT, borracha)</div>
+  </div>
+  <label>Desmontar
+    <input id="explode" type="range" min="0" max="1" step="0.001" value="0">
+  </label>
+  <div class="views">
+    <button data-view="34">3/4</button>
+    <button data-view="topo">Cima</button>
+    <button data-view="frente">Frente</button>
+    <button data-view="lado">Lado</button>
+  </div>
+  <div class="views"><button id="fundo" aria-pressed="false">Fundo escuro</button></div>
+  <div>Clique numa peça: <span class="picked" id="picked">nenhuma</span></div>
+</div>
+<figure class="ref">
+  <img src="/refs/teclado.png" alt="Imagem de referência do teclado">
+  <figcaption>Referência (refs/teclado.png)</figcaption>
+</figure>
+<script type="module" src="/src/visualizador.js"></script>
+</body>
+</html>

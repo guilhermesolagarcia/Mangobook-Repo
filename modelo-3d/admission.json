@@ -1,0 +1,14 @@
+{
+  "admitted": true,
+  "reasons": [],
+  "provenance": {
+    "viewpoint": "reference",
+    "sourcePath": "C:\\Users\\labsfiap\\Downloads\\asfiasf\\Projeto-Hardware\\refs\\teclado.png",
+    "width": 1024,
+    "height": 687,
+    "foregroundCoverage": 0.3681,
+    "largestComponentFraction": 1.0,
+    "pHash": 16885660031684815440,
+    "duplicateOfHash": null
+  }
+}

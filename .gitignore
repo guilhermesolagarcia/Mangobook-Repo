@@ -1,2 +1,4 @@
 node_modules/
 dist/
+__pycache__/
+.ferramentas/2-animacao-3d/img2threejs/.cache/
