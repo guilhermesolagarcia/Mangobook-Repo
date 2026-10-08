@@ -20,7 +20,7 @@ function Estudio() {
         shadow-camera-left={-30} shadow-camera-right={30} shadow-camera-top={30} shadow-camera-bottom={-30} />
       <mesh rotation-x={-Math.PI / 2} receiveShadow>
         <planeGeometry args={[400, 400]} />
-        <shadowMaterial opacity={0.12} />
+        <shadowMaterial opacity={0.12} depthWrite={false} />
       </mesh>
     </>
   );
