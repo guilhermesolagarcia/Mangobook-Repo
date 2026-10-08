@@ -1,0 +1,49 @@
+/* 500vh de scroll para 8 camadas + juntar + girar; o conteúdo fica preso na tela */
+.pd { height: 500vh; position: relative; }
+.pd-fixo { position: sticky; top: 0; height: 100vh; }
+.pd-titulo { position: absolute; left: var(--gutter); top: 120px; }
+
+.pd-texto { position: absolute; left: var(--gutter); width: min(360px, 40vw);
+  top: clamp(200px, calc(var(--ancora-y, 50vh) - 1.6em), calc(100vh - 480px)); /* acima do trilho */
+  display: grid; gap: 10px; transition: top 0.4s var(--ease); }
+.pd-texto p { color: #d1d1d6; font-size: 17px; line-height: 1.47; }
+.pd-dado { justify-self: start; font-size: 14px; padding: 6px 14px; border-radius: 980px; background: rgba(255, 255, 255, 0.1); }
+
+/* linha do texto até a borda da camada ativa (a âncora vem do Teclado) */
+.pd-linha { position: absolute; height: 1px; background: var(--dark-2);
+  left: calc(var(--gutter) + min(360px, 40vw) + 24px);
+  top: var(--ancora-y, 50vh);
+  width: max(0px, calc(var(--ancora-x, 0px) - var(--gutter) - min(360px, 40vw) - 24px)); }
+.pd-linha::after { content: ""; position: absolute; right: -4px; top: -4px; width: 9px; height: 9px; border-radius: 50%; background: var(--on-dark); }
+
+.pd-trilho { position: absolute; left: var(--gutter); bottom: 48px; display: grid; gap: 2px; }
+.pd-trilho button { display: flex; align-items: center; gap: 10px; padding: 4px 0; font-size: 12px; color: #6e6e73; text-align: left; }
+.pd-trilho button::before { content: ""; width: 14px; height: 2px; border-radius: 2px; background: #3a3a3c; transition: width 0.3s var(--ease), background-color 0.3s; }
+.pd-trilho button.feita { color: #a1a1a6; }
+.pd-trilho button.feita::before { background: #a1a1a6; }
+.pd-trilho button.atual { color: var(--on-dark); font-weight: 600; }
+.pd-trilho button.atual::before { width: 28px; background: var(--sky); }
+
+/* (b) cotas sobre o perfil lateral: só aparecem quando --cotas > 0 */
+.pd-cotas, .pd-legenda { opacity: var(--cotas, 0); transition: opacity 0.2s linear; }
+.pd-texto, .pd-linha, .pd-trilho { opacity: calc(1 - var(--cotas, 0) * 4); }
+.cota { position: absolute; border: 0 solid var(--dark-2); font-size: 14px; }
+.cota b { position: absolute; font-weight: 600; white-space: nowrap; }
+.cota-frente { left: calc(var(--fb-x) + 24px); top: var(--ft-y); height: calc(var(--fb-y) - var(--ft-y)); border-left-width: 1px; }
+.cota-frente b { left: 10px; top: 50%; transform: translateY(-50%); }
+.cota-tras { left: calc(var(--tb-x) - 24px); top: var(--tt-y); height: calc(var(--tb-y) - var(--tt-y)); border-left-width: 1px; }
+.cota-tras b { right: 10px; top: 50%; transform: translateY(-50%); }
+.cota-prof { left: var(--tb-x); top: calc(var(--fb-y) + 28px); width: calc(var(--fb-x) - var(--tb-x)); border-top-width: 1px; }
+.cota-prof b { left: 50%; top: 8px; transform: translateX(-50%); color: #a1a1a6; font-weight: 400; }
+.cota-angulo { position: absolute; left: calc(var(--tb-x) + 60px); top: calc(var(--tb-y) - 36px); color: var(--sky); font-weight: 600; font-size: 17px; }
+.pd-legenda { position: absolute; left: var(--gutter); bottom: 48px; max-width: 46ch; }
+
+/* movimento reduzido: o teclado explodido aparece parado no vão de cima; a lista vem depois, num fundo opaco */
+.pd-reduzido .pd-lista { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 32px;
+  margin-top: 70vh; padding-top: 48px; position: relative; background: var(--dark); box-shadow: 0 0 0 100vmax var(--dark); clip-path: inset(0 -100vmax -120px); }
+.pd-reduzido .pd-lista p { color: #d1d1d6; margin: 6px 0 10px; }
+
+@media (max-width: 734px) {
+  .pd-texto { top: auto; bottom: 200px; width: auto; right: var(--gutter); }
+  .pd-linha { display: none; }
+}

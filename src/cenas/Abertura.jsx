@@ -14,7 +14,10 @@ export default function Abertura() {
     const reduzir = matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduzir) {
       definir(estadoAbertura(1)); // pose final, sem movimento
-      return undefined;
+      // a luz some ao sair da abertura (disparada, só opacidade), senão ela cobre o fundo escuro da cena 3
+      const luz = gsap.to(document.querySelector('.palco-luz'), { autoAlpha: 0, duration: 0.3,
+        scrollTrigger: { trigger: secao.current, start: 'bottom bottom', toggleActions: 'play none none reverse' } });
+      return () => { luz.scrollTrigger?.kill(); luz.revert(); };
     }
     definir(estadoAbertura(0));
     const ctx = gsap.context(() => {
@@ -31,7 +34,12 @@ export default function Abertura() {
         p: 1, ease: 'none',
         scrollTrigger: {
           trigger: secao.current, start: 'top top', end: 'bottom bottom', scrub: 0.6,
-          onToggle: (self) => (self.isActive ? balanco.play() : balanco.pause()),
+          // ao sair, o balanço volta a zero: a cena seguinte espera o teclado sem giro extra
+          onToggle: (self) => {
+            if (self.isActive) { balanco.restart(); return; }
+            balanco.pause();
+            gsap.to(estado, { balanco: 0, duration: 0.6, ease: 'power2.out', overwrite: 'auto', onUpdate: () => definir({}) });
+          },
         },
         onUpdate: () => definir(estadoAbertura(proxy.p)),
       });
