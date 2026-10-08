@@ -2,7 +2,7 @@ import { useLayoutEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { estadoPorDentro, FASES, N_CAMADAS } from '../../3d/roteiro.js';
-import { definir } from '../../3d/estado.js';
+import { assumir, escrever } from '../../3d/estado.js';
 import { CAMADAS } from './camadas.js';
 import Abas from './Abas.jsx';
 import Specs from './Specs.jsx';
@@ -14,6 +14,7 @@ export default function PorDentro() {
   const secao = useRef(null);
   const gatilho = useRef(null);
   const [ativa, setAtiva] = useState(0);
+  const [lado, setLado] = useState(false); // vista lateral: o trilho some e sai da ordem do Tab
   const [reduzir] = useState(() => matchMedia('(prefers-reduced-motion: reduce)').matches);
 
   useLayoutEffect(() => {
@@ -25,20 +26,22 @@ export default function PorDentro() {
       gsap.to(document.querySelector('.palco'), { backgroundColor: '#fff', ease: 'none', immediateRender: false,
         scrollTrigger: { trigger: document.querySelector('#especificacoes'), start: 'top bottom', end: 'top 40%', scrub: true } });
 
-      if (reduzir) {
-        // sem scrub: camadas separadas e paradas enquanto a seção está na tela
-        ScrollTrigger.create({ trigger: secao.current, start: 'top 60%', end: 'bottom top',
-          onToggle: (self) => self.isActive && definir({ ...estadoPorDentro(FASES.camadas), ativa: -1 }) });
-        return;
-      }
+      // sem scrub (movimento reduzido): camadas separadas e paradas enquanto a seção está na tela
       const proxy = { p: 0 };
+      const pose = () => (reduzir ? { ...estadoPorDentro(FASES.camadas), ativa: -1 } : estadoPorDentro(proxy.p));
+      // dona do palco enquanto ocupa o meio da tela; ao voltar das abas, a troca é misturada (sem teleporte)
+      ScrollTrigger.create({ trigger: secao.current, start: 'top center', end: 'bottom center',
+        onToggle: (self) => { if (self.isActive) { assumir('porDentro'); escrever('porDentro', pose()); } } });
+      if (reduzir) return;
+
       const tween = gsap.to(proxy, {
         p: 1, ease: 'none',
         scrollTrigger: { trigger: secao.current, start: 'top top', end: 'bottom bottom', scrub: 0.6 },
         onUpdate: () => {
-          const e = estadoPorDentro(proxy.p);
-          definir(e);
+          const e = pose();
+          escrever('porDentro', e);
           if (e.ativa >= 0) setAtiva(e.ativa);
+          setLado(e.cotas > 0);
         },
       });
       gatilho.current = tween.scrollTrigger;
@@ -90,7 +93,7 @@ export default function PorDentro() {
         </div>
         <span className="pd-linha" aria-hidden="true" />
 
-        <nav className="pd-trilho" aria-label="Camadas">
+        <nav className={lado ? 'pd-trilho pd-trilho-oculto' : 'pd-trilho'} aria-label="Camadas" inert={lado || undefined}>
           {CAMADAS.map((camada, i) => (
             <button key={camada.id} type="button" onClick={() => irPara(i)} onKeyDown={(e) => teclas(e, i)}
               className={i < ativa ? 'feita' : i === ativa ? 'atual' : ''} aria-current={i === ativa ? 'step' : undefined}>

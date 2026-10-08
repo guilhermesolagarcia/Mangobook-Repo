@@ -48,6 +48,7 @@ export default function Teclado() {
     if (aspecto >= 1) alvo.x += estado.lateral; // em retrato o texto fica embaixo: o modelo continua centralizado
     camera.position.copy(alvo).add(offset);
     camera.lookAt(alvo);
+    camera.updateMatrixWorld(); // a projeção das âncoras abaixo usa a câmera deste quadro, não a do anterior
 
     modelo.root.position.y = estado.subida;
     modelo.root.rotation.y = estado.giro + estado.balanco;

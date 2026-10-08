@@ -65,3 +65,6 @@
 
 /* sem WebGL não há modelo para ancorar a linha e as cotas */
 .sem-webgl .pd-linha, .sem-webgl .pd-cotas { display: none; }
+
+/* vista lateral: o trilho já está transparente; some também para o foco do teclado */
+.pd-trilho-oculto { visibility: hidden; }

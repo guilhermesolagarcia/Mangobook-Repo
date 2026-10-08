@@ -3,29 +3,11 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import LiquidGlass from 'liquid-glass-react';
 import { ABAS, estadoAba } from '../../3d/roteiro.js';
-import { definir, estado } from '../../3d/estado.js';
+import { assumir, escrever, transitar } from '../../3d/estado.js';
 import { tocar } from '../../som/digitacao.js';
 import './abas.css';
 
 gsap.registerPlugin(ScrollTrigger);
-
-const mix = (a, b, t) => a + (b - a) * t;
-const mixV = (a, b, t) => a.map((v, i) => mix(v, b[i], t));
-let transicaoAtual;
-
-// Vai do estado atual do palco até o da aba em 0,8 s, sem pular a câmera.
-function transicao(alvo) {
-  transicaoAtual?.kill();
-  const de = { cam: [...estado.cam], alvo: [...estado.alvo], giro: estado.giro, lateral: estado.lateral, camadas: [...estado.camadas] };
-  definir({ ativa: alvo.ativa, cotas: alvo.cotas });
-  const reduzir = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduzir) { definir(alvo); return; }
-  const t = { v: 0 };
-  transicaoAtual = gsap.to(t, { v: 1, duration: 0.8, ease: 'power2.inOut', onUpdate: () => definir({
-    cam: mixV(de.cam, alvo.cam, t.v), alvo: mixV(de.alvo, alvo.alvo, t.v),
-    giro: mix(de.giro, alvo.giro, t.v), lateral: mix(de.lateral, alvo.lateral, t.v), camadas: mixV(de.camadas, alvo.camadas, t.v),
-  }) });
-}
 
 const ROTULOS = { camadas: 'Camadas', som: 'Som', knob: 'Knob', portas: 'Portas' };
 const TEXTOS = {
@@ -42,18 +24,17 @@ export default function Abas() {
   const secao = useRef(null);
   const abaAtual = useRef(aba);
 
-  // ao entrar na seção (descendo ou subindo), o palco assume a pose da aba escolhida (disparada)
+  // dona do palco enquanto ocupa o meio da tela (descendo ou subindo): a pose da aba escolhida, misturada
   useLayoutEffect(() => {
-    const st = ScrollTrigger.create({ trigger: secao.current, start: 'top 55%', end: 'bottom 45%',
-      onEnter: () => transicao(estadoAba(abaAtual.current)),
-      onEnterBack: () => transicao(estadoAba(abaAtual.current)) });
-    return () => { st.kill(); transicaoAtual?.kill(); };
+    const st = ScrollTrigger.create({ trigger: secao.current, start: 'top center', end: 'bottom center',
+      onToggle: (self) => { if (self.isActive) { assumir('abas'); escrever('abas', estadoAba(abaAtual.current)); } } });
+    return () => st.kill();
   }, []);
 
   function escolher(nova) {
     setAba(nova);
     abaAtual.current = nova;
-    transicao(estadoAba(nova));
+    transitar('abas', estadoAba(nova));
   }
 
   function teclas(e, i) {
