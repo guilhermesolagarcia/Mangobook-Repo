@@ -47,3 +47,9 @@
   .pd-texto { top: auto; bottom: 200px; width: auto; right: var(--gutter); }
   .pd-linha { display: none; }
 }
+.specs { position: relative; background: var(--paper); color: var(--ink); display: grid; gap: 48px; }
+.specs dl { display: grid; grid-template-columns: 1fr 1fr; column-gap: 48px; }
+.specs dl div { display: grid; grid-template-columns: 160px 1fr; gap: 16px; padding: 16px 0; border-top: 1px solid var(--hairline); font-size: 17px; }
+.specs dt { font-weight: 600; }
+.specs dd { color: #333; font-variant-numeric: tabular-nums; }
+@media (max-width: 734px) { .specs dl { grid-template-columns: 1fr; } .specs dl div { grid-template-columns: 120px 1fr; } }

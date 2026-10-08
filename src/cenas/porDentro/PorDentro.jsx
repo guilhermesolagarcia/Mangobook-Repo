@@ -5,6 +5,7 @@ import { estadoPorDentro, FASES, N_CAMADAS } from '../../3d/roteiro.js';
 import { definir } from '../../3d/estado.js';
 import { CAMADAS } from './camadas.js';
 import Abas from './Abas.jsx';
+import Specs from './Specs.jsx';
 import './porDentro.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -20,6 +21,9 @@ export default function PorDentro() {
       // fundo do palco: claro → preto ao entrar (scrub)
       gsap.to(document.querySelector('.palco'), { backgroundColor: '#000', ease: 'none',
         scrollTrigger: { trigger: secao.current, start: 'top 80%', end: 'top top', scrub: true } });
+      // e volta ao branco nas specs, para a reserva (elemento direto: a seção fica fora do contexto)
+      gsap.to(document.querySelector('.palco'), { backgroundColor: '#fff', ease: 'none', immediateRender: false,
+        scrollTrigger: { trigger: document.querySelector('#especificacoes'), start: 'top bottom', end: 'top 40%', scrub: true } });
 
       if (reduzir) {
         // sem scrub: camadas separadas e paradas enquanto a seção está na tela
@@ -67,6 +71,7 @@ export default function PorDentro() {
         </ol>
       </section>
       <Abas />
+      <Specs />
       </>
     );
   }
@@ -104,6 +109,7 @@ export default function PorDentro() {
       </div>
     </section>
     <Abas />
+      <Specs />
     </>
   );
 }
