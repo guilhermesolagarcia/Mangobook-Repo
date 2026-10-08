@@ -13,7 +13,8 @@ export default function Abertura() {
   useLayoutEffect(() => {
     const reduzir = matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduzir) {
-      definir(estadoAbertura(1)); // pose final, sem movimento
+      // sem movimento: a pose de frente, a única em que o título e o teclado não se sobrepõem
+      definir(estadoAbertura(0));
       // a luz some ao sair da abertura (disparada, só opacidade), senão ela cobre o fundo escuro da cena 3
       const luz = gsap.to(document.querySelector('.palco-luz'), { autoAlpha: 0, duration: 0.3,
         scrollTrigger: { trigger: secao.current, start: 'bottom bottom', toggleActions: 'play none none reverse' } });

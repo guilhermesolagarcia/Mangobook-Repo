@@ -1,13 +1,14 @@
 // Roteiro do palco 3D: funções puras de progresso (0 a 1) para estado do teclado.
 // Unidade das poses: cm, a mesma do modelo. Ordem das camadas = PARTS de src/teclado/modelo.js.
 
+// lateral (cm): desvio do alvo em x aplicado só em telas largas, para o modelo abrir espaço ao texto à esquerda.
 export const POSES = {
-  frente:    { cam: [0, 5, 70],     alvo: [0, 4, 0],   giro: -0.35 },
-  cima:      { cam: [0, 58, 26],    alvo: [0, 0, 2],   giro: 0 },
-  explodido: { cam: [-44, 34, 54],  alvo: [-11, 7, 0], giro: 0 }, // alvo à esquerda: o teclado fica à direita do texto
-  lado:      { cam: [-64, 9, 0.01], alvo: [0, 3, 0],   giro: 0 },
-  knob:      { cam: [34, 18, 14],   alvo: [11, 1, -5], giro: 0 },
-  portas:    { cam: [6, 18, -72],   alvo: [0, 0, 0],   giro: 0 },
+  frente:    { cam: [0, 5, 70],     alvo: [0, 4, 0],   giro: -0.35, lateral: 0 },
+  cima:      { cam: [0, 58, 26],    alvo: [0, 0, 2],   giro: 0,     lateral: 0 },
+  explodido: { cam: [-44, 34, 54],  alvo: [0, 7, 0],   giro: 0,     lateral: -11 },
+  lado:      { cam: [-64, 9, 0.01], alvo: [0, 3, 0],   giro: 0,     lateral: 0 },
+  knob:      { cam: [34, 18, 14],   alvo: [11, 1, -5], giro: 0,     lateral: 0 },
+  portas:    { cam: [6, 18, -72],   alvo: [0, 0, 0],   giro: 0,     lateral: 0 },
 };
 
 export const N_CAMADAS = 8;
@@ -23,7 +24,7 @@ const camadasIguais = (v) => Array(N_CAMADAS).fill(v);
 
 function entrePoses(a, b, t) {
   const s = suave(t);
-  return { cam: mix3(a.cam, b.cam, s), alvo: mix3(a.alvo, b.alvo, s), giro: mix(a.giro, b.giro, s) };
+  return { cam: mix3(a.cam, b.cam, s), alvo: mix3(a.alvo, b.alvo, s), giro: mix(a.giro, b.giro, s), lateral: mix(a.lateral, b.lateral, s) };
 }
 
 export function estadoAbertura(p) {

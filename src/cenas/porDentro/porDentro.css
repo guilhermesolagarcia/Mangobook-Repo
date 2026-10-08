@@ -18,11 +18,12 @@
 
 .pd-trilho { position: absolute; left: var(--gutter); bottom: 48px; display: grid; gap: 2px; }
 .pd-trilho button { display: flex; align-items: center; gap: 10px; padding: 4px 0; font-size: 12px; color: #6e6e73; text-align: left; }
-.pd-trilho button::before { content: ""; width: 14px; height: 2px; border-radius: 2px; background: #3a3a3c; transition: width 0.3s var(--ease), background-color 0.3s; }
+.pd-trilho button::before { content: ""; width: 28px; height: 2px; border-radius: 2px; background: #3a3a3c;
+  transform: scaleX(0.5); transform-origin: left; transition: transform 0.3s var(--ease), background-color 0.3s; }
 .pd-trilho button.feita { color: #a1a1a6; }
 .pd-trilho button.feita::before { background: #a1a1a6; }
 .pd-trilho button.atual { color: var(--on-dark); font-weight: 600; }
-.pd-trilho button.atual::before { width: 28px; background: var(--sky); }
+.pd-trilho button.atual::before { transform: none; background: var(--sky); }
 
 /* (b) cotas sobre o perfil lateral: só aparecem quando --cotas > 0 */
 .pd-cotas, .pd-legenda { opacity: var(--cotas, 0); transition: opacity 0.2s linear; }
@@ -53,3 +54,14 @@
 .specs dt { font-weight: 600; }
 .specs dd { color: #333; font-variant-numeric: tabular-nums; }
 @media (max-width: 734px) { .specs dl { grid-template-columns: 1fr; } .specs dl div { grid-template-columns: 120px 1fr; } }
+
+/* celular: o trilho vira uma fileira de traços (o nome segue no botão para leitores de tela) e o texto fica acima dele */
+@media (max-width: 734px) {
+  .pd-trilho { grid-auto-flow: column; gap: 6px; bottom: 40px; right: var(--gutter); }
+  .pd-trilho button { font-size: 0; padding: 12px 0; }
+  .pd-trilho button::before { width: 100%; transform: none; }
+  .pd-texto { bottom: 96px; }
+}
+
+/* sem WebGL não há modelo para ancorar a linha e as cotas */
+.sem-webgl .pd-linha, .sem-webgl .pd-cotas { display: none; }

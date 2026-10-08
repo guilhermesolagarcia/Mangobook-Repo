@@ -16,14 +16,14 @@ let transicaoAtual;
 // Vai do estado atual do palco até o da aba em 0,8 s, sem pular a câmera.
 function transicao(alvo) {
   transicaoAtual?.kill();
-  const de = { cam: [...estado.cam], alvo: [...estado.alvo], giro: estado.giro, camadas: [...estado.camadas] };
+  const de = { cam: [...estado.cam], alvo: [...estado.alvo], giro: estado.giro, lateral: estado.lateral, camadas: [...estado.camadas] };
   definir({ ativa: alvo.ativa, cotas: alvo.cotas });
   const reduzir = matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduzir) { definir(alvo); return; }
   const t = { v: 0 };
   transicaoAtual = gsap.to(t, { v: 1, duration: 0.8, ease: 'power2.inOut', onUpdate: () => definir({
     cam: mixV(de.cam, alvo.cam, t.v), alvo: mixV(de.alvo, alvo.alvo, t.v),
-    giro: mix(de.giro, alvo.giro, t.v), camadas: mixV(de.camadas, alvo.camadas, t.v),
+    giro: mix(de.giro, alvo.giro, t.v), lateral: mix(de.lateral, alvo.lateral, t.v), camadas: mixV(de.camadas, alvo.camadas, t.v),
   }) });
 }
 

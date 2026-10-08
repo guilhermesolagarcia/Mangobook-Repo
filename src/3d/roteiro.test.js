@@ -72,3 +72,11 @@ test('tela estreita afasta a câmera; tela larga não mexe', () => {
   perto(fatorDistancia(16 / 9), 1);
   assert.ok(fatorDistancia(390 / 844) > 2);
 });
+
+test('deslocamento lateral do explodido acompanha o progresso e some fora dele', () => {
+  perto(estadoAbertura(1).lateral, 0);
+  perto(estadoPorDentro(FASES.camadas).lateral, POSES.explodido.lateral);
+  assert.ok(POSES.explodido.lateral < 0);
+  perto(estadoPorDentro(1).lateral, 0);
+  perto(estadoAba('knob').lateral, 0);
+});

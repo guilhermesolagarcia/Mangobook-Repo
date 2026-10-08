@@ -14,6 +14,7 @@ const CANTOS = {
 };
 const v = new THREE.Vector3();
 const offset = new THREE.Vector3();
+const alvo = new THREE.Vector3();
 const raiz = document.documentElement.style;
 
 export default function Teclado() {
@@ -41,9 +42,12 @@ export default function Teclado() {
 
   useFrame(() => {
     // câmera: mais longe em telas estreitas, sem mudar para onde ela olha
-    offset.set(...estado.cam).sub(v.set(...estado.alvo)).multiplyScalar(fatorDistancia(size.width / size.height));
-    camera.position.set(...estado.alvo).add(offset);
-    camera.lookAt(...estado.alvo);
+    const aspecto = size.width / size.height;
+    offset.set(...estado.cam).sub(v.set(...estado.alvo)).multiplyScalar(fatorDistancia(aspecto));
+    alvo.set(...estado.alvo);
+    if (aspecto >= 1) alvo.x += estado.lateral; // em retrato o texto fica embaixo: o modelo continua centralizado
+    camera.position.copy(alvo).add(offset);
+    camera.lookAt(alvo);
 
     modelo.root.position.y = estado.subida;
     modelo.root.rotation.y = estado.giro + estado.balanco;

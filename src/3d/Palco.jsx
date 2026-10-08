@@ -6,9 +6,14 @@ import Teclado from './Teclado.jsx';
 import { POSES } from './roteiro.js';
 import './palco.css';
 
+// Em retrato o plano do gradiente não cobre a largura; a câmera dele chega mais perto.
+const retrato = window.innerWidth < window.innerHeight;
+
 const temWebGL = (() => {
   try { return Boolean(document.createElement('canvas').getContext('webgl2')); } catch { return false; }
 })();
+// as cenas escondem o que depende do 3D (linhas e cotas ancoradas no modelo)
+if (!temWebGL) document.documentElement.classList.add('sem-webgl');
 
 // Ambiente de estúdio para o alumínio ter o que refletir (o mesmo do visualizador).
 function Estudio() {
@@ -40,7 +45,7 @@ export default function Palco() {
           <div className="palco-luz">
             <ShaderGradientCanvas pixelDensity={1} pointerEvents="none" style={{ position: 'absolute', inset: 0 }}>
               <ShaderGradient control="props" type="plane" animate="on" uSpeed={0.06} uStrength={0.3} uDensity={0.8}
-                color1="#ffffff" color2="#dce6ff" color3="#f5f5f7" brightness={1.2} cDistance={3.6}
+                color1="#ffffff" color2="#dce6ff" color3="#f5f5f7" brightness={1.2} cDistance={retrato ? 1.4 : 3.6}
                 lightType="3d" envPreset="city" grain="off" />
             </ShaderGradientCanvas>
           </div>
