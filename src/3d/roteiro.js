@@ -6,8 +6,8 @@ export const POSES = {
   cima:      { cam: [0, 58, 26],    alvo: [0, 0, 2],   giro: 0 },
   explodido: { cam: [-44, 34, 54],  alvo: [-11, 7, 0], giro: 0 }, // alvo à esquerda: o teclado fica à direita do texto
   lado:      { cam: [-64, 9, 0.01], alvo: [0, 3, 0],   giro: 0 },
-  knob:      { cam: [22, 9, 4],     alvo: [14, 3, -5], giro: 0 },
-  portas:    { cam: [0, 7, -42],    alvo: [0, 1.5, 0], giro: 0 },
+  knob:      { cam: [34, 18, 14],   alvo: [11, 1, -5], giro: 0 },
+  portas:    { cam: [6, 18, -72],   alvo: [0, 0, 0],   giro: 0 },
 };
 
 export const N_CAMADAS = 8;

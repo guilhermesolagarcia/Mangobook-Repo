@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { estadoPorDentro, FASES, N_CAMADAS } from '../../3d/roteiro.js';
 import { definir } from '../../3d/estado.js';
 import { CAMADAS } from './camadas.js';
+import Abas from './Abas.jsx';
 import './porDentro.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -56,6 +57,7 @@ export default function PorDentro() {
 
   if (reduzir) {
     return (
+      <>
       <section ref={secao} id="por-dentro" className="faixa faixa-escura pd pd-reduzido" aria-labelledby="pd-titulo">
         <h2 id="pd-titulo" className="t-headline">Por dentro.</h2>
         <ol className="pd-lista">
@@ -64,11 +66,14 @@ export default function PorDentro() {
           ))}
         </ol>
       </section>
+      <Abas />
+      </>
     );
   }
 
   const c = CAMADAS[ativa];
   return (
+    <>
     <section ref={secao} id="por-dentro" className="pd faixa-escura" aria-labelledby="pd-titulo">
       <div className="pd-fixo">
         <h2 id="pd-titulo" className="t-headline pd-titulo">Por dentro.</h2>
@@ -98,5 +103,7 @@ export default function PorDentro() {
         <p className="pd-legenda t-legenda">Vista de lado. A inclinação vem do próprio case: você não precisa de pés retráteis.</p>
       </div>
     </section>
+    <Abas />
+    </>
   );
 }
