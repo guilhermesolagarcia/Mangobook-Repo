@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MangoBook Pure</title>
+<link rel="icon" href="/mango.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1d1d1f; --ink-2: #6e6e73; --action: #0066cc; --focus: #0071e3; --botao: #1d1d1f;
+  --papel: #f5f2ec; /* trocado em tempo real pela cor do fundo da foto da abertura */
+  --branco: #fff; --tile: #f5f5f7;
+  --manga: #f4b41a; --rosa: #f3b49c; --folha: #a8d58a; --prata: #d9dadc;
+  --ease: cubic-bezier(0.28, 0.11, 0.32, 1);
+  --chegada: cubic-bezier(0.16, 1, 0.3, 1);
+  --gutter: max(22px, calc((100vw - 1024px) / 2));
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font: 400 17px/1.47 "Inter", system-ui, sans-serif; letter-spacing: -0.022em; color: var(--ink);
+  background: var(--branco); font-feature-settings: "cv11", "ss01"; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 8px; }
+h1, h2, h3 { text-wrap: balance; }
+
+/* vidro: blur + saturação + brilho de borda (luz vinda de cima) */
+.vidro {
+  background: rgba(255, 255, 255, 0.46);
+  backdrop-filter: blur(22px) saturate(190%); -webkit-backdrop-filter: blur(22px) saturate(190%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.9), inset 0 -1px 0 rgba(255,255,255,.25), inset 0 0 0 1px rgba(255,255,255,.4), 0 8px 32px rgba(60,40,0,.10);
+}
+@media (prefers-reduced-transparency: reduce) { .vidro { background: #fbfaf7; backdrop-filter: none; -webkit-backdrop-filter: none; } }
+
+.marca { width: 15px; height: 17px; background: currentColor; display: block;
+  -webkit-mask: url(/mango.svg) center / contain no-repeat; mask: url(/mango.svg) center / contain no-repeat; }
+.ico { width: 15px; height: 15px; display: block; }
+.pill { display: inline-flex; align-items: center; border-radius: 980px; padding: 12px 22px; font-size: 17px;
+  background: var(--botao); color: #fff; transition: transform .12s ease-out, background-color .2s; }
+.pill:hover { background: #3a3a3c; }
+.pill:active { transform: scale(.95); }
+.mais { color: var(--action); font-size: 17px; }
+.mais::after { content: " ›"; }
+.mais:hover { text-decoration: underline; }
+.chips { display: flex; gap: 10px; align-items: center; }
+.chip { width: 22px; height: 22px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0,0,0,.12); transition: transform .2s var(--ease); }
+.chip:hover { transform: scale(1.1); }
+.chip[aria-checked="true"], .chip.on { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+/* bordas da foto esfumaçadas, para o fundo dela sumir no fundo da seção */
+.funde { -webkit-mask-image: radial-gradient(ellipse 70% 66% at 50% 52%, #000 64%, transparent 100%);
+                 mask-image: radial-gradient(ellipse 70% 66% at 50% 52%, #000 64%, transparent 100%); }
+
+@keyframes sobe { from { opacity: 0; transform: translateY(18px); } }
+@keyframes surge { from { opacity: 0; transform: translateY(40px) scale(.97); } }
+.entra > * { animation: sobe .9s var(--ease) both; }
+.entra > *:nth-child(2) { animation-delay: .1s; }
+.produto { animation: surge 1.2s var(--ease) .2s both; }
+
+/* ---------- navbar: ilha que encolhe ----------
+   No topo mostra tudo. Ao rolar, encolhe para o nome do produto + Comprar e libera a tela para as fotos.
+   Passar o mouse ou chegar por Tab abre de novo, para os links nunca ficarem inalcançáveis. */
+.nav { position: fixed; z-index: 40; top: 14px; left: 50%; translate: -50% 0; width: min(900px, calc(100% - 24px));
+  height: 52px; border-radius: 980px; display: flex; align-items: center; gap: 2px; padding: 0 8px 0 20px; overflow: hidden;
+  --mola: cubic-bezier(0.32, 0.72, 0, 1); /* entra devagar e assenta longo: a mudança se lê como gesto, não como estalo */
+  transition: width .6s var(--mola); }
+/* abrindo (voltar ao topo, mouse, Tab): a largura vem primeiro e os links aparecem quando já há espaço */
+.nav .cheia { display: flex; align-items: center; gap: 2px; flex: 1; min-width: 0; max-width: 900px; overflow: hidden;
+  transition: max-width .6s var(--mola), opacity .3s ease .25s; }
+.nav .nav-nome { position: absolute; left: 50px; font-weight: 600; font-size: 14px; white-space: nowrap; opacity: 0; transform: translateY(8px); pointer-events: none;
+  transition: opacity .15s ease, transform .3s var(--mola); }
+/* encolhendo: os links somem primeiro (0,2 s), a pílula fecha em 0,75 s e o nome do produto entra no fim */
+.nav.compacta:not(:hover):not(:focus-within) { width: 330px; transition: width .75s var(--mola) .08s; }
+.nav.compacta:not(:hover):not(:focus-within) .cheia { opacity: 0; max-width: 0; pointer-events: none; transition: opacity .2s ease, max-width .75s var(--mola) .08s; }
+.nav.compacta:not(:hover):not(:focus-within) .nav-nome { opacity: 1; transform: none; transition: opacity .35s ease .45s, transform .5s var(--mola) .4s; }
+.nav a:not(.pill) { font-size: 13px; padding: 7px 12px; border-radius: 980px; color: rgba(0,0,0,.78); transition: background-color .2s; }
+.nav a:not(.pill):hover { background: rgba(255,255,255,.6); }
+.nav .esp { flex: 1; }
+.nav .pill { font-size: 13px; padding: 8px 16px; margin-left: auto; flex: none; } /* fica na ponta direita mesmo com os links recolhidos */
+
+/* ---------- 1 · abertura ---------- */
+.abertura { position: relative; min-height: 100svh; overflow: clip; background: var(--papel); }
+.abertura .foto { position: absolute; inset: 0; }
+.abertura .foto img { width: 100%; height: 100%; object-fit: cover; transform: translateY(13vh) scale(.98); }
+.abertura .titulo { position: relative; z-index: 2; text-align: center; padding-top: 108px; display: grid; justify-items: center; gap: 6px; }
+.abertura .nome { font-size: 19px; font-weight: 600; color: #b9770e; }
+.abertura h1 { font-size: clamp(44px, 6.2vw, 84px); font-weight: 600; letter-spacing: -.045em; line-height: 1.02; }
+.abertura h1 em { font-style: normal; background: linear-gradient(100deg, #e8890c, #f4b41a 45%, #ef7d6d); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.compra { position: absolute; z-index: 3; left: 50%; bottom: 28px; translate: -50% 0; border-radius: 22px;
+  display: flex; align-items: center; gap: 22px; padding: 12px 12px 12px 22px; white-space: nowrap; }
+.compra .preco { font-size: 14px; color: var(--ink-2); }
+.compra .pill { font-size: 15px; padding: 10px 18px; }
+
+/* ---------- 2 · destaques (carrossel) ---------- */
+.destaques { background: var(--tile); padding: 120px 0 100px; }
+.destaques h2, .cores h2, .amor h2 { font-size: clamp(32px, 4.6vw, 56px); font-weight: 600; letter-spacing: -.035em; line-height: 1.07; padding: 0 var(--gutter); }
+.trilho { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--gutter);
+  padding: 48px var(--gutter) 24px; scrollbar-width: none; scroll-padding-inline-end: var(--gutter); overscroll-behavior-x: contain; }
+.trilho::-webkit-scrollbar { display: none; }
+.trilho::after { content: ""; flex: 0 0 calc(var(--gutter) - 20px); } /* respiro depois do último card */
+.card { flex: 0 0 min(372px, 82vw); height: 640px; border-radius: 28px; scroll-snap-align: start; position: relative; overflow: hidden;
+  display: flex; flex-direction: column; padding: 32px; transition: transform .4s var(--ease); }
+.card:hover { transform: scale(1.01); }
+.card .sobre { font-size: 14px; font-weight: 600; }
+.card h3 { font-size: 28px; font-weight: 600; letter-spacing: -.025em; line-height: 1.14; margin-top: 8px; }
+.card img { position: absolute; left: 50%; bottom: -2%; width: 150%; max-width: none; translate: -50% 0; mix-blend-mode: multiply;
+  -webkit-mask-image: radial-gradient(ellipse 46% 50% at 50% 55%, #000 60%, transparent 100%);
+          mask-image: radial-gradient(ellipse 46% 50% at 50% 55%, #000 60%, transparent 100%); }
+/* cards: claros e escuros alternados, cada um com uma peça própria (foto, número em degradê, ícone desenhado) */
+.card.claro { background: #fff; }
+.card.escuro { background: #000; color: #f5f5f7; }
+.card.escuro .sobre { color: #a1a1a6; }
+.card .peca { margin-top: auto; position: relative; }
+.grad-manga { background: linear-gradient(95deg, #ffd23f 0%, #ff9f1c 40%, #ff5e7e 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.grad-ia { background: linear-gradient(95deg, #ff9f1c, #ff5e7e 35%, #a46bff 70%, #3aa0ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.card .grande { font-size: 112px; font-weight: 700; letter-spacing: -.06em; line-height: .9; }
+.card .grande small { font-size: 32px; letter-spacing: -.02em; font-weight: 600; }
+.card .nota { font-size: 14px; color: var(--ink-2); margin-top: 10px; }
+.card.escuro .nota { color: #a1a1a6; }
+
+/* cores: a foto do notebook + as quatro amostras */
+.card.cores-c { background: linear-gradient(170deg, #fff8e3 0%, #ffe39a 100%); }
+.card.cores-c img { bottom: 70px; }
+.card .amostras { position: absolute; left: 32px; bottom: 32px; display: flex; gap: 10px; }
+.card .amostras i { width: 22px; height: 22px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0,0,0,.1); }
+
+/* bateria: pilha que enche quando o card aparece */
+.pilha { width: 128px; height: 58px; border-radius: 16px; border: 3px solid #3a3a3c; padding: 5px; position: relative; margin-bottom: 26px; }
+.pilha::after { content: ""; position: absolute; right: -11px; top: 18px; width: 6px; height: 16px; border-radius: 0 4px 4px 0; background: #3a3a3c; }
+.pilha span { display: block; height: 100%; width: 8%; border-radius: 10px; background: linear-gradient(90deg, #ffd23f, #ff9f1c, #ff5e7e); transition: width 1.6s var(--chegada) .3s; }
+.viu .pilha span { width: 100%; }
+
+/* chip Caroço: um chip desenhado com a borda acesa num degradê que gira */
+@property --giro { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+@keyframes gira { to { --giro: 360deg; } }
+.chip-art { width: 168px; height: 168px; border-radius: 34px; position: relative; display: grid; place-items: center; margin: 0 auto 40px; }
+.chip-art::before { content: ""; position: absolute; inset: -2px; border-radius: 36px; padding: 2px;
+  background: conic-gradient(from var(--giro), #ffd23f, #ff5e7e, #a46bff, #3aa0ff, #3ddc97, #ffd23f);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; animation: gira 6s linear infinite; }
+.chip-art::after { content: ""; position: absolute; inset: 20%; border-radius: 50%; background: radial-gradient(circle, rgba(255,159,28,.45), transparent 70%); filter: blur(18px); }
+.chip-art .miolo { width: 100%; height: 100%; border-radius: 34px; background: linear-gradient(160deg, #1c1c1e, #0b0b0c); display: grid; place-items: center; position: relative; z-index: 1; }
+.chip-art .marca { width: 46px; height: 52px; color: #f5f5f7; }
+.chip-art .nome-chip { position: absolute; bottom: 22px; font-size: 13px; font-weight: 600; letter-spacing: .04em; color: #a1a1a6; }
+
+/* tela: um pedaço de tela em degradê de malha */
+.card.tela-c { color: #fff; background:
+  radial-gradient(circle at 18% 22%, #ffd23f 0%, transparent 42%),
+  radial-gradient(circle at 85% 30%, #ff5e7e 0%, transparent 45%),
+  radial-gradient(circle at 30% 85%, #a46bff 0%, transparent 48%),
+  radial-gradient(circle at 85% 88%, #3aa0ff 0%, transparent 45%), #ff9f1c; }
+.card.tela-c .sobre { color: rgba(255,255,255,.85); }
+.card.tela-c .grande { color: #fff; text-shadow: 0 2px 30px rgba(0,0,0,.12); }
+.card.tela-c .nota { color: rgba(255,255,255,.9); }
+
+/* Mango Intelligence: brilho colorido atrás do ícone de faísca */
+@keyframes respira { 50% { transform: scale(1.12); opacity: .75; } }
+.ia-art { width: 150px; height: 150px; margin: 0 auto 50px; position: relative; display: grid; place-items: center; }
+.ia-art::before { content: ""; position: absolute; inset: -14px; border-radius: 50%;
+  background: conic-gradient(from 90deg, #ff9f1c, #ff5e7e, #a46bff, #3aa0ff, #3ddc97, #ff9f1c); filter: blur(38px); opacity: .55; animation: respira 5s ease-in-out infinite; }
+.ia-art svg { width: 132px; height: 132px; position: relative; filter: drop-shadow(0 6px 18px rgba(255,94,126,.35)); }
+
+/* cards "glifo": degradê de malha suave com um ícone branco no centro e o texto centralizado em cima */
+.card.glifo { text-align: center; align-items: center; }
+.card.glifo .peca { margin: auto 0; display: grid; justify-items: center; gap: 18px; }
+.card.glifo .nota { color: rgba(0,0,0,.62); }
+
+/* Mango + Mangophone: verde-folha a ciano; o "copiado" viaja do celular para o notebook */
+.card.juntos-c { background:
+  radial-gradient(120% 70% at 50% 0%, #6fd3a8 0%, transparent 60%),
+  radial-gradient(80% 60% at 0% 100%, #b6e880 0%, transparent 60%),
+  radial-gradient(80% 60% at 100% 90%, #4cc3e0 0%, transparent 60%), #8fdcb6; }
+.juntos-art { width: 260px; height: 190px; display: block; overflow: visible; }
+.juntos-art .bolha { animation: viaja 3.2s var(--chegada) infinite; }
+@keyframes viaja { 0%, 12% { transform: translate(0, 0); opacity: 0; } 22% { opacity: 1; } 62% { transform: translate(-118px, -36px); opacity: 1; } 80%, 100% { transform: translate(-118px, -36px); opacity: 0; } }
+
+/* privacidade: azul a verde-água com bordas lilás, como o exemplo da Apple; cadeado feito da manga */
+.card.priv-c { background:
+  radial-gradient(60% 50% at 0% 0%, #5a5fd6 0%, transparent 70%),
+  radial-gradient(60% 50% at 100% 100%, #8b74e6 0%, transparent 70%),
+  linear-gradient(180deg, #5f93e6 0%, #79b6d4 45%, #96d3b8 100%); }
+.priv-art { width: 190px; height: 260px; display: block; filter: drop-shadow(0 10px 30px rgba(20,40,90,.18)); }
+
+/* chip: o desenho fica no meio do card, com a frase embaixo dele */
+.card.chip-c { align-items: center; text-align: center; }
+.card.chip-c .peca { margin: auto 0; display: grid; justify-items: center; }
+.card.chip-c .chip-art { margin: 0 0 28px; }
+.card.chip-c .nota { max-width: 26ch; }
+.controle { display: flex; justify-content: center; margin-top: 12px; }
+.pontos { display: flex; align-items: center; gap: 10px; padding: 12px 18px; border-radius: 980px; }
+.pontos button.ponto { width: 8px; height: 8px; border-radius: 980px; background: rgba(0,0,0,.25); transition: width .4s var(--ease), background-color .3s; }
+.pontos button.ponto.on { width: 36px; background: rgba(0,0,0,.25); position: relative; overflow: hidden; }
+.pontos button.ponto.on::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: var(--ink); }
+.pontos.tocando button.ponto.on::after { transform-origin: left; animation: enche 8s linear; }
+@keyframes enche { from { transform: scaleX(0); } }
+.pontos .pausa { width: 36px; height: 36px; margin-left: 6px; border-radius: 50%; background: rgba(0,0,0,.06); display: grid; place-items: center; }
+
+/* ---------- 3 · cores (seletor) ---------- */
+/* banho de cor: a seção inteira tinge no sabor escolhido; o notebook troca com fade curto */
+.cores { background: #fff3d1; padding: 120px 0 80px; text-align: center; transition: background-color .6s var(--chegada); }
+.cores .sub { color: var(--ink-2); font-size: 21px; margin-top: 10px; padding: 0 var(--gutter); }
+.vitrine { position: relative; width: min(1100px, 100%); margin: 24px auto 0; aspect-ratio: 1024 / 572; }
+.vitrine img { position: absolute; inset: 0; width: 100%; opacity: 0; transition: opacity .4s var(--chegada); mix-blend-mode: multiply; /* o fundo claro da foto some no tom */
+  -webkit-mask-image: radial-gradient(ellipse 58% 60% at 50% 52%, #000 55%, transparent 100%); mask-image: radial-gradient(ellipse 58% 60% at 50% 52%, #000 55%, transparent 100%); }
+.vitrine img.on { opacity: 1; }
+.seletor { display: inline-flex; align-items: center; gap: 18px; padding: 14px 22px; border-radius: 980px; margin-top: 8px; }
+.seletor .rot { font-size: 14px; color: var(--ink-2); min-width: 5.5em; text-align: left; }
+
+/* ---------- 4 · amor ---------- */
+.amor { background: var(--papel); padding: 120px 0 0; text-align: center; }
+.amor p { color: var(--ink-2); font-size: 21px; max-width: 36ch; margin: 14px auto 0; padding: 0 22px; }
+.amor img { width: min(1200px, 100%); margin: 24px auto 0; }
+.provisorio { display: inline-block; margin-top: 18px; font-size: 12px; font-weight: 600; padding: 5px 10px; border-radius: 980px; background: #fff0c2; color: #8a5a00; }
+
+footer { background: var(--tile); color: var(--ink-2); font-size: 12px; padding: 22px var(--gutter) 32px; }
+
+@media (max-width: 734px) {
+  .nav a.opc { display: none; }
+  .compra { gap: 12px; padding-left: 16px; } .compra .preco { display: none; }
+  .card { height: 540px; }
+  .card .grande { font-size: 88px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .entra > *, .produto { animation: none; }
+  .vitrine img, .card, .pontos button.ponto, .cores, .nav, .nav * { transition: none !important; }
+  .pilha span { width: 100%; } .chip-art::before, .ia-art::before, .juntos-art .bolha { animation: none; }
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="busca" viewBox="0 0 16 16"><circle cx="7" cy="7" r="5.2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M11 11l3.6 3.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></symbol>
+  <symbol id="sacola" viewBox="0 0 16 16"><path d="M3 5.5h10l-.8 9H3.8z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M5.6 5.5V4.4a2.4 2.4 0 014.8 0v1.1" fill="none" stroke="currentColor" stroke-width="1.3"/></symbol>
+  <symbol id="pausa" viewBox="0 0 16 16"><path d="M5 3.5v9M11 3.5v9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="play" viewBox="0 0 16 16"><path d="M5 3.2l8 4.8-8 4.8z" fill="currentColor"/></symbol>
+</svg>
+
+<nav class="nav vidro" id="nav" aria-label="Mango">
+  <a class="marca" href="#topo" aria-label="Mango, início" style="margin-right:8px"></a>
+  <span class="nav-nome" aria-hidden="true">MangoBook Pure</span>
+  <div class="cheia">
+    <a class="opc" href="#">Loja</a><a href="#topo">MangoBook</a><a class="opc" href="#">Mangopad</a><a class="opc" href="#">Mangophone</a><a class="opc" href="#">Suporte</a>
+    <span class="esp"></span>
+    <a href="#" aria-label="Buscar"><svg class="ico"><use href="#busca"/></svg></a>
+    <a href="#" aria-label="Sacola"><svg class="ico"><use href="#sacola"/></svg></a>
+  </div>
+  <a class="pill" href="#cores">Comprar</a>
+</nav>
+
+<main>
+  <!-- 1 · abertura -->
+  <section class="abertura" id="topo" aria-labelledby="t-abertura">
+    <div class="foto produto"><img class="funde" src="/mango-book/image-4.png" alt="MangoBook Pure amarelo-manga aberto sobre a palma de uma mão"></div>
+    <div class="titulo entra">
+      <span class="nome">MangoBook Pure</span>
+      <h1 id="t-abertura">Doce por fora.<br><em>Rápido por dentro.</em></h1>
+    </div>
+    <div class="compra vidro">
+      <b>MangoBook Pure</b>
+      <div class="chips" aria-hidden="true"><span class="chip on" style="background:var(--manga)"></span><span class="chip" style="background:var(--rosa)"></span><span class="chip" style="background:var(--folha)"></span><span class="chip" style="background:var(--prata)"></span></div>
+      <span class="preco">A partir de R$ 7.999</span>
+      <a class="pill" href="#cores">Comprar</a>
+    </div>
+  </section>
+
+  <!-- 2 · destaques -->
+  <section class="destaques" aria-labelledby="t-destaques">
+    <h2 id="t-destaques">Comece pelos destaques.</h2>
+    <div class="trilho" id="trilho" tabindex="0" aria-label="Destaques">
+      <article class="card cores-c"><span class="sobre">Cores e design</span><h3>Quatro cores.<br>Nenhuma sem graça.</h3>
+        <img src="/mango-book/cor-manga.png" alt="">
+        <div class="amostras" aria-hidden="true"><i style="background:var(--manga)"></i><i style="background:var(--rosa)"></i><i style="background:var(--folha)"></i><i style="background:var(--prata)"></i></div></article>
+      <article class="card escuro"><span class="sobre">Bateria</span><h3>Dura o dia.<br>E a noite também.</h3>
+        <div class="peca"><div class="pilha" aria-hidden="true"><span></span></div><p class="grande grad-manga">18<small> h</small></p><p class="nota">de bateria com uma carga só.</p></div></article>
+      <article class="card escuro chip-c"><span class="sobre">Desempenho</span><h3>Chip Palmer.<br>Rápido até o caroço.</h3>
+        <div class="peca"><div class="chip-art" aria-hidden="true"><div class="miolo"><span class="marca"></span><span class="nome-chip">PALMER</span></div></div><p class="nota">Até 2x mais rápido que o notebook que você tem hoje.</p></div></article>
+      <article class="card tela-c"><span class="sobre">Tela</span><h3>Cores que dão<br>água na boca.</h3>
+        <div class="peca"><p class="grande">13,6<small>"</small></p><p class="nota">Tela Pure Retina, 500 nits.</p></div></article>
+      <article class="card claro"><span class="sobre">Mango Intelligence</span><h3>Inteligente.<br>E <span class="grad-ia">bem docinha</span>.</h3>
+        <div class="peca"><div class="ia-art" aria-hidden="true"><svg viewBox="0 0 96 96"><defs><linearGradient id="g-ia" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff9f1c"/><stop offset=".45" stop-color="#ff5e7e"/><stop offset="1" stop-color="#7b5cff"/></linearGradient></defs><path d="M48 8c3 18 10 27 28 30-18 3-25 12-28 30-3-18-10-27-28-30 18-3 25-12 28-30z" fill="url(#g-ia)"/><path d="M76 58c1.5 8 4.5 11.5 12 13-7.5 1.5-10.5 5-12 13-1.5-8-4.5-11.5-12-13 7.5-1.5 10.5-5 12-13z" fill="url(#g-ia)" opacity=".8"/></svg></div><p class="nota">Escreve, resume e organiza, sem tirar nada do seu notebook.</p></div></article>
+      <article class="card juntos-c glifo"><span class="sobre">Mango + Mangophone</span><h3>Juntos, ficam<br>ainda mais doces.</h3>
+        <div class="peca"><svg class="juntos-art" viewBox="0 0 260 190" aria-hidden="true">
+          <!-- notebook -->
+          <rect x="10" y="40" width="160" height="104" rx="12" fill="#fff"/>
+          <rect x="20" y="50" width="140" height="84" rx="5" fill="#8fdcb6" opacity=".45"/>
+          <path d="M0 150h180l-10 12H10z" fill="#fff"/>
+          <!-- celular -->
+          <rect x="196" y="74" width="56" height="104" rx="14" fill="#fff"/>
+          <rect x="203" y="84" width="42" height="84" rx="8" fill="#8fdcb6" opacity=".45"/>
+          <!-- "copiado" saindo do celular -->
+          <g class="bolha"><rect x="192" y="110" width="64" height="26" rx="13" fill="#1d1d1f"/><text x="224" y="127.5" font-size="11" font-weight="600" fill="#fff" text-anchor="middle" font-family="Inter, system-ui">copiado</text></g>
+        </svg><p class="nota">Copie no Mangophone, cole no MangoBook.</p></div></article>
+      <article class="card priv-c glifo"><span class="sobre">Privacidade</span><h3>O que é seu<br>fica com você.</h3>
+        <div class="peca"><svg class="priv-art" viewBox="0 -34 100 150" aria-hidden="true">
+          <!-- alça do cadeado no lugar da folha; a manga é o corpo, com o caroço vazado -->
+          <path d="M36 40V12a16 16 0 0132 0v28" fill="none" stroke="#fff" stroke-width="11" stroke-linecap="butt"/>
+          <path fill="#fff" fill-rule="evenodd" d="M47 27 C67 21 88 35 89 59 C90 86 74 108 50 112 C33 115 16 105 13 87 C11 73 19 66 23 56 C28 43 32 31 47 27 Z M53 56 C61 56 66 65 65 76 C64 87 58 93 52 92 C46 91 43 84 44 75 C45 65 48 56 53 56 Z"/>
+        </svg><p class="nota">Tudo que dá, roda no próprio notebook.</p></div></article>
+    </div>
+    <div class="controle">
+      <div class="pontos vidro" id="pontos">
+        <button class="ponto on" aria-label="Destaque 1"></button><button class="ponto" aria-label="Destaque 2"></button><button class="ponto" aria-label="Destaque 3"></button><button class="ponto" aria-label="Destaque 4"></button><button class="ponto" aria-label="Destaque 5"></button><button class="ponto" aria-label="Destaque 6"></button><button class="ponto" aria-label="Destaque 7"></button>
+        <button class="pausa" id="pausar" aria-label="Pausar"><svg class="ico"><use href="#pausa"/></svg></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · cores -->
+  <section class="cores" id="cores" aria-labelledby="t-cores">
+    <h2 id="t-cores">Escolha o seu sabor.</h2>
+    <p class="sub">Alumínio anodizado na cor, das bordas às teclas.</p>
+    <div class="vitrine" id="vitrine">
+      <img class="funde on" src="/mango-book/cor-manga.png" alt="MangoBook Pure na cor Manga" data-cor="manga">
+      <img class="funde" src="/mango-book/cor-rosa.png" alt="MangoBook Pure na cor Rosa" data-cor="rosa">
+      <img class="funde" src="/mango-book/cor-folha.png" alt="MangoBook Pure na cor Folha" data-cor="folha">
+      <img class="funde" src="/mango-book/cor-prata.png" alt="MangoBook Pure na cor Prata" data-cor="prata">
+    </div>
+    <div class="seletor vidro" role="radiogroup" aria-label="Cor">
+      <div class="chips">
+        <button class="chip" role="radio" aria-checked="true" aria-label="Manga" data-cor="manga" data-nome="Manga" style="background:var(--manga)"></button>
+        <button class="chip" role="radio" aria-checked="false" aria-label="Rosa" data-cor="rosa" data-nome="Rosa" style="background:var(--rosa)" tabindex="-1"></button>
+        <button class="chip" role="radio" aria-checked="false" aria-label="Folha" data-cor="folha" data-nome="Folha" style="background:var(--folha)" tabindex="-1"></button>
+        <button class="chip" role="radio" aria-checked="false" aria-label="Prata" data-cor="prata" data-nome="Prata" style="background:var(--prata)" tabindex="-1"></button>
+      </div>
+      <span class="rot" id="rot-cor" aria-live="polite">Manga</span>
+    </div>
+  </section>
+
+  <!-- 4 · amor -->
+  <section class="amor" aria-labelledby="t-amor">
+    <h2 id="t-amor">Amor à primeira fruta.</h2>
+    <p>Fino, leve e colorido do jeito que um notebook deveria ser desde sempre.</p>
+    <span class="provisorio">imagem provisória: trocar por um conceito nosso</span>
+    <img class="funde" src="/mango-book/quatro-cores.png" alt="Quatro MangoBook Pure, um em cada cor">
+  </section>
+</main>
+
+<footer>Mango e MangoBook Pure são uma paródia fictícia, criada como projeto de portfólio, sem relação com a Apple. Preços e números são ilustrativos.</footer>
+
+<script>
+// fundo de cada seção = cor do canto da foto dela, para a imagem se fundir sem emenda
+function amostrar(src, variavel) {
+  const img = new Image(); img.src = src;
+  img.onload = () => {
+    const c = document.createElement('canvas'); c.width = c.height = 1;
+    const g = c.getContext('2d'); g.drawImage(img, 4, 4, 1, 1, 0, 0, 1, 1);
+    const [r, gr, b] = g.getImageData(0, 0, 1, 1).data;
+    document.documentElement.style.setProperty(variavel, `rgb(${r} ${gr} ${b})`);
+  };
+}
+amostrar('/mango-book/image-4.png', '--papel');
+
+// carrossel: pontos acompanham o scroll; avança sozinho a cada 8 s (o ponto ativo enche no mesmo tempo), com pausa
+(() => {
+  const trilho = document.getElementById('trilho');
+  const cards = [...trilho.children];
+  const pontos = [...document.querySelectorAll('#pontos .ponto')];
+  const pausa = document.getElementById("pausar");
+  const reduzir = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let atual = 0, tocando = !reduzir, timer;
+
+  const ir = (i) => { trilho.scrollTo({ left: cards[i].offsetLeft - cards[0].offsetLeft, behavior: reduzir ? 'auto' : 'smooth' }); };
+  const marcar = (i) => { atual = i; pontos.forEach((p, k) => p.classList.toggle('on', k === i)); };
+  const viu = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) e.target.classList.add('viu'); }), { threshold: 0.5 });
+  cards.forEach((c) => viu.observe(c));
+  const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.intersectionRatio > 0.6) marcar(cards.indexOf(e.target)); }), { root: trilho, threshold: [0.6] });
+  cards.forEach((c) => io.observe(c));
+
+  const rodar = () => { clearInterval(timer); if (tocando) timer = setInterval(() => ir((atual + 1) % cards.length), 8000); document.getElementById("pontos").classList.toggle("tocando", tocando); };
+  const icone = () => { pausa.innerHTML = `<svg class="ico"><use href="#${tocando ? 'pausa' : 'play'}"/></svg>`; pausa.setAttribute('aria-label', tocando ? 'Pausar' : 'Tocar'); };
+  pontos.forEach((p, i) => p.addEventListener('click', () => { ir(i); rodar(); }));
+  pausa.addEventListener('click', () => { tocando = !tocando; icone(); rodar(); });
+  trilho.addEventListener('pointerdown', () => { tocando = false; icone(); rodar(); });
+  icone(); rodar();
+})();
+
+// navbar: encolhe depois de sair do topo
+(() => {
+  const nav = document.getElementById('nav');
+  const ver = () => nav.classList.toggle('compacta', scrollY > 80);
+  addEventListener('scroll', ver, { passive: true }); ver();
+})();
+
+// seletor de cor: troca a foto com fade; setas navegam entre as cores (radiogroup)
+(() => {
+  const chips = [...document.querySelectorAll('.seletor .chip')];
+  const fotos = [...document.querySelectorAll('#vitrine img')];
+  const rot = document.getElementById('rot-cor');
+  const secao = document.getElementById('cores');
+  const TONS = { manga: '#fff3d1', rosa: '#ffe8de', folha: '#eaf6df', prata: '#eef0f4' };
+  const escolher = (i, focar) => {
+    secao.style.backgroundColor = TONS[chips[i].dataset.cor];
+    chips.forEach((c, k) => { c.setAttribute('aria-checked', k === i); c.tabIndex = k === i ? 0 : -1; });
+    fotos.forEach((f) => f.classList.toggle('on', f.dataset.cor === chips[i].dataset.cor));
+    rot.textContent = chips[i].dataset.nome;
+    if (focar) chips[i].focus();
+  };
+  chips.forEach((c, i) => {
+    c.addEventListener('click', () => escolher(i));
+    c.addEventListener('keydown', (e) => {
+      const passo = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key];
+      if (passo) { e.preventDefault(); escolher((i + passo + chips.length) % chips.length, true); }
+    });
+  });
+})();
+</script>
+</body>
+</html>
