@@ -12,11 +12,10 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/status-protótipo-ffb21f?style=flat-square" alt="Status: protótipo">
+  <img src="https://img.shields.io/badge/status-em%20React-ffb21f?style=flat-square" alt="Status: em React">
   <img src="https://img.shields.io/badge/React-19-61dafb?style=flat-square&logo=react&logoColor=white" alt="React 19">
   <img src="https://img.shields.io/badge/Vite-8-a46bff?style=flat-square&logo=vite&logoColor=white" alt="Vite 8">
-  <img src="https://img.shields.io/badge/Three.js-r186-1d1d1f?style=flat-square&logo=threedotjs&logoColor=white" alt="Three.js">
-  <img src="https://img.shields.io/badge/GSAP-ScrollTrigger-3ddc97?style=flat-square&logo=greensock&logoColor=white" alt="GSAP">
+  <img src="https://img.shields.io/badge/testes-node%20--test-3ddc97?style=flat-square&logo=nodedotjs&logoColor=white" alt="Testes com node --test">
   <img src="https://img.shields.io/badge/feito%20por-Guilherme%20Sola%20Garcia-ff5e7e?style=flat-square" alt="Feito por Guilherme Sola Garcia">
 </p>
 
@@ -65,6 +64,8 @@ A Mango faz objetos que dão vontade de pegar na mão. Alumínio na cor, das bor
 | ✋ **Dá vontade de tocar** | Cada interação responde: vidro, molas, transições que assentam devagar. |
 | 🌱 **Doce com o planeta** | Alumínio reciclado e embalagem de fibra (pelo menos na ficção). |
 
+Tudo o que define a marca (logo, cores, tipografia, peças visuais, tom de voz e o que já foi rejeitado) está no **[manual da marca](MARCA.md)**.
+
 <details>
 <summary><b>A família Mango</b> (clique para abrir)</summary>
 <br>
@@ -72,12 +73,14 @@ A Mango faz objetos que dão vontade de pegar na mão. Alumínio na cor, das bor
 | Produto | O que é |
 |:--|:--|
 | 💻 **MangoBook Pure** | O notebook leve e colorido. O protagonista deste projeto. |
-| 💻 **MangoBook Prime** | O irmão maior: 15,3", chip Palmer Max. |
+| 💻 **MangoBook Prime** | O irmão maior: tela de 15,3" e chip mais forte. |
 | 📱 **Mangophone** | O celular que conversa com o MangoBook. |
 | 📲 **Mangopad** | O tablet. |
 | 🧠 **Chip Palmer** | O processador, batizado com uma variedade de manga brasileira. |
 | ✨ **Mango Intelligence** | A IA que roda no próprio aparelho. |
 | 🖥️ **MangoOS** | O sistema. Simples desde o primeiro clique. |
+
+<sub>Os produtos são provisórios e podem mudar; a marca fica.</sub>
 
 </details>
 
@@ -108,6 +111,11 @@ A Mango faz objetos que dão vontade de pegar na mão. Alumínio na cor, das bor
 
 Uma página de lançamento de produto, no estilo das páginas da Apple, com **15 seções** contadas pelo scroll.
 
+<p align="center">
+  <img src="docs/readme/10-amor.png" alt="Seção Amor à primeira fruta: quatro MangoBook Pure abertos, vistos de cima, arrumados como fatias de manga" width="100%">
+  <br><b>Amor à primeira fruta.</b><br><sub>Imagem autoral: os quatro sabores abertos e vistos de cima, arrumados como as fatias de uma manga cortada.</sub>
+</p>
+
 <table>
 <tr>
 <td width="50%"><img src="docs/readme/02-destaques.png" alt="Carrossel de destaques com cards coloridos"><br><b>Comece pelos destaques.</b><br><sub>Carrossel de 7 cards com avanço automático a cada 8 s e pontos de vidro que enchem com o tempo.</sub></td>
@@ -127,6 +135,15 @@ Uma página de lançamento de produto, no estilo das páginas da Apple, com **15
 </tr>
 </table>
 
+### No celular
+
+<table>
+<tr>
+<td width="50%" align="center"><img src="docs/readme/cel-cores.png" alt="Seletor de cor no celular com o notebook verde e a seção tingida de verde" width="300"><br><sub>O banho de cor no sabor Folha.</sub></td>
+<td width="50%" align="center"><img src="docs/readme/cel-bateria.png" alt="Seção de bateria no celular com a linha do dia em duas colunas" width="300"><br><sub>A linha do dia se reorganiza em duas colunas.</sub></td>
+</tr>
+</table>
+
 <details>
 <summary><b>Todas as 15 seções, em ordem</b></summary>
 <br>
@@ -135,7 +152,7 @@ Uma página de lançamento de produto, no estilo das páginas da Apple, com **15
 |:-:|:--|:--|
 | 1 | **Abertura** | Foto em tela cheia e barra de compra em vidro com as quatro cores. |
 | 2 | **Destaques** | Carrossel de cards claros, escuros e em degradê. |
-| 3 | **Amor à primeira fruta** | As quatro cores juntas. |
+| 3 | **Amor à primeira fruta** | Os quatro sabores abertos, como fatias de manga. |
 | 4 | **Escolha o seu sabor** | Seletor de cor com banho de cor. |
 | 5 | **Desempenho** | Chip Palmer, cartões de vidro e abas de uso. |
 | 6 | **Bateria** | Contador até 18 h e a linha de um dia inteiro. |
@@ -155,15 +172,15 @@ Uma página de lançamento de produto, no estilo das páginas da Apple, com **15
 
 ## 🧪 Como foi feito
 
-O visual foi decidido **antes** do código. Cada escolha virou uma página em [`escolhas/`](escolhas/) com várias opções lado a lado, testadas no navegador.
+O visual foi decidido **antes** do código. Cada escolha virou uma página em [`escolhas/`](escolhas/) com várias opções lado a lado, testadas no navegador. Só depois de tudo aprovado o protótipo foi para React.
 
 ```mermaid
 flowchart LR
     A["🎨 Identidade<br/>marca e logo"] --> B["🖼️ Imagens<br/>geradas por IA"]
     B --> C["🧭 Direções<br/>3 aberturas"]
     C --> D["🔘 Componentes<br/>navbar, transição, ícones"]
-    D --> E["📄 Protótipo<br/>15 seções"]
-    E --> F["⚛️ React<br/>próximo passo"]
+    D --> E["📄 Protótipo<br/>15 seções em HTML"]
+    E --> F["⚛️ React<br/>cópia fiel, testada"]
 ```
 
 | Decisão | Opções testadas | Escolha |
@@ -172,6 +189,20 @@ flowchart LR
 | **Navbar** | 6 variações de vidro | [Ilha que encolhe](escolhas/navbars.html) ao rolar |
 | **Troca de cor** | 7 transições | [Banho de cor](escolhas/transicao-cores.html) |
 | **Ícones** | 5 estilos | [Traço fino, uma cor só](escolhas/icones.html) |
+| **Imagem do "Amor à primeira fruta"** | Fatias · Fruteira · Pilha de sabores | [Fatias](escolhas/amor-imagem.html) |
+
+### Do protótipo ao React
+
+O protótipo aprovado ([`escolhas/pure.html`](escolhas/pure.html), um arquivo só) foi dividido em peças pequenas, **sem mudar um pixel**:
+
+| Pasta | O que tem |
+|:--|:--|
+| [`src/marca/`](src/marca/) | As peças da marca: logo, botão em pílula, vidro, navbar "ilha que encolhe", rodapé e as variáveis de cor. Não importa nada de fora da pasta (um teste garante), para ir direto para a futura loja da Mango. |
+| [`src/secoes/`](src/secoes/) | Uma seção por arquivo, cada uma com o seu CSS. |
+| [`src/ganchos/`](src/ganchos/) | A lógica repetida: "apareceu na tela", abas com setas do teclado, cor do fundo da foto. |
+| [`src/dados/`](src/dados/) | Textos, specs e funções puras, com testes. |
+
+**Como foi conferido:** um script abre o protótipo e o React lado a lado no Chrome, em 1440 × 900 e 390 × 844, tira um print de cada seção e de cada interação (trocar cor, abas, sanfona, comparador, setas do teclado) e compara pixel a pixel. Resultado: **0,00% de diferença** em todas as seções.
 
 <details>
 <summary><b>Detalhes de interação</b></summary>
@@ -179,7 +210,8 @@ flowchart LR
 
 - **Ilha que encolhe:** a navbar de vidro mostra tudo no topo e encolhe para "nome + Comprar" ao rolar, em etapas (links somem, a pílula fecha, o nome entra). Reabre no hover e no foco do teclado. Fica escura sobre seções pretas.
 - **Banho de cor:** escolher uma cor tinge a seção inteira no tom da fruta.
-- **Motion com propósito:** curvas que assentam devagar (`cubic-bezier(0.32, 0.72, 0, 1)`), sem bounce. Tudo respeita `prefers-reduced-motion`.
+- **Fundo que se funde:** cada seção com foto pega a cor do fundo da própria imagem, para não aparecer emenda.
+- **Motion com propósito:** curvas que assentam devagar (`cubic-bezier(0.32, 0.72, 0, 1)`), sem bounce. Tudo respeita `prefers-reduced-motion` e `prefers-reduced-transparency`.
 - **Acessibilidade:** abas e seletores com papel ARIA, navegação por setas e foco visível.
 
 </details>
@@ -188,9 +220,9 @@ flowchart LR
 <summary><b>Por trás: a parte 1, um teclado em 3D</b></summary>
 <br>
 
-Antes do notebook, o projeto era o **Mango FORGE 75**, um teclado mecânico com modelo 3D procedural em Three.js, que se desmontava em 8 camadas conforme o scroll. Esse código continua no repositório (`src/teclado`, `src/3d`) e traz:
+Antes do notebook, o projeto era o **Mango FORGE 75**, um teclado mecânico com modelo 3D procedural em Three.js, que se desmontava em 8 camadas conforme o scroll. O visual não convenceu e o produto virou o MangoBook. Esse código continua no histórico do repositório, no [commit `d286506`](../../tree/d286506), e traz:
 
-- **Roteiro de poses** como funções puras do progresso do scroll, com testes (`node --test`).
+- **Roteiro de poses** como funções puras do progresso do scroll, com testes.
 - **"Dono do palco"**: só a seção no meio da tela controla a câmera 3D, com troca suave entre seções.
 - Fallbacks para movimento reduzido e navegadores sem WebGL.
 
@@ -202,16 +234,15 @@ Antes do notebook, o projeto era o **Mango FORGE 75**, um teclado mecânico com 
 
 <table>
 <tr>
-<td align="center" width="16%"><img src="https://cdn.simpleicons.org/react/61dafb" width="36" alt=""><br><sub><b>React 19</b></sub></td>
-<td align="center" width="16%"><img src="https://cdn.simpleicons.org/vite/a46bff" width="36" alt=""><br><sub><b>Vite 8</b></sub></td>
-<td align="center" width="16%"><img src="https://cdn.simpleicons.org/threedotjs/1d1d1f" width="36" alt=""><br><sub><b>Three.js + R3F</b></sub></td>
-<td align="center" width="16%"><img src="https://cdn.simpleicons.org/greensock/3ddc97" width="36" alt=""><br><sub><b>GSAP</b></sub></td>
-<td align="center" width="16%"><img src="https://cdn.simpleicons.org/css/2f7bff" width="36" alt=""><br><sub><b>CSS moderno</b></sub></td>
-<td align="center" width="16%"><img src="https://cdn.simpleicons.org/nodedotjs/3ddc97" width="36" alt=""><br><sub><b>node --test</b></sub></td>
+<td align="center" width="20%"><img src="https://cdn.simpleicons.org/react/61dafb" width="36" alt=""><br><sub><b>React 19</b></sub></td>
+<td align="center" width="20%"><img src="https://cdn.simpleicons.org/vite/a46bff" width="36" alt=""><br><sub><b>Vite 8</b></sub></td>
+<td align="center" width="20%"><img src="https://cdn.simpleicons.org/css/2f7bff" width="36" alt=""><br><sub><b>CSS moderno</b></sub></td>
+<td align="center" width="20%"><img src="https://cdn.simpleicons.org/nodedotjs/3ddc97" width="36" alt=""><br><sub><b>node --test</b></sub></td>
+<td align="center" width="20%"><img src="https://cdn.simpleicons.org/googlechrome/ff5e7e" width="36" alt=""><br><sub><b>Chrome DevTools Protocol</b></sub></td>
 </tr>
 </table>
 
-Ícones: [Phosphor](https://phosphoricons.com) (Light). Fonte: [Inter](https://rsms.me/inter/). Imagens do produto: geradas por IA.
+Sem biblioteca de animação nem de componentes: o movimento é CSS e `requestAnimationFrame`. Ícones: [Phosphor](https://phosphoricons.com) (Light e Fill). Fonte: [Inter](https://rsms.me/inter/). Imagens do produto: geradas por IA.
 
 <br>
 
@@ -226,12 +257,12 @@ npm run dev
 
 | Endereço | O que abre |
 |:--|:--|
-| `localhost:5173/escolhas/pure.html` | 🥭 O protótipo completo do MangoBook Pure |
+| `localhost:5173/` | 🥭 O site do MangoBook Pure em React |
 | `localhost:5173/escolhas/` | As páginas de escolha de design |
-| `localhost:5173/` | O site React da parte 1 (teclado 3D) |
+| `localhost:5173/escolhas/pure.html` | O protótipo original em HTML, mantido como referência |
 
 ```bash
-npm test        # testes do roteiro 3D e do dono do palco
+npm test        # lógica das abas, specs, textos e a independência de src/marca
 npm run build   # build de produção
 ```
 
@@ -241,14 +272,16 @@ npm run build   # build de produção
 
 ```
 Projeto-Hardware/
-├── escolhas/          páginas de decisão de design + protótipo (pure.html)
-├── mango-book/        imagens do MangoBook Pure geradas por IA
-├── public/            logo da Mango (claro e escuro)
+├── MARCA.md           manual da marca Mango
+├── escolhas/          páginas de decisão de design + protótipo original (pure.html)
+├── public/
+│   ├── mango.svg      logo da Mango (claro e escuro)
+│   └── mango-book/    imagens do MangoBook Pure geradas por IA
 ├── src/
-│   ├── 3d/            palco, roteiro de poses e estado (com testes)
-│   ├── cenas/         seções do site React
-│   ├── teclado/       modelo 3D procedural do FORGE 75
-│   └── ui/            barras e rodapé
+│   ├── marca/         peças da marca, reaproveitáveis na loja
+│   ├── secoes/        as 15 seções da página
+│   ├── ganchos/       lógica repetida (aparição, abas, cor da foto)
+│   └── dados/         textos, specs e funções puras (com testes)
 └── docs/              specs, planos e imagens deste README
 ```
 
@@ -260,10 +293,13 @@ Projeto-Hardware/
 
 - [x] Identidade da Mango e logo
 - [x] Protótipo completo do MangoBook Pure (15 seções)
+- [x] Manual da marca
+- [x] Levar o protótipo para React, idêntico e testado
+- [x] Imagem autoral para "Amor à primeira fruta"
 - [ ] Fotos do produto com fundo transparente e em alta resolução
-- [ ] Imagens próprias para os destaques e para "Amor à primeira fruta"
-- [ ] Levar o protótipo para React, com o scroll e o palco da parte 1
+- [ ] Imagem própria para a abertura no celular
 - [ ] Publicar online
+- [ ] A loja completa da Mango, num repositório próprio
 
 <br>
 
@@ -278,7 +314,7 @@ Projeto-Hardware/
 
 ### Guilherme Sola Garcia
 
-Este projeto é parte do meu **portfólio**: design de produto, motion e 3D na web.
+Este projeto é parte do meu **portfólio**: design de produto, motion e front-end.
 
 [![GitHub](https://img.shields.io/badge/GitHub-guilhermesolagarcia-1d1d1f?style=for-the-badge&logo=github&logoColor=white)](https://github.com/guilhermesolagarcia)
 
