@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Transição de cores</title>
+<link rel="icon" href="/mango.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1d1d1f; --ink-2: #6e6e73; --focus: #0071e3;
+  --fundo: #f9f9f9; /* trocado pela cor do fundo das fotos */
+  --manga: #f4b41a; --rosa: #f3b49c; --folha: #a8d58a; --prata: #d9dadc;
+  --ease: cubic-bezier(0.28, 0.11, 0.32, 1);
+  --ease-forte: cubic-bezier(0.77, 0, 0.18, 1);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font: 400 17px/1.47 "Inter", system-ui, sans-serif; letter-spacing: -0.022em; color: var(--ink); background: #fff;
+  font-feature-settings: "cv11", "ss01"; -webkit-font-smoothing: antialiased; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 8px; }
+
+header { padding: 56px 22px 24px; text-align: center; }
+header h1 { font-size: clamp(32px, 4vw, 48px); font-weight: 600; letter-spacing: -.035em; }
+header p { color: var(--ink-2); margin-top: 8px; }
+
+.opcao { background: var(--fundo); padding: 56px 22px 64px; text-align: center; position: relative; overflow: clip; transition: background-color .8s var(--ease); }
+.opcao + .opcao { border-top: 1px solid rgba(0,0,0,.06); }
+.opcao h2 { font-size: 28px; font-weight: 600; letter-spacing: -.025em; }
+.opcao .como { color: var(--ink-2); font-size: 15px; margin-top: 4px; max-width: 52ch; margin-inline: auto; }
+
+.vitrine { position: relative; width: min(900px, 100%); margin: 16px auto 0; aspect-ratio: 1024 / 572; }
+.vitrine img { position: absolute; inset: 0; width: 100%; height: 100%; display: block;
+  -webkit-mask-image: radial-gradient(ellipse 70% 66% at 50% 52%, #000 64%, transparent 100%);
+          mask-image: radial-gradient(ellipse 70% 66% at 50% 52%, #000 64%, transparent 100%); }
+
+.seletor { display: inline-flex; align-items: center; gap: 18px; padding: 14px 22px; border-radius: 980px; margin-top: 4px;
+  background: rgba(255,255,255,.5); backdrop-filter: blur(22px) saturate(190%); -webkit-backdrop-filter: blur(22px) saturate(190%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.9), inset 0 0 0 1px rgba(255,255,255,.4), 0 8px 32px rgba(60,40,0,.10); }
+.chips { display: flex; gap: 12px; }
+.chip { width: 26px; height: 26px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0,0,0,.12); transition: transform .2s var(--ease); }
+.chip:hover { transform: scale(1.1); }
+.chip[aria-checked="true"] { outline: 2px solid var(--ink); outline-offset: 3px; }
+.rot { font-size: 14px; color: var(--ink-2); min-width: 4.5em; text-align: left; }
+
+/* 1 · dissolver: fade cruzado com um leve respiro de escala */
+[data-modo="dissolver"] img { opacity: 0; transform: scale(.98); transition: opacity .6s var(--ease), transform .9s var(--ease); }
+[data-modo="dissolver"] img.on { opacity: 1; transform: none; }
+
+/* 2 · cortina: a cor nova entra varrendo da esquerda para a direita */
+[data-modo="cortina"] img { clip-path: inset(0 100% 0 0); }
+[data-modo="cortina"] img.base { clip-path: inset(0 0 0 0); }
+[data-modo="cortina"] img.entrando { clip-path: inset(0 0 0 0); transition: clip-path .8s var(--ease-forte); z-index: 2; }
+
+/* 3 · círculo: a cor nova abre num círculo a partir do centro da tela do notebook */
+[data-modo="circulo"] img { clip-path: circle(0% at 50% 42%); }
+[data-modo="circulo"] img.base { clip-path: circle(150% at 50% 42%); }
+[data-modo="circulo"] img.entrando { clip-path: circle(150% at 50% 42%); transition: clip-path 1s var(--ease-forte); z-index: 2; }
+
+/* 4 · deslizar: os quatro notebooks lado a lado, a fila corre até a cor escolhida */
+[data-modo="deslizar"] .vitrine { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+[data-modo="deslizar"] .fila { position: absolute; inset: 0; display: flex; transition: transform .9s var(--ease-forte); }
+[data-modo="deslizar"] .fila img { position: relative; flex: 0 0 100%; transition: transform .9s var(--ease-forte), opacity .9s; transform: scale(.82); opacity: .5; }
+[data-modo="deslizar"] .fila img.on { transform: none; opacity: 1; }
+
+/* 5 · banho de cor: o fundo da seção ganha um tom da cor, e o notebook sobe saindo do desfoque */
+[data-modo="banho"] img { opacity: 0; filter: blur(14px); transform: translateY(24px) scale(.96); transition: opacity .5s var(--ease), filter .8s var(--ease), transform 1s var(--ease); }
+[data-modo="banho"] img.on { opacity: 1; filter: none; transform: none; }
+[data-modo="banho"] .vitrine img { mix-blend-mode: multiply; /* o fundo cinza-claro da foto some no tom da seção */
+  -webkit-mask-image: radial-gradient(ellipse 58% 60% at 50% 52%, #000 55%, transparent 100%); mask-image: radial-gradient(ellipse 58% 60% at 50% 52%, #000 55%, transparent 100%); }
+
+/* 5b · banho ajustado: só o tom do fundo e um fade curto, para não parecer carregamento a cada clique */
+[data-modo="banho2"] img { opacity: 0; transition: opacity .4s cubic-bezier(0.16, 1, 0.3, 1); mix-blend-mode: multiply;
+  -webkit-mask-image: radial-gradient(ellipse 58% 60% at 50% 52%, #000 55%, transparent 100%); mask-image: radial-gradient(ellipse 58% 60% at 50% 52%, #000 55%, transparent 100%); }
+[data-modo="banho2"] img.on { opacity: 1; }
+[data-modo="banho2"] { transition: background-color .6s cubic-bezier(0.16, 1, 0.3, 1); }
+
+/* 6 · virar: o notebook gira no próprio eixo e volta já na cor nova */
+[data-modo="virar"] { perspective: 1400px; }
+[data-modo="virar"] img { opacity: 0; }
+[data-modo="virar"] img.on { opacity: 1; }
+[data-modo="virar"] .vitrine.girando { animation: vira .9s var(--ease-forte); }
+@keyframes vira { 0% { transform: rotateY(0); } 50% { transform: rotateY(90deg) scale(.92); } 100% { transform: rotateY(0); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .vitrine img, .fila, .opcao { transition: none !important; animation: none !important; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Transição entre as cores</h1>
+  <p>Clique nas bolinhas de cada opção (ou use as setas do teclado) e compare.</p>
+</header>
+
+<section class="opcao" data-modo="dissolver">
+  <h2>1 · Dissolver</h2><p class="como">A atual, refinada: uma cor some enquanto a outra aparece, com um leve respiro.</p>
+  <div class="vitrine"></div><div class="seletor"></div>
+</section>
+
+<section class="opcao" data-modo="cortina">
+  <h2>2 · Cortina</h2><p class="como">A cor nova entra varrendo da esquerda para a direita, como uma cortina passando.</p>
+  <div class="vitrine"></div><div class="seletor"></div>
+</section>
+
+<section class="opcao" data-modo="circulo">
+  <h2>3 · Círculo</h2><p class="como">A cor nova abre num círculo que cresce a partir da tela do notebook.</p>
+  <div class="vitrine"></div><div class="seletor"></div>
+</section>
+
+<section class="opcao" data-modo="deslizar">
+  <h2>4 · Deslizar</h2><p class="como">Os quatro notebooks em fila; a fila corre até a cor escolhida e os vizinhos ficam menores e apagados nas bordas.</p>
+  <div class="vitrine"><div class="fila"></div></div><div class="seletor"></div>
+</section>
+
+<section class="opcao" data-modo="banho">
+  <h2>5 · Banho de cor</h2><p class="como">O fundo da seção inteira ganha um tom da cor escolhida, e o notebook sobe saindo do desfoque.</p>
+  <div class="vitrine"></div><div class="seletor"></div>
+</section>
+
+<section class="opcao" data-modo="banho2">
+  <h2>5b · Banho de cor ajustado</h2><p class="como">A sugestão do impeccable: o fundo tinge na cor escolhida e o notebook troca com um fade curto (0,4 s), sem desfoque nem subida.</p>
+  <div class="vitrine"></div><div class="seletor"></div>
+</section>
+
+<section class="opcao" data-modo="virar">
+  <h2>6 · Virar</h2><p class="como">O notebook gira no próprio eixo e volta de frente já na cor nova.</p>
+  <div class="vitrine"></div><div class="seletor"></div>
+</section>
+
+<script>
+const CORES = [
+  { id: 'manga', nome: 'Manga', foto: '/mango-book/cor-manga.png', chip: 'var(--manga)', tom: '#fff3d1' },
+  { id: 'rosa',  nome: 'Rosa',  foto: '/mango-book/cor-rosa.png',  chip: 'var(--rosa)',  tom: '#ffe8de' },
+  { id: 'folha', nome: 'Folha', foto: '/mango-book/cor-folha.png', chip: 'var(--folha)', tom: '#eaf6df' },
+  { id: 'prata', nome: 'Prata', foto: '/mango-book/cor-prata.png', chip: 'var(--prata)', tom: '#eef0f4' },
+];
+
+// fundo neutro = cor do canto da foto, para a imagem se fundir
+(() => {
+  const img = new Image(); img.src = CORES[0].foto;
+  img.onload = () => {
+    const c = document.createElement('canvas'); c.width = c.height = 1;
+    const g = c.getContext('2d'); g.drawImage(img, 4, 4, 1, 1, 0, 0, 1, 1);
+    const [r, gr, b] = g.getImageData(0, 0, 1, 1).data;
+    document.documentElement.style.setProperty('--fundo', `rgb(${r} ${gr} ${b})`);
+  };
+})();
+
+document.querySelectorAll('.opcao').forEach((secao) => {
+  const modo = secao.dataset.modo;
+  const vitrine = secao.querySelector('.vitrine');
+  const alvoFotos = secao.querySelector('.fila') || vitrine;
+  const fotos = CORES.map((c, i) => {
+    const img = document.createElement('img');
+    img.src = c.foto; img.alt = `MangoBook Pure na cor ${c.nome}`;
+    if (i === 0) img.classList.add('on', 'base');
+    alvoFotos.append(img);
+    return img;
+  });
+
+  const seletor = secao.querySelector('.seletor');
+  seletor.setAttribute('role', 'radiogroup'); seletor.setAttribute('aria-label', 'Cor');
+  const chips = document.createElement('div'); chips.className = 'chips';
+  const rot = document.createElement('span'); rot.className = 'rot'; rot.setAttribute('aria-live', 'polite'); rot.textContent = CORES[0].nome;
+  const botoes = CORES.map((c, i) => {
+    const b = document.createElement('button');
+    b.className = 'chip'; b.style.background = c.chip;
+    b.setAttribute('role', 'radio'); b.setAttribute('aria-label', c.nome); b.setAttribute('aria-checked', i === 0);
+    b.tabIndex = i === 0 ? 0 : -1;
+    chips.append(b);
+    return b;
+  });
+  seletor.append(chips, rot);
+
+  let atual = 0;
+  function escolher(i, focar) {
+    if (i === atual) return;
+    const de = atual; atual = i;
+    botoes.forEach((b, k) => { b.setAttribute('aria-checked', k === i); b.tabIndex = k === i ? 0 : -1; });
+    if (focar) botoes[i].focus();
+    rot.textContent = CORES[i].nome;
+
+    if (modo === 'cortina' || modo === 'circulo') {
+      // a nova cor desenha por cima da antiga; quando termina, vira a base
+      fotos.forEach((f) => f.classList.remove('entrando'));
+      const nova = fotos[i];
+      nova.style.transition = 'none'; nova.classList.remove('base');
+      void nova.offsetWidth; // reinicia o recorte do zero
+      nova.style.transition = '';
+      nova.classList.add('entrando');
+      nova.addEventListener('transitionend', () => {
+        fotos.forEach((f, k) => { f.classList.toggle('base', k === i); if (k !== i) f.classList.remove('entrando'); });
+        nova.classList.remove('entrando');
+      }, { once: true });
+      fotos.forEach((f, k) => f.classList.toggle('on', k === i));
+      return;
+    }
+    if (modo === 'deslizar') {
+      alvoFotos.style.transform = `translateX(${-i * 100}%)`;
+      fotos.forEach((f, k) => f.classList.toggle('on', k === i));
+      return;
+    }
+    if (modo === 'banho' || modo === 'banho2') secao.style.backgroundColor = CORES[i].tom;
+    if (modo === 'virar') {
+      // troca a foto no meio do giro, quando o notebook está de lado
+      vitrine.classList.remove('girando'); void vitrine.offsetWidth; vitrine.classList.add('girando');
+      fotos[de].classList.add('on');
+      setTimeout(() => fotos.forEach((f, k) => f.classList.toggle('on', k === i)), 450);
+      return;
+    }
+    fotos.forEach((f, k) => f.classList.toggle('on', k === i));
+  }
+
+  botoes.forEach((b, i) => {
+    b.addEventListener('click', () => escolher(i));
+    b.addEventListener('keydown', (e) => {
+      const passo = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key];
+      if (passo) { e.preventDefault(); escolher((atual + passo + CORES.length) % CORES.length, true); }
+    });
+  });
+});
+</script>
+</body>
+</html>
