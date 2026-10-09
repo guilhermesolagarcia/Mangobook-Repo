@@ -1,0 +1,15 @@
+/* Uma tela inteira: o teclado (no palco, atrás) fica no meio, abas em cima, texto embaixo */
+.pd-abas { position: relative; min-height: 100vh; padding: 120px var(--gutter) 64px; display: grid; align-content: space-between; }
+.pd-abas-barra { position: relative; height: 56px; }
+.pd-abas-lista { display: flex; gap: 4px; }
+.pd-abas-lista button { padding: 8px 18px; border-radius: 980px; font-size: 14px; color: #d1d1d6; transition: background-color 0.2s var(--ease), color 0.2s; }
+.pd-abas-lista button[aria-selected="true"] { background: var(--on-dark); color: var(--ink); font-weight: 600; }
+.pd-abas-lista button:active { transform: scale(0.95); }
+.pd-abas-painel { display: grid; gap: 10px; max-width: 560px; }
+.pd-abas-painel p { color: #d1d1d6; }
+.pd-som { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+.pd-som button { text-align: left; background: var(--dark-tile); border-radius: 18px; padding: 18px 20px; display: grid; gap: 4px; transition: transform 0.1s ease-out, box-shadow 0.2s; }
+.pd-som button:active { transform: scale(0.95); }
+.pd-som button span { font-size: 14px; color: var(--dark-2); }
+.pd-som button.tocando { box-shadow: inset 0 0 0 2px var(--sky); }
+@media (max-width: 734px) { .pd-som { grid-template-columns: 1fr; } }

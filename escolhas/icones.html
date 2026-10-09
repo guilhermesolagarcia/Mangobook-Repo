@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ícones MangoBook</title>
+<link rel="icon" href="/mango.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/light/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/duotone/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet">
+<style>
+:root { --ink: #1d1d1f; --ink-2: #6e6e73; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font: 400 17px/1.47 "Inter", system-ui, sans-serif; letter-spacing: -0.022em; color: var(--ink); background: #fff; -webkit-font-smoothing: antialiased; }
+header { padding: 56px 22px 28px; text-align: center; }
+header h1 { font-size: clamp(32px, 4vw, 48px); font-weight: 600; letter-spacing: -.035em; }
+header p { color: var(--ink-2); margin-top: 8px; max-width: 60ch; margin-inline: auto; }
+
+.op { padding: 56px max(22px, calc((100vw - 1100px) / 2)) 64px; }
+.op.claro { background: #f5f5f7; } .op.escuro { background: #000; color: #f5f5f7; }
+.op h2 { font-size: 26px; font-weight: 600; letter-spacing: -.02em; }
+.op .como { color: var(--ink-2); font-size: 15px; margin-top: 4px; max-width: 70ch; }
+.op.escuro .como { color: #a1a1a6; }
+.tag { display: inline-block; font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 980px; margin-left: 8px; vertical-align: 4px; background: #e8e8ed; color: var(--ink-2); }
+.tag.rec { background: #fff0c2; color: #8a5a00; }
+.grade { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 28px; }
+.it { border-radius: 26px; padding: 30px; background: #fff; }
+.escuro .it { background: #1c1c1e; }
+.it b { display: block; font-size: 21px; letter-spacing: -.02em; }
+.it span.t { display: block; color: var(--ink-2); margin-top: 6px; font-size: 15px; }
+.escuro .it span.t { color: #a1a1a6; }
+
+/* 1 · atual: glifo branco em quadrado com degradê */
+.v1 .ic { width: 56px; height: 56px; border-radius: 15px; display: grid; place-items: center; margin-bottom: 20px; color: #fff; font-size: 30px; box-shadow: inset 0 1px 0 rgba(255,255,255,.35); }
+.g-manga { background: linear-gradient(145deg, #ffd23f, #ff9f1c 55%, #ff7a3d); } .g-rosa { background: linear-gradient(145deg, #ff8fa3, #ff5e7e 55%, #e8467c); }
+.g-roxo { background: linear-gradient(145deg, #c08bff, #a46bff 55%, #7b5cff); } .g-azul { background: linear-gradient(145deg, #6cc3ff, #3aa0ff 55%, #2f6bff); }
+.g-verde { background: linear-gradient(145deg, #7ff0b5, #3ddc97 55%, #1fb57a); } .g-ciano { background: linear-gradient(145deg, #6fe3f2, #22b5e8 55%, #1a8fd6); }
+
+/* 2 · glifo solto em degradê (como os símbolos do Apple Intelligence) */
+.v2 .ic { font-size: 52px; line-height: 1; display: inline-block; margin-bottom: 22px;
+  background: linear-gradient(140deg, var(--a), var(--b)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.v2 .ic.c1 { --a: #ffb21f; --b: #ff5e7e; } .v2 .ic.c2 { --a: #3ddc97; --b: #22b5e8; } .v2 .ic.c3 { --a: #3aa0ff; --b: #7b5cff; }
+.v2 .ic.c4 { --a: #ff5e7e; --b: #a46bff; } .v2 .ic.c5 { --a: #a46bff; --b: #3aa0ff; } .v2 .ic.c6 { --a: #22b5e8; --b: #3ddc97; }
+
+/* 3 · traço fino em uma cor só (o mais próximo das páginas de produto da Apple) */
+.v3 .ic { font-size: 48px; line-height: 1; display: inline-block; margin-bottom: 22px; color: var(--ink); }
+.v3.escuro .ic { color: #f5f5f7; }
+.v3 .it:hover .ic { color: #ff8a1c; }
+
+/* 4 · duotone: traço escuro com preenchimento suave da cor da marca */
+.v4 .ic { font-size: 50px; line-height: 1; display: inline-block; margin-bottom: 22px; color: #ff8a1c; }
+.v4 .ic.c2 { color: #1fb57a; } .v4 .ic.c3 { color: #2f7bff; } .v4 .ic.c4 { color: #e8467c; } .v4 .ic.c5 { color: #7b5cff; } .v4 .ic.c6 { color: #1a8fd6; }
+
+/* 5 · 3D por IA (exemplo do prompt; a imagem é você que gera) */
+.v5 pre { margin-top: 22px; white-space: pre-wrap; font: 13px/1.6 ui-monospace, SFMono-Regular, Menlo, monospace; background: #fff; border-radius: 18px; padding: 22px; color: #3a3a3c; }
+@media (max-width: 800px) { .grade { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Ícones: qual tem cara de Apple?</h1>
+  <p>Os mesmos seis itens da seção de privacidade em cinco tratamentos. Duas versões em fundo escuro, porque a seção real é preta.</p>
+</header>
+
+<section class="op claro v1"><h2>1 · Quadrado com degradê <span class="tag">o atual</span></h2><p class="como">Glifo branco dentro de um quadrado colorido. Parece ícone de app, e é o padrão mais comum da internet.</p><div class="grade" data-estilo="1"></div></section>
+<section class="op claro v2"><h2>2 · Glifo solto em degradê <span class="tag rec">recomendado</span></h2><p class="como">Sem caixa: o próprio símbolo é pintado com um degradê, como os ícones do Apple Intelligence. Colorido e com a nossa cara.</p><div class="grade" data-estilo="2"></div></section>
+<section class="op escuro v2"><h2>2b · Glifo solto em degradê, no escuro</h2><p class="como">Como ficaria na seção preta de privacidade.</p><div class="grade" data-estilo="2"></div></section>
+<section class="op claro v3"><h2>3 · Traço fino, uma cor só</h2><p class="como">O mais fiel às páginas de produto da Apple: símbolo de linha fina, preto (ou branco no escuro). Sóbrio. Passe o mouse para ver a cor da marca acender.</p><div class="grade" data-estilo="3"></div></section>
+<section class="op escuro v3"><h2>3b · Traço fino, no escuro</h2><p class="como">Na seção preta.</p><div class="grade" data-estilo="3"></div></section>
+<section class="op claro v4"><h2>4 · Duotone</h2><p class="como">Traço na cor da marca com um preenchimento suave por dentro. Meio-termo entre o 2 e o 3.</p><div class="grade" data-estilo="4"></div></section>
+<section class="op claro v5"><h2>5 · Ícones 3D gerados por IA</h2><p class="como">O mais marcante: ícones em 3D brilhante, cada um uma pecinha. Exige gerar 15 a 20 imagens com o mesmo prompt mudando só o objeto. Exemplo:</p>
+<pre>Glossy 3D icon of a [FINGERPRINT], soft rounded shapes, made of translucent frosted glass with a vivid mango-orange to pink gradient glow inside, subtle reflections, centered, floating, pure white background, Apple-style premium 3D icon, minimal, no text, high resolution, 1:1</pre></section>
+
+<script>
+const ITENS = [
+  ['fingerprint', 'Toque Mango', 'Sua digital destrava tudo.', 'g-manga'],
+  ['shield-check', 'Antivírus embutido', 'Proteção de fábrica, sempre atualizada.', 'g-verde'],
+  ['map-pin', 'Buscar', 'Perdeu? Veja no mapa e toque um som.', 'g-azul'],
+  ['key', 'Senhas', 'Guardadas, preenchidas e protegidas.', 'g-rosa'],
+  ['eye-slash', 'Navegar sem rastro', 'Os sites não seguem você.', 'g-roxo'],
+  ['cloud-arrow-down', 'Atualizações grátis', 'Novidades por anos, sem pagar.', 'g-ciano'],
+];
+const PESO = { 1: 'ph-fill', 2: 'ph-fill', 3: 'ph-light', 4: 'ph-duotone' };
+document.querySelectorAll('[data-estilo]').forEach((g) => {
+  const e = g.dataset.estilo;
+  g.innerHTML = ITENS.map(([ic, t, d, cor], k) => {
+    const icone = e === '1' ? `<span class="ic ${cor}"><i class="ph-fill ph-${ic}"></i></span>` : `<i class="ic c${k + 1} ${PESO[e]} ph-${ic}"></i>`;
+    return `<div class="it">${icone}<b>${t}</b><span class="t">${d}</span></div>`;
+  }).join('');
+});
+</script>
+</body>
+</html>

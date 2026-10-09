@@ -1,0 +1,20 @@
+/* Tokens do DESIGN.md da Apple (.ferramentas/1-design-ui/awesome-design-md), com Inter no lugar da SF Pro. */
+:root {
+  --ink: #1d1d1f;
+  --ink-2: #6e6e73;
+  --ink-3: #86868b;
+  --paper: #ffffff;
+  --tile: #f5f5f7;
+  --hairline: #e0e0e0;
+  --action: #0066cc;
+  --focus: #0071e3;
+  --sky: #2997ff;
+  --dark: #000000;
+  --on-dark: #f5f5f7;
+  --dark-2: #86868b;
+  --dark-tile: #1d1d1f;
+  --cobalt: #2563eb;
+  --sombra-produto: 3px 5px 30px rgba(0, 0, 0, 0.22);
+  --ease: cubic-bezier(0.28, 0.11, 0.32, 1);
+  --gutter: max(22px, calc((100vw - 980px) / 2));
+}

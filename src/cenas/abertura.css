@@ -1,0 +1,5 @@
+/* 200vh: a primeira tela mais uma tela de scroll para o teclado girar */
+.abertura { height: 200vh; }
+.abertura-fixo { position: sticky; top: 96px; display: grid; justify-items: center; gap: 10px;
+  padding: 56px var(--gutter) 0; text-align: center; }
+.abertura-acoes { display: flex; gap: 16px; margin-top: 18px; flex-wrap: wrap; justify-content: center; }

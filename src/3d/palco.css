@@ -1,0 +1,7 @@
+/* Fica atrás da página inteira; as cenas animam a cor de fundo (claro → escuro na cena 3). */
+.palco { position: fixed; inset: 0; z-index: 0; background: var(--paper); pointer-events: none; }
+.palco-luz { position: absolute; inset: 0; opacity: 0.55; }
+/* o ShaderGradientCanvas mede a janela uma vez; força o canvas a acompanhar o palco */
+.palco-luz > div, .palco-luz canvas { position: absolute !important; inset: 0; width: 100% !important; height: 100% !important; }
+.palco-canvas { position: absolute !important; inset: 0; }
+.palco-foto { position: absolute; left: 50%; top: 58%; width: min(900px, 92vw); transform: translate(-50%, -50%); mix-blend-mode: multiply; }
