@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Navbars MangoBook</title>
+<link rel="icon" href="/mango.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1d1d1f; --ink-2: #6e6e73; --focus: #0071e3; --botao: #1d1d1f;
+  --papel: #f5f2ec;
+  --ease: cubic-bezier(0.28, 0.11, 0.32, 1);
+  --chegada: cubic-bezier(0.16, 1, 0.3, 1);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font: 400 17px/1.47 "Inter", system-ui, sans-serif; letter-spacing: -0.022em; color: var(--ink); background: #fff;
+  font-feature-settings: "cv11", "ss01"; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 8px; }
+
+header.pagina { padding: 56px 22px 28px; text-align: center; }
+header.pagina h1 { font-size: clamp(32px, 4vw, 48px); font-weight: 600; letter-spacing: -.035em; }
+header.pagina p { color: var(--ink-2); margin-top: 8px; }
+
+.opcao { padding: 40px 22px 56px; }
+.opcao + .opcao { border-top: 1px solid rgba(0,0,0,.06); }
+.cab { max-width: 1180px; margin: 0 auto 16px; display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+.cab h2 { font-size: 24px; font-weight: 600; letter-spacing: -.02em; }
+.cab .tag { font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 980px; background: #f2f2f4; color: var(--ink-2); }
+.cab .tag.nova { background: #fff0c2; color: #8a5a00; }
+.cab p { color: var(--ink-2); font-size: 15px; flex-basis: 100%; }
+
+/* cada opção roda dentro de uma "janela" que rola sozinha, para ver a barra passando por cima do conteúdo */
+.janela { position: relative; max-width: 1180px; height: min(72vh, 680px); margin: 0 auto; border-radius: 22px; overflow-y: auto; overflow-x: hidden;
+  background: var(--papel); box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 20px 60px rgba(0,0,0,.08); scrollbar-width: thin; }
+
+/* conteúdo de amostra: abertura + cards coloridos */
+.amostra .hero { position: relative; height: min(72vh, 680px); overflow: hidden; }
+.amostra .hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: translateY(10%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 66% at 50% 55%, #000 64%, transparent 100%); mask-image: radial-gradient(ellipse 70% 66% at 50% 55%, #000 64%, transparent 100%); }
+.amostra .hero h3 { position: relative; text-align: center; padding-top: 104px; font-size: clamp(36px, 5vw, 64px); font-weight: 600; letter-spacing: -.045em; line-height: 1.03; }
+.amostra .hero h3 em { font-style: normal; background: linear-gradient(100deg, #e8890c, #f4b41a 45%, #ef7d6d); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.amostra .faixa { background: #f5f5f7; padding: 64px 32px; }
+.amostra .faixa h4 { font-size: 36px; font-weight: 600; letter-spacing: -.03em; }
+.amostra .cards { display: flex; gap: 16px; margin-top: 28px; }
+.amostra .cards div { flex: 1; height: 300px; border-radius: 22px; padding: 22px; font-weight: 600; font-size: 19px; }
+.amostra .cards div:nth-child(1) { background: linear-gradient(170deg, #fff7df, #ffe39a); }
+.amostra .cards div:nth-child(2) { background: linear-gradient(170deg, #fff1ea, #fbc9b4); }
+.amostra .cards div:nth-child(3) { background: linear-gradient(170deg, #f1faea, #bfe3a4); }
+.amostra .escuro { background: #111; color: #f5f5f7; padding: 80px 32px 120px; }
+.amostra .escuro h4 { font-size: 36px; font-weight: 600; letter-spacing: -.03em; }
+.amostra .escuro p { color: #a1a1a6; margin-top: 8px; }
+
+/* peças comuns */
+.vidro { background: rgba(255,255,255,.46); backdrop-filter: blur(22px) saturate(190%); -webkit-backdrop-filter: blur(22px) saturate(190%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.9), inset 0 -1px 0 rgba(255,255,255,.25), inset 0 0 0 1px rgba(255,255,255,.4), 0 8px 32px rgba(60,40,0,.10); }
+.marca { width: 15px; height: 17px; background: currentColor; display: block; flex: none;
+  -webkit-mask: url(/mango.svg) center / contain no-repeat; mask: url(/mango.svg) center / contain no-repeat; }
+.ico { width: 15px; height: 15px; display: block; }
+.pill { display: inline-flex; align-items: center; border-radius: 980px; background: var(--botao); color: #fff; font-size: 13px; padding: 8px 16px; white-space: nowrap;
+  transition: transform .12s ease-out, background-color .2s; }
+.pill:hover { background: #3a3a3c; }
+.pill:active { transform: scale(.95); }
+.lk { font-size: 13px; padding: 7px 12px; border-radius: 980px; color: rgba(0,0,0,.78); transition: background-color .2s, color .2s; white-space: nowrap; }
+.lk:hover { background: rgba(255,255,255,.6); color: #000; }
+
+/* 1 · dupla (direção A) */
+.n1 { position: sticky; top: 0; z-index: 10; }
+.n1 .g { height: 44px; display: flex; align-items: center; justify-content: space-between; max-width: 980px; margin: 0 auto; padding: 0 22px; font-size: 12px; color: rgba(0,0,0,.8); }
+.n1 .l { height: 52px; border-top: 1px solid rgba(0,0,0,.05); }
+.n1 .l > div { height: 100%; max-width: 980px; margin: 0 auto; padding: 0 22px; display: flex; align-items: center; gap: 22px; font-size: 12px; }
+.n1 .l strong { font-size: 21px; font-weight: 600; letter-spacing: -.02em; margin-right: auto; }
+.n1 .l .pill { font-size: 12px; padding: 5px 13px; }
+
+/* 2 · pílula que rola junto (direção B original) e 3 · pílula fixa (protótipo) */
+.pilula { z-index: 10; top: 14px; left: 50%; translate: -50% 0; width: min(880px, calc(100% - 24px)); height: 52px; border-radius: 980px;
+  display: flex; align-items: center; gap: 2px; padding: 0 8px 0 20px; }
+.pilula .esp { flex: 1; }
+.n2 { position: absolute; }
+.n3 { position: sticky; margin-bottom: -66px; }
+
+/* 4 · barra arredondada com busca (direção C) */
+.n4 { position: sticky; top: 12px; z-index: 10; margin: 12px 12px -68px; height: 56px; border-radius: 18px; display: flex; align-items: center; gap: 22px; padding: 0 10px 0 20px; font-size: 13px; }
+.n4 .esp { flex: 1; }
+.n4 .busca { display: flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 980px; background: rgba(255,255,255,.55); color: var(--ink-2); min-width: 190px; }
+
+/* 5 · ilha que encolhe (nova): no topo mostra tudo; ao rolar vira uma ilha com o produto e o Comprar */
+.n5 { position: sticky; top: 14px; z-index: 10; margin: 0 auto -66px; height: 52px; border-radius: 980px; display: flex; align-items: center;
+  width: min(880px, calc(100% - 24px)); padding: 0 8px 0 20px; gap: 2px; overflow: hidden;
+  transition: width .55s var(--chegada), padding .55s var(--chegada); }
+.n5 .esp { flex: 1; }
+.n5 .cheia { display: flex; align-items: center; gap: 2px; max-width: 640px; overflow: hidden; transition: opacity .25s, max-width .55s var(--chegada); }
+.n5 .produto { position: absolute; left: 50px; font-weight: 600; font-size: 14px; white-space: nowrap; opacity: 0; transform: translateY(8px); transition: opacity .3s .15s, transform .45s .1s var(--chegada); }
+.n5.compacta { width: 330px; }
+.n5.compacta .cheia { opacity: 0; max-width: 0; pointer-events: none; } /* sem largura: o Comprar fica dentro da ilha */
+.n5.compacta .produto { opacity: 1; transform: none; }
+
+/* 6 · três cápsulas (nova): marca, seções e ações em ilhas separadas; a seção ativa tem um realce que desliza */
+.n6 { position: sticky; top: 14px; z-index: 10; margin: 0 14px -66px; display: flex; align-items: center; justify-content: space-between; gap: 10px; pointer-events: none; }
+.n6 > * { pointer-events: auto; }
+.n6 .cap { height: 52px; border-radius: 980px; display: flex; align-items: center; }
+.n6 .c1 { width: 52px; justify-content: center; }
+.n6 .c2 { position: relative; padding: 0 6px; }
+.n6 .c2 .lk { position: relative; z-index: 1; }
+.n6 .realce { position: absolute; z-index: 0; top: 7px; height: 38px; left: 0; width: 80px; border-radius: 980px; background: rgba(255,255,255,.85);
+  box-shadow: 0 2px 10px rgba(0,0,0,.08); transition: transform .45s var(--chegada), width .45s var(--chegada); }
+.n6 .c3 { gap: 2px; padding: 0 7px 0 10px; }
+
+@media (max-width: 734px) {
+  .opc { display: none !important; }
+  .n4 .busca { display: none; }
+  .n5.compacta { width: 240px; }
+  .n6 .c2 { display: none; }
+  .amostra .cards { flex-direction: column; }
+}
+@media (prefers-reduced-motion: reduce) { .n5, .n5 *, .n6 .realce { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="busca" viewBox="0 0 16 16"><circle cx="7" cy="7" r="5.2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M11 11l3.6 3.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></symbol>
+  <symbol id="sacola" viewBox="0 0 16 16"><path d="M3 5.5h10l-.8 9H3.8z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M5.6 5.5V4.4a2.4 2.4 0 014.8 0v1.1" fill="none" stroke="currentColor" stroke-width="1.3"/></symbol>
+</svg>
+
+<template id="amostra">
+  <div class="amostra">
+    <div class="hero"><img src="/mango-book/image-4.png" alt=""><h3>Doce por fora.<br><em>Rápido por dentro.</em></h3></div>
+    <div class="faixa"><h4>Comece pelos destaques.</h4><div class="cards"><div>Cores e design</div><div>Bateria</div><div>Leveza</div></div></div>
+    <div class="escuro"><h4>Uma seção escura.</h4><p>Para ver como a barra se comporta por cima de um fundo preto.</p></div>
+  </div>
+</template>
+
+<header class="pagina">
+  <h1>Navbars do MangoBook Pure</h1>
+  <p>Role dentro de cada janela para ver a barra passando por cima da foto, dos cards e da parte escura.</p>
+</header>
+
+<section class="opcao">
+  <div class="cab"><h2>1 · Dupla</h2><span class="tag">a da direção A</span><p>Duas barras de vidro de ponta a ponta: a da marca em cima e a do produto embaixo, presas no topo.</p></div>
+  <div class="janela">
+    <div class="n1 vidro">
+      <div class="g"><a class="marca" href="#" aria-label="Mango"></a><span class="opc">Loja</span><span class="opc">MangoBook</span><span class="opc">Mangopad</span><span class="opc">Mangophone</span><span class="opc">Relógio</span><span class="opc">Suporte</span><svg class="ico"><use href="#busca"/></svg><svg class="ico"><use href="#sacola"/></svg></div>
+      <div class="l"><div><strong>MangoBook Pure</strong><a class="opc" href="#">Visão geral</a><a class="opc" href="#">Especificações</a><a class="opc" href="#">Comparar</a><a class="pill" href="#">Comprar</a></div></div>
+    </div>
+    <div data-amostra></div>
+  </div>
+</section>
+
+<section class="opcao">
+  <div class="cab"><h2>2 · Pílula que rola junto</h2><span class="tag">a da direção B, como estava</span><p>A pílula flutuante fica só na abertura e sobe junto com ela quando você rola.</p></div>
+  <div class="janela">
+    <nav class="pilula n2 vidro" aria-label="Mango">
+      <a class="marca" href="#" aria-label="Mango" style="margin-right:8px"></a>
+      <a class="lk opc" href="#">Loja</a><a class="lk" href="#">MangoBook</a><a class="lk opc" href="#">Mangopad</a><a class="lk opc" href="#">Mangophone</a><a class="lk opc" href="#">Suporte</a>
+      <span class="esp"></span><a class="lk" href="#" aria-label="Buscar"><svg class="ico"><use href="#busca"/></svg></a><a class="lk" href="#" aria-label="Sacola"><svg class="ico"><use href="#sacola"/></svg></a><a class="pill" href="#">Comprar</a>
+    </nav>
+    <div data-amostra></div>
+  </div>
+</section>
+
+<section class="opcao">
+  <div class="cab"><h2>3 · Pílula fixa</h2><span class="tag">a do protótipo</span><p>A mesma pílula, mas presa no topo: acompanha a página inteira.</p></div>
+  <div class="janela">
+    <nav class="pilula n3 vidro" aria-label="Mango">
+      <a class="marca" href="#" aria-label="Mango" style="margin-right:8px"></a>
+      <a class="lk opc" href="#">Loja</a><a class="lk" href="#">MangoBook</a><a class="lk opc" href="#">Mangopad</a><a class="lk opc" href="#">Mangophone</a><a class="lk opc" href="#">Suporte</a>
+      <span class="esp"></span><a class="lk" href="#" aria-label="Buscar"><svg class="ico"><use href="#busca"/></svg></a><a class="lk" href="#" aria-label="Sacola"><svg class="ico"><use href="#sacola"/></svg></a><a class="pill" href="#">Comprar</a>
+    </nav>
+    <div data-amostra></div>
+  </div>
+</section>
+
+<section class="opcao">
+  <div class="cab"><h2>4 · Barra com busca</h2><span class="tag">a da direção C</span><p>Retângulo de cantos arredondados, mais largo, com um campo de busca de verdade.</p></div>
+  <div class="janela">
+    <nav class="n4 vidro" aria-label="Mango">
+      <a class="marca" href="#" aria-label="Mango"></a>
+      <a class="opc" href="#">Loja</a><a href="#"><b>MangoBook</b></a><a class="opc" href="#">Mangopad</a><a class="opc" href="#">Mangophone</a><a class="opc" href="#">Suporte</a>
+      <span class="esp"></span><span class="busca"><svg class="ico"><use href="#busca"/></svg>Buscar na Mango</span><a href="#" aria-label="Sacola"><svg class="ico"><use href="#sacola"/></svg></a><a class="pill" href="#">Comprar</a>
+    </nav>
+    <div data-amostra></div>
+  </div>
+</section>
+
+<section class="opcao">
+  <div class="cab"><h2>5 · Ilha que encolhe</h2><span class="tag nova">nova</span><p>No topo, a pílula completa. Quando você rola, ela encolhe para uma ilha com só o produto e o Comprar; voltando ao topo, abre de novo.</p></div>
+  <div class="janela" data-encolhe>
+    <nav class="n5 vidro" aria-label="Mango">
+      <a class="marca" href="#" aria-label="Mango" style="margin-right:8px"></a>
+      <span class="produto">MangoBook Pure</span>
+      <div class="cheia"><a class="lk opc" href="#">Loja</a><a class="lk" href="#">MangoBook</a><a class="lk opc" href="#">Mangopad</a><a class="lk opc" href="#">Mangophone</a><a class="lk opc" href="#">Suporte</a></div>
+      <span class="esp"></span><a class="pill" href="#">Comprar</a>
+    </nav>
+    <div data-amostra></div>
+  </div>
+</section>
+
+<section class="opcao">
+  <div class="cab"><h2>6 · Três cápsulas</h2><span class="tag nova">nova</span><p>Marca, seções e ações em três ilhas de vidro separadas. Passe o mouse nas seções: um realce desliza até a que está embaixo do cursor.</p></div>
+  <div class="janela">
+    <nav class="n6" aria-label="Mango">
+      <a class="cap c1 vidro" href="#" aria-label="Mango"><span class="marca"></span></a>
+      <div class="cap c2 vidro"><span class="realce"></span><a class="lk" href="#">Visão geral</a><a class="lk" href="#">Cores</a><a class="lk" href="#">Desempenho</a><a class="lk" href="#">Especificações</a></div>
+      <div class="cap c3 vidro"><a class="lk" href="#" aria-label="Buscar"><svg class="ico"><use href="#busca"/></svg></a><a class="lk" href="#" aria-label="Sacola"><svg class="ico"><use href="#sacola"/></svg></a><a class="pill" href="#">Comprar</a></div>
+    </nav>
+    <div data-amostra></div>
+  </div>
+</section>
+
+<script>
+// conteúdo de amostra em todas as janelas
+const molde = document.getElementById('amostra');
+document.querySelectorAll('[data-amostra]').forEach((el) => el.replaceWith(molde.content.cloneNode(true)));
+
+// 5 · encolhe ao rolar a janela, abre de novo no topo
+document.querySelectorAll('[data-encolhe]').forEach((j) => {
+  const nav = j.querySelector('.n5');
+  j.addEventListener('scroll', () => nav.classList.toggle('compacta', j.scrollTop > 60), { passive: true });
+});
+
+// 6 · realce que desliza até a seção sob o cursor (ou com foco) e volta para a ativa
+document.querySelectorAll('.n6 .c2').forEach((c) => {
+  const realce = c.querySelector('.realce');
+  const links = [...c.querySelectorAll('.lk')];
+  let ativa = links[0];
+  const ir = (a) => { realce.style.width = `${a.offsetWidth}px`; realce.style.transform = `translateX(${a.offsetLeft}px)`; };
+  links.forEach((a) => {
+    a.addEventListener('mouseenter', () => ir(a));
+    a.addEventListener('focus', () => ir(a));
+    a.addEventListener('click', (e) => { e.preventDefault(); ativa = a; ir(a); });
+  });
+  c.addEventListener('mouseleave', () => ir(ativa));
+  document.fonts.ready.then(() => ir(ativa));
+});
+
+// fundo das janelas = cor do canto da foto
+(() => {
+  const img = new Image(); img.src = '/mango-book/image-4.png';
+  img.onload = () => {
+    const cv = document.createElement('canvas'); cv.width = cv.height = 1;
+    const g = cv.getContext('2d'); g.drawImage(img, 4, 4, 1, 1, 0, 0, 1, 1);
+    const [r, gr, b] = g.getImageData(0, 0, 1, 1).data;
+    document.documentElement.style.setProperty('--papel', `rgb(${r} ${gr} ${b})`);
+  };
+})();
+</script>
+</body>
+</html>
