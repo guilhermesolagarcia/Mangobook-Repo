@@ -1,0 +1,38 @@
+/* Peças da marca Mango (ver MARCA.md). Copiado de escolhas/pure.html. */
+:root {
+  --ink: #1d1d1f; --ink-2: #6e6e73; --action: #0066cc; --focus: #0071e3; --botao: #1d1d1f;
+  --papel: #f5f2ec; /* trocado em tempo real pela cor do fundo da foto da abertura */
+  --branco: #fff; --tile: #f5f5f7;
+  --manga: #f4b41a; --rosa: #f3b49c; --folha: #a8d58a; --prata: #d9dadc;
+  --ease: cubic-bezier(0.28, 0.11, 0.32, 1);
+  --chegada: cubic-bezier(0.16, 1, 0.3, 1);
+  --mola: cubic-bezier(0.32, 0.72, 0, 1); /* entra devagar e assenta longo: a mudança se lê como gesto, não como estalo */
+  --gutter: max(22px, calc((100vw - 1024px) / 2));
+}
+
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 8px; }
+
+/* vidro: blur + saturação + brilho de borda (luz vinda de cima) */
+.vidro {
+  background: rgba(255, 255, 255, 0.46);
+  backdrop-filter: blur(22px) saturate(190%); -webkit-backdrop-filter: blur(22px) saturate(190%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.9), inset 0 -1px 0 rgba(255,255,255,.25), inset 0 0 0 1px rgba(255,255,255,.4), 0 8px 32px rgba(60,40,0,.10);
+}
+@media (prefers-reduced-transparency: reduce) { .vidro { background: #fbfaf7; backdrop-filter: none; -webkit-backdrop-filter: none; } }
+.vidro-escuro { background: rgba(40, 40, 44, .45); backdrop-filter: blur(22px) saturate(180%); -webkit-backdrop-filter: blur(22px) saturate(180%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.18), inset 0 0 0 1px rgba(255,255,255,.08), 0 10px 40px rgba(0,0,0,.4); }
+
+.marca { width: 15px; height: 17px; background: currentColor; display: block;
+  -webkit-mask: url(/mango.svg) center / contain no-repeat; mask: url(/mango.svg) center / contain no-repeat; }
+.ico { width: 15px; height: 15px; display: block; }
+.pill { display: inline-flex; align-items: center; border-radius: 980px; padding: 12px 22px; font-size: 17px;
+  background: var(--botao); color: #fff; transition: transform .12s ease-out, background-color .2s; }
+.pill:hover { background: #3a3a3c; }
+.pill:active { transform: scale(.95); }
+.mais { color: var(--action); font-size: 17px; }
+.mais::after { content: " ›"; }
+.mais:hover { text-decoration: underline; }
+.chips { display: flex; gap: 10px; align-items: center; }
+.chip { width: 22px; height: 22px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0,0,0,.12); transition: transform .2s var(--ease); }
+.chip:hover { transform: scale(1.1); }
+.chip[aria-checked="true"], .chip.on { outline: 2px solid var(--ink); outline-offset: 3px; }

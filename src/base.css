@@ -1,0 +1,53 @@
+/* Base do site: reset e classes compartilhadas entre seções. Copiado de escolhas/pure.html. */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font: 400 17px/1.47 "Inter", system-ui, sans-serif; letter-spacing: -0.022em; color: var(--ink);
+  background: var(--branco); font-feature-settings: "cv11", "ss01"; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+h1, h2, h3 { text-wrap: balance; }
+
+/* bordas da foto esfumaçadas, para o fundo dela sumir no fundo da seção */
+.funde { -webkit-mask-image: radial-gradient(ellipse 70% 66% at 50% 52%, #000 64%, transparent 100%);
+                 mask-image: radial-gradient(ellipse 70% 66% at 50% 52%, #000 64%, transparent 100%); }
+
+@keyframes sobe { from { opacity: 0; transform: translateY(18px); } }
+@keyframes surge { from { opacity: 0; transform: translateY(40px) scale(.97); } }
+.entra > * { animation: sobe .9s var(--ease) both; }
+.entra > *:nth-child(2) { animation-delay: .1s; }
+.produto { animation: surge 1.2s var(--ease) .2s both; }
+
+.destaques h2, .cores h2, .amor h2 { font-size: clamp(32px, 4.6vw, 56px); font-weight: 600; letter-spacing: -.035em; line-height: 1.07; padding: 0 var(--gutter); }
+.grad-manga { background: linear-gradient(95deg, #ffd23f 0%, #ff9f1c 40%, #ff5e7e 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.grad-ia { background: linear-gradient(95deg, #ff9f1c, #ff5e7e 35%, #a46bff 70%, #3aa0ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+.sec { padding: 140px var(--gutter); position: relative; }
+.sec.branco { background: #fff; }
+.sec.tile { background: var(--tile); }
+.sec.preto { background: #000; color: #f5f5f7; }
+.sec.papel { background: var(--papel); }
+.olho { font-size: 21px; font-weight: 600; letter-spacing: -.016em; margin-bottom: 10px; }
+.olho.manga { background: linear-gradient(95deg, #ff9f1c, #ff5e7e); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sec h2.titulo { font-size: clamp(40px, 6vw, 80px); font-weight: 600; letter-spacing: -.045em; line-height: 1.02; max-width: 14ch; }
+.sec .lead { font-size: clamp(19px, 1.7vw, 24px); line-height: 1.38; color: var(--ink-2); max-width: 40ch; margin-top: 22px; }
+.sec.preto .lead { color: #a1a1a6; }
+.sec .lead b { color: var(--ink); font-weight: 600; }
+.sec.preto .lead b { color: #f5f5f7; }
+.centro { text-align: center; }
+.centro h2.titulo, .centro .lead { margin-inline: auto; }
+
+/* ícones de traço fino, uma cor só (preto no claro, branco no escuro); acendem na cor da marca no hover */
+.ico-l { display: block; font-size: 48px; line-height: 1; margin-bottom: 22px; color: var(--ink); transition: color .3s; }
+.preto .ico-l { color: #f5f5f7; }
+/* cada ícone acende numa cor da marca diferente: a Mango é todas as cores, não só o laranja */
+.grade-6 .it:nth-child(6n+1), .ia-lista > div:nth-child(6n+1), .motivos .mt:nth-child(6n+1) { --acende: #ff9f1c; }
+.grade-6 .it:nth-child(6n+2), .ia-lista > div:nth-child(6n+2), .motivos .mt:nth-child(6n+2) { --acende: #1fb57a; }
+.grade-6 .it:nth-child(6n+3), .ia-lista > div:nth-child(6n+3), .motivos .mt:nth-child(6n+3) { --acende: #ff5e7e; }
+.grade-6 .it:nth-child(6n+4), .ia-lista > div:nth-child(6n+4), .motivos .mt:nth-child(6n+4) { --acende: #2f7bff; }
+.grade-6 .it:nth-child(6n+5), .ia-lista > div:nth-child(6n+5), .motivos .mt:nth-child(6n+5) { --acende: #7b5cff; }
+.grade-6 .it:nth-child(6n+6), .ia-lista > div:nth-child(6n+6), .motivos .mt:nth-child(6n+6) { --acende: #22b5e8; }
+.it:hover .ico-l, .ia-lista div:hover .ico-l, .motivos .mt:hover .glifo { color: var(--acende, #ff9f1c); }
+.motivos .mt .glifo { color: var(--ink); transition: color .3s; }
+
+@media (max-width: 734px) { .sec { padding: 96px var(--gutter); } }
+@media (prefers-reduced-motion: reduce) { .entra > *, .produto { animation: none; } }
