@@ -1,5 +1,13 @@
 /* ---------- 4 · amor ---------- */
-.amor { background: var(--papel); padding: 120px 0 0; text-align: center; }
+.amor { background: var(--fundo-amor, var(--papel)); padding: 120px 0 0; text-align: center; }
 .amor p { color: var(--ink-2); font-size: 21px; max-width: 36ch; margin: 14px auto 0; padding: 0 22px; }
 .amor img { width: min(1200px, 100%); margin: 24px auto 0; }
-.provisorio { display: inline-block; margin-top: 18px; font-size: 12px; font-weight: 600; padding: 5px 10px; border-radius: 980px; background: #fff0c2; color: #8a5a00; }
+/* a foto das fatias tem fundo com leve vinheta: some de vez nas laterais (os notebooks ficam entre 22% e 78%)
+   e só um pouco em cima e embaixo, para não deixar emenda com o fundo da seção */
+.amor { padding-bottom: 48px; }
+.amor img.funde {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent), linear-gradient(180deg, transparent, #000 3%, #000 96%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent), linear-gradient(180deg, transparent, #000 3%, #000 96%, transparent);
+  mask-composite: intersect;
+}

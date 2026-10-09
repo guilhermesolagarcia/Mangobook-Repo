@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Amor à primeira fruta · conceitos de imagem</title>
+<link rel="icon" href="/mango.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet">
+<style>
+:root { --ink: #1d1d1f; --ink-2: #6e6e73; --papel: #f5f2ec;
+  --manga: #f4b41a; --rosa: #f3b49c; --folha: #a8d58a; --prata: #d9dadc; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font: 400 17px/1.47 "Inter", system-ui, sans-serif; letter-spacing: -0.022em; color: var(--ink); background: #fff; -webkit-font-smoothing: antialiased; }
+header { padding: 72px max(22px, calc((100vw - 1100px) / 2)) 24px; }
+header h1 { font-size: clamp(36px, 5vw, 56px); font-weight: 600; letter-spacing: -.04em; line-height: 1.05; }
+header p { color: var(--ink-2); font-size: 19px; max-width: 60ch; margin-top: 14px; }
+.regras { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.regras span { font-size: 13px; padding: 6px 12px; border-radius: 980px; background: #f5f5f7; }
+.opcao { padding: 56px max(22px, calc((100vw - 1100px) / 2)); border-top: 1px solid #e8e8ed; }
+.opcao .letra { font-size: 14px; font-weight: 600; color: var(--ink-2); }
+.opcao h2 { font-size: 34px; font-weight: 600; letter-spacing: -.03em; margin-top: 4px; }
+.opcao .ideia { color: var(--ink-2); max-width: 62ch; margin-top: 8px; }
+.grade { display: grid; grid-template-columns: 1.35fr 1fr; gap: 28px; margin-top: 28px; align-items: start; }
+@media (max-width: 900px) { .grade { grid-template-columns: 1fr; } }
+
+/* palco do esboço: mesmo formato e fundo da seção "Amor" */
+.palco { position: relative; aspect-ratio: 1024 / 572; border-radius: 24px; background: var(--papel); overflow: hidden; }
+.palco .nota { position: absolute; left: 14px; bottom: 12px; font-size: 12px; color: #9a8f7c; }
+
+/* notebook visto de cima (fechado): retângulo com a manga gravada */
+.nb { position: absolute; width: 21%; aspect-ratio: 1.45; border-radius: 9px; box-shadow: 0 14px 30px rgba(60,40,0,.16), inset 0 0 0 1px rgba(0,0,0,.06); }
+.nb::after { content: ""; position: absolute; left: 50%; top: 50%; width: 13%; aspect-ratio: 15/17; translate: -50% -50%; background: rgba(0,0,0,.14);
+  -webkit-mask: url(/mango.svg) center / contain no-repeat; mask: url(/mango.svg) center / contain no-repeat; }
+.c-manga { background: var(--manga); } .c-rosa { background: var(--rosa); } .c-folha { background: var(--folha); } .c-prata { background: var(--prata); }
+
+/* A · fatias: quatro notebooks abertos vistos de cima, girando em volta de um caroço */
+.fatias .aberto { position: absolute; left: 50%; top: 50%; width: 19%; aspect-ratio: .72; transform-origin: 50% 100%; translate: -50% -100%; }
+.fatias .aberto i { position: absolute; inset: 0 0 50% 0; border-radius: 8px 8px 2px 2px; background: #1d1d1f; border: 5px solid; }
+.fatias .aberto b { position: absolute; inset: 50% 0 0 0; border-radius: 2px 2px 8px 8px; box-shadow: 0 10px 24px rgba(60,40,0,.15);
+  background-image: repeating-linear-gradient(90deg, rgba(0,0,0,.08) 0 6%, transparent 6% 8%), repeating-linear-gradient(0deg, rgba(0,0,0,.08) 0 9%, transparent 9% 12%);
+  background-size: 84% 46%; background-position: 50% 18%; background-repeat: no-repeat; }
+.fatias .aberto.m i { border-color: var(--manga); background: linear-gradient(160deg, #ffd23f, #ff9f1c 55%, #ef7d6d); } .fatias .aberto.m b { background-color: var(--manga); }
+.fatias .aberto.r i { border-color: var(--rosa); background: linear-gradient(160deg, #ffd6c7, #f08f7a); } .fatias .aberto.r b { background-color: var(--rosa); }
+.fatias .aberto.f i { border-color: var(--folha); background: linear-gradient(160deg, #d9f5c2, #6fcf7f); } .fatias .aberto.f b { background-color: var(--folha); }
+.fatias .aberto.p i { border-color: var(--prata); background: linear-gradient(160deg, #eef0f4, #a8aec0); } .fatias .aberto.p b { background-color: var(--prata); }
+.fatias .caroco { position: absolute; left: 50%; top: 50%; width: 7%; aspect-ratio: 15/17; translate: -50% -50%; background: #fff; border-radius: 50%; box-shadow: 0 6px 18px rgba(60,40,0,.15); }
+
+/* B · fruteira: caixote de madeira de feira com os notebooks em pé, como frutas */
+.fruteira .caixote { position: absolute; left: 22%; right: 22%; bottom: 10%; height: 34%; border-radius: 6px;
+  background: repeating-linear-gradient(0deg, #c9965e 0 30%, #b07e48 30% 33%); box-shadow: 0 20px 40px rgba(60,40,0,.18); }
+.fruteira .caixote::before { content: "MANGO · PRODUTO FRESCO"; white-space: nowrap; position: absolute; left: 50%; top: 50%; translate: -50% -50%; font-size: clamp(8px, 1.1vw, 13px); font-weight: 700; letter-spacing: .14em; color: rgba(70,40,10,.55); }
+.fruteira .em-pe { position: absolute; bottom: 38%; width: 13%; aspect-ratio: .7; border-radius: 7px 7px 3px 3px; box-shadow: 0 10px 24px rgba(60,40,0,.15), inset 0 0 0 1px rgba(0,0,0,.06); }
+.fruteira .folha { position: absolute; width: 9%; aspect-ratio: 2.2; border-radius: 0 100% 0 100%; background: #6aa84f; opacity: .85; }
+
+/* C · pilha de sabores: quatro fechados empilhados em leque, numa mão só */
+.pilha .nb { width: 34%; left: 33%; }
+.pilha .mao { position: absolute; right: 18%; top: 44%; width: 26%; height: 20%; border-radius: 40px 60px 60px 40px; background: #e2b48f; box-shadow: inset -8px -6px 0 rgba(0,0,0,.05); }
+.pilha .manga-real { position: absolute; left: 18%; bottom: 14%; width: 9%; aspect-ratio: .85; border-radius: 50% 50% 46% 54% / 58% 58% 42% 42%; background: radial-gradient(circle at 35% 30%, #ffd23f, #f4a01a 60%, #e0662a); box-shadow: 0 10px 20px rgba(60,40,0,.18); }
+
+.prompt { background: #f5f5f7; border-radius: 20px; padding: 22px; }
+.prompt h3 { font-size: 14px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
+.prompt button { font: inherit; font-size: 13px; padding: 6px 14px; border-radius: 980px; border: 0; background: #1d1d1f; color: #fff; cursor: pointer; }
+.prompt pre { white-space: pre-wrap; font: 13px/1.55 ui-monospace, "Cascadia Code", Consolas, monospace; color: #3a3a3c; margin-top: 12px; }
+.prompt ul { margin: 16px 0 0 18px; color: var(--ink-2); font-size: 14px; }
+.prompt ul li + li { margin-top: 4px; }
+.favor { color: #1f8a5b; } .contra { color: #c2410c; }
+footer { padding: 40px max(22px, calc((100vw - 1100px) / 2)) 80px; color: var(--ink-2); font-size: 14px; border-top: 1px solid #e8e8ed; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Amor à primeira fruta: a imagem nossa</h1>
+  <p>Três conceitos para substituir a <code>quatro-cores.png</code>. Os esboços são só a composição: a imagem de verdade você gera com o prompt ao lado. Todos seguem as mesmas regras, para encaixar na seção como está hoje.</p>
+  <div class="regras"><span>16:9, até 2048 px de largura</span><span>fundo creme liso #f5f2ec</span><span>as 4 cores: Manga, Rosa, Folha, Prata</span><span>luz suave de estúdio</span><span>sem texto e sem maçã</span><span>nada de braços saindo das bordas (era o Neo)</span></div>
+</header>
+
+<section class="opcao">
+  <p class="letra">A</p>
+  <h2>Fatias</h2>
+  <p class="ideia">Vistos de cima, os quatro notebooks abertos giram em volta de um ponto central, como as fatias de uma manga cortada. A cena é limpa e gráfica, e a fruta fica na composição, sem precisar aparecer.</p>
+  <div class="grade">
+    <div class="palco fatias">
+      <div class="aberto m" style="rotate: 45deg"><i></i><b></b></div>
+      <div class="aberto r" style="rotate: 135deg"><i></i><b></b></div>
+      <div class="aberto f" style="rotate: -45deg"><i></i><b></b></div>
+      <div class="aberto p" style="rotate: -135deg"><i></i><b></b></div>
+      <div class="caroco"></div>
+      <span class="nota">esboço: vista de cima</span>
+    </div>
+    <div class="prompt">
+      <h3>Prompt <button data-copia="pA">Copiar</button></h3>
+      <pre id="pA">Top-down flat lay product photo, 16:9. Four identical thin aluminum laptops, fully opened flat, arranged in a radial pattern like four slices of a cut mango, keyboards pointing to the center, screens pointing outward, evenly rotated 90 degrees apart. Laptop colors: warm mango yellow, soft blush pink, light leaf green, pale silver. Each screen shows a soft abstract wallpaper in the matching color. Plain warm cream background (#f5f2ec), soft diffused studio light from above, gentle realistic contact shadows, lots of empty space around. Minimal, premium, colorful. No text, no logos, no people, no fruit.</pre>
+      <ul><li class="favor">Bem diferente do Neo e cheio de cor.</li><li class="contra">A IA às vezes erra a simetria dos 4; talvez precise gerar algumas vezes.</li></ul>
+    </div>
+  </div>
+</section>
+
+<section class="opcao">
+  <p class="letra">B</p>
+  <h2>Fruteira</h2>
+  <p class="ideia">Os notebooks em pé num caixote de madeira de feira, como frutas recém-chegadas, com umas folhas de mangueira em volta. É a mais "Mango" das três, mas a foto continua séria, como manda o tom das páginas de produto.</p>
+  <div class="grade">
+    <div class="palco fruteira">
+      <div class="em-pe c-folha" style="left: 29%; rotate: -8deg"></div>
+      <div class="em-pe c-manga" style="left: 39%; rotate: -2deg; bottom: 40%"></div>
+      <div class="em-pe c-rosa" style="left: 49%; rotate: 4deg"></div>
+      <div class="em-pe c-prata" style="left: 59%; rotate: 9deg"></div>
+      <div class="caixote"></div>
+      <div class="folha" style="left: 17%; bottom: 14%; rotate: -20deg"></div>
+      <div class="folha" style="right: 16%; bottom: 20%; rotate: 25deg"></div>
+      <span class="nota">esboço: vista de frente</span>
+    </div>
+    <div class="prompt">
+      <h3>Prompt <button data-copia="pB">Copiar</button></h3>
+      <pre id="pB">Premium product photo, 16:9, front view at eye level. Four identical thin aluminum laptops, closed, standing upright side by side inside a small rustic wooden fruit crate, slightly fanned like fresh fruit at a market stall. Laptop colors from left to right: light leaf green, warm mango yellow, soft blush pink, pale silver. A few glossy mango tree leaves resting beside the crate. Plain warm cream seamless background (#f5f2ec), soft diffused studio light, realistic soft shadows, centered composition with generous empty space. Minimal, playful but premium. No text, no logos, no people, no real fruit.</pre>
+      <ul><li class="favor">Tem a cara da marca e é fácil de entender de cara.</li><li class="contra">Notebooks fechados mostram menos o produto.</li></ul>
+    </div>
+  </div>
+</section>
+
+<section class="opcao">
+  <p class="letra">C</p>
+  <h2>Pilha de sabores</h2>
+  <p class="ideia">Os quatro fechados, empilhados em leque e segurados por uma mão só, com uma manga de verdade ao lado para comparar a cor. Fica mais perto da linguagem Apple (produto na mão), mas sem a cena dos quatro braços.</p>
+  <div class="grade">
+    <div class="palco pilha">
+      <div class="nb c-prata" style="top: 24%; rotate: -14deg"></div>
+      <div class="nb c-folha" style="top: 28%; rotate: -6deg"></div>
+      <div class="nb c-rosa" style="top: 32%; rotate: 2deg"></div>
+      <div class="nb c-manga" style="top: 36%; rotate: 10deg"></div>
+      <div class="mao"></div>
+      <div class="manga-real"></div>
+      <span class="nota">esboço: vista levemente de cima</span>
+    </div>
+    <div class="prompt">
+      <h3>Prompt <button data-copia="pC">Copiar</button></h3>
+      <pre id="pC">Premium product photo, 16:9, slightly elevated angle. One hand holding a stack of four identical thin closed aluminum laptops, fanned out like a deck of cards, each slightly rotated. Laptop colors from bottom to top: pale silver, light leaf green, soft blush pink, warm mango yellow. A single ripe real mango resting on the surface nearby, its color echoing the yellow laptop. Plain warm cream seamless background (#f5f2ec), soft diffused studio light, realistic soft shadows, lots of empty space. Minimal and premium. No text, no logos, only one hand, no arms entering from multiple edges.</pre>
+      <ul><li class="favor">Mostra como ele é fino e leve.</li><li class="contra">É a mais próxima do estilo Apple, então é a menos "nossa".</li></ul>
+    </div>
+  </div>
+</section>
+
+<footer>Minha recomendação é a <b>A · Fatias</b>: é a que mais se afasta do Neo, mostra as quatro cores abertas (com tela e teclado) e leva o tema da fruta na composição, sem precisar de piada. Quando a imagem estiver pronta, salve em <code>public/mango-book/</code> que eu coloco na página.</footer>
+
+<script>
+document.querySelectorAll('[data-copia]').forEach((b) => b.addEventListener('click', async () => {
+  await navigator.clipboard.writeText(document.getElementById(b.dataset.copia).textContent);
+  b.textContent = 'Copiado'; setTimeout(() => (b.textContent = 'Copiar'), 1500);
+}));
+</script>
+</body>
+</html>
