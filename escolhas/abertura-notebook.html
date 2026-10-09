@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Abertura MangoBook</title>
+<link rel="icon" href="/mango.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1d1d1f; --ink-2: #6e6e73; --action: #0066cc;
+  --papel: #f3efe8; /* trocado em tempo real pela cor do fundo da foto */
+  --manga: #f4b41a; --rosa: #f2b8b5; --folha: #9cc98a; --prata: #d9dadc;
+  --ease: cubic-bezier(0.28, 0.11, 0.32, 1);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font: 400 17px/1.44 "Inter", system-ui, sans-serif; letter-spacing: -0.022em; color: var(--ink);
+  background: var(--papel); font-feature-settings: "cv11", "ss01"; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+
+/* ---------- vidro: blur + saturação + brilho de borda (luz vinda de cima) ---------- */
+.vidro {
+  background: rgba(255, 255, 255, 0.42);
+  backdrop-filter: blur(22px) saturate(190%); -webkit-backdrop-filter: blur(22px) saturate(190%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.25),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.35),
+    0 8px 32px rgba(60, 40, 0, 0.10);
+}
+.vidro-escuro {
+  background: rgba(30, 24, 10, 0.28);
+  backdrop-filter: blur(22px) saturate(180%); -webkit-backdrop-filter: blur(22px) saturate(180%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.18), 0 8px 32px rgba(0, 0, 0, 0.18);
+  color: #fff;
+}
+
+/* ---------- peças comuns ---------- */
+.marca { width: 15px; height: 17px; background: currentColor; display: block;
+  -webkit-mask: url(/mango.svg) center / contain no-repeat; mask: url(/mango.svg) center / contain no-repeat; }
+.ico { width: 15px; height: 15px; display: block; }
+.pill { display: inline-flex; align-items: center; gap: 6px; border-radius: 980px; padding: 12px 24px; font-size: 17px;
+  background: var(--action); color: #fff; transition: transform .12s ease-out, background-color .2s; }
+.pill:hover { background: #0058b0; }
+.pill:active { transform: scale(.95); }
+.pill-sec { background: transparent; color: var(--action); box-shadow: inset 0 0 0 1px var(--action); }
+.pill-sec:hover { background: var(--action); color: #fff; }
+.chips { display: flex; gap: 10px; align-items: center; }
+.chip { width: 22px; height: 22px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0,0,0,.12); transition: transform .2s var(--ease); }
+.chip.on { outline: 2px solid var(--ink); outline-offset: 3px; }
+.chip:hover { transform: scale(1.12); }
+
+.dir { position: relative; min-height: 100vh; overflow: clip; }
+.dir + .dir { border-top: 1px solid rgba(0,0,0,.06); }
+.rotulo { position: absolute; z-index: 30; left: 16px; top: 120px; font-size: 12px; font-weight: 600; letter-spacing: .02em;
+  padding: 6px 12px; border-radius: 980px; }
+
+/* bordas da foto esfumaçadas: o fundo dela some no fundo da página, mesmo com o leve degradê dos cantos */
+.fotoA img, .fotoB img, .fotoC img {
+  -webkit-mask-image: radial-gradient(ellipse 70% 66% at 50% 52%, #000 64%, transparent 100%);
+          mask-image: radial-gradient(ellipse 70% 66% at 50% 52%, #000 64%, transparent 100%);
+}
+
+/* entrada */
+@keyframes sobe { from { opacity: 0; transform: translateY(18px); } }
+@keyframes surge { from { opacity: 0; transform: translateY(40px) scale(.97); } }
+.entra > * { animation: sobe .9s var(--ease) both; }
+.entra > *:nth-child(2) { animation-delay: .08s; } .entra > *:nth-child(3) { animation-delay: .16s; } .entra > *:nth-child(4) { animation-delay: .24s; }
+.produto { animation: surge 1.2s var(--ease) .2s both; }
+@media (prefers-reduced-motion: reduce) { .entra > *, .produto { animation: none; } }
+
+/* ======================= A · Neo clássico ======================= */
+#a .topo { position: sticky; top: 0; z-index: 20; }
+#a .global { height: 44px; }
+#a .global ul { list-style: none; height: 100%; max-width: 1024px; margin: 0 auto; padding: 0 22px;
+  display: flex; align-items: center; justify-content: space-between; font-size: 12px; color: rgba(0,0,0,.8); }
+#a .local { height: 52px; border-top: 1px solid rgba(0,0,0,.05); }
+#a .local > div { max-width: 1024px; height: 100%; margin: 0 auto; padding: 0 22px; display: flex; align-items: center; gap: 22px; font-size: 12px; }
+#a .local strong { font-size: 21px; font-weight: 600; letter-spacing: -.02em; margin-right: auto; }
+#a .local .pill { font-size: 12px; padding: 5px 13px; }
+#a .heroA { text-align: center; padding: 40px 22px 0; position: relative; z-index: 2; display: grid; justify-items: center; gap: 6px; }
+#a .heroA .sobre { font-size: 21px; font-weight: 600; color: #b9770e; }
+#a .heroA h1 { font-size: clamp(56px, 9vw, 112px); font-weight: 600; letter-spacing: -.045em; line-height: 1; }
+#a .heroA .linha { font-size: clamp(19px, 2vw, 24px); color: var(--ink-2); margin-top: 8px; }
+#a .heroA .acoes { display: flex; gap: 14px; margin-top: 22px; align-items: center; flex-wrap: wrap; justify-content: center; }
+#a .heroA .preco { font-size: 14px; color: var(--ink-2); }
+#a .fotoA { display: block; margin: -11vw auto 0; width: min(1240px, 100%); } /* a foto tem bastante fundo em cima: sobe por baixo do texto */
+#a .fotoA img { width: 100%; }
+
+/* ======================= B · Imersivo ======================= */
+#b { min-height: 100vh; background: var(--papel-b, var(--papel)); }
+#b .fotoB { position: absolute; inset: 0; }
+#b .fotoB img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; transform: translateY(13vh) scale(.98); }
+#b .navB { position: absolute; z-index: 20; top: 18px; left: 50%; translate: -50% 0; width: min(880px, calc(100% - 32px));
+  height: 52px; border-radius: 980px; display: flex; align-items: center; gap: 4px; padding: 0 8px 0 20px; }
+#b .navB a:not(.pill) { font-size: 13px; padding: 7px 12px; border-radius: 980px; color: rgba(0,0,0,.78); transition: background-color .2s; }
+#b .navB a:not(.pill):hover { background: rgba(255,255,255,.55); }
+#b .navB .esp { flex: 1; }
+#b .navB .pill { font-size: 13px; padding: 8px 16px; }
+#b .heroB { position: relative; z-index: 10; text-align: center; padding-top: 104px; display: grid; justify-items: center; gap: 10px; }
+#b .heroB h1 { font-size: clamp(44px, 6.2vw, 84px); font-weight: 600; letter-spacing: -.045em; line-height: 1.02; }
+#b .heroB h1 em { font-style: normal; background: linear-gradient(100deg, #e8890c, #f4b41a 45%, #ef7d6d); -webkit-background-clip: text; background-clip: text; color: transparent; }
+#b .barraB { position: absolute; z-index: 20; left: 50%; bottom: 28px; translate: -50% 0; border-radius: 22px;
+  display: flex; align-items: center; gap: 22px; padding: 12px 12px 12px 22px; white-space: nowrap; }
+#b .barraB .nome { font-weight: 600; }
+#b .barraB .preco { font-size: 14px; color: var(--ink-2); }
+#b .barraB .pill { font-size: 15px; padding: 10px 18px; }
+
+/* ======================= C · Editorial com elementos ======================= */
+#c .navC { position: sticky; top: 12px; z-index: 20; margin: 12px auto 0; width: min(1180px, calc(100% - 24px));
+  height: 56px; border-radius: 18px; display: flex; align-items: center; gap: 26px; padding: 0 10px 0 20px; font-size: 13px; }
+#c .navC .esp { flex: 1; }
+#c .navC .busca { display: flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 980px; background: rgba(255,255,255,.5); color: var(--ink-2); min-width: 180px; }
+#c .navC .pill { font-size: 13px; padding: 9px 16px; }
+#c .palco { position: relative; width: min(1180px, calc(100% - 24px)); margin: 0 auto; min-height: calc(100vh - 80px);
+  display: grid; grid-template-columns: 1fr 1.25fr; align-items: center; gap: 24px; padding: 40px 28px 80px; }
+#c .texto { display: grid; gap: 18px; position: relative; z-index: 5; }
+#c .tag { justify-self: start; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 980px; background: #fff4d6; color: #a36400; }
+#c h1 { font-size: clamp(64px, 9vw, 128px); font-weight: 600; letter-spacing: -.05em; line-height: .95; }
+#c .texto p { font-size: 21px; line-height: 1.38; color: var(--ink-2); max-width: 26ch; }
+#c .texto p b { color: var(--ink); font-weight: 600; }
+#c .cores { display: flex; align-items: center; gap: 14px; font-size: 14px; color: var(--ink-2); }
+#c .acoes { display: flex; gap: 12px; align-items: center; }
+#c .fotoC { position: relative; }
+#c .fotoC img { width: 120%; max-width: none; margin-left: -10%; }
+#c .flutua { position: absolute; z-index: 6; border-radius: 18px; padding: 14px 16px; display: grid; gap: 2px; min-width: 150px; }
+#c .flutua b { font-size: 26px; font-weight: 600; letter-spacing: -.03em; }
+#c .flutua span { font-size: 12px; color: var(--ink-2); }
+#c .f1 { top: 6%; right: 4%; } #c .f2 { bottom: 16%; left: -2%; } #c .f3 { bottom: 4%; right: 12%; }
+@keyframes boia { 50% { transform: translateY(-8px); } }
+#c .flutua { animation: boia 6s ease-in-out infinite; } #c .f2 { animation-delay: -2s; } #c .f3 { animation-delay: -4s; }
+@media (prefers-reduced-motion: reduce) { #c .flutua { animation: none; } }
+
+/* teaser da próxima seção: aparece ao rolar, para ver o vidro passando por cima de conteúdo */
+.prox { padding: 80px 22px 120px; text-align: center; background: #fff; }
+.prox h2 { font-size: clamp(32px, 4.4vw, 56px); font-weight: 600; letter-spacing: -.03em; }
+.cards { display: flex; gap: 18px; justify-content: center; margin-top: 36px; flex-wrap: wrap; }
+.cards div { width: 260px; height: 320px; border-radius: 18px; background: var(--papel); display: grid; align-content: end; padding: 22px; text-align: left; font-weight: 600; font-size: 19px; }
+.cards div:nth-child(1) { background: linear-gradient(160deg, #ffe8a8, #f4b41a); }
+.cards div:nth-child(2) { background: linear-gradient(160deg, #ffe0dd, #f2b8b5); }
+.cards div:nth-child(3) { background: linear-gradient(160deg, #e3f3d9, #9cc98a); }
+
+/* seletor de direção */
+.seletor { position: fixed; z-index: 50; bottom: 18px; right: 18px; display: flex; gap: 4px; padding: 6px; border-radius: 980px; }
+.seletor a { padding: 9px 16px; border-radius: 980px; font-size: 13px; font-weight: 600; color: rgba(255,255,255,.85); }
+.seletor a:hover { background: rgba(255,255,255,.18); }
+
+@media (max-width: 734px) {
+  #a .global .opc, #a .local a:not(.pill) { display: none; }
+  #a .fotoA { margin-top: -38vw; width: 118%; margin-left: -9%; } /* a foto vertical tem metade de fundo em cima */
+  #b .navB a.opc { display: none; }
+  #b .barraB { gap: 12px; padding-left: 16px; } #b .barraB .preco { display: none; }
+  #c .navC .opc, #c .navC .busca { display: none; }
+  #c .palco { grid-template-columns: 1fr; padding-top: 24px; }
+  #c .fotoC img { width: 100%; margin: 0; }
+  /* celular: os números saem de cima da foto e viram uma fileira embaixo dela */
+  #c .fotoC { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  #c .fotoC img { grid-column: 1 / -1; }
+  #c .flutua { position: static; min-width: 0; padding: 12px; animation: none; }
+  #c .flutua b { font-size: 21px; }
+  .seletor { bottom: 12px; right: 12px; }
+  .seletor a { padding: 8px 12px; font-size: 0; } .seletor a::first-letter { font-size: 13px; }
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="busca" viewBox="0 0 16 16"><circle cx="7" cy="7" r="5.2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M11 11l3.6 3.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></symbol>
+  <symbol id="sacola" viewBox="0 0 16 16"><path d="M3 5.5h10l-.8 9H3.8z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M5.6 5.5V4.4a2.4 2.4 0 014.8 0v1.1" fill="none" stroke="currentColor" stroke-width="1.3"/></symbol>
+</svg>
+
+<!-- ======================= A ======================= -->
+<section class="dir" id="a">
+  <header class="topo">
+  <nav class="global vidro" aria-label="Mango">
+    <ul>
+      <li><a class="marca" href="#a" aria-label="Mango"></a></li>
+      <li class="opc">Loja</li><li class="opc">MangoBook</li><li class="opc">Mangopad</li><li class="opc">Mangophone</li><li class="opc">Relógio</li><li class="opc">Fones</li><li class="opc">Suporte</li>
+      <li><svg class="ico"><use href="#busca"/></svg></li><li><svg class="ico"><use href="#sacola"/></svg></li>
+    </ul>
+  </nav>
+  <nav class="local vidro" aria-label="MangoBook Pure">
+    <div><strong>MangoBook Pure</strong><a href="#a">Visão geral</a><a href="#a">Especificações</a><a href="#a">Comparar</a><a class="pill" href="#a">Comprar</a></div>
+  </nav>
+  </header>
+  <div class="heroA entra">
+    <span class="sobre">MangoBook Pure</span>
+    <h1>Olá, Pure.</h1>
+    <p class="linha">O notebook mais doce que a Mango já fez.</p>
+    <div class="acoes"><a class="pill" href="#a">Comprar</a><span class="preco">A partir de R$ 7.999 ou 12x</span></div>
+  </div>
+  <picture class="fotoA produto">
+    <source media="(max-width: 734px)" srcset="/mango-book/mango-book/hero-manga-mobile.png">
+    <img src="/mango-book/mango-book/hero-manga.png" alt="MangoBook Pure amarelo-manga equilibrado na palma de uma mão">
+  </picture>
+  <span class="rotulo vidro">A · Neo clássico</span>
+</section>
+<div class="prox"><h2>Comece pelos destaques.</h2><div class="cards"><div>Cores e design</div><div>Bateria o dia todo</div><div>Tela Pure Retina</div></div></div>
+
+<!-- ======================= B ======================= -->
+<section class="dir" id="b">
+  <picture class="fotoB produto">
+    <source media="(max-width: 734px)" srcset="/mango-book/mango-book/hero-manga-mobile.png">
+    <img src="/mango-book/image-4.png" alt="MangoBook Pure amarelo-manga aberto sobre a mão">
+  </picture>
+  <nav class="navB vidro" aria-label="Mango">
+    <a class="marca" href="#b" aria-label="Mango" style="margin-right:8px"></a>
+    <a class="opc" href="#b">Loja</a><a href="#b">MangoBook</a><a class="opc" href="#b">Mangopad</a><a class="opc" href="#b">Mangophone</a><a class="opc" href="#b">Suporte</a>
+    <span class="esp"></span>
+    <a href="#b" aria-label="Buscar"><svg class="ico"><use href="#busca"/></svg></a>
+    <a href="#b" aria-label="Sacola"><svg class="ico"><use href="#sacola"/></svg></a>
+    <a class="pill" href="#b">Comprar</a>
+  </nav>
+  <div class="heroB entra">
+    <h1>Doce por fora.<br><em>Rápido por dentro.</em></h1>
+  </div>
+  <div class="barraB vidro">
+    <span class="nome">MangoBook Pure</span>
+    <div class="chips"><span class="chip on" style="background:var(--manga)"></span><span class="chip" style="background:var(--rosa)"></span><span class="chip" style="background:var(--folha)"></span><span class="chip" style="background:var(--prata)"></span></div>
+    <span class="preco">A partir de R$ 7.999</span>
+    <a class="pill" href="#b">Comprar</a>
+  </div>
+  <span class="rotulo vidro">B · Imersivo</span>
+</section>
+<div class="prox"><h2>Comece pelos destaques.</h2><div class="cards"><div>Cores e design</div><div>Bateria o dia todo</div><div>Tela Pure Retina</div></div></div>
+
+<!-- ======================= C ======================= -->
+<section class="dir" id="c">
+  <nav class="navC vidro" aria-label="Mango">
+    <a class="marca" href="#c" aria-label="Mango"></a>
+    <a class="opc" href="#c">Loja</a><a href="#c"><b>MangoBook</b></a><a class="opc" href="#c">Mangopad</a><a class="opc" href="#c">Mangophone</a><a class="opc" href="#c">Suporte</a>
+    <span class="esp"></span>
+    <span class="busca"><svg class="ico"><use href="#busca"/></svg>Buscar na Mango</span>
+    <a href="#c" aria-label="Sacola"><svg class="ico"><use href="#sacola"/></svg></a>
+    <a class="pill" href="#c">Comprar</a>
+  </nav>
+  <div class="palco">
+    <div class="texto entra">
+      <span class="tag">Novo · MangoBook</span>
+      <h1>Pure.</h1>
+      <p>Leve como uma fruta. <b>1,2 kg</b>, <b>18 horas</b> de bateria e quatro cores para escolher.</p>
+      <div class="cores"><div class="chips"><span class="chip on" style="background:var(--manga)"></span><span class="chip" style="background:var(--rosa)"></span><span class="chip" style="background:var(--folha)"></span><span class="chip" style="background:var(--prata)"></span></div>Manga</div>
+      <div class="acoes"><a class="pill" href="#c">Comprar</a><a class="pill pill-sec" href="#c">Ver o filme</a></div>
+    </div>
+    <div class="fotoC produto">
+      <img src="/mango-book/mango-book/hero-manga.png" alt="MangoBook Pure amarelo-manga equilibrado na palma de uma mão">
+      <div class="flutua vidro f1"><b>18 h</b><span>de bateria</span></div>
+      <div class="flutua vidro f2"><b>1,2 kg</b><span>alumínio reciclado</span></div>
+      <div class="flutua vidro f3"><b>13,6"</b><span>tela Pure Retina</span></div>
+    </div>
+  </div>
+  <span class="rotulo vidro">C · Editorial com elementos</span>
+</section>
+<div class="prox"><h2>Comece pelos destaques.</h2><div class="cards"><div>Cores e design</div><div>Bateria o dia todo</div><div>Tela Pure Retina</div></div></div>
+
+<nav class="seletor vidro-escuro" aria-label="Direções">
+  <a href="#a">A · Neo clássico</a><a href="#b">B · Imersivo</a><a href="#c">C · Editorial</a>
+</nav>
+
+<script>
+// Fundo = cor do canto de cada foto, para a imagem se fundir sem emenda.
+function amostrar(src, variavel, alvo = document.documentElement) {
+  const img = new Image();
+  img.src = src;
+  img.onload = () => {
+    const c = document.createElement('canvas'); c.width = c.height = 1;
+    const g = c.getContext('2d'); g.drawImage(img, 4, 4, 1, 1, 0, 0, 1, 1);
+    const [r, gr, b] = g.getImageData(0, 0, 1, 1).data;
+    alvo.style.setProperty(variavel, `rgb(${r} ${gr} ${b})`);
+  };
+}
+amostrar('/mango-book/mango-book/hero-manga.png', '--papel');
+amostrar(matchMedia('(max-width: 734px)').matches ? '/mango-book/mango-book/hero-manga-mobile.png' : '/mango-book/image-4.png', '--papel-b', document.getElementById('b'));
+</script>
+</body>
+</html>
