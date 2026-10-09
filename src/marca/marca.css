@@ -1,4 +1,5 @@
-/* Peças da marca Mango (ver MARCA.md). Copiado de escolhas/pure.html. */
+/* Peças da marca Mango (ver MARCA.md). Copiado de escolhas/pure.html.
+   Para usar fora daqui: /mango.svg em public/ (máscara do .marca) e a fonte Inter carregada. */
 :root {
   --ink: #1d1d1f; --ink-2: #6e6e73; --action: #0066cc; --focus: #0071e3; --botao: #1d1d1f;
   --papel: #f5f2ec; /* trocado em tempo real pela cor do fundo da foto da abertura */
