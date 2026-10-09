@@ -1,0 +1,28 @@
+/* ---- desempenho ---- */
+.palco-foto { position: relative; margin-top: 64px; border-radius: 32px; overflow: hidden; aspect-ratio: 1024 / 572; max-height: 640px; width: 100%; }
+.palco-foto img { width: 100%; height: 100%; object-fit: cover; }
+.palco-foto .flut { position: absolute; border-radius: 20px; padding: 16px 20px; display: grid; gap: 2px; color: #f5f5f7; }
+.palco-foto .flut b { font-size: 34px; font-weight: 600; letter-spacing: -.035em; line-height: 1; }
+.palco-foto .flut span { font-size: 13px; color: #d1d1d6; }
+.palco-foto .f1 { left: 4%; top: 8%; } .palco-foto .f2 { right: 4%; top: 32%; } .palco-foto .f3 { left: 30%; bottom: 7%; }
+@keyframes boia { 50% { transform: translateY(-8px); } }
+.palco-foto .flut { animation: boia 7s ease-in-out infinite; } .palco-foto .f2 { animation-delay: -2.4s; } .palco-foto .f3 { animation-delay: -4.6s; }
+.numeros { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 80px; }
+.numeros div { border-top: 1px solid #333336; padding-top: 22px; }
+.numeros b { display: block; font-size: clamp(48px, 5vw, 72px); font-weight: 700; letter-spacing: -.05em; line-height: 1; }
+.numeros span { display: block; color: #a1a1a6; margin-top: 10px; max-width: 24ch; }
+
+.usos { margin-top: 120px; }
+.usos-abas { display: inline-flex; gap: 4px; padding: 6px; border-radius: 980px; }
+.usos-abas button { padding: 10px 20px; border-radius: 980px; font-size: 15px; color: #d1d1d6; transition: background-color .3s var(--chegada), color .3s; }
+.usos-abas button[aria-selected="true"] { background: #f5f5f7; color: #000; font-weight: 600; }
+.usos-painel { margin-top: 28px; display: grid; grid-template-columns: 1.15fr 1fr; gap: 40px; align-items: center; }
+.usos-arte { aspect-ratio: 4 / 3; border-radius: 28px; position: relative; overflow: hidden; transition: background .8s var(--chegada); display: grid; place-items: center; }
+.usos-texto h3 { font-size: clamp(28px, 3vw, 40px); font-weight: 600; letter-spacing: -.03em; line-height: 1.1; }
+.usos-texto p { color: #a1a1a6; font-size: 19px; margin-top: 14px; max-width: 34ch; }
+.usos-texto .apps { display: flex; gap: 10px; margin-top: 22px; flex-wrap: wrap; }
+.usos-texto .apps span { font-size: 13px; padding: 6px 12px; border-radius: 980px; background: #1c1c1e; color: #d1d1d6; }
+.usos-arte i { font-size: clamp(110px, 14vw, 180px); color: #fff; filter: drop-shadow(0 12px 30px rgba(0,0,0,.15)); }
+@media (max-width: 900px) { .numeros { grid-template-columns: 1fr; } .usos-painel { grid-template-columns: 1fr; } .palco-foto .f3 { display: none; } }
+@media (max-width: 734px) { .usos-abas { display: flex; overflow-x: auto; max-width: 100%; } }
+@media (prefers-reduced-motion: reduce) { .palco-foto .flut { animation: none !important; } }

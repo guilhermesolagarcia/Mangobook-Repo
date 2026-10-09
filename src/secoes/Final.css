@@ -1,0 +1,7 @@
+/* ---- chamada final ---- */
+.final { text-align: center; padding-bottom: 0; overflow: hidden; background: var(--papel-final, var(--papel)); }
+.final .acoes { display: flex; gap: 16px; justify-content: center; align-items: center; margin-top: 30px; flex-wrap: wrap; }
+.final img { width: min(1100px, 100%); margin: 40px auto 0;
+  -webkit-mask-image: radial-gradient(ellipse 52% 80% at 50% 40%, #000 62%, transparent 100%) !important; mask-image: radial-gradient(ellipse 52% 80% at 50% 40%, #000 62%, transparent 100%) !important; }
+/* no protótipo o padding do .sec no celular vem depois do .final e ganha dele; mantido igual */
+@media (max-width: 734px) { .final { padding-bottom: 96px; } }

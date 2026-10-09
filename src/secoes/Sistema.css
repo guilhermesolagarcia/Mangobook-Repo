@@ -1,0 +1,20 @@
+/* ---- sistema (sanfona) ---- */
+.sistema { display: grid; grid-template-columns: 1fr 1.25fr; gap: 56px; align-items: center; margin-top: 64px; }
+.sanfona { border-top: 1px solid #d2d2d7; }
+.sanfona .item { border-bottom: 1px solid #d2d2d7; }
+.sanfona button { width: 100%; text-align: left; padding: 22px 0; font-size: 21px; font-weight: 600; letter-spacing: -.02em; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.sanfona button::after { content: "+"; font-weight: 300; font-size: 28px; line-height: 1; transition: transform .4s var(--chegada); }
+.sanfona button[aria-expanded="true"]::after { transform: rotate(45deg); }
+.sanfona .resp { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .5s var(--chegada); }
+.sanfona .resp > p { overflow: hidden; color: var(--ink-2); font-size: 17px; }
+.sanfona button[aria-expanded="true"] + .resp { grid-template-rows: 1fr; }
+.sanfona button[aria-expanded="true"] + .resp > p { padding-bottom: 22px; }
+.tela-os { aspect-ratio: 16 / 10; border-radius: 22px; padding: 14px; background: #1d1d1f; box-shadow: 0 30px 80px rgba(0,0,0,.18); }
+.tela-os .area { width: 100%; height: 100%; border-radius: 10px; position: relative; overflow: hidden; transition: background .8s var(--chegada); }
+.tela-os .janela-os { position: absolute; border-radius: 10px; background: rgba(255,255,255,.82); backdrop-filter: blur(10px); box-shadow: 0 10px 30px rgba(0,0,0,.18);
+  transition: all .7s var(--chegada); }
+.tela-os .janela-os::before { content: ""; position: absolute; left: 10px; top: 9px; width: 34px; height: 8px; border-radius: 4px;
+  background: radial-gradient(circle at 4px 4px, #ff5f57 3.5px, transparent 4px), radial-gradient(circle at 17px 4px, #febc2e 3.5px, transparent 4px), radial-gradient(circle at 30px 4px, #28c840 3.5px, transparent 4px); }
+.tela-os .doca { position: absolute; left: 50%; bottom: 8px; translate: -50% 0; display: flex; gap: 6px; padding: 6px; border-radius: 14px; background: rgba(255,255,255,.4); backdrop-filter: blur(10px); }
+.tela-os .doca i { width: 22px; height: 22px; border-radius: 6px; }
+@media (max-width: 900px) { .sistema { grid-template-columns: 1fr; } }

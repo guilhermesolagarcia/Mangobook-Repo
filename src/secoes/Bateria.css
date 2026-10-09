@@ -1,0 +1,19 @@
+/* ---- bateria ---- */
+.bat-num { font-size: clamp(120px, 18vw, 240px); font-weight: 700; letter-spacing: -.07em; line-height: .85; margin-top: 40px; }
+.bat-num small { font-size: .22em; letter-spacing: -.02em; font-weight: 600; color: var(--ink); -webkit-text-fill-color: var(--ink); }
+.dia { margin: 90px auto 0; max-width: 1000px; position: relative; }
+.dia .barra { height: 14px; border-radius: 980px; background: #ececef; overflow: hidden; }
+.dia .barra i { display: block; height: 100%; width: 0; border-radius: 980px; background: linear-gradient(90deg, #ffd23f, #ff9f1c 45%, #ff5e7e); transition: width 2.6s cubic-bezier(.45,0,.2,1) .2s; }
+.dia.viu .barra i { width: 100%; }
+.dia .marcos { display: grid; grid-template-columns: repeat(5, 1fr); margin-top: 20px; text-align: left; }
+.dia .marcos div { opacity: 0; transform: translateY(10px); transition: opacity .5s, transform .6s var(--chegada); }
+.dia.viu .marcos div { opacity: 1; transform: none; }
+.dia.viu .marcos div:nth-child(2) { transition-delay: .5s; } .dia.viu .marcos div:nth-child(3) { transition-delay: 1s; }
+.dia.viu .marcos div:nth-child(4) { transition-delay: 1.5s; } .dia.viu .marcos div:nth-child(5) { transition-delay: 2s; }
+.dia .marcos b { display: block; font-size: 15px; } .dia .marcos span { font-size: 14px; color: var(--ink-2); }
+.dia .marcos em { font-style: normal; display: inline-block; margin-top: 8px; font-size: 12px; font-weight: 600; padding: 3px 9px; border-radius: 980px; background: #fff3d1; color: #8a5a00; }
+@media (max-width: 900px) { .dia .marcos { grid-template-columns: 1fr 1fr; row-gap: 18px; } }
+@media (prefers-reduced-motion: reduce) {
+  .dia .barra i, .dia .marcos div { transition: none !important; }
+  .dia .barra i { width: 100%; } .dia .marcos div { opacity: 1; transform: none; }
+}
