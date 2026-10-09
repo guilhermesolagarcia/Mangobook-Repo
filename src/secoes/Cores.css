@@ -1,0 +1,11 @@
+/* ---------- 3 · cores (seletor) ---------- */
+/* banho de cor: a seção inteira tinge no sabor escolhido; o notebook troca com fade curto */
+.cores { background: #fff3d1; padding: 120px 0 80px; text-align: center; transition: background-color .6s var(--chegada); }
+.cores .sub { color: var(--ink-2); font-size: 21px; margin-top: 10px; padding: 0 var(--gutter); }
+.vitrine { position: relative; width: min(1100px, 100%); margin: 24px auto 0; aspect-ratio: 1024 / 572; }
+.vitrine img { position: absolute; inset: 0; width: 100%; opacity: 0; transition: opacity .4s var(--chegada); mix-blend-mode: multiply; /* o fundo claro da foto some no tom */
+  -webkit-mask-image: radial-gradient(ellipse 58% 60% at 50% 52%, #000 55%, transparent 100%); mask-image: radial-gradient(ellipse 58% 60% at 50% 52%, #000 55%, transparent 100%); }
+.vitrine img.on { opacity: 1; }
+.seletor { display: inline-flex; align-items: center; gap: 18px; padding: 14px 22px; border-radius: 980px; margin-top: 8px; }
+.seletor .rot { font-size: 14px; color: var(--ink-2); min-width: 5.5em; text-align: left; }
+@media (prefers-reduced-motion: reduce) { .vitrine img, .cores { transition: none !important; } }

@@ -1,0 +1,13 @@
+/* ---------- 1 · abertura ---------- */
+.abertura { position: relative; min-height: 100svh; overflow: clip; background: var(--papel); }
+.abertura .foto { position: absolute; inset: 0; }
+.abertura .foto img { width: 100%; height: 100%; object-fit: cover; transform: translateY(13vh) scale(.98); }
+.abertura .titulo { position: relative; z-index: 2; text-align: center; padding-top: 108px; display: grid; justify-items: center; gap: 6px; }
+.abertura .nome { font-size: 19px; font-weight: 600; color: #b9770e; }
+.abertura h1 { font-size: clamp(44px, 6.2vw, 84px); font-weight: 600; letter-spacing: -.045em; line-height: 1.02; }
+.abertura h1 em { font-style: normal; background: linear-gradient(100deg, #e8890c, #f4b41a 45%, #ef7d6d); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.compra { position: absolute; z-index: 3; left: 50%; bottom: 28px; translate: -50% 0; border-radius: 22px;
+  display: flex; align-items: center; gap: 22px; padding: 12px 12px 12px 22px; white-space: nowrap; }
+.compra .preco { font-size: 14px; color: var(--ink-2); }
+.compra .pill { font-size: 15px; padding: 10px 18px; }
+@media (max-width: 734px) { .compra { gap: 12px; padding-left: 16px; } .compra .preco { display: none; } }

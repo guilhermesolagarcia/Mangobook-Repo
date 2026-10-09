@@ -1,0 +1,105 @@
+/* ---------- 2 · destaques (carrossel) ---------- */
+.destaques { background: var(--tile); padding: 120px 0 100px; }
+.trilho { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--gutter);
+  padding: 48px var(--gutter) 24px; scrollbar-width: none; scroll-padding-inline-end: var(--gutter); overscroll-behavior-x: contain; }
+.trilho::-webkit-scrollbar { display: none; }
+.trilho::after { content: ""; flex: 0 0 calc(var(--gutter) - 20px); } /* respiro depois do último card */
+.card { flex: 0 0 min(372px, 82vw); height: 640px; border-radius: 28px; scroll-snap-align: start; position: relative; overflow: hidden;
+  display: flex; flex-direction: column; padding: 32px; transition: transform .4s var(--ease); }
+.card:hover { transform: scale(1.01); }
+.card .sobre { font-size: 14px; font-weight: 600; }
+.card h3 { font-size: 28px; font-weight: 600; letter-spacing: -.025em; line-height: 1.14; margin-top: 8px; }
+.card img { position: absolute; left: 50%; bottom: -2%; width: 150%; max-width: none; translate: -50% 0; mix-blend-mode: multiply;
+  -webkit-mask-image: radial-gradient(ellipse 46% 50% at 50% 55%, #000 60%, transparent 100%);
+          mask-image: radial-gradient(ellipse 46% 50% at 50% 55%, #000 60%, transparent 100%); }
+/* cards: claros e escuros alternados, cada um com uma peça própria (foto, número em degradê, ícone desenhado) */
+.card.claro { background: #fff; }
+.card.escuro { background: #000; color: #f5f5f7; }
+.card.escuro .sobre { color: #a1a1a6; }
+.card .peca { margin-top: auto; position: relative; }
+.card .grande { font-size: 112px; font-weight: 700; letter-spacing: -.06em; line-height: .9; }
+.card .grande small { font-size: 32px; letter-spacing: -.02em; font-weight: 600; }
+.card .nota { font-size: 14px; color: var(--ink-2); margin-top: 10px; }
+.card.escuro .nota { color: #a1a1a6; }
+
+/* cores: a foto do notebook + as quatro amostras */
+.card.cores-c { background: linear-gradient(170deg, #fff8e3 0%, #ffe39a 100%); }
+.card.cores-c img { bottom: 70px; }
+.card .amostras { position: absolute; left: 32px; bottom: 32px; display: flex; gap: 10px; }
+.card .amostras i { width: 22px; height: 22px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0,0,0,.1); }
+
+/* bateria: pilha que enche quando o card aparece */
+.pilha { width: 128px; height: 58px; border-radius: 16px; border: 3px solid #3a3a3c; padding: 5px; position: relative; margin-bottom: 26px; }
+.pilha::after { content: ""; position: absolute; right: -11px; top: 18px; width: 6px; height: 16px; border-radius: 0 4px 4px 0; background: #3a3a3c; }
+.pilha span { display: block; height: 100%; width: 8%; border-radius: 10px; background: linear-gradient(90deg, #ffd23f, #ff9f1c, #ff5e7e); transition: width 1.6s var(--chegada) .3s; }
+.viu .pilha span { width: 100%; }
+
+/* chip Caroço: um chip desenhado com a borda acesa num degradê que gira */
+@property --giro { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+@keyframes gira { to { --giro: 360deg; } }
+.chip-art { width: 168px; height: 168px; border-radius: 34px; position: relative; display: grid; place-items: center; margin: 0 auto 40px; }
+.chip-art::before { content: ""; position: absolute; inset: -2px; border-radius: 36px; padding: 2px;
+  background: conic-gradient(from var(--giro), #ffd23f, #ff5e7e, #a46bff, #3aa0ff, #3ddc97, #ffd23f);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; animation: gira 6s linear infinite; }
+.chip-art::after { content: ""; position: absolute; inset: 20%; border-radius: 50%; background: radial-gradient(circle, rgba(255,159,28,.45), transparent 70%); filter: blur(18px); }
+.chip-art .miolo { width: 100%; height: 100%; border-radius: 34px; background: linear-gradient(160deg, #1c1c1e, #0b0b0c); display: grid; place-items: center; position: relative; z-index: 1; }
+.chip-art .marca { width: 46px; height: 52px; color: #f5f5f7; }
+.chip-art .nome-chip { position: absolute; bottom: 22px; font-size: 13px; font-weight: 600; letter-spacing: .04em; color: #a1a1a6; }
+
+/* tela: um pedaço de tela em degradê de malha */
+.card.tela-c { color: #fff; background:
+  radial-gradient(circle at 18% 22%, #ffd23f 0%, transparent 42%),
+  radial-gradient(circle at 85% 30%, #ff5e7e 0%, transparent 45%),
+  radial-gradient(circle at 30% 85%, #a46bff 0%, transparent 48%),
+  radial-gradient(circle at 85% 88%, #3aa0ff 0%, transparent 45%), #ff9f1c; }
+.card.tela-c .sobre { color: rgba(255,255,255,.85); }
+.card.tela-c .grande { color: #fff; text-shadow: 0 2px 30px rgba(0,0,0,.12); }
+.card.tela-c .nota { color: rgba(255,255,255,.9); }
+
+/* Mango Intelligence: brilho colorido atrás do ícone de faísca */
+@keyframes respira { 50% { transform: scale(1.12); opacity: .75; } }
+.ia-art { width: 150px; height: 150px; margin: 0 auto 50px; position: relative; display: grid; place-items: center; }
+.ia-art::before { content: ""; position: absolute; inset: -14px; border-radius: 50%;
+  background: conic-gradient(from 90deg, #ff9f1c, #ff5e7e, #a46bff, #3aa0ff, #3ddc97, #ff9f1c); filter: blur(38px); opacity: .55; animation: respira 5s ease-in-out infinite; }
+.ia-art svg { width: 132px; height: 132px; position: relative; filter: drop-shadow(0 6px 18px rgba(255,94,126,.35)); }
+
+/* cards "glifo": degradê de malha suave com um ícone branco no centro e o texto centralizado em cima */
+.card.glifo { text-align: center; align-items: center; }
+.card.glifo .peca { margin: auto 0; display: grid; justify-items: center; gap: 18px; }
+.card.glifo .nota { color: rgba(0,0,0,.62); }
+
+/* Mango + Mangophone: verde-folha a ciano; o "copiado" viaja do celular para o notebook */
+.card.juntos-c { background:
+  radial-gradient(120% 70% at 50% 0%, #6fd3a8 0%, transparent 60%),
+  radial-gradient(80% 60% at 0% 100%, #b6e880 0%, transparent 60%),
+  radial-gradient(80% 60% at 100% 90%, #4cc3e0 0%, transparent 60%), #8fdcb6; }
+.juntos-art { width: 260px; height: 190px; display: block; overflow: visible; }
+.juntos-art .bolha { animation: viaja 3.2s var(--chegada) infinite; }
+@keyframes viaja { 0%, 12% { transform: translate(0, 0); opacity: 0; } 22% { opacity: 1; } 62% { transform: translate(-118px, -36px); opacity: 1; } 80%, 100% { transform: translate(-118px, -36px); opacity: 0; } }
+
+/* privacidade: azul a verde-água com bordas lilás, como o exemplo da Apple; cadeado feito da manga */
+.card.priv-c { background:
+  radial-gradient(60% 50% at 0% 0%, #5a5fd6 0%, transparent 70%),
+  radial-gradient(60% 50% at 100% 100%, #8b74e6 0%, transparent 70%),
+  linear-gradient(180deg, #5f93e6 0%, #79b6d4 45%, #96d3b8 100%); }
+.priv-art { width: 190px; height: 260px; display: block; filter: drop-shadow(0 10px 30px rgba(20,40,90,.18)); }
+
+/* chip: o desenho fica no meio do card, com a frase embaixo dele */
+.card.chip-c { align-items: center; text-align: center; }
+.card.chip-c .peca { margin: auto 0; display: grid; justify-items: center; }
+.card.chip-c .chip-art { margin: 0 0 28px; }
+.card.chip-c .nota { max-width: 26ch; }
+.controle { display: flex; justify-content: center; margin-top: 12px; }
+.pontos { display: flex; align-items: center; gap: 10px; padding: 12px 18px; border-radius: 980px; }
+.pontos button.ponto { width: 8px; height: 8px; border-radius: 980px; background: rgba(0,0,0,.25); transition: width .4s var(--ease), background-color .3s; }
+.pontos button.ponto.on { width: 36px; background: rgba(0,0,0,.25); position: relative; overflow: hidden; }
+.pontos button.ponto.on::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: var(--ink); }
+.pontos.tocando button.ponto.on::after { transform-origin: left; animation: enche 8s linear; }
+@keyframes enche { from { transform: scaleX(0); } }
+.pontos .pausa { width: 36px; height: 36px; margin-left: 6px; border-radius: 50%; background: rgba(0,0,0,.06); display: grid; place-items: center; }
+
+@media (max-width: 734px) { .card { height: 540px; } .card .grande { font-size: 88px; } }
+@media (prefers-reduced-motion: reduce) {
+  .card, .pontos button.ponto { transition: none !important; }
+  .pilha span { width: 100%; } .chip-art::before, .ia-art::before, .juntos-art .bolha { animation: none; }
+}

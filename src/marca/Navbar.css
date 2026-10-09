@@ -1,0 +1,28 @@
+/* ---------- navbar: ilha que encolhe ----------
+   No topo mostra tudo. Ao rolar, encolhe para o nome do produto + Comprar e libera a tela para as fotos.
+   Passar o mouse ou chegar por Tab abre de novo, para os links nunca ficarem inalcançáveis. */
+.nav { position: fixed; z-index: 40; top: 14px; left: 50%; translate: -50% 0; width: min(900px, calc(100% - 24px));
+  height: 52px; border-radius: 980px; display: flex; align-items: center; gap: 2px; padding: 0 8px 0 20px; overflow: hidden;
+  --mola: cubic-bezier(0.32, 0.72, 0, 1); /* entra devagar e assenta longo: a mudança se lê como gesto, não como estalo */
+  transition: width .6s var(--mola), background-color .4s, color .4s, box-shadow .4s; }
+/* abrindo (voltar ao topo, mouse, Tab): a largura vem primeiro e os links aparecem quando já há espaço */
+.nav .cheia { display: flex; align-items: center; gap: 2px; flex: 1; min-width: 0; max-width: 900px; overflow: hidden;
+  transition: max-width .6s var(--mola), opacity .3s ease .25s; }
+.nav .nav-nome { position: absolute; left: 50px; font-weight: 600; font-size: 14px; white-space: nowrap; opacity: 0; transform: translateY(8px); pointer-events: none;
+  transition: opacity .15s ease, transform .3s var(--mola); }
+/* encolhendo: os links somem primeiro (0,2 s), a pílula fecha em 0,75 s e o nome do produto entra no fim */
+.nav.compacta:not(:hover):not(:focus-within) { width: 330px; transition: width .75s var(--mola) .08s; }
+.nav.compacta:not(:hover):not(:focus-within) .cheia { opacity: 0; max-width: 0; pointer-events: none; transition: opacity .2s ease, max-width .75s var(--mola) .08s; }
+.nav.compacta:not(:hover):not(:focus-within) .nav-nome { opacity: 1; transform: none; transition: opacity .35s ease .45s, transform .5s var(--mola) .4s; }
+.nav a:not(.pill) { font-size: 13px; padding: 7px 12px; border-radius: 980px; color: rgba(0,0,0,.78); transition: background-color .2s; }
+.nav a:not(.pill):hover { background: rgba(255,255,255,.6); }
+.nav .esp { flex: 1; }
+.nav .pill { font-size: 13px; padding: 8px 16px; margin-left: auto; flex: none; } /* fica na ponta direita mesmo com os links recolhidos */
+.nav.sobre-escuro { background: rgba(30,30,32,.55); color: #f5f5f7; box-shadow: inset 0 1px 0 rgba(255,255,255,.18), inset 0 0 0 1px rgba(255,255,255,.08), 0 10px 40px rgba(0,0,0,.4); }
+.nav.sobre-escuro a:not(.pill) { color: rgba(255,255,255,.85); }
+.nav.sobre-escuro a:not(.pill):hover { background: rgba(255,255,255,.12); }
+.nav.sobre-escuro .pill { background: #f5f5f7; color: #000; }
+.nav.sobre-escuro .marca { background: #f5f5f7; }
+
+@media (max-width: 734px) { .nav a.opc { display: none; } }
+@media (prefers-reduced-motion: reduce) { .nav, .nav * { transition: none !important; } }

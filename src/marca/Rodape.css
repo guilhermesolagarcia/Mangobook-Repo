@@ -1,0 +1,9 @@
+/* ---- rodapé ---- */
+.rodape { background: var(--tile); color: var(--ink-2); font-size: 12px; line-height: 1.5; padding: 30px var(--gutter) 40px; }
+.rodape .notas { padding-bottom: 18px; border-bottom: 1px solid #d2d2d7; display: grid; gap: 8px; }
+.rodape .colunas { display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px; padding: 24px 0; border-bottom: 1px solid #d2d2d7; }
+.rodape .colunas b { display: block; color: var(--ink); font-weight: 600; margin-bottom: 8px; }
+.rodape .colunas a { display: block; padding: 3px 0; }
+.rodape .colunas a:hover { color: var(--ink); text-decoration: underline; }
+.rodape .base { padding-top: 18px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+@media (max-width: 900px) { .rodape .colunas { grid-template-columns: 1fr 1fr; } }
