@@ -1,3 +1,5 @@
+> **Arquivado.** Este arquivo descreve o teclado FORGE 75. O projeto atual é o MangoBook Pure (veja `CLAUDE.md` e `MARCA.md`).
+
 # Product
 
 <!-- impeccable:product-schema 1 -->

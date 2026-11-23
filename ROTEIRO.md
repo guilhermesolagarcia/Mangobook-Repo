@@ -1,3 +1,5 @@
+> **Arquivado.** Este roteiro é do teclado FORGE 75. O projeto atual é o MangoBook Pure (veja `CLAUDE.md`).
+
 # Roteiro do scroll: FORGE 75
 
 Produto fictício: **FORGE 75**, teclado mecânico 75%, case de alumínio, gasket mount, hot-swap.
