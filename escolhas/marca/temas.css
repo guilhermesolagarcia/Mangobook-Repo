@@ -22,6 +22,7 @@
 [data-tema="oceano"]    { --g1: #3aa0ff; --g2: #2f7bff; --g3: #22b5e8; }
 [data-tema="folha"]     { --g1: #3ddc97; --g2: #1fb57a; --g3: #22b5e8; }
 [data-tema="noite"]     { --g1: #7b5cff; --g2: #1d1d1f; --g3: #ff5e7e;
+  --faixa: linear-gradient(95deg, #a46bff, #ff5e7e);
   --fundo: #000; --cartao: #161618; --tinta: #f5f5f7; --tinta-2: #a1a1a6; --linha: #2c2c2e; }
 
 html { background: var(--fundo); color: var(--tinta); transition: background-color .4s, color .4s; }

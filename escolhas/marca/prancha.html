@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="pt-BR" data-tema="manga">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mango · Prancha da marca</title>
+<link rel="icon" href="/mango.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/light/style.css">
+<link rel="stylesheet" href="/src/marca/marca.css">
+<link rel="stylesheet" href="./temas.css">
+<style>
+*{box-sizing:border-box;margin:0}
+body{font-family:Inter,system-ui,sans-serif;font-feature-settings:"cv11","ss01";-webkit-font-smoothing:antialiased;font-size:17px;letter-spacing:-.022em;line-height:1.47;color:var(--tinta)}
+.prancha{max-width:1280px;margin:0 auto;padding:40px 32px 120px;display:grid;gap:20px}
+.bloco{background:var(--cartao);border-radius:28px;padding:32px;box-shadow:0 0 0 1px var(--linha)}
+.rot{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--tinta-2);margin-bottom:18px}
+.num{font-variant-numeric:tabular-nums;color:var(--tinta);margin-right:8px}
+h2{font-size:15px;font-weight:600;letter-spacing:0;margin-bottom:20px;text-transform:uppercase}
+.mono{font:500 12px/1.3 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:0;color:var(--tinta-2)}
+.malha{background:var(--malha);position:relative;overflow:hidden}
+.malha::after{content:"";position:absolute;inset:0;background:inherit;filter:blur(28px) saturate(1.15);transform:scale(1.2);z-index:0}
+.malha>*{position:relative;z-index:1}
+.logo-m{display:block;background:currentColor;-webkit-mask:url(/mango.svg) center/contain no-repeat;mask:url(/mango.svg) center/contain no-repeat;aspect-ratio:100/116}
+
+/* capa */
+.capa{display:grid;grid-template-columns:1.25fr 1fr;gap:20px}
+.capa-arte{border-radius:32px;min-height:460px;color:#fff;display:flex;flex-direction:column;justify-content:space-between;padding:40px}
+.capa-arte .logo-m{width:120px}
+.capa-arte h1{font-size:clamp(56px,7vw,104px);font-weight:700;letter-spacing:-.055em;line-height:.9}
+.capa-arte p{font-size:clamp(19px,1.7vw,24px);font-weight:500;opacity:.92;margin-top:10px;letter-spacing:-.02em}
+.capa-txt{display:flex;flex-direction:column;justify-content:space-between;gap:24px}
+.capa-txt .lead{font-size:21px;line-height:1.38;letter-spacing:-.016em}
+.capa-txt .lead b{background:var(--faixa);-webkit-background-clip:text;background-clip:text;color:transparent}
+.pilares{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.pilar i{font-size:28px;display:block;margin-bottom:8px}
+.pilar b{display:block;font-size:15px;letter-spacing:-.01em}
+.pilar span{font-size:14px;color:var(--tinta-2)}
+
+/* cores */
+.cores{display:grid;grid-template-columns:1.4fr 1fr;gap:20px}
+.todas{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:28px}
+.todas div{aspect-ratio:3/4;border-radius:18px;padding:12px;color:#fff;display:flex;flex-direction:column;justify-content:flex-end;font-size:13px;font-weight:600}
+.todas small{font:500 11px ui-monospace,Consolas,monospace;opacity:.85}
+.base{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.sw{display:grid;gap:6px;font-size:13px;font-weight:600}
+.sw i{height:54px;border-radius:12px;box-shadow:inset 0 0 0 1px var(--linha)}
+.degrades{display:grid;gap:12px}
+.dg{height:58px;border-radius:14px;display:flex;align-items:flex-end;justify-content:space-between;padding:8px 12px;color:#fff;font-size:13px;font-weight:600}
+.dg .mono{color:rgba(255,255,255,.85)}
+.dg-malha{height:150px;border-radius:18px}
+.sabores{display:flex;gap:10px;margin-top:4px}
+.sabores span{flex:1;border-radius:12px;padding:10px;font-size:12px;font-weight:600}
+
+/* tipografia */
+.tipo{display:grid;grid-template-columns:.8fr 1.4fr;gap:20px}
+.aa{font-size:200px;font-weight:600;letter-spacing:-.06em;line-height:.85;background:var(--faixa);-webkit-background-clip:text;background-clip:text;color:transparent}
+.alfa{font-size:20px;line-height:1.5;letter-spacing:.02em;margin-top:18px;word-break:break-all}
+.escala{display:grid;gap:14px}
+.escala div{display:grid;grid-template-columns:140px 1fr;align-items:baseline;gap:16px;border-bottom:1px solid var(--linha);padding-bottom:12px}
+.escala div:last-child{border:0}
+
+/* peças */
+.pecas{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+.linha-pecas{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.pill.claro{background:var(--fundo);color:var(--tinta);box-shadow:inset 0 0 0 1px var(--linha)}
+.pill.sm{font-size:13px;padding:8px 16px}
+.vidro-palco{border-radius:22px;height:170px;display:grid;place-items:center}
+.vidro-palco .vidro{border-radius:18px;padding:16px 20px;color:var(--ink);font-size:15px;font-weight:600;display:flex;gap:10px;align-items:center}
+.icones{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.icones i{font-size:30px;display:grid;place-items:center;aspect-ratio:1;border-radius:16px;background:var(--fundo);box-shadow:inset 0 0 0 1px var(--linha);transition:color .25s var(--ease),transform .25s var(--ease)}
+.icones i:hover{transform:scale(1.06)}
+.icones i:nth-child(6n+1){--acende:var(--c-manga)} .icones i:nth-child(6n+2){--acende:var(--c-verde)} .icones i:nth-child(6n+3){--acende:var(--c-rosa)}
+.icones i:nth-child(6n+4){--acende:var(--c-azul)} .icones i:nth-child(6n+5){--acende:var(--c-roxo)} .icones i:nth-child(6n){--acende:var(--c-ciano)}
+.icones i:hover,.icones.acesos i{color:var(--acende)}
+
+/* aplicações */
+.apps{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:20px}
+.app{display:grid;gap:10px;align-content:start}
+.gift{aspect-ratio:1.586;border-radius:20px;color:#fff;padding:18px;display:flex;flex-direction:column;justify-content:space-between}
+.gift .logo-m{width:22px}
+.gift strong{font-size:56px;font-weight:700;letter-spacing:-.06em;line-height:.9}
+.gift small{font-size:13px;font-weight:600;opacity:.9}
+.post{aspect-ratio:4/5;border-radius:20px;color:#fff;padding:20px;display:flex;flex-direction:column;justify-content:space-between}
+.post p{font-size:30px;font-weight:700;letter-spacing:-.045em;line-height:1}
+.post .logo-m{width:22px}
+.icone-app{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.icone-app div{aspect-ratio:1;border-radius:23%;display:grid;place-items:center;color:#fff;font-size:38px;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 6px 18px rgba(0,0,0,.12)}
+.icone-app div:nth-child(1){background:radial-gradient(circle at 30% 25%,#ffd23f,transparent 60%),#ff9f1c}
+.icone-app div:nth-child(2){background:radial-gradient(circle at 30% 25%,#ff5e7e,transparent 60%),#7b5cff}
+.icone-app div:nth-child(3){background:radial-gradient(circle at 30% 25%,#22b5e8,transparent 60%),#2f7bff}
+.icone-app div:nth-child(4){background:radial-gradient(circle at 30% 25%,#3ddc97,transparent 60%),#1fb57a}
+.visita{aspect-ratio:1.75;border-radius:16px;background:var(--fundo);box-shadow:inset 0 0 0 1px var(--linha),0 10px 30px rgba(0,0,0,.08);padding:16px;display:flex;flex-direction:column;justify-content:space-between;font-size:12px;color:var(--tinta-2)}
+.visita b{color:var(--tinta);font-size:14px;display:block}
+.visita .logo-m{width:16px;color:var(--tinta)}
+.visita .faixa{height:4px;border-radius:2px;background:var(--faixa)}
+.nav-mock{border-radius:22px;height:130px;padding:16px;display:grid;align-items:start}
+.nav-mock .vidro{border-radius:999px;height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 8px 0 18px;font-size:12px;color:var(--ink)}
+.nav-mock .vidro span{display:flex;gap:14px;align-items:center}
+.nav-mock .marca{width:13px;height:15px;color:var(--ink)}
+
+/* voz */
+.voz{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.frases{display:grid;gap:12px}
+.frase{display:flex;gap:12px;align-items:flex-start;font-size:19px;font-weight:600;letter-spacing:-.025em;line-height:1.25}
+.frase i{font-size:22px;flex:none;margin-top:1px}
+.frase.nao{color:var(--tinta-2);font-weight:400;text-decoration:line-through;text-decoration-color:var(--c-rosa)}
+.frase.sim i{color:var(--c-verde)} .frase.nao i{color:var(--c-rosa)}
+.micro{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.micro div{border-radius:16px;padding:16px;background:var(--fundo);box-shadow:inset 0 0 0 1px var(--linha)}
+.micro small{display:block;font-size:12px;color:var(--tinta-2);margin-bottom:6px}
+.micro b{font-size:16px;letter-spacing:-.02em}
+
+.rodape{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--tinta-2);padding:8px 4px}
+
+@media (max-width:900px){
+  .prancha{padding:22px 16px 100px}
+  .capa,.cores,.tipo,.pecas,.voz{grid-template-columns:1fr}
+  .apps{grid-template-columns:1fr 1fr}
+  .todas{grid-template-columns:repeat(3,1fr)}
+  .base{grid-template-columns:repeat(2,1fr)}
+  .capa-arte{min-height:340px;padding:28px}
+  .aa{font-size:130px}
+  .escala div{grid-template-columns:1fr;gap:4px}
+  .bloco{padding:22px}
+}
+@media (max-width:520px){ .apps,.micro{grid-template-columns:1fr} }
+@media (prefers-reduced-motion:reduce){ *{transition:none!important} }
+</style>
+</head>
+<body>
+<main class="prancha">
+
+  <!-- CAPA -->
+  <section class="capa" aria-label="Capa">
+    <div class="capa-arte malha">
+      <span class="logo-m" role="img" aria-label="Logo da Mango"></span>
+      <div><h1>Mango</h1><p>Nossa cor são todas.</p></div>
+    </div>
+    <div class="bloco capa-txt">
+      <div>
+        <p class="rot">Sistema de identidade da marca · v1</p>
+        <p class="lead">A Mango faz aparelhos, sistema e serviços com a mesma cara. A marca é fixa, os produtos mudam. E ela não tem uma cor só: tem <b>todas</b>.</p>
+      </div>
+      <div class="pilares">
+        <div class="pilar"><i class="ph-light ph-palette"></i><b>Colorida</b><span>Seis cores, nenhuma manda.</span></div>
+        <div class="pilar"><i class="ph-light ph-circle-half"></i><b>Simples</b><span>Se não ajuda a escolher, sai.</span></div>
+        <div class="pilar"><i class="ph-light ph-lock-simple"></i><b>Privada</b><span>A IA roda no aparelho.</span></div>
+        <div class="pilar"><i class="ph-light ph-plant"></i><b>Brasileira</b><span>Chip com nome de manga.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01 CORES -->
+  <section class="cores">
+    <div class="bloco">
+      <h2><span class="num">01</span>Cores</h2>
+      <p class="rot">Nossa cor são todas · fixas</p>
+      <div class="todas">
+        <div style="background:var(--c-manga)">Manga<small>#FF9F1C</small></div>
+        <div style="background:var(--c-verde)">Verde<small>#1FB57A</small></div>
+        <div style="background:var(--c-rosa)">Rosa<small>#FF5E7E</small></div>
+        <div style="background:var(--c-azul)">Azul<small>#2F7BFF</small></div>
+        <div style="background:var(--c-roxo)">Roxo<small>#7B5CFF</small></div>
+        <div style="background:var(--c-ciano)">Ciano<small>#22B5E8</small></div>
+      </div>
+      <p class="rot">Base · texto, fundo e ação</p>
+      <div class="base">
+        <div class="sw"><i style="background:var(--ink)"></i>Tinta<span class="mono">#1D1D1F · texto e botão</span></div>
+        <div class="sw"><i style="background:var(--ink-2)"></i>Tinta 2<span class="mono">#6E6E73 · apoio</span></div>
+        <div class="sw"><i style="background:var(--tile)"></i>Azulejo<span class="mono">#F5F5F7 · seção</span></div>
+        <div class="sw"><i style="background:var(--papel)"></i>Papel<span class="mono">#F5F2EC · abertura</span></div>
+        <div class="sw"><i style="background:var(--branco)"></i>Branco<span class="mono">#FFFFFF · fundo</span></div>
+        <div class="sw"><i style="background:#d2d2d7"></i>Linha<span class="mono">#D2D2D7 · divisória</span></div>
+        <div class="sw"><i style="background:var(--action)"></i>Link<span class="mono">#0066CC · nunca botão</span></div>
+        <div class="sw"><i style="background:var(--focus)"></i>Foco<span class="mono">#0071E3 · teclado</span></div>
+      </div>
+    </div>
+    <div class="bloco">
+      <p class="rot">Degradês</p>
+      <div class="degrades">
+        <div class="dg" style="background:var(--g-manga)">Manga<span class="mono">números, bateria</span></div>
+        <div class="dg" style="background:var(--g-arco)">Arco-íris<span class="mono">Mango Intelligence</span></div>
+        <div class="dg-malha malha"></div>
+        <p class="mono">Malha do tema atual · glifo branco por cima</p>
+      </div>
+      <p class="rot" style="margin-top:24px">Sabores do Pure · provisórios</p>
+      <div class="sabores">
+        <span style="background:#fff3d1;color:#8a5a00">Manga</span>
+        <span style="background:#ffe8de;color:#9a4a2e">Rosa</span>
+        <span style="background:#eaf6df;color:#3c6b1d">Folha</span>
+        <span style="background:#eef0f4;color:#55575c">Prata</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 TIPOGRAFIA -->
+  <section class="tipo">
+    <div class="bloco">
+      <h2><span class="num">02</span>Tipografia</h2>
+      <div class="aa">Aa</div>
+      <p class="rot" style="margin-top:22px">Inter · opsz 14–32 · 300–700</p>
+      <p class="alfa">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789 R$ 7.999</p>
+    </div>
+    <div class="bloco escala">
+      <p class="rot">Quanto maior, mais apertado</p>
+      <div><span class="mono">Abertura · 84/600<br>−0,045em</span><span style="font-size:clamp(36px,9vw,64px);font-weight:600;letter-spacing:-.045em;line-height:1.02">Doce por fora.</span></div>
+      <div><span class="mono">Seção · 56/600<br>−0,035em</span><span style="font-size:clamp(28px,6.5vw,44px);font-weight:600;letter-spacing:-.035em;line-height:1.07">Rápido até o caroço.</span></div>
+      <div><span class="mono">Card · 28/600<br>−0,025em</span><span style="font-size:28px;font-weight:600;letter-spacing:-.025em">Carregue de manhã.</span></div>
+      <div><span class="mono">Lead · 24/400</span><span style="font-size:22px;line-height:1.38">O chip Palmer abre tudo na hora e aguenta o dia sem esquentar.</span></div>
+      <div><span class="mono">Corpo · 17/400<br>−0,022em</span><span>Esqueça até amanhã. 18 horas de bateria num corpo de alumínio na cor.</span></div>
+    </div>
+  </section>
+
+  <!-- 03 PEÇAS -->
+  <section class="pecas">
+    <div class="bloco">
+      <h2><span class="num">03</span>Peças</h2>
+      <p class="rot">Botão em pílula · preto, nunca azul</p>
+      <div class="linha-pecas" style="margin-bottom:22px">
+        <button class="pill">Comprar</button>
+        <button class="pill sm">Comprar</button>
+        <a class="mais" href="#">Saiba mais</a>
+      </div>
+      <p class="rot">Chips de cor</p>
+      <div class="chips">
+        <span class="chip on" style="background:#f4b41a"></span><span class="chip" style="background:#f3b49c"></span>
+        <span class="chip" style="background:#a8d58a"></span><span class="chip" style="background:#d9dadc"></span>
+      </div>
+    </div>
+    <div class="bloco">
+      <p class="rot">Vidro · luz vinda de cima</p>
+      <div class="vidro-palco malha">
+        <div class="vidro"><span class="marca"></span>MangoBook Pure<button class="pill sm">Comprar</button></div>
+      </div>
+    </div>
+    <div class="bloco">
+      <p class="rot">Ícones · Phosphor Light, acendem nas 6</p>
+      <div class="icones acesos">
+        <i class="ph-light ph-laptop"></i><i class="ph-light ph-device-mobile"></i><i class="ph-light ph-device-tablet"></i><i class="ph-light ph-watch"></i>
+        <i class="ph-light ph-headphones"></i><i class="ph-light ph-sparkle"></i><i class="ph-light ph-battery-full"></i><i class="ph-light ph-cpu"></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 APLICAÇÕES -->
+  <section class="bloco">
+    <h2><span class="num">04</span>Aplicações</h2>
+    <div class="apps">
+      <div class="app">
+        <div class="nav-mock malha"><div class="vidro"><span><span class="marca"></span>Loja · Go D1 · Mangopad</span><button class="pill sm">Comprar</button></div></div>
+        <span class="mono">Navbar · ilha de vidro</span>
+        <div class="gift malha"><span class="logo-m"></span><div><strong>R$ 100</strong><br><small>Cartão-presente Mango Store</small></div></div>
+        <span class="mono">Cartão-presente</span>
+      </div>
+      <div class="app">
+        <div class="post malha"><span class="logo-m"></span><p>Doce por fora. Rápido por dentro.</p></div>
+        <span class="mono">Post · 4:5</span>
+      </div>
+      <div class="app">
+        <div class="icone-app"><div><i class="ph-light ph-camera"></i></div><div><i class="ph-light ph-music-notes"></i></div><div><i class="ph-light ph-note-pencil"></i></div><div><i class="ph-light ph-user-circle"></i></div></div>
+        <span class="mono">Apps do MangoOS</span>
+      </div>
+      <div class="app">
+        <div class="visita"><span class="logo-m"></span><div><b>Equipe Mango</b>Design de produto<br>ola@mango.exemplo</div><div class="faixa"></div></div>
+        <span class="mono">Cartão de visita</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 TOM DE VOZ -->
+  <section class="voz">
+    <div class="bloco">
+      <h2><span class="num">05</span>Tom de voz</h2>
+      <p class="rot">Páginas contidas · trocadilho só no nome</p>
+      <div class="frases">
+        <p class="frase sim"><i class="ph-light ph-check-circle"></i>Doce por fora. Rápido por dentro.</p>
+        <p class="frase nao"><i class="ph-light ph-x-circle"></i>Um notebook suculento que dá água na boca!</p>
+        <p class="frase sim"><i class="ph-light ph-check-circle"></i>Chip Palmer. Rápido até o caroço.</p>
+        <p class="frase nao"><i class="ph-light ph-x-circle"></i>O chip mais frutástico do pomar.</p>
+      </div>
+    </div>
+    <div class="bloco">
+      <p class="rot">Microtextos · onde a graça entra</p>
+      <div class="micro">
+        <div><small>Sacola vazia</small><b>Sua fruteira está vazia.</b></div>
+        <div><small>404</small><b>Essa página caiu do pé.</b></div>
+        <div><small>Pedido feito</small><b>Já estamos escolhendo as mais maduras.</b></div>
+        <div><small>Carregando</small><b>Descascando…</b></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="rodape"><span>Mango · Sistema de identidade · 2026</span><span>Paródia de portfólio. Sem relação com a Apple.</span></footer>
+</main>
+<script type="module">
+import { iniciarTemas } from './temas.js';
+iniciarTemas();
+</script>
+</body>
+</html>
