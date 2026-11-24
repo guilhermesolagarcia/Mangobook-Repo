@@ -1,0 +1,39 @@
+/* Temas de degradê. Cada tema define --g1..--g3 (degradê) e as cores da página. */
+:root {
+  --t-manga: linear-gradient(135deg, #ffd23f, #ff9f1c, #ff5e7e);
+  --t-arco-iris: linear-gradient(135deg, #ff9f1c, #ff5e7e, #a46bff, #3aa0ff);
+  --t-uva: linear-gradient(135deg, #7b5cff, #ff5e7e);
+  --t-oceano: linear-gradient(135deg, #2f7bff, #22b5e8);
+  --t-folha: linear-gradient(135deg, #1fb57a, #3ddc97, #22b5e8);
+  --t-noite: radial-gradient(circle at 30% 30%, #7b5cff, #1d1d1f 70%);
+}
+[data-tema] {
+  --fundo: #fbfbfd; --cartao: #fff; --tinta: #1d1d1f; --tinta-2: #6e6e73; --linha: #e3e3e8;
+  --malha:
+    radial-gradient(60% 70% at 18% 22%, var(--g1), transparent 70%),
+    radial-gradient(55% 65% at 85% 25%, var(--g3), transparent 70%),
+    radial-gradient(70% 80% at 55% 100%, var(--g2), transparent 70%),
+    var(--g2);
+  --faixa: linear-gradient(95deg, var(--g1), var(--g2) 50%, var(--g3));
+}
+[data-tema="manga"]     { --g1: #ffd23f; --g2: #ff9f1c; --g3: #ff5e7e; }
+[data-tema="arco-iris"] { --g1: #ff9f1c; --g2: #ff5e7e; --g3: #3aa0ff; --faixa: linear-gradient(95deg, #ff9f1c, #ff5e7e 35%, #a46bff 70%, #3aa0ff); }
+[data-tema="uva"]       { --g1: #a46bff; --g2: #7b5cff; --g3: #ff5e7e; }
+[data-tema="oceano"]    { --g1: #3aa0ff; --g2: #2f7bff; --g3: #22b5e8; }
+[data-tema="folha"]     { --g1: #3ddc97; --g2: #1fb57a; --g3: #22b5e8; }
+[data-tema="noite"]     { --g1: #7b5cff; --g2: #1d1d1f; --g3: #ff5e7e;
+  --fundo: #000; --cartao: #161618; --tinta: #f5f5f7; --tinta-2: #a1a1a6; --linha: #2c2c2e; }
+
+html { background: var(--fundo); color: var(--tinta); transition: background-color .4s, color .4s; }
+
+/* Seletor de tema (mesmo visual do proto-picker da loja.html) */
+.proto-picker { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 99; display: flex; gap: 2px; padding: 4px;
+  border-radius: 999px; background: rgba(10,10,10,.82); backdrop-filter: blur(12px) saturate(1.4); -webkit-backdrop-filter: blur(12px) saturate(1.4);
+  box-shadow: 0 0 0 1px rgba(255,255,255,.08) inset, 0 8px 24px rgba(0,0,0,.24); font: 13px/1 Inter, system-ui, sans-serif; max-width: calc(100vw - 32px); overflow-x: auto; }
+.proto-picker-item { display: flex; align-items: center; gap: 7px; height: 28px; padding: 0 12px; border: 0; border-radius: 999px; background: transparent;
+  color: rgba(255,255,255,.55); font: inherit; cursor: pointer; white-space: nowrap; transition: color .15s, background-color .25s; }
+.proto-picker-item i { width: 12px; height: 12px; border-radius: 50%; }
+.proto-picker-item:hover { color: rgba(255,255,255,.85); }
+.proto-picker-item:active { transform: scale(.97); }
+.proto-picker-item:focus-visible { outline: 2px solid rgba(255,255,255,.4); outline-offset: 2px; }
+.proto-picker-item[data-active] { color: #fff; background: rgba(255,255,255,.12); }

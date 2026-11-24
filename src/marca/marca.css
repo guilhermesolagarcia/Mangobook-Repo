@@ -5,6 +5,10 @@
   --papel: #f5f2ec; /* trocado em tempo real pela cor do fundo da foto da abertura */
   --branco: #fff; --tile: #f5f5f7;
   --manga: #f4b41a; --rosa: #f3b49c; --folha: #a8d58a; --prata: #d9dadc;
+  /* "Nossa cor são todas" (MARCA.md §3) */
+  --c-manga: #ff9f1c; --c-verde: #1fb57a; --c-rosa: #ff5e7e; --c-azul: #2f7bff; --c-roxo: #7b5cff; --c-ciano: #22b5e8;
+  --g-manga: linear-gradient(95deg, #ffd23f, #ff9f1c 40%, #ff5e7e);
+  --g-arco: linear-gradient(95deg, #ff9f1c, #ff5e7e 35%, #a46bff 70%, #3aa0ff);
   --ease: cubic-bezier(0.28, 0.11, 0.32, 1);
   --chegada: cubic-bezier(0.16, 1, 0.3, 1);
   --mola: cubic-bezier(0.32, 0.72, 0, 1); /* entra devagar e assenta longo: a mudança se lê como gesto, não como estalo */
