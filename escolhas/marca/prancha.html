@@ -114,6 +114,23 @@ h2{font-size:15px;font-weight:600;letter-spacing:0;margin-bottom:20px;text-trans
 
 .rodape{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--tinta-2);padding:8px 4px}
 
+/* campanhas: cada peça com o próprio data-tema, os 6 lado a lado */
+.campanhas{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;gap:16px}
+.ad{border-radius:24px;color:#fff;padding:24px;display:flex;flex-direction:column;justify-content:space-between;gap:12px}
+.ad.largo{grid-column:span 2} .ad.alto{grid-row:span 2}
+.ad .topo{display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:600;opacity:.95}
+.ad .topo .logo-m{width:18px}
+.ad h3{font-size:clamp(28px,3vw,44px);font-weight:700;letter-spacing:-.05em;line-height:.95}
+.ad.alto h3{font-size:clamp(34px,3.6vw,54px)}
+.ad h3+p{margin-top:14px}
+.ad p{font-size:15px;opacity:.9;letter-spacing:-.01em;line-height:1.3}
+.ad .pe{display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
+.ad .cta{background:#fff;color:#1d1d1f;border-radius:980px;padding:8px 16px;font-size:13px;font-weight:600;white-space:nowrap}
+.ad .gigante{font-size:clamp(72px,9vw,130px);font-weight:700;letter-spacing:-.07em;line-height:.8}
+.ad .glifo{font-size:84px;line-height:1}
+.ad .selo{border:1px solid rgba(255,255,255,.5);border-radius:980px;padding:3px 10px;font-size:11px;letter-spacing:.04em;text-transform:uppercase}
+.ad .tema{font:500 11px ui-monospace,Consolas,monospace;opacity:.75}
+
 @media (max-width:900px){
   .prancha{padding:22px 16px 100px}
   .capa,.cores,.tipo,.pecas,.voz{grid-template-columns:1fr}
@@ -125,7 +142,8 @@ h2{font-size:15px;font-weight:600;letter-spacing:0;margin-bottom:20px;text-trans
   .escala div{grid-template-columns:1fr;gap:4px}
   .bloco{padding:22px}
 }
-@media (max-width:520px){ .apps,.micro{grid-template-columns:1fr} }
+@media (max-width:900px){ .campanhas{grid-template-columns:1fr 1fr;grid-auto-rows:200px} }
+@media (max-width:520px){ .apps,.micro,.campanhas{grid-template-columns:1fr} .ad.largo{grid-column:auto} }
 @media (prefers-reduced-motion:reduce){ *{transition:none!important} }
 </style>
 </head>
@@ -289,6 +307,49 @@ h2{font-size:15px;font-weight:600;letter-spacing:0;margin-bottom:20px;text-trans
         <div><small>Pedido feito</small><b>Já estamos escolhendo as mais maduras.</b></div>
         <div><small>Carregando</small><b>Descascando…</b></div>
       </div>
+    </div>
+  </section>
+
+  <!-- 06 CAMPANHAS -->
+  <section class="bloco">
+    <h2><span class="num">06</span>Campanhas · um degradê por história</h2>
+    <div class="campanhas">
+      <article class="ad malha largo alto" data-tema="manga">
+        <div class="topo"><span class="logo-m"></span><span class="selo">Novo</span></div>
+        <div><h3>MangoBook Pure.<br>Doce por fora.<br>Rápido por dentro.</h3><p>18 horas de bateria. Chip Palmer. Cor das bordas às teclas.</p></div>
+        <div class="pe"><span class="tema">Manga · lançamento</span><span class="cta">Comprar</span></div>
+      </article>
+      <article class="ad malha" data-tema="arco-iris">
+        <div class="topo"><span>Mango Intelligence</span><i class="ph-light ph-sparkle"></i></div>
+        <h3>Pensa aqui.<br>Fica aqui.</h3>
+        <span class="tema">Arco-íris · IA</span>
+      </article>
+      <article class="ad malha alto" data-tema="uva">
+        <div class="topo"><span class="logo-m"></span><span class="selo">Pré-venda</span></div>
+        <div><p>Go D1</p><h3>The One.</h3></div>
+        <i class="ph-light ph-device-mobile glifo"></i>
+        <div class="pe"><span class="tema">Uva · celular</span><span class="cta">Reservar</span></div>
+      </article>
+      <article class="ad malha" data-tema="oceano">
+        <div class="topo"><span>Mangopad</span><i class="ph-light ph-pencil-simple-line"></i></div>
+        <h3>Desenhe sem borda.</h3>
+        <span class="tema">Oceano · tablet</span>
+      </article>
+      <article class="ad malha largo" data-tema="folha">
+        <div class="topo"><span>Volta às aulas</span><span class="logo-m"></span></div>
+        <div class="pe"><h3>Caderno novo.<br>12x sem juros.</h3><span class="cta">Ver ofertas</span></div>
+        <span class="tema">Folha · campanha da época</span>
+      </article>
+      <article class="ad malha largo" data-tema="noite">
+        <div class="topo"><span>Black Friday</span><span class="logo-m"></span></div>
+        <div class="pe"><span class="gigante">−20%</span><p style="text-align:right">Doce até no preço.<br>Só até domingo.</p></div>
+        <span class="tema">Noite · promoção</span>
+      </article>
+      <article class="ad malha largo" data-tema="manga" style="grid-column:1/-1;--g1:#ff9f1c;--g2:#ff5e7e;--g3:#7b5cff">
+        <div class="topo"><span>Cartão-presente</span><span class="logo-m"></span></div>
+        <div class="pe"><span class="gigante">R$ 300</span><span class="cta">Presentear</span></div>
+        <span class="tema">Mistura · Natal "Presentes doces"</span>
+      </article>
     </div>
   </section>
 
