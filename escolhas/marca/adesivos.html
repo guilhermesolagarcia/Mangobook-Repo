@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="pt-BR" data-tema="manga">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mango · Adesivos</title>
+<link rel="icon" href="/mango.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..800;1,14..32,800&display=swap">
+<link rel="stylesheet" href="/src/marca/marca.css">
+<link rel="stylesheet" href="./temas.css">
+<link rel="stylesheet" href="./base.css">
+<style>
+/* borda branca de adesivo recortado + sombra leve */
+.ad{display:block;width:100%;height:auto;overflow:visible;
+  filter:drop-shadow(3px 0 0 #fff) drop-shadow(-3px 0 0 #fff) drop-shadow(0 3px 0 #fff) drop-shadow(0 -3px 0 #fff) drop-shadow(0 6px 10px rgba(0,0,0,.18))}
+.folha{border-radius:28px;padding:40px;background:
+  linear-gradient(var(--linha) 1px,transparent 1px) 0 0/32px 32px,
+  linear-gradient(90deg,var(--linha) 1px,transparent 1px) 0 0/32px 32px,var(--fundo);
+  display:grid;grid-template-columns:repeat(5,1fr);gap:36px 28px;align-items:center;justify-items:center}
+.folha figure{width:100%;display:grid;gap:10px;justify-items:center}
+.folha figure:nth-child(3n+1) .ad{transform:rotate(-4deg)}
+.folha figure:nth-child(3n+2) .ad{transform:rotate(3deg)}
+.folha figure:hover .ad{transform:rotate(0) scale(1.04);transition:transform .3s var(--chegada)}
+.folha .grande{grid-column:span 2}
+.folha figcaption{font:500 11px ui-monospace,Consolas,monospace;color:var(--tinta-2)}
+
+.uso{display:grid;grid-template-columns:1.5fr 1fr;gap:20px}
+.tampa{position:relative;aspect-ratio:1.5;border-radius:26px;background:linear-gradient(160deg,#3a3a3c,#1d1d1f);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 20px 50px rgba(0,0,0,.25);overflow:hidden}
+.tampa svg{position:absolute}
+.garrafa{position:relative;aspect-ratio:.62;border-radius:40px 40px 32px 32px;background:linear-gradient(90deg,#d1d1d6,#f5f5f7 35%,#c7c7cc 70%,#e5e5ea);margin:0 auto;width:70%;box-shadow:0 20px 40px rgba(0,0,0,.15)}
+.garrafa svg{position:absolute}
+
+@media (max-width:900px){ .folha{grid-template-columns:repeat(3,1fr);padding:24px} .uso{grid-template-columns:1fr} }
+@media (max-width:520px){ .folha{grid-template-columns:1fr 1fr} .folha .grande{grid-column:span 2} }
+</style>
+</head>
+<body>
+
+<!-- Personagens e peças (desenhados aqui, nenhum é de terceiros). Cores do tema via var(--g1..3). -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gT" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--g1)"/><stop offset=".55" style="stop-color:var(--g2)"/><stop offset="1" style="stop-color:var(--g3)"/></linearGradient>
+    <linearGradient id="gV" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--g1)"/><stop offset="1" style="stop-color:var(--g3)"/></linearGradient>
+    <linearGradient id="cromo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fbfbfd"/><stop offset=".42" stop-color="#a1a1a6"/><stop offset=".5" stop-color="#48484a"/><stop offset=".62" stop-color="#d1d1d6"/><stop offset="1" stop-color="#6e6e73"/></linearGradient>
+
+    <symbol id="urso" viewBox="0 0 200 200">
+      <circle cx="52" cy="52" r="30" fill="#1d1d1f"/><circle cx="148" cy="52" r="30" fill="#1d1d1f"/>
+      <circle cx="52" cy="52" r="14" fill="url(#gT)"/><circle cx="148" cy="52" r="14" fill="url(#gT)"/>
+      <ellipse cx="100" cy="112" rx="76" ry="68" fill="#1d1d1f"/>
+      <ellipse cx="70" cy="102" rx="22" ry="29" fill="url(#gV)"/><ellipse cx="130" cy="102" rx="22" ry="29" fill="url(#gV)"/>
+      <circle cx="63" cy="90" r="7" fill="#fff"/><circle cx="123" cy="90" r="7" fill="#fff"/>
+      <circle cx="76" cy="114" r="3" fill="#fff" opacity=".7"/><circle cx="136" cy="114" r="3" fill="#fff" opacity=".7"/>
+      <ellipse cx="100" cy="150" rx="26" ry="18" fill="#f5f5f7"/>
+      <path d="M90 141 Q100 136 110 141 Q106 151 100 152 Q94 151 90 141Z" fill="#1d1d1f"/>
+    </symbol>
+
+    <symbol id="mascarada" viewBox="0 0 200 200">
+      <path d="M104 22 C120 6 146 4 160 10 C150 28 126 36 104 30Z" fill="#1fb57a" stroke="#1d1d1f" stroke-width="5" stroke-linejoin="round"/>
+      <path d="M100 30 C152 26 182 72 176 122 C170 170 136 194 96 192 C56 190 24 160 27 114 C30 70 56 34 100 30Z" fill="url(#gT)" stroke="#1d1d1f" stroke-width="5"/>
+      <path d="M44 84 Q100 62 156 84 L152 136 Q140 168 100 172 Q60 168 48 136Z" fill="url(#cromo)" stroke="#1d1d1f" stroke-width="5" stroke-linejoin="round"/>
+      <path d="M100 74 L100 140" stroke="#1d1d1f" stroke-width="4" opacity=".55"/>
+      <path d="M58 100 Q76 90 90 102 Q76 114 58 106Z" fill="#1d1d1f"/><path d="M142 100 Q124 90 110 102 Q124 114 142 106Z" fill="#1d1d1f"/>
+      <rect x="74" y="146" width="52" height="5" rx="2.5" fill="#1d1d1f"/><rect x="80" y="156" width="40" height="5" rx="2.5" fill="#1d1d1f"/>
+      <circle cx="56" cy="128" r="4" fill="#1d1d1f"/><circle cx="144" cy="128" r="4" fill="#1d1d1f"/>
+      <path d="M60 86 Q80 78 96 80" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".8" fill="none"/>
+    </symbol>
+
+    <symbol id="explosao" viewBox="0 0 200 200">
+      <path d="M100 8 L114 70 L150 26 L136 84 L192 70 L144 106 L186 140 L130 128 L140 186 L100 140 L60 186 L70 128 L14 140 L56 106 L8 70 L64 84 L50 26 L86 70Z" fill="url(#gT)"/>
+      <path d="M58 102 Q58 92 70 92 L94 92 Q100 98 106 92 L130 92 Q142 92 142 102 Q140 122 120 122 Q106 122 102 106 L98 106 Q94 122 80 122 Q60 122 58 102Z" fill="#1d1d1f"/>
+      <path d="M70 98 L82 98" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".6"/>
+    </symbol>
+
+    <symbol id="coroa" viewBox="0 0 200 200">
+      <path d="M58 64 L72 22 L90 50 L104 12 L118 48 L138 20 L146 66 Q102 56 58 64Z" fill="url(#gT)"/>
+      <path d="M62 82 Q60 150 100 168 Q142 150 140 84" fill="none" stroke="#1d1d1f" stroke-width="4" stroke-linecap="round"/>
+      <path d="M58 76 Q100 64 144 78" fill="none" stroke="#1d1d1f" stroke-width="4" stroke-linecap="round"/>
+      <path d="M78 110 Q86 104 94 110 M108 110 Q116 104 124 110" fill="none" stroke="#1d1d1f" stroke-width="4" stroke-linecap="round"/>
+      <path d="M86 136 Q100 146 116 134" fill="none" stroke="#1d1d1f" stroke-width="4" stroke-linecap="round"/>
+      <path d="M100 116 L96 128 L102 128" fill="none" stroke="#1d1d1f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+
+    <symbol id="fantasma" viewBox="0 0 200 200">
+      <path d="M40 180 L40 96 C40 52 70 22 100 22 C130 22 160 52 160 96 L160 180 L140 164 L120 180 L100 164 L80 180 L60 164Z" fill="url(#gT)"/>
+      <ellipse cx="78" cy="98" rx="16" ry="22" fill="#fff"/><ellipse cx="122" cy="98" rx="16" ry="22" fill="#fff"/>
+      <ellipse cx="82" cy="104" rx="8" ry="11" fill="#1d1d1f"/><ellipse cx="126" cy="104" rx="8" ry="11" fill="#1d1d1f"/>
+      <path d="M58 52 Q72 34 92 32" stroke="#fff" stroke-width="6" stroke-linecap="round" fill="none" opacity=".55"/>
+    </symbol>
+
+    <symbol id="fita" viewBox="0 0 200 130">
+      <rect x="6" y="6" width="188" height="118" rx="12" fill="#1d1d1f"/>
+      <rect x="20" y="18" width="160" height="58" rx="6" fill="url(#gT)"/>
+      <text x="32" y="44" font-family="Inter" font-weight="800" font-size="16" fill="#fff" letter-spacing="-.5">MIX 01</text>
+      <text x="32" y="64" font-family="Inter" font-weight="600" font-size="10" fill="#fff" opacity=".85">LADO A · 60 MIN</text>
+      <circle cx="66" cy="96" r="14" fill="#f5f5f7"/><circle cx="134" cy="96" r="14" fill="#f5f5f7"/>
+      <circle cx="66" cy="96" r="5" fill="#1d1d1f"/><circle cx="134" cy="96" r="5" fill="#1d1d1f"/>
+      <path d="M50 124 L60 108 L140 108 L150 124" fill="#3a3a3c"/>
+    </symbol>
+
+    <symbol id="raio" viewBox="0 0 120 200">
+      <path d="M78 4 L14 112 L56 112 L36 196 L108 78 L64 78 Z" fill="url(#gV)" stroke="#1d1d1f" stroke-width="5" stroke-linejoin="round"/>
+    </symbol>
+
+    <symbol id="play" viewBox="0 0 220 90">
+      <rect x="4" y="4" width="212" height="82" rx="41" fill="#1d1d1f"/>
+      <path d="M34 26 L66 45 L34 64Z" fill="url(#gT)"/>
+      <text x="82" y="60" font-family="Inter" font-weight="800" font-size="40" fill="#fff" letter-spacing="-2">PLAY</text>
+    </symbol>
+
+    <symbol id="ano" viewBox="0 0 240 110">
+      <text x="120" y="86" text-anchor="middle" font-family="Inter" font-style="italic" font-weight="800" font-size="92" letter-spacing="-6" fill="url(#cromo)" stroke="#1d1d1f" stroke-width="3" paint-order="stroke">1986</text>
+      <path d="M20 98 L220 98" stroke="url(#gT)" stroke-width="6" stroke-linecap="round"/>
+    </symbol>
+
+    <symbol id="nosignal" viewBox="0 0 240 150">
+      <rect x="4" y="4" width="232" height="142" rx="14" fill="#1d1d1f"/>
+      <g transform="translate(16 16)">
+        <rect width="34.67" height="86" fill="#ff9f1c"/><rect x="34.67" width="34.67" height="86" fill="#1fb57a"/><rect x="69.33" width="34.67" height="86" fill="#ff5e7e"/>
+        <rect x="104" width="34.67" height="86" fill="#2f7bff"/><rect x="138.67" width="34.67" height="86" fill="#7b5cff"/><rect x="173.33" width="34.67" height="86" fill="#22b5e8"/>
+      </g>
+      <text x="120" y="130" text-anchor="middle" font-family="Inter" font-weight="800" font-size="26" fill="#fff" letter-spacing="1">NO SIGNAL</text>
+    </symbol>
+  </defs>
+</svg>
+
+<main class="prancha">
+  <section class="capa-ad bloco" style="display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap">
+    <div><p class="rot">Folha de adesivos · série 01</p><h1 style="font-size:clamp(44px,6vw,84px);font-weight:700;letter-spacing:-.05em;line-height:.95">Cola em tudo.</h1></div>
+    <p class="mono" style="max-width:340px">Personagens e peças originais na estética da casa: os degradês do tema, borda branca recortada e um toque de anos 80.</p>
+  </section>
+
+  <section class="folha" aria-label="Folha de adesivos">
+    <figure class="grande"><svg class="ad" viewBox="0 0 200 200" style="max-width:300px" role="img" aria-label="Urso de olhos grandes"><use href="#urso"/></svg><figcaption>Urso</figcaption></figure>
+    <figure class="grande"><svg class="ad" viewBox="0 0 200 200" style="max-width:300px" role="img" aria-label="Manga com máscara de metal"><use href="#mascarada"/></svg><figcaption>Mascarada</figcaption></figure>
+    <figure><svg class="ad" viewBox="0 0 200 200" role="img" aria-label="Explosão de óculos escuros"><use href="#explosao"/></svg><figcaption>Explosão</figcaption></figure>
+    <figure><svg class="ad" viewBox="0 0 200 200" role="img" aria-label="Rosto de traço com coroa"><use href="#coroa"/></svg><figcaption>Coroa</figcaption></figure>
+    <figure><svg class="ad" viewBox="0 0 200 200" role="img" aria-label="Fantasma de olhos grandes"><use href="#fantasma"/></svg><figcaption>Fantasma</figcaption></figure>
+    <figure class="grande"><svg class="ad" viewBox="0 0 200 130" style="max-width:260px" role="img" aria-label="Fita cassete"><use href="#fita"/></svg><figcaption>Fita</figcaption></figure>
+    <figure><svg class="ad" viewBox="0 0 120 200" style="max-width:110px" role="img" aria-label="Raio"><use href="#raio"/></svg><figcaption>Raio</figcaption></figure>
+    <figure><svg class="ad" viewBox="0 0 220 90" role="img" aria-label="Play"><use href="#play"/></svg><figcaption>Play</figcaption></figure>
+    <figure class="grande"><svg class="ad" viewBox="0 0 240 110" style="max-width:280px" role="img" aria-label="1986 cromado"><use href="#ano"/></svg><figcaption>1986</figcaption></figure>
+    <figure class="grande"><svg class="ad" viewBox="0 0 240 150" style="max-width:280px" role="img" aria-label="No signal"><use href="#nosignal"/></svg><figcaption>No signal</figcaption></figure>
+  </section>
+
+  <section class="uso">
+    <div class="bloco">
+      <p class="rot">Em uso · tampa do notebook</p>
+      <div class="tampa">
+        <svg class="ad" viewBox="0 0 200 200" style="width:26%;left:8%;top:10%;transform:rotate(-8deg)"><use href="#urso"/></svg>
+        <svg class="ad" viewBox="0 0 200 200" style="width:24%;left:62%;top:46%;transform:rotate(7deg)"><use href="#mascarada"/></svg>
+        <svg class="ad" viewBox="0 0 240 150" style="width:28%;left:38%;top:8%;transform:rotate(3deg)"><use href="#nosignal"/></svg>
+        <svg class="ad" viewBox="0 0 220 90" style="width:24%;left:12%;top:66%;transform:rotate(-3deg)"><use href="#play"/></svg>
+        <svg class="ad" viewBox="0 0 120 200" style="width:8%;left:44%;top:56%;transform:rotate(12deg)"><use href="#raio"/></svg>
+        <svg class="ad" viewBox="0 0 200 200" style="width:15%;left:80%;top:6%;transform:rotate(-10deg)"><use href="#explosao"/></svg>
+      </div>
+    </div>
+    <div class="bloco">
+      <p class="rot">Em uso · garrafa</p>
+      <div class="garrafa">
+        <svg class="ad" viewBox="0 0 200 200" style="width:56%;left:22%;top:14%;transform:rotate(-6deg)"><use href="#fantasma"/></svg>
+        <svg class="ad" viewBox="0 0 240 110" style="width:64%;left:18%;top:52%;transform:rotate(4deg)"><use href="#ano"/></svg>
+        <svg class="ad" viewBox="0 0 200 200" style="width:40%;left:30%;top:72%;transform:rotate(-4deg)"><use href="#coroa"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <footer class="rodape"><span>Adesivos · série 01 · 2026</span><span>Personagens originais. Paródia de portfólio.</span></footer>
+</main>
+<script type="module">
+import { iniciarTemas } from './temas.js';
+iniciarTemas();
+</script>
+</body>
+</html>
