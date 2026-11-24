@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="pt-BR" data-tema="manga">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mango · Logo</title>
+<link rel="icon" href="/mango.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/light/style.css">
+<link rel="stylesheet" href="/src/marca/marca.css">
+<link rel="stylesheet" href="./temas.css">
+<link rel="stylesheet" href="./base.css">
+<style>
+/* lockups: logo + palavra "Mango" */
+.lk{display:inline-flex;align-items:center;gap:.32em;font-weight:600;letter-spacing:-.045em;line-height:1;color:inherit}
+.lk .logo-m{height:1.05em;width:auto}
+.lk.pilha{flex-direction:column;gap:.18em}
+.lk.pilha .logo-m{height:1.5em}
+.selo{display:inline-grid;place-items:center;aspect-ratio:1;border-radius:24%;color:#fff;background:var(--malha);box-shadow:0 0 0 .07em #fff,0 .12em .4em rgba(0,0,0,.18)}
+.selo .logo-m{width:46%}
+.selo.pilula{aspect-ratio:auto;border-radius:980px;padding:.3em .7em;display:inline-flex;gap:.3em;align-items:center;font-weight:600;letter-spacing:-.04em}
+.selo.pilula .logo-m{width:auto;height:1em}
+
+.capa{border-radius:32px;min-height:520px;color:#fff;display:grid;grid-template-rows:auto 1fr auto;padding:36px}
+.capa .lk{font-size:clamp(64px,10vw,150px);align-self:center;justify-self:center}
+.capa .ficha{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px;opacity:.9;border-top:1px solid rgba(255,255,255,.35);padding-top:14px}
+.capa .topo{display:flex;justify-content:space-between;font-size:13px;font-weight:600}
+
+.versoes{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.palco{border-radius:22px;background:var(--fundo);box-shadow:inset 0 0 0 1px var(--linha);aspect-ratio:1;display:grid;place-items:center;padding:20px}
+.versao{display:grid;gap:10px}
+
+.fundos{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.fundos div{aspect-ratio:1.3;border-radius:18px;display:grid;place-items:center;font-size:28px;position:relative}
+.fundos small{position:absolute;left:12px;bottom:10px;font:500 11px ui-monospace,Consolas,monospace;opacity:.8}
+.fundos .logo-m{width:38px}
+
+.regras{display:grid;grid-template-columns:1.2fr 1fr;gap:20px}
+.respiro{display:grid;place-items:center;aspect-ratio:1.6;border-radius:22px;background:var(--fundo);box-shadow:inset 0 0 0 1px var(--linha)}
+.respiro .caixa{padding:38px;outline:1.5px dashed var(--c-rosa);outline-offset:0;position:relative;font-size:64px}
+.respiro .caixa::before{content:"x";position:absolute;top:8px;left:50%;transform:translateX(-50%);font:600 13px Inter;color:var(--c-rosa)}
+.tamanhos{display:flex;align-items:flex-end;gap:28px;flex-wrap:wrap}
+.tamanhos div{display:grid;gap:8px;justify-items:start}
+
+.nao{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.nao div{display:grid;gap:8px}
+.nao .palco{aspect-ratio:1;position:relative}
+.nao .palco::after{content:"";position:absolute;top:10px;right:10px;width:22px;height:22px;border-radius:50%;background:var(--c-rosa) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' stroke='white' stroke-width='3'%3E%3Cpath d='M7 7l10 10M17 7L7 17'/%3E%3C/svg%3E") center/14px no-repeat}
+.nao .logo-m{width:64px;color:var(--tinta)}
+.x-degrade{background:var(--faixa)!important}
+.x-sombra{filter:drop-shadow(4px 6px 4px rgba(0,0,0,.45))}
+.x-contorno{filter:drop-shadow(2px 0 0 var(--c-azul)) drop-shadow(-2px 0 0 var(--c-azul)) drop-shadow(0 2px 0 var(--c-azul)) drop-shadow(0 -2px 0 var(--c-azul))}
+.x-esticar{transform:scaleX(1.55)}
+.x-mordida{-webkit-mask:radial-gradient(circle at 100% 50%,transparent 26%,#000 27%),url(/mango.svg) center/contain no-repeat;-webkit-mask-composite:source-in;mask:radial-gradient(circle at 100% 50%,transparent 26%,#000 27%),url(/mango.svg) center/contain no-repeat;mask-composite:intersect}
+
+@media (max-width:900px){
+  .versoes{grid-template-columns:1fr 1fr}
+  .fundos{grid-template-columns:repeat(3,1fr)}
+  .regras{grid-template-columns:1fr}
+  .nao{grid-template-columns:repeat(3,1fr)}
+  .capa{min-height:380px;padding:24px}
+}
+@media (max-width:520px){ .nao,.fundos{grid-template-columns:1fr 1fr} }
+</style>
+</head>
+<body>
+<main class="prancha">
+
+  <section class="capa malha" aria-label="Capa">
+    <div class="topo"><span>Mango · Logo</span><span>D · Caroço</span></div>
+    <span class="lk"><span class="logo-m"></span>Mango</span>
+    <div class="ficha"><span>Marca: Mango</span><span>Setor: Tecnologia</span><span>Peça: Identidade</span></div>
+  </section>
+
+  <section class="bloco">
+    <h2><span class="num">01</span>Versões</h2>
+    <div class="versoes">
+      <div class="versao"><div class="palco"><span class="lk" style="font-size:54px"><span class="logo-m"></span>Mango</span></div><span class="mono">Horizontal · padrão</span></div>
+      <div class="versao"><div class="palco"><span class="lk pilha" style="font-size:44px"><span class="logo-m"></span>Mango</span></div><span class="mono">Empilhado · espaço quadrado</span></div>
+      <div class="versao"><div class="palco"><span class="selo" style="font-size:120px;width:1em"><span class="logo-m"></span></span></div><span class="mono">Selo · ícone, adesivo, avatar</span></div>
+      <div class="versao"><div class="palco"><span class="selo pilula" style="font-size:40px"><span class="logo-m"></span>Mango</span></div><span class="mono">Pílula · loja, parceiros</span></div>
+    </div>
+  </section>
+
+  <section class="bloco">
+    <h2><span class="num">02</span>Sobre cada fundo</h2>
+    <p class="rot">Preto no claro · branco no escuro, na foto e na cor</p>
+    <div class="fundos">
+      <div style="background:#fff;box-shadow:inset 0 0 0 1px #e3e3e8;color:var(--ink)"><span class="logo-m"></span><small>Branco</small></div>
+      <div style="background:var(--tile);color:var(--ink)"><span class="logo-m"></span><small>Azulejo</small></div>
+      <div style="background:var(--papel);color:var(--ink)"><span class="logo-m"></span><small>Papel</small></div>
+      <div style="background:var(--ink);color:#fff"><span class="logo-m"></span><small>Tinta</small></div>
+      <div class="malha" style="color:#fff"><span class="logo-m"></span><small>Malha do tema</small></div>
+      <div style="background:var(--c-manga);color:#fff"><span class="logo-m"></span><small>Manga</small></div>
+      <div style="background:var(--c-verde);color:#fff"><span class="logo-m"></span><small>Verde</small></div>
+      <div style="background:var(--c-rosa);color:#fff"><span class="logo-m"></span><small>Rosa</small></div>
+      <div style="background:var(--c-azul);color:#fff"><span class="logo-m"></span><small>Azul</small></div>
+      <div style="background:var(--c-roxo);color:#fff"><span class="logo-m"></span><small>Roxo</small></div>
+    </div>
+  </section>
+
+  <section class="regras">
+    <div class="bloco">
+      <h2><span class="num">03</span>Respiro</h2>
+      <div class="respiro"><div class="caixa"><span class="lk"><span class="logo-m"></span>Mango</span></div></div>
+      <p class="mono" style="margin-top:12px">Em volta, no mínimo a largura do caroço (x). Nada entra nesse espaço.</p>
+    </div>
+    <div class="bloco">
+      <p class="rot">Tamanhos</p>
+      <div class="tamanhos">
+        <div><span class="logo-m" style="width:96px"></span><span class="mono">96 px · capa</span></div>
+        <div><span class="logo-m" style="width:48px"></span><span class="mono">48 px · card</span></div>
+        <div><span class="logo-m" style="width:24px"></span><span class="mono">24 px · rodapé</span></div>
+        <div><span class="logo-m" style="width:15px"></span><span class="mono">15 px · mínimo (navbar)</span></div>
+      </div>
+      <p class="rot" style="margin-top:28px">Arquivos</p>
+      <p class="mono">public/mango.svg · claro e máscara CSS<br>public/mango-branco.svg · escuro e foto</p>
+    </div>
+  </section>
+
+  <section class="bloco">
+    <h2><span class="num">04</span>Não fazer</h2>
+    <div class="nao">
+      <div><div class="palco"><span class="logo-m x-degrade"></span></div><span class="mono">Degradê no logo</span></div>
+      <div><div class="palco"><span class="x-sombra"><span class="logo-m"></span></span></div><span class="mono">Sombra</span></div>
+      <div><div class="palco"><span class="x-contorno"><span class="logo-m" style="color:var(--fundo)"></span></span></div><span class="mono">Contorno</span></div>
+      <div><div class="palco"><span class="logo-m x-esticar"></span></div><span class="mono">Distorcer</span></div>
+      <div><div class="palco"><span class="logo-m x-mordida"></span></div><span class="mono">Mordida (é a Apple)</span></div>
+    </div>
+  </section>
+
+  <footer class="rodape"><span>Mango · Logo · 2026</span><span>Paródia de portfólio. Sem relação com a Apple.</span></footer>
+</main>
+<script type="module">
+import { iniciarTemas } from './temas.js';
+iniciarTemas();
+</script>
+</body>
+</html>
