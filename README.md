@@ -289,6 +289,33 @@ Projeto-Hardware/
 
 <br>
 
+## 🎨 Kit da marca
+
+O design system saiu do `MARCA.md` e virou peça visual, feita em código e lendo as mesmas variáveis do site (`src/marca/marca.css`). Trocar uma cor no CSS muda o site e as pranchas juntos.
+
+| Prancha | O que mostra |
+|---|---|
+| `escolhas/marca/prancha.html` | cores, as 6 "todas", degradês, tipografia, peças, aplicações, tom de voz e campanhas |
+| `escolhas/marca/logo.html` | versões do logo, fundos, respiro, tamanhos e o que não fazer |
+| `escolhas/marca/adesivos.html` | rascunho da primeira série de adesivos |
+
+Cada prancha troca entre **6 temas de degradê** (Manga, Arco-íris, Uva, Oceano, Folha, Noite) pelo seletor ou pela URL (`?v=uva`).
+
+<p align="center">
+  <img src="docs/imagens/kit/prancha-manga.png" width="49%" alt="Prancha da marca no tema Manga">
+  <img src="docs/imagens/kit/prancha-noite.png" width="49%" alt="Prancha da marca no tema Noite">
+</p>
+
+**Gerar as imagens:** com `npm run dev` rodando, `node scripts/kit.mjs` tira os PNGs de cada prancha em cada tema (Chrome sem janela, sem dependência nova) e salva em `docs/imagens/kit/`.
+
+### Mangy, o mascote
+
+<p align="center"><img src="IA/MASCOTE/mangy-final.png" width="260" alt="Mangy, o mascote da Mango"></p>
+
+A camada expressiva da marca nasce de um personagem: o **Mangy**, uma criança chibi com cabeça de manga, a folha solta do logo em cima e o logo da Mango no peito, no degradê laranja → rosa-choque. Ele foi criado por IA e refinado em rodadas; os prompts estão em `refs/prompts-adesivos.md`.
+
+<br>
+
 ## 🗺️ Próximos passos
 
 - [x] Identidade da Mango e logo
@@ -296,6 +323,12 @@ Projeto-Hardware/
 - [x] Manual da marca
 - [x] Levar o protótipo para React, idêntico e testado
 - [x] Imagem autoral para "Amor à primeira fruta"
+- [x] Protótipo da Mango Store (5 vitrines, escolhida: Galeria)
+- [x] Kit da marca: pranchas da marca e do logo com 6 temas, e script de imagens
+- [x] Mascote oficial: Mangy
+- [ ] Série do Mangy: expressões, 6 cores, ícone, selo e escala de maturação
+- [ ] Adesivos por IA, um por um
+- [ ] Pranchas de cartão-presente e de ícones do MangoOS
 - [ ] Fotos do produto com fundo transparente e em alta resolução
 - [ ] Imagem própria para a abertura no celular
 - [ ] Publicar online
