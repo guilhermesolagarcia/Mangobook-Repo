@@ -6,7 +6,7 @@
 <title>Mango · Adesivos</title>
 <link rel="icon" href="/mango.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..800&family=Permanent+Marker&family=Righteous&family=Dela+Gothic+One&family=Graduate&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..800&family=Permanent+Marker&family=Righteous&family=Dela+Gothic+One&family=Graduate&family=Anton&display=swap">
 <link rel="stylesheet" href="/src/marca/marca.css">
 <link rel="stylesheet" href="./temas.css">
 <link rel="stylesheet" href="./base.css">
@@ -31,6 +31,10 @@
     <!-- íris do urso: só cores da marca -->
     <radialGradient id="irisA"><stop offset=".2" stop-color="#ffd23f"/><stop offset=".55" stop-color="#ff5e7e"/><stop offset="1" stop-color="#7b5cff"/></radialGradient>
     <radialGradient id="irisB"><stop offset=".2" stop-color="#3ddc97"/><stop offset=".55" stop-color="#22b5e8"/><stop offset="1" stop-color="#2f7bff"/></radialGradient>
+    <!-- degradê da família de heróis (batmango, veloz, club): manga → rosa, contínuo pelo adesivo inteiro -->
+    <linearGradient id="gBat" gradientUnits="userSpaceOnUse" x1="40" y1="0" x2="210" y2="0"><stop offset="0" stop-color="#ffb01f"/><stop offset=".45" stop-color="#ff9f1c"/><stop offset="1" stop-color="#ff5e7e"/></linearGradient>
+    <linearGradient id="gVel" gradientUnits="userSpaceOnUse" x1="36" y1="0" x2="236" y2="0"><stop offset="0" stop-color="#ffb01f"/><stop offset=".45" stop-color="#ff9f1c"/><stop offset="1" stop-color="#ff5e7e"/></linearGradient>
+    <linearGradient id="gClub" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffb01f"/><stop offset=".45" stop-color="#ff9f1c"/><stop offset="1" stop-color="#ff5e7e"/></linearGradient>
     <linearGradient id="miolo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd23f"/><stop offset="1" stop-color="#ff9f1c"/></linearGradient>
     <filter id="papel" x="0" y="0" width="100%" height="100%">
       <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4" result="n"/>
@@ -176,21 +180,34 @@
       <text x="120" y="220" text-anchor="middle" font-family="Graduate" font-size="30" letter-spacing="2" fill="#f5f2ec">MANGO</text>
     </svg>
 
-    <!-- Arco-íris anos 70 com as 6 cores -->
-    <div class="largo"><svg class="ad" viewBox="0 0 280 160" role="img" aria-label="Arco-íris com as seis cores">
-      <g fill="none" stroke-width="13" stroke-linecap="round">
-        <path d="M30 140 A110 110 0 0 1 250 140" stroke="#ff9f1c"/>
-        <path d="M44 140 A96 96 0 0 1 236 140" stroke="#ff5e7e"/>
-        <path d="M58 140 A82 82 0 0 1 222 140" stroke="#7b5cff"/>
-        <path d="M72 140 A68 68 0 0 1 208 140" stroke="#2f7bff"/>
-        <path d="M86 140 A54 54 0 0 1 194 140" stroke="#22b5e8"/>
-        <path d="M100 140 A40 40 0 0 1 180 140" stroke="#1fb57a"/>
+    <!-- Batmango: herói de manga, degradê contínuo, detalhes vazados em branco -->
+    <svg class="ad" viewBox="0 0 230 262" role="img" aria-label="Manga herói com máscara e capa">
+      <g fill="url(#gBat)" stroke="#fff" stroke-width="4" stroke-linejoin="round">
+        <path d="M168 120 C196 160 206 210 210 252 C202 244 192 244 188 252 C182 242 172 242 166 250 L120 246 Z"/>
+        <path d="M118 56 C116 32 136 14 162 14 C160 40 142 54 118 56 Z"/>
+        <path d="M112 54 C160 52 194 100 192 162 C190 216 158 246 112 246 C64 246 36 214 38 166 C40 128 52 98 62 82 L66 28 L94 62 C100 58 106 55 112 54 Z M136 60 L172 26 L176 92 C166 76 152 64 136 60 Z"/>
       </g>
-      <g fill="#fff" stroke="#1d1d1f" stroke-width="4" stroke-linejoin="round">
-        <path d="M14 152 C6 152 4 138 14 136 C14 124 30 122 34 130 C40 122 56 126 54 138 C64 138 64 152 54 152 Z"/>
-        <path d="M226 152 C218 152 216 138 226 136 C226 124 242 122 246 130 C252 122 268 126 266 138 C276 138 276 152 266 152 Z"/>
+      <g fill="#fff">
+        <path d="M76 106 L106 118 Q100 132 86 128 Q74 122 76 106Z"/><path d="M152 106 L122 118 Q128 132 142 128 Q154 122 152 106Z"/>
+        <path d="M72 142 L100 150 L114 142 L128 150 L156 142 Q154 178 114 182 Q74 178 72 142 Z"/>
+        <path d="M86 214 C92 202 102 200 106 206 L109 197 L114 205 L119 197 L122 206 C126 200 136 202 142 214 C134 210 126 213 125 220 C120 216 116 218 114 225 C112 218 108 216 103 220 C102 213 94 210 86 214 Z"/>
       </g>
-    </svg></div>
+      <path d="M44 172 L102 190 M184 172 L126 190" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+
+    <!-- MANGO CLUB: sabonete no mesmo degradê -->
+    <svg class="ad" viewBox="0 0 300 220" role="img" aria-label="Sabonete Mango Club">
+      <g transform="rotate(-8 150 110)">
+        <rect x="22" y="52" width="256" height="140" rx="16" fill="url(#gClub)"/>
+        <rect x="22" y="52" width="256" height="140" rx="16" fill="#7b5cff" opacity=".45"/>
+        <rect x="22" y="34" width="256" height="136" rx="16" fill="url(#gClub)"/>
+        <g fill="#fff" opacity=".9"><ellipse cx="40" cy="52" rx="5" ry="3"/><ellipse cx="52" cy="46" rx="3" ry="2"/><ellipse cx="34" cy="150" rx="3" ry="5"/><ellipse cx="262" cy="160" rx="6" ry="3"/><ellipse cx="200" cy="164" rx="4" ry="2"/><ellipse cx="248" cy="44" rx="4" ry="2"/></g>
+        <g font-family="Anton" font-size="62" letter-spacing="1" text-anchor="middle" transform="skewX(-10)">
+          <text x="175" y="99" fill="#7b5cff" opacity=".6">MANGO</text><text x="171" y="95" fill="#fff4e6">MANGO</text>
+          <text x="190" y="155" fill="#7b5cff" opacity=".6">CLUB</text><text x="186" y="151" fill="#fff4e6">CLUB</text>
+        </g>
+      </g>
+    </svg>
 
     <!-- Rabisco (ref rosto desenhado) -->
     <svg class="ad" viewBox="0 0 220 220" role="img" aria-label="Rosto rabiscado">
@@ -201,12 +218,19 @@
       <path d="M72 156 C86 146 98 166 112 154 C126 142 136 162 150 150" fill="none" stroke="#1d1d1f" stroke-width="6" stroke-linecap="round"/>
     </svg>
 
-    <!-- Veloz: silhueta de uma cor (ref Sonic) -->
-    <svg class="ad" viewBox="0 0 240 180" role="img" aria-label="Silhueta veloz">
-      <path d="M30 110 C30 60 80 30 130 36 L200 18 L170 58 L234 60 L182 90 L230 116 L172 120 L198 162 L130 142 C80 162 30 152 30 110 Z" fill="#2f7bff"/>
-      <ellipse cx="88" cy="90" rx="22" ry="28" fill="#fff"/>
-      <ellipse cx="96" cy="94" rx="8" ry="14" fill="#2f7bff"/>
-      <path d="M56 128 C70 136 84 136 96 128" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+    <!-- Manga veloz: cabeça de manga com espinhos pra trás, olhos juntos -->
+    <svg class="ad" viewBox="0 0 244 196" role="img" aria-label="Manga veloz">
+      <g fill="url(#gVel)" stroke="#fff" stroke-width="4" stroke-linejoin="round">
+        <path d="M120 44 L232 30 L172 80 L240 100 L174 122 L226 166 L148 152 Z"/>
+        <path d="M114 40 C110 20 124 6 146 4 C144 26 132 38 114 40 Z"/>
+        <path d="M110 38 C152 36 180 72 178 114 C176 160 144 186 106 186 C64 186 36 158 38 114 C40 72 72 40 110 38 Z"/>
+      </g>
+      <path d="M54 94 C54 72 72 64 88 72 C96 64 118 64 122 84 C126 112 108 126 96 118 C88 128 58 124 54 94 Z" fill="#fff"/>
+      <ellipse cx="84" cy="98" rx="7" ry="12" fill="#1d1d1f"/><ellipse cx="108" cy="96" rx="7" ry="12" fill="#1d1d1f"/>
+      <circle cx="82" cy="92" r="2.5" fill="#fff"/><circle cx="106" cy="90" r="2.5" fill="#fff"/>
+      <path d="M46 130 C62 120 98 122 114 136 C110 164 78 174 56 162 C46 154 42 142 46 130 Z" fill="#fff"/>
+      <ellipse cx="44" cy="126" rx="8" ry="6" fill="#1d1d1f"/>
+      <path d="M68 150 Q86 158 102 142" fill="none" stroke="#1d1d1f" stroke-width="4" stroke-linecap="round"/>
     </svg>
   </section>
 
