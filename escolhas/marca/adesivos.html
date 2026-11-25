@@ -6,7 +6,7 @@
 <title>Mango · Adesivos</title>
 <link rel="icon" href="/mango.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..800&family=Permanent+Marker&family=Titan+One&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..800&family=Permanent+Marker&family=Righteous&family=Dela+Gothic+One&display=swap">
 <link rel="stylesheet" href="/src/marca/marca.css">
 <link rel="stylesheet" href="./temas.css">
 <link rel="stylesheet" href="./base.css">
@@ -18,18 +18,38 @@
 [data-tema="noite"] .folha{background:#1c1c1e}
 .folha .ad{max-width:240px;transition:transform .3s var(--chegada)}
 .folha .ad:hover{transform:scale(1.04)}
-.folha .largo{grid-column:span 2}
-.folha .largo .ad{max-width:420px}
-@media (max-width:900px){ .folha{grid-template-columns:1fr 1fr;padding:32px 24px;gap:40px 28px} }
-@media (max-width:520px){ .folha{grid-template-columns:1fr} .folha .largo{grid-column:auto} }
+.folha .largo{grid-column:span 2;width:100%}
+.folha .largo .ad{max-width:440px;margin:0 auto}
+.folha .meio{grid-column:2 / span 2}
+@media (max-width:900px){ .folha{grid-template-columns:1fr 1fr;padding:32px 24px;gap:40px 28px} .folha .meio{grid-column:span 2} }
+@media (max-width:520px){ .folha{grid-template-columns:1fr} .folha .largo,.folha .meio{grid-column:auto} }
 </style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <linearGradient id="gT" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--g1)"/><stop offset=".55" style="stop-color:var(--g2)"/><stop offset="1" style="stop-color:var(--g3)"/></linearGradient>
-    <linearGradient id="iris" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff5e7e"/><stop offset=".5" stop-color="#7b5cff"/><stop offset="1" stop-color="#22b5e8"/></linearGradient>
+    <radialGradient id="irisA"><stop offset=".25" stop-color="#ffd23f"/><stop offset=".6" stop-color="#ff5e7e"/><stop offset="1" stop-color="#b8325a"/></radialGradient>
+    <radialGradient id="irisB"><stop offset=".25" stop-color="#3ddc97"/><stop offset=".6" stop-color="#22b5e8"/><stop offset="1" stop-color="#2f7bff"/></radialGradient>
+    <linearGradient id="miolo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd23f"/><stop offset="1" stop-color="#ff9f1c"/></linearGradient>
+    <!-- textura de papel/pelúcia, bem leve -->
+    <filter id="papel" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4" result="n"/>
+      <feColorMatrix in="n" type="saturate" values="0" result="g"/>
+      <feComponentTransfer in="g" result="g2"><feFuncA type="table" tableValues="0 .22"/></feComponentTransfer>
+      <feComposite in="g2" in2="SourceGraphic" operator="in" result="t"/>
+      <feBlend in="SourceGraphic" in2="t" mode="multiply"/>
+    </filter>
     <path id="estrela" d="M150 22 L169 66 L216 70 L180 101 L191 147 L150 123 L109 147 L120 101 L84 70 L131 66Z"/>
+    <!-- esqueleto das letras MANGO: traço grosso redondo vira letra bolha -->
+    <g id="mango-esq" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M38 168 L46 74 L88 128 L128 66 L136 168"/>
+      <path d="M164 170 L198 70 L234 170 M182 132 L218 132"/>
+      <path d="M262 170 L266 72 L324 168 L330 68"/>
+      <path d="M448 72 C420 50 358 58 356 118 C354 178 430 188 450 152 L414 152"/>
+      <ellipse cx="492" cy="120" rx="30" ry="48"/>
+    </g>
+    <clipPath id="disco"><circle cx="150" cy="140" r="124"/></clipPath>
   </defs>
 </svg>
 
@@ -40,17 +60,23 @@
   </section>
 
   <section class="folha" aria-label="Folha de adesivos">
-    <!-- Urso: cor quente, degradê só nos olhos -->
-    <svg class="ad" viewBox="0 0 224 200" role="img" aria-label="Urso de olhos grandes">
-      <circle cx="48" cy="54" r="32" fill="#c96f0a"/><circle cx="48" cy="54" r="17" fill="#ffd23f"/>
-      <circle cx="176" cy="54" r="32" fill="#c96f0a"/><circle cx="176" cy="54" r="17" fill="#ffd23f"/>
-      <ellipse cx="112" cy="114" rx="90" ry="78" fill="#e8890c"/>
-      <ellipse cx="114" cy="152" rx="42" ry="32" fill="#ffd23f"/>
-      <ellipse cx="72" cy="102" rx="32" ry="36" fill="#fff"/><ellipse cx="152" cy="102" rx="32" ry="36" fill="#fff"/>
-      <circle cx="75" cy="105" r="25" fill="url(#iris)"/><circle cx="149" cy="105" r="25" fill="url(#iris)"/>
-      <circle cx="67" cy="95" r="8" fill="#fff"/><circle cx="141" cy="95" r="8" fill="#fff"/>
-      <circle cx="85" cy="116" r="4.5" fill="#ffd23f"/><circle cx="159" cy="116" r="4.5" fill="#ffd23f"/>
-      <ellipse cx="114" cy="138" rx="12" ry="8" fill="#3a2410"/>
+    <!-- Urso de três-quartos: marrom chapado, textura leve, um olho de cada cor -->
+    <svg class="ad" viewBox="0 0 240 214" role="img" aria-label="Urso de olhos coloridos">
+      <g filter="url(#papel)">
+        <circle cx="206" cy="80" r="25" fill="#5e3a1f"/><circle cx="208" cy="82" r="12" fill="#d9a850"/>
+        <ellipse cx="128" cy="118" rx="98" ry="84" fill="#5e3a1f"/>
+        <ellipse cx="118" cy="116" rx="92" ry="82" fill="#8a5a33"/>
+        <circle cx="50" cy="50" r="27" fill="#8a5a33"/><circle cx="52" cy="54" r="14" fill="#d9a850"/>
+        <ellipse cx="102" cy="156" rx="56" ry="44" fill="#d9a850"/>
+        <ellipse cx="64" cy="100" rx="27" ry="31" fill="#f3ead6" stroke="#2b1a0e" stroke-width="3"/>
+        <ellipse cx="152" cy="94" rx="25" ry="29" fill="#f3ead6" stroke="#2b1a0e" stroke-width="3"/>
+        <circle cx="66" cy="102" r="18" fill="url(#irisA)" stroke="#2b1a0e" stroke-width="2"/>
+        <circle cx="150" cy="96" r="17" fill="url(#irisB)" stroke="#2b1a0e" stroke-width="2"/>
+        <circle cx="66" cy="102" r="5" fill="#2b1a0e"/><circle cx="150" cy="96" r="5" fill="#2b1a0e"/>
+        <circle cx="59" cy="94" r="4" fill="#fff"/><circle cx="143" cy="88" r="4" fill="#fff"/>
+        <circle cx="74" cy="110" r="3" fill="#7b5cff"/><circle cx="157" cy="104" r="3" fill="#ff9f1c"/>
+        <ellipse cx="98" cy="128" rx="13" ry="10" fill="#2b1a0e"/>
+      </g>
     </svg>
 
     <!-- Balão de fala, letra de marcador -->
@@ -74,24 +100,59 @@
       <path d="M100 6 L118 62 L170 30 L146 84 L196 100 L146 116 L170 170 L118 138 L100 194 L82 138 L30 170 L54 116 L4 100 L54 84 L30 30 L82 62Z" fill="url(#gT)" stroke="url(#gT)" stroke-width="8" stroke-linejoin="round"/>
     </svg>
 
-    <!-- Letra de pichação em camadas -->
-    <div class="largo"><svg class="ad" viewBox="0 0 420 170" role="img" aria-label="Suave, em letra de pichação">
-      <g font-family="Titan One" font-size="104" text-anchor="middle" stroke-linejoin="round" paint-order="stroke" transform="rotate(-4 210 85)">
-        <text x="210" y="122" fill="#7b5cff" stroke="#7b5cff" stroke-width="40">SUAVE</text>
-        <text x="210" y="122" fill="#ffd23f" stroke="#ff5e7e" stroke-width="12">SUAVE</text>
+    <!-- MANGO em pichação bolha (throw-up): camadas de traço sobre o mesmo esqueleto -->
+    <div class="largo"><svg class="ad" viewBox="0 20 560 200" role="img" aria-label="Mango em letra de pichação">
+      <g transform="rotate(-5 280 120)">
+        <use href="#mango-esq" stroke="#7b5cff" stroke-width="78"/>
+        <use href="#mango-esq" stroke="#2b1a4f" stroke-width="58"/>
+        <use href="#mango-esq" stroke="url(#miolo)" stroke-width="46"/>
+        <path d="M30 88 L36 104 M158 102 L166 88 M258 96 L260 84 M372 98 C376 88 384 84 392 84 M478 92 C482 86 488 84 494 84" stroke="#fff" stroke-width="6" stroke-linecap="round" opacity=".85"/>
       </g>
     </svg></div>
 
-    <!-- Selo de viagem -->
+    <!-- Selo de viagem: moldura roxa, fonte retrô -->
     <div class="largo"><svg class="ad" viewBox="0 0 320 210" role="img" aria-label="Selo Rio de Janeiro">
-      <rect x="4" y="4" width="312" height="202" rx="22" fill="#1fb57a"/>
+      <rect x="4" y="4" width="312" height="202" rx="22" fill="#7b5cff"/>
       <rect x="20" y="20" width="280" height="170" rx="10" fill="#f5f2ec" stroke="#1d1d1f" stroke-width="3"/>
       <circle cx="214" cy="84" r="46" fill="#ff5e7e"/>
       <path d="M34 140 C48 104 66 90 82 90 C96 90 102 116 108 128 C124 96 138 70 158 70 C180 70 192 112 200 140 Z" fill="#1d1d1f"/>
       <path d="M96 100 L158 74" stroke="#1d1d1f" stroke-width="2"/>
-      <text x="36" y="180" font-family="Inter" font-weight="800" font-size="46" letter-spacing="-2" fill="#1d1d1f">RIO</text>
-      <text x="284" y="168" text-anchor="end" font-family="Inter" font-weight="700" font-size="12" letter-spacing="1.5" fill="#1d1d1f">DE JANEIRO</text>
-      <text x="284" y="182" text-anchor="end" font-family="Inter" font-weight="500" font-size="10" letter-spacing="1.5" fill="#1d1d1f">BRASIL · 1565</text>
+      <text x="34" y="182" font-family="Righteous" font-size="50" fill="#1d1d1f">RIO</text>
+      <text x="284" y="166" text-anchor="end" font-family="Righteous" font-size="14" letter-spacing="1" fill="#1d1d1f">DE JANEIRO</text>
+      <text x="284" y="182" text-anchor="end" font-family="Righteous" font-size="11" letter-spacing="1.5" fill="#7b5cff">BRASIL · 1565</text>
+    </svg></div>
+
+    <!-- Kaiju de manga: só contorno -->
+    <div class="meio"><svg class="ad" viewBox="0 0 300 320" style="max-width:340px;margin:0 auto" role="img" aria-label="Monstro de manga rugindo para o sol">
+      <circle cx="150" cy="140" r="124" fill="#f5f2ec"/>
+      <g clip-path="url(#disco)" stroke="#7b5cff" stroke-width="7" stroke-linecap="round">
+        <path d="M88 86 L-40 20 M88 86 L-40 100 M88 86 L-20 230 M88 86 L30 -40 M88 86 L100 -40 M88 86 L190 -40 M88 86 L300 0 M88 86 L320 90"/>
+      </g>
+      <circle cx="88" cy="86" r="24" fill="#f5f2ec" stroke="#1d1d1f" stroke-width="5"/>
+      <g fill="#f5f2ec" stroke="#1d1d1f" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
+        <!-- rabo e placas das costas (folhas de manga) atrás do corpo -->
+        <path d="M222 214 C252 228 274 236 292 206 C282 246 248 248 214 232 Z"/>
+        <path d="M190 88 C190 66 200 54 212 46 C220 62 220 78 214 92 Z"/>
+        <path d="M222 96 C230 78 244 70 260 70 C258 90 250 104 240 112 Z"/>
+        <path d="M244 124 C258 112 272 110 286 114 C278 132 266 142 252 146 Z"/>
+        <path d="M250 158 C266 152 280 156 292 166 C278 178 264 182 250 180 Z"/>
+        <path d="M244 192 C258 192 270 200 278 212 C262 216 250 212 240 206 Z"/>
+        <!-- corpo de manga -->
+        <path d="M152 226 C120 214 114 160 128 128 C140 102 160 88 182 86 C224 82 250 118 244 162 C238 206 214 232 182 234 Z"/>
+        <path d="M148 222 L146 240 L172 240 L172 228 M198 232 L198 240 L222 240 L218 222"/>
+        <!-- mandíbulas abertas rugindo pro sol -->
+        <path d="M162 90 L102 66 L144 110 Z"/>
+        <path d="M142 116 L104 106 L150 134 Z"/>
+        <path d="M116 74 L120 84 L126 78 L130 90 L136 84" fill="none" stroke-width="3"/>
+        <path d="M132 156 L112 164 L118 176 L136 168"/>
+        <path d="M158 98 L176 104" fill="none"/>
+        <circle cx="168" cy="108" r="3.5" fill="#1d1d1f" stroke="none"/>
+        <!-- pinheiros e chão -->
+        <path d="M30 240 L46 200 L62 240 M56 240 L70 210 L84 240" fill="none"/>
+        <path d="M26 240 L274 240" fill="none"/>
+      </g>
+      <circle cx="150" cy="140" r="124" fill="none" stroke="#1d1d1f" stroke-width="5"/>
+      <text x="150" y="304" text-anchor="middle" font-family="Dela Gothic One" font-size="54" fill="#7b5cff" stroke="#1d1d1f" stroke-width="8" paint-order="stroke" stroke-linejoin="round" transform="rotate(-3 150 290)">マンゴー</text>
     </svg></div>
   </section>
 
