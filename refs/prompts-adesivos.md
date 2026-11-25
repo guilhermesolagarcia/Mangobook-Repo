@@ -19,25 +19,27 @@ Transparent background, flat vector style, centered, no text.
 
 ## Mascote (candidato): v1 em `IA/STICKERS/mangy.png`
 
-O que a v1 acerta: proporção chibi, pose confiante, degradê laranja → rosa-choque, cabinho e folha.
+Gerado com um prompt **chibi** próprio (não o padrão Batmango): é uma linha separada, a do mascote.
+O que a v1 acerta: estilo chibi, pose confiante, degradê laranja → rosa-choque, cabinho e folha, rosto com recorte creme.
 O que refinar: o emblema do peito é uma **maçã** (cara de Apple, proibido no manual); a cabeça tem forma de
-maçã/pêssego (redonda com afundado no topo), não de manga; brilho na cabeça (o padrão não tem sombra nem brilho);
-detalhe demais para virar ícone (fios de cabelo, dobras de roupa, cadarço); olhos feitos de linha em vez de recorte.
+maçã/pêssego (redonda com afundado no topo), não de manga; um pouco de detalhe demais para virar ícone pequeno.
 
 **Mascote v2**
 ```
 Brand mascot sticker: a cheerful chibi kid whose head IS a ripe mango. The head has a true mango shape:
 asymmetric kidney/teardrop silhouette, slightly tilted, wider at the bottom, smooth top with no dent,
 a short brown stem set off-center near the upper shoulder of the fruit and one green leaf.
-The mango skin falls over the forehead as three soft rounded bangs (no individual hair strands).
+Mango-colored hair falls over the forehead in soft chunky bangs.
 The face is one cream-white cutout area with big simple oval eyes (solid ovals with one small cream highlight),
 a small open happy smile and two small blush dots. Small round body in a plain one-piece outfit,
 short stubby arms and legs: one hand on the hip, the other fist raised confidently.
 On the chest a small cream cutout emblem of a halved mango showing its oval seed (NOT an apple, no bite).
-Plain rounded sneakers as simple shapes. Must read clearly as a silhouette and at very small sizes:
-no hair strands, no clothing folds, no lace lines, no glossy highlights.
+Plain rounded sneakers. Keep the cute chibi line style of the reference, but fewer details so it still
+reads at small sizes. Whole character in one smooth gradient from orange (#FF9F1C) to hot pink (#FF3D7F),
+cream-white (#FFF4EA) face and details, brown stem, green leaf (#1FB57A), thick white die-cut sticker border,
+transparent background, flat vector.
 ```
-+ bloco do padrão Batmango.
+Usar `IA/STICKERS/mangy.png` como imagem de referência, se a ferramenta aceitar.
 
 Depois de aprovado: gerar uma **folha de personagem** (frente, costas, 3/4, 6 expressões) usando a v2 como imagem de
 referência, para o mascote sair igual em todas as peças.
