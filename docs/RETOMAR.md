@@ -47,7 +47,7 @@ expressiva para campanhas, merch, adesivos e redes.
 ## Próximos passos (na ordem)
 
 1. **Decidir o mascote oficial.** Candidato forte: `IA/STICKERS/mangy.png` (criança chibi com cabeça de manga).
-   Refinar com o prompt "Mascote v2" de `refs/prompts-adesivos.md` (trocar a maçã do peito pelo caroço, cabeça
+   Refinar e gerar a série (9 prompts, seção "Mascote: Mangy") de `refs/prompts-adesivos.md` (trocar a maçã do peito pelo caroço, cabeça
    com forma de manga de verdade, menos detalhe). **Nome em aberto:** "mangy" em inglês quer dizer "sarnento".
 2. **Prancha `escolhas/marca/mascote.html`** no estilo Blazo: lockups com mascote, mascote nas 6 cores e expressões,
    só os olhos, ícones de app, selos circulares, escala de maturação, parede de palavras, textura.

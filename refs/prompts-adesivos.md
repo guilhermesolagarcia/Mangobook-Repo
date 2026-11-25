@@ -17,32 +17,84 @@ brown stem, green leaf (#1FB57A). Thick white die-cut sticker border with a very
 Transparent background, flat vector style, centered, no text.
 ```
 
-## Mascote (candidato): v1 em `IA/STICKERS/mangy.png`
+## Mascote: Mangy (candidato) — `IA/STICKERS/mangy.png`
 
-Gerado com um prompt **chibi** próprio (não o padrão Batmango): é uma linha separada, a do mascote.
-O que a v1 acerta: estilo chibi, pose confiante, degradê laranja → rosa-choque, cabinho e folha, rosto com recorte creme.
-O que refinar: o emblema do peito é uma **maçã** (cara de Apple, proibido no manual); a cabeça tem forma de
-maçã/pêssego (redonda com afundado no topo), não de manga; um pouco de detalhe demais para virar ícone pequeno.
+Origem: o ChatGPT gerou o Mangy só com o **bloco do padrão Batmango**, sem descrever personagem nenhum. Ele mesmo
+inventou a criança chibi (e por conta própria pôs fios de cabelo, traço nos olhos e brilho, que o usuário curtiu).
 
-**Mascote v2**
+Acertos: chibi, pose confiante (mão na cintura, punho pra cima), degradê laranja → rosa-choque, cabinho e folha.
+Refinar: o emblema do peito é uma **maçã** (símbolo da Apple, proibido no manual); a cabeça tem forma de
+maçã/pêssego (redonda, afundado no topo), não de manga; um pouco de detalhe demais para funcionar pequeno.
+Nome: "mangy" em inglês = "sarnento". Em aberto.
+
+### Como gerar a série no ChatGPT
+Tudo **na mesma conversa**, sempre anexando a versão aprovada e começando o pedido com:
+`Use the attached image as the character reference. Keep the exact same character, face, proportions, colors and sticker style.`
+
+### 1. Mangy v2 (anexar mangy.png)
 ```
-Brand mascot sticker: a cheerful chibi kid whose head IS a ripe mango. The head has a true mango shape:
-asymmetric kidney/teardrop silhouette, slightly tilted, wider at the bottom, smooth top with no dent,
-a short brown stem set off-center near the upper shoulder of the fruit and one green leaf.
-Mango-colored hair falls over the forehead in soft chunky bangs.
-The face is one cream-white cutout area with big simple oval eyes (solid ovals with one small cream highlight),
-a small open happy smile and two small blush dots. Small round body in a plain one-piece outfit,
-short stubby arms and legs: one hand on the hip, the other fist raised confidently.
-On the chest a small cream cutout emblem of a halved mango showing its oval seed (NOT an apple, no bite).
-Plain rounded sneakers. Keep the cute chibi line style of the reference, but fewer details so it still
-reads at small sizes. Whole character in one smooth gradient from orange (#FF9F1C) to hot pink (#FF3D7F),
-cream-white (#FFF4EA) face and details, brown stem, green leaf (#1FB57A), thick white die-cut sticker border,
-transparent background, flat vector.
+Refine this character. Change only these things:
+1. The head must have a real mango shape: asymmetric teardrop/kidney silhouette, slightly tilted,
+   smooth top with no dent; the brown stem sits off-center near the upper shoulder of the fruit, one green leaf.
+2. Replace the apple on the chest with a small cream emblem of a halved mango showing its oval seed. No apple, no bite.
+3. Slightly fewer details (fewer hair strands, no clothing folds, no shoe laces) so it still reads at small sizes.
+Keep everything else: chibi proportions, pose, face, orange to hot pink gradient, cream details, white die-cut border,
+transparent background.
 ```
-Usar `IA/STICKERS/mangy.png` como imagem de referência, se a ferramenta aceitar.
 
-Depois de aprovado: gerar uma **folha de personagem** (frente, costas, 3/4, 6 expressões) usando a v2 como imagem de
-referência, para o mascote sair igual em todas as peças.
+### 2. Folha de personagem
+```
+Character model sheet of this mascot on a plain light background: front view, three-quarter view, side view and back view,
+standing in a row at the same scale, same colors and style. No text.
+```
+
+### 3. Seis expressões
+```
+Six sticker heads of this mascot in a 3x2 grid, each with a different expression: happy, laughing with eyes closed,
+surprised, angry/determined, sleepy, winking with tongue out. Same head shape, same colors, white die-cut border on each.
+```
+
+### 4. Nas seis cores da marca
+```
+Six full-body stickers of this exact mascot in a row, identical pose, each one in a different two-color gradient:
+orange to yellow (#FF9F1C to #FFD23F), pink to purple (#FF5E7E to #7B5CFF), blue to cyan (#2F7BFF to #22B5E8),
+green to cyan (#1FB57A to #22B5E8), purple to blue (#7B5CFF to #2F7BFF), orange to hot pink (#FF9F1C to #FF3D7F).
+Cream details, white die-cut borders.
+```
+
+### 5. Só os olhos (assinatura)
+```
+Only the eyes of this mascot, cropped, as a minimal graphic: the two eyes and the upper edge of the face cutout,
+cream on a solid orange-to-hot-pink gradient bar, wide horizontal format. Make three versions: happy, determined, winking.
+```
+
+### 6. Ícone de app
+```
+App icon of this mascot: rounded square (squircle) with a smooth orange-to-hot-pink gradient background,
+the mascot's head only, centered, in cream and white, simple enough to read at 64 px. Also one version
+with a cream background and gradient head.
+```
+
+### 7. Selo circular
+```
+Round badge sticker: the mascot in the center waving, a ring around it with the text "MANGO · EST. 2026"
+on top and "NOSSA COR SÃO TODAS" at the bottom in bold rounded capitals, cream ring, orange-to-hot-pink outer edge,
+white die-cut border.
+```
+
+### 8. Escala de maturação
+```
+Three stickers of this mascot in a row as a ripeness scale, each with a small label below:
+"VERDE" (mascot in green gradient #1FB57A to #3DDC97, shy), "MADURA" (orange to hot pink, confident pose),
+"DOCE DEMAIS" (hot pink to purple #FF3D7F to #7B5CFF, sunglasses, ultra confident).
+Bold rounded capital labels, white die-cut borders.
+```
+
+### 9. Com os produtos
+```
+The mascot proudly holding a small colorful laptop, and a second sticker of the mascot taking a selfie
+with a small smartphone. Same style, white die-cut borders. No real brand logos on the devices.
+```
 
 ## Bloco de estilo (primeira versão, para letreiros e selos)
 
