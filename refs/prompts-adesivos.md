@@ -25,7 +25,7 @@ inventou a criança chibi (e por conta própria pôs fios de cabelo, traço nos 
 Acertos: chibi, pose confiante (mão na cintura, punho pra cima), degradê laranja → rosa-choque, cabinho e folha.
 Refinar: o emblema do peito é uma **maçã** (símbolo da Apple, proibido no manual); a cabeça tem forma de
 maçã/pêssego (redonda, afundado no topo), não de manga; um pouco de detalhe demais para funcionar pequeno.
-Nome: "mangy" em inglês = "sarnento". Em aberto.
+Nome: "mangy" em inglês = "sarnento"; v2 salva como `IA/STICKERS/mangi.png` (maçã trocada por caroço, cabeça de manga; cabelo ficou simples demais, o da v1 era melhor; fundo xadrez FALSO desenhado: pedir fundo branco liso). Logo em PNG para o GPT: `IA/REFERENCIAS/logo-mango.png`. Ideia: cabeça do mascote = silhueta do logo (manga torta + folha solta, sem cabinho).
 
 ### Como gerar a série no ChatGPT
 Tudo **na mesma conversa**, sempre anexando a versão aprovada e começando o pedido com:
