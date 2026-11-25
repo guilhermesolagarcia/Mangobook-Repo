@@ -17,7 +17,9 @@ brown stem, green leaf (#1FB57A). Thick white die-cut sticker border with a very
 Transparent background, flat vector style, centered, no text.
 ```
 
-## Mascote: Mangy (candidato) — `IA/STICKERS/mangy.png`
+## Mascote: Mangy — APROVADO: `IA/MASCOTE/mangy-final.png` (24/11)
+
+A versão final é a referência para todos os prompts abaixo (anexar sempre). Histórico: `IA/STICKERS/mangy.png` (v1), `IA/STICKERS/mangi.png` (v2).
 
 Origem: o ChatGPT gerou o Mangy só com o **bloco do padrão Batmango**, sem descrever personagem nenhum. Ele mesmo
 inventou a criança chibi (e por conta própria pôs fios de cabelo, traço nos olhos e brilho, que o usuário curtiu).
@@ -29,7 +31,7 @@ Nome: "mangy" em inglês = "sarnento"; v2 salva como `IA/STICKERS/mangi.png` (ma
 
 ### Como gerar a série no ChatGPT
 Tudo **na mesma conversa**, sempre anexando a versão aprovada e começando o pedido com:
-`Use the attached image as the character reference. Keep the exact same character, face, proportions, colors and sticker style.`
+`Use the attached image as the character reference. Keep the exact same character, face, hair, proportions, colors and sticker style. Plain solid white background, no checkerboard.`
 
 ### 1. Mangy v2 (anexar mangy.png)
 ```
