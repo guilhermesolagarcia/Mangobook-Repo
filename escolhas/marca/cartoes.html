@@ -24,13 +24,15 @@
   --onda:radial-gradient(60% 55% at 22% 108%,#fd228a,transparent 72%),radial-gradient(55% 50% at 85% 112%,#ff9f1c,transparent 70%),
          radial-gradient(90% 60% at 55% 92%,#a46bff,transparent 72%),radial-gradient(120% 70% at 50% 78%,#3aa0ff,transparent 70%);
 }
-.onda{inset:0;background:var(--onda)}
-.onda.alta{transform:translateY(-22%) scaleY(1.25)}
+.onda{left:-15%;right:-15%;top:38%;bottom:-30%;border-radius:55% 45% 0 0/42% 34% 0 0;transform:rotate(-4deg);filter:blur(.55em);
+  background:linear-gradient(180deg,#3aa0ff 0%,#7b8cff 16%,#a46bff 30%,#fd228a 55%,#ff9f1c 85%)}
+.onda.alta{top:22%}
+.onda.baixa{top:55%}
 .marquinha{left:1em;bottom:.95em;width:1.15em;aspect-ratio:100/116;background:currentColor;-webkit-mask:url(/mango.svg) center/contain no-repeat;mask:url(/mango.svg) center/contain no-repeat}
 .v{white-space:nowrap}
 .v small{font-size:.5em;letter-spacing:-.03em;margin-right:.04em}
 .preenche{background:var(--arco);-webkit-background-clip:text;background-clip:text;color:transparent}
-.cabeca{aspect-ratio:466/394;background:var(--arco);-webkit-mask:url(mascote/mono-cabeca.webp) center/contain no-repeat;mask:url(mascote/mono-cabeca.webp) center/contain no-repeat}
+.cabeca{aspect-ratio:466/394;background:radial-gradient(38% 30% at 34% 26%,#fff9,transparent 70%),var(--arco);-webkit-mask:url(mascote/mono-cabeca.webp) center/contain no-repeat;mask:url(mascote/mono-cabeca.webp) center/contain no-repeat}
 .cabeca.creme{background:#fef6ec}
 .adesivo-c{filter:drop-shadow(0 .25em .5em rgba(0,0,0,.35))}
 .frase{font-size:2.15em;line-height:.92;letter-spacing:-.055em}
@@ -212,29 +214,29 @@ const head = (cls, st) => `<span class="cabeca ${cls}" style="${st}"></span>`;
 const stk = st => `<img class="adesivo-c" src="mascote/expressions-1.webp" alt="" style="${st}">`;
 const DESENHOS = [
   // 1 valor gigante no preto, Mangy no meio dos números
-  ['', v => `<span class="v" style="left:-.2em;top:50%;transform:translateY(-50%);font-size:8.6em">${RS(v)}</span>${stk('left:9.4em;top:3.4em;width:5.2em;transform:rotate(-8deg)')}<span class="marquinha"></span>`],
+  ['', v => `<span class="v" style="left:-.2em;top:50%;transform:translateY(-50%);font-size:8.6em">${RS(v)}</span>${head('', 'left:8.6em;top:3.3em;width:6.2em;transform:rotate(-8deg);filter:drop-shadow(0 .3em .6em #0008)')}<span class="marquinha"></span>`],
   // 2 creme com a onda subindo por trás do número
-  ['creme', v => `<span class="onda"></span><span class="v" style="left:.55em;top:.6em;font-size:8em;color:rgba(29,29,31,.82);mix-blend-mode:multiply">${RS(v)}</span><span class="marquinha" style="color:#fff"></span>`],
+  ['creme', v => `<span class="onda baixa"></span><span class="v" style="left:.55em;top:.6em;font-size:8em;color:rgba(29,29,31,.85);mix-blend-mode:multiply">${RS(v)}</span><span class="marquinha" style="color:#fff"></span>`],
   // 3 cabeça gigante saindo pelo canto
-  ['cheio', v => `<span class="onda" style="opacity:.6"></span>${head('creme', 'left:-1.2em;bottom:-3.2em;width:13em;transform:rotate(-10deg)')}<span class="v" style="right:.7em;top:.75em;font-size:3.2em">${RS(v)}</span>`],
+  ['cheio', v => `${head('creme', 'left:-1.2em;bottom:-3.2em;width:13em;transform:rotate(-10deg);background:#fef6ec')}<span class="v" style="right:.7em;top:.75em;font-size:3.2em">${RS(v)}</span>`],
   // 4 explosão
-  ['', v => `<span class="explosao"></span><span class="v" style="left:50%;top:50%;transform:translate(-50%,-50%);font-size:4.4em;text-shadow:0 .05em .25em #0007">${RS(v)}</span>${head('creme', 'left:.9em;bottom:.8em;width:1.8em')}`],
+  ['', v => `<span class="explosao"></span><span class="v" style="left:50%;top:50%;transform:translate(-50%,-50%);font-size:4.4em;text-shadow:0 .05em .25em #0007">${RS(v)}</span><span class="marquinha"></span>`],
   // 5 número claro afundando na onda
-  ['', v => `<span class="onda alta"></span><span class="v" style="left:.5em;top:.55em;font-size:8.2em;color:rgba(255,255,255,.88)">${RS(v)}</span><span class="marquinha"></span>`],
+  ['', v => `<span class="onda"></span><span class="v" style="left:.5em;top:.55em;font-size:8.2em;color:rgba(255,255,255,.9)">${RS(v)}</span><span class="marquinha"></span>`],
   // 6 slogan + onda
-  ['', v => `<span class="onda alta"></span><span class="frase" style="left:.8em;top:.9em">Nossa cor<br>são todas.</span><span class="v" style="right:.7em;bottom:.8em;font-size:3em">${RS(v)}</span>`],
+  ['', v => `<span class="onda"></span><span class="frase" style="left:.8em;top:.9em;font-size:2.6em">Pense<br>doce.</span><span class="v" style="right:.7em;bottom:.8em;font-size:3em">${RS(v)}</span><span class="marquinha"></span>`],
   // 7 o Mangy é o zero
-  ['', v => `<span class="v" style="left:.08em;top:50%;transform:translateY(-50%);font-size:7.6em;display:flex;align-items:center">${RS(String(v).slice(0, -1))}<span class="cabeca" style="position:static;height:.74em;margin-left:.03em"></span></span>`],
+  ['', v => `<span class="v" style="left:.08em;top:50%;transform:translateY(-50%);font-size:7.6em;display:flex;align-items:center">${RS(String(v).slice(0, -1))}<span class="cabeca" style="position:static;height:.74em;margin-left:.03em"></span></span><span class="marquinha"></span>`],
   // 8 presente: fita cruzada, Mangy no laço
-  ['creme', v => `<span class="v" style="left:-.25em;top:.15em;font-size:10.5em">${RS(v)}</span><span class="fita-h"></span><span class="fita-v"></span>${stk('left:12.3em;top:5.9em;width:3.4em;transform:rotate(10deg)')}`],
+  ['creme', v => `<span class="v" style="left:-.25em;top:.15em;font-size:10.5em">${RS(v)}</span><span class="fita-h"></span><span class="fita-v"></span>${head('', 'left:11.7em;top:5.5em;width:4.6em;transform:rotate(10deg);filter:drop-shadow(0 .2em .4em #0005)')}`],
   // 9 slogan no degradê cheio
-  ['cheio', v => `<span class="frase" style="left:.8em;top:.9em;font-size:2.6em">Nossa<br>cor são<br>todas.</span><span class="v" style="right:.7em;bottom:.75em;font-size:3em">${RS(v)}</span>`],
-  // 10 número que some na onda + rodapé espaçado
-  ['', v => `<span class="onda"></span><span class="v" style="left:.06em;top:.08em;font-size:7.2em;background:linear-gradient(180deg,#fff 35%,#fff0 95%);-webkit-background-clip:text;background-clip:text;color:transparent">${RS(v)}</span><span class="espaco" style="top:auto;bottom:.9em"><span>Nossa</span><span>cor</span><span>são todas</span></span>`],
-  // 11 creme, palavras no topo, número em degradê saindo por baixo
-  ['creme', v => `<span class="espaco"><span>Nossa</span><span>cor</span><span>são todas</span></span><span class="v preenche" style="left:.03em;bottom:-.1em;font-size:10.5em">${RS(v)}</span>`],
+  ['cheio', v => `<span class="frase" style="left:.8em;top:.8em;font-size:2.9em">Pense<br>doce.</span><span class="v" style="right:.7em;bottom:.75em;font-size:3em">${RS(v)}</span><span class="marquinha"></span>`],
+  // 10 número que some na onda + slogan espaçado
+  ['', v => `<span class="onda baixa"></span><span class="v" style="left:.06em;top:.08em;font-size:7.2em;background:linear-gradient(180deg,#fff 35%,#fff0 95%);-webkit-background-clip:text;background-clip:text;color:transparent">${RS(v)}</span><span class="espaco" style="top:auto;bottom:.9em"><span>Pense</span><span>doce</span><span>Mango</span></span>`],
+  // 11 creme, slogan espaçado no topo, número em degradê saindo por baixo
+  ['creme', v => `<span class="espaco"><span>Pense</span><span>doce</span><span>Mango</span></span><span class="v preenche" style="left:.03em;bottom:-.1em;font-size:10.5em">${RS(v)}</span>`],
   // 12 aura com a cabeça brilhando
-  ['', v => `<span class="aura"></span>${head('creme', 'left:50%;top:46%;width:6.4em;transform:translate(-50%,-50%);filter:drop-shadow(0 0 .8em #fff8)')}<span class="v" style="right:.7em;bottom:.75em;font-size:2.6em">${RS(v)}</span><span class="marquinha"></span>`],
+  ['', v => `<span class="aura"></span>${head('creme', 'left:50%;top:46%;width:6.4em;transform:translate(-50%,-50%);background:#fef6ec;filter:drop-shadow(0 0 .8em #fff8)')}<span class="v" style="right:.7em;bottom:.75em;font-size:2.6em">${RS(v)}</span><span class="marquinha"></span>`],
 ];
 // valores como na referência: quase todos 50, alguns 300 e 100
 const VAL = [300, 50, 50, 50, 50, 50, 50, 50, 100, 300, 50, 50];

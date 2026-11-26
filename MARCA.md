@@ -138,6 +138,8 @@ Margem lateral `max(22px, calc((100vw - 1024px) / 2))`: conteúdo em até 1024 p
 
 ## 6. Tom de voz
 
+**Slogan (um só): "Pense doce."** Vai na assinatura, nos cartões-presente, nos selos e no fim das campanhas. "Nossa cor são todas" não é slogan: é o nome da regra das cores (seção 3) e, no máximo, frase de uma campanha sobre cor.
+
 **Regra:** páginas de produto contidas, microtextos com graça.
 
 **Páginas de produto e lançamento:** cara de Apple. Frases curtas, diretas, afirmativas. O trocadilho fica nos **nomes** (produto, chip, sabores) e em **no máximo uma frase de destaque por seção**, de preferência no título.
