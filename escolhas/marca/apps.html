@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="pt-BR" data-tema="manga">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mango · Apps do MangoOS</title>
+<link rel="icon" href="/mango.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..800&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+<link rel="stylesheet" href="/src/marca/marca.css">
+<link rel="stylesheet" href="./temas.css">
+<link rel="stylesheet" href="./base.css">
+<style>
+/* Ícone de app: superelipse (clip definido no SVG do fim da página) + malha de duas ou três cores + glifo Phosphor fill */
+.app{--t:96px;width:var(--t);aspect-ratio:1;clip-path:url(#squircle);display:grid;place-items:center;position:relative;flex:none;
+  background:radial-gradient(70% 70% at 22% 18%,var(--a),transparent 72%),radial-gradient(80% 80% at 90% 95%,var(--c,var(--b)),transparent 70%),var(--b)}
+.app::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.28),rgba(255,255,255,0) 46%)}
+.app i{font-size:calc(var(--t) * .5);color:#fff;position:relative;filter:drop-shadow(0 calc(var(--t) * .015) calc(var(--t) * .03) rgba(0,0,0,.18))}
+/* variações do sistema */
+.escuro .app{background:#1c1c1e}
+.escuro .app::before{background:linear-gradient(180deg,rgba(255,255,255,.08),transparent 50%)}
+.escuro .app i{background:linear-gradient(135deg,var(--a),var(--b) 55%,var(--c,var(--b)));-webkit-background-clip:text;background-clip:text;color:transparent;filter:none}
+.tingido .app{background:#1c1c1e}
+.tingido .app::before{background:linear-gradient(180deg,rgba(255,255,255,.1),transparent 50%)}
+.tingido .app i{color:var(--g2);filter:none}
+
+/* Capa: parede de ícones */
+.capa{border-radius:32px;min-height:560px;color:#fff;display:grid;grid-template-rows:auto 1fr auto;padding:36px;overflow:hidden;position:relative}
+.capa .topo,.capa .ficha{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px;position:relative;z-index:3}
+.capa .topo{font-weight:600}
+.capa .ficha{border-top:1px solid rgba(255,255,255,.35);padding-top:14px;opacity:.92}
+.capa .meio{display:grid;grid-template-columns:1fr 1.15fr;gap:24px;align-items:center;position:relative;z-index:2}
+.capa h1{font-size:clamp(64px,9vw,128px);font-weight:700;letter-spacing:-.06em;line-height:.9}
+.capa .sub{font-size:clamp(19px,2vw,24px);font-weight:500;letter-spacing:-.025em;margin-top:16px;max-width:17em}
+.parede{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;transform:rotate(-8deg);justify-items:center;padding:18px 0}
+.parede .app{--t:min(84px,6.6vw);box-shadow:none;filter:drop-shadow(0 10px 18px rgba(0,0,0,.18))}
+
+/* Grade dos apps */
+.grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:26px 12px}
+.item{display:grid;justify-items:center;gap:9px;text-align:center}
+.item b{font-size:13px;font-weight:500;letter-spacing:-.01em}
+.item .mono{font-size:10.5px}
+.grupo+.grupo{margin-top:30px}
+
+/* Anatomia */
+.anat{display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:center}
+.anat-ic{position:relative;width:260px}
+.anat-ic .app{--t:260px}
+.anat-ic svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.regras-a{display:grid;gap:14px;padding:0}
+.regras-a li{list-style:none;position:relative;padding-left:38px;font-size:16px}
+.regras-a li span{position:absolute;left:0;top:0;font:600 12px/24px ui-monospace,Consolas,monospace;color:var(--tinta-2)}
+
+/* Modos */
+.modos{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.modo{border-radius:22px;padding:26px 20px;display:flex;flex-wrap:wrap;gap:14px;justify-content:center;align-content:center;min-height:200px}
+.modo .app{--t:64px}
+
+/* Na tela */
+.telas{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center}
+.celular{width:300px;aspect-ratio:9/19.5;border-radius:46px;padding:10px;background:#111;box-shadow:0 0 0 2px #333,0 30px 60px rgba(0,0,0,.25)}
+.celular .tela{height:100%;border-radius:37px;overflow:hidden;position:relative;display:grid;grid-template-rows:auto auto 1fr auto;padding:14px 18px 16px;color:#fff}
+.celular .barra{display:flex;justify-content:space-between;font-size:13px;font-weight:600;padding:2px 10px 0}
+.celular .ilha{position:absolute;top:12px;left:50%;transform:translateX(-50%);width:92px;height:26px;border-radius:20px;background:#000}
+.widget{margin:26px 0 18px;border-radius:22px;padding:14px;background:rgba(255,255,255,.2);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.widget b{font-size:34px;font-weight:600;letter-spacing:-.04em;display:block;line-height:1}
+.widget span{font-size:11px;opacity:.9}
+.home{display:grid;grid-template-columns:repeat(4,1fr);gap:16px 0;align-content:start;justify-items:center}
+.home .item b{font-size:10px;color:#fff;font-weight:500}
+.home .app,.dock .app{--t:52px}
+.dock{display:flex;justify-content:space-around;padding:12px 8px;border-radius:30px;background:rgba(255,255,255,.22);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.mac{border-radius:22px;aspect-ratio:16/10;position:relative;overflow:hidden;display:grid;align-content:end;justify-items:center;padding:16px}
+.mac .menu{position:absolute;top:0;left:0;right:0;height:26px;background:rgba(255,255,255,.25);backdrop-filter:blur(14px);display:flex;align-items:center;gap:16px;padding:0 14px;font-size:12px;color:#fff;font-weight:500}
+.mac .menu .logo-m{height:13px;width:auto}
+.mac .dock{gap:8px;padding:8px;border-radius:20px}
+.mac .dock .app{--t:46px}
+.janela{position:absolute;left:9%;top:15%;width:52%;border-radius:12px;background:rgba(255,255,255,.9);box-shadow:0 18px 40px rgba(0,0,0,.18);color:#1d1d1f;overflow:hidden}
+.janela .tit{display:flex;gap:6px;align-items:center;padding:9px 12px;border-bottom:1px solid #e3e3e8;font-size:11px;font-weight:600}
+.janela .tit i{width:10px;height:10px;border-radius:50%;display:block}
+.janela .tit span{margin-left:auto;margin-right:auto}
+.janela .corpo{padding:14px 16px 18px;display:grid;gap:7px;font-size:12px}
+.janela .corpo b{font-size:16px;letter-spacing:-.02em}
+.mac .sep{width:1px;background:rgba(255,255,255,.4);margin:4px 2px}
+
+/* Tamanhos */
+.tam{display:flex;align-items:flex-end;gap:26px;flex-wrap:wrap}
+.tam div{display:grid;gap:8px;justify-items:center}
+
+/* Pode / não pode */
+.regras{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.regras ul{padding-left:1.1em;display:grid;gap:8px;font-size:15px}
+.regras h3{font-size:17px;font-weight:600;margin-bottom:12px;display:flex;gap:8px;align-items:center}
+.regras h3 i{width:20px;height:20px;border-radius:50%;display:inline-grid;place-items:center;color:#fff;font:700 12px Inter;font-style:normal}
+.nao-ic{display:flex;gap:14px;margin-top:16px}
+.nao-ic>div{display:grid;gap:6px;justify-items:center}
+.nao-ic .app{--t:64px}
+
+@media (max-width:900px){
+  .capa .meio,.anat,.telas,.regras{grid-template-columns:1fr}
+  .parede{grid-template-columns:repeat(4,1fr);transform:none}
+  .parede .app:nth-child(n+13){display:none}
+  .modos{grid-template-columns:1fr}
+  .anat-ic{width:200px}.anat-ic .app{--t:200px}
+  .celular{width:260px;justify-self:center}
+}
+</style>
+</head>
+<body>
+<main class="prancha">
+
+  <section class="capa malha" aria-label="Capa">
+    <div class="topo"><span>Mango · MangoOS</span><span>Ícones de app</span></div>
+    <div class="meio">
+      <div>
+        <h1>MangoOS</h1>
+        <p class="sub">Simples desde o primeiro clique. Cada app veste duas cores da marca.</p>
+      </div>
+      <div class="parede" id="parede" aria-hidden="true"></div>
+    </div>
+    <div class="ficha"><span>24 apps do sistema</span><span>Superelipse · malha · glifo Phosphor</span><span>Exceção aprovada em 26/11/2026</span></div>
+  </section>
+
+  <section class="bloco">
+    <h2><span class="num">01</span>Os apps</h2>
+    <div id="grupos"></div>
+  </section>
+
+  <section class="bloco anat">
+    <div class="anat-ic">
+      <span class="app" style="--a:#ffd23f;--b:#ff9f1c;--c:#ff5e7e"><i class="ph-fill ph-camera"></i></span>
+      <svg viewBox="0 0 100 100" aria-hidden="true">
+        <g fill="none" stroke="#1d1d1f" stroke-opacity=".55" stroke-width=".35" stroke-dasharray="1.4 1.2">
+          <circle cx="50" cy="50" r="25"/><rect x="25" y="25" width="50" height="50"/><rect x="12.5" y="12.5" width="75" height="75" rx="4"/>
+          <line x1="50" y1="0" x2="50" y2="100"/><line x1="0" y1="50" x2="100" y2="50"/>
+        </g>
+      </svg>
+    </div>
+    <div>
+      <h2><span class="num">02</span>Anatomia</h2>
+      <ul class="regras-a">
+        <li><span>01</span><b>Superelipse</b>, não quadrado com canto arredondado: a curva começa antes e termina suave.</li>
+        <li><span>02</span><b>Malha de duas ou três cores vizinhas</b> da paleta, clara em cima à esquerda, escura embaixo à direita.</li>
+        <li><span>03</span><b>Glifo Phosphor fill em branco</b>, com 50% do lado, centralizado na grade.</li>
+        <li><span>04</span><b>Brilho de cima</b>: uma luz branca que some na metade do ícone.</li>
+        <li><span>05</span>A cor diz a família: <b>manga</b> cria, <b>azul</b> comunica, <b>verde</b> organiza, <b>roxo</b> é da Mango.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="bloco">
+    <h2><span class="num">03</span>Claro, escuro e tingido</h2>
+    <p class="rot">O sistema troca o ícone junto com o tema do aparelho</p>
+    <div class="modos">
+      <div><div class="modo" style="background:#f5f5f7" data-modo></div><p class="mono" style="margin-top:10px">Claro · malha cheia</p></div>
+      <div><div class="modo escuro" style="background:#000" data-modo></div><p class="mono" style="margin-top:10px">Escuro · glifo em degradê</p></div>
+      <div><div class="modo tingido" style="background:#0b0b0c" data-modo></div><p class="mono" style="margin-top:10px">Tingido · a cor do tema da página</p></div>
+    </div>
+  </section>
+
+  <section class="bloco telas">
+    <div class="celular" aria-label="Tela inicial do Go D1">
+      <div class="tela malha">
+        <span class="ilha"></span>
+        <div class="barra"><span>9:41</span><span>5G ▮▮▮</span></div>
+        <div class="widget"><span>Quinta, 26 de novembro</span><b>28°</b><span>Ensolarado · São Paulo</span></div>
+        <div class="home" id="home"></div>
+        <div class="dock" id="dock"></div>
+      </div>
+    </div>
+    <div>
+      <h2><span class="num">04</span>Na tela</h2>
+      <p class="rot">Go D1 e MangoBook</p>
+      <div class="mac malha" aria-label="Mesa do MangoBook">
+        <div class="menu"><span class="logo-m"></span><b>Notas</b><span>Arquivo</span><span>Editar</span><span>Ver</span></div>
+        <div class="janela"><div class="tit"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span>Notas</span></div><div class="corpo"><b>Lista da feira</b><span>Manga palmer, 6 unidades</span><span>Manga espada, 4 unidades</span><span style="color:#6e6e73">Perguntar se tem tommy</span></div></div>
+        <div class="dock" id="dock-mac"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloco">
+    <h2><span class="num">05</span>Tamanhos</h2>
+    <div class="tam" id="tam"></div>
+  </section>
+
+  <section class="bloco regras">
+    <div>
+      <h3><i style="background:var(--c-verde)">✓</i>Pode</h3>
+      <ul><li>Degradê nos ícones de app do MangoOS (exceção do MARCA.md).</li><li>Cores vizinhas da paleta: manga + rosa, azul + ciano, roxo + rosa.</li><li>Trocar pra escuro ou tingido junto com o sistema.</li></ul>
+    </div>
+    <div>
+      <h3><i style="background:var(--c-rosa)">✕</i>Não pode</h3>
+      <ul><li>Logo da Mango ou o Mangy dentro de quadrado com degradê.</li><li>Glifo em cor, contorno ou sombra dura.</li><li>Duas cores opostas na mesma malha.</li></ul>
+      <div class="nao-ic">
+        <div><span class="app" style="--a:#ff9f1c;--b:#ff5e7e"><span class="logo-m" style="width:46%;color:#fff;position:relative"></span></span><span class="mono">Logo</span></div>
+        <div><span class="app" style="--a:#ffd23f;--b:#ff9f1c"><i class="ph-fill ph-music-notes" style="color:#2f7bff"></i></span><span class="mono">Glifo em cor</span></div>
+        <div><span class="app" style="--a:#1fb57a;--b:#ff5e7e"><i class="ph-fill ph-calendar-blank"></i></span><span class="mono">Cores opostas</span></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="rodape"><span>Mango · Apps do MangoOS · 2026</span><span>Paródia de portfólio. Sem relação com a Apple.</span></footer>
+</main>
+
+<!-- Superelipse (n = 5) em coordenadas 0..1, gerada abaixo -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><clipPath id="squircle" clipPathUnits="objectBoundingBox"><path id="squircle-path"/></clipPath></svg>
+
+<script type="module">
+import { iniciarTemas } from './temas.js';
+iniciarTemas();
+
+// |x|^n + |y|^n = 1, n = 5: a curva dos ícones
+const N = 5, pts = [];
+for (let k = 0; k < 96; k++) {
+  const t = k / 96 * Math.PI * 2, c = Math.cos(t), s = Math.sin(t);
+  pts.push(`${(.5 + .5 * Math.sign(c) * Math.abs(c) ** (2 / N)).toFixed(4)},${(.5 + .5 * Math.sign(s) * Math.abs(s) ** (2 / N)).toFixed(4)}`);
+}
+document.getElementById('squircle-path').setAttribute('d', `M${pts.join('L')}Z`);
+
+// Cores: famílias vizinhas da paleta
+const C = {
+  manga: ['#ffd23f', '#ff9f1c', '#ff5e7e'], rosa: ['#ff9f1c', '#ff5e7e', '#a46bff'], azul: ['#3aa0ff', '#2f7bff', '#22b5e8'],
+  ciano: ['#3ddc97', '#22b5e8', '#2f7bff'], verde: ['#3ddc97', '#1fb57a', '#22b5e8'], roxo: ['#a46bff', '#7b5cff', '#ff5e7e'],
+  uva: ['#ff5e7e', '#7b5cff', '#2f7bff'], noite: ['#7b5cff', '#2f7bff', '#22b5e8'],
+};
+const GRUPOS = [
+  ['Criar', [['Câmera', 'camera', 'manga'], ['Fotos', 'image', 'rosa'], ['Música', 'music-notes', 'rosa'], ['Livros', 'book-open', 'manga'], ['Mango TV', 'play', 'uva']]],
+  ['Comunicar', [['Mensagens', 'chat-circle-dots', 'verde'], ['Telefone', 'phone', 'verde'], ['Mail', 'envelope-simple', 'azul'], ['MangoDrop', 'paper-plane-tilt', 'ciano']]],
+  ['Organizar', [['Notas', 'note-pencil', 'manga'], ['Lembretes', 'list-checks', 'verde'], ['Calendário', 'calendar-blank', 'rosa'], ['Arquivos', 'folder-simple', 'azul'], ['Relógio', 'clock', 'noite'], ['Calculadora', 'calculator', 'noite']]],
+  ['Viver', [['Mapas', 'map-trifold', 'verde'], ['Clima', 'cloud-sun', 'azul'], ['Saúde', 'heartbeat', 'rosa'], ['Carteira', 'wallet', 'noite'], ['Ajustes', 'gear-six', 'noite']]],
+  ['Da Mango', [['Mango Store', 'shopping-bag', 'roxo'], ['Mango ID', 'user-circle', 'roxo'], ['Mango na nuvem', 'cloud', 'azul'], ['Intelligence', 'sparkle', 'uva']]],
+];
+const APPS = GRUPOS.flatMap(([, a]) => a);
+const app = ([nome, glifo, cor], t) => {
+  const [a, b, c] = C[cor];
+  return `<span class="app" style="--a:${a};--b:${b};--c:${c}${t ? `;--t:${t}px` : ''}" role="img" aria-label="${nome}"><i class="ph-fill ph-${glifo}"></i></span>`;
+};
+const item = (x, extra = '') => `<div class="item">${app(x)}<b>${x[0]}</b>${extra}</div>`;
+const acha = nome => APPS.find(a => a[0] === nome);
+
+document.getElementById('parede').innerHTML = APPS.slice(0, 20).map(a => app(a)).join('');
+document.getElementById('grupos').innerHTML = GRUPOS.map(([g, a]) =>
+  `<div class="grupo"><p class="rot">${g}</p><div class="grade">${a.map(x => item(x, `<span class="mono">${x[2]}</span>`)).join('')}</div></div>`).join('');
+const modo = ['Câmera', 'Mensagens', 'Notas', 'Mapas', 'Mango Store', 'Música', 'Clima', 'Ajustes'].map(acha);
+document.querySelectorAll('[data-modo]').forEach(el => el.innerHTML = modo.map(a => app(a)).join(''));
+document.getElementById('home').innerHTML = ['Fotos', 'Calendário', 'Mapas', 'Clima', 'Notas', 'Lembretes', 'Mango Store', 'Carteira', 'Saúde', 'Livros', 'Mango TV', 'Ajustes'].map(n => item(acha(n))).join('');
+document.getElementById('dock').innerHTML = ['Telefone', 'Mensagens', 'Câmera', 'Música'].map(n => app(acha(n))).join('');
+document.getElementById('dock-mac').innerHTML = ['Arquivos', 'Mail', 'Mensagens', 'Notas', 'Calendário', 'Música', 'Mango Store', 'Ajustes'].map(n => app(acha(n))).join('')
+  + '<span class="sep"></span>' + app(acha('MangoDrop'));
+document.getElementById('tam').innerHTML = [180, 120, 80, 60, 40, 29].map(t => `<div>${app(acha('Fotos'), t)}<span class="mono">${t}</span></div>`).join('');
+</script>
+</body>
+</html>

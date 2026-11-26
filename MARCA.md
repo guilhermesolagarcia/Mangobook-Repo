@@ -183,7 +183,7 @@ Padrão dos nomes até agora: "Mango" + palavra em inglês, colado (MangoBook, M
 
 - **Botões azuis.** Botão é preto; azul só em link de texto.
 - **Laranja como "a cor da marca".** A Mango é todas as cores.
-- **Glifo em quadrado com degradê** (estilo ícone de app): "muito comum".
+- **Glifo em quadrado com degradê** (estilo ícone de app): "muito comum". **Exceção (26/11):** os ícones dos apps do MangoOS usam degradê, porque é o uniforme do sistema (`escolhas/marca/apps.html`). Logo, Mangy e o resto da marca seguem a regra.
 - **Cópia literal da Apple:** a imagem `mango-book/quatro-cores.png` ficou parecida demais com o Neo e é provisória.
 - **Navbar simples, sem vidro.**
 - **Abertura sem impacto** e seções sem foco no produto (o erro da primeira versão do teclado FORGE 75).
