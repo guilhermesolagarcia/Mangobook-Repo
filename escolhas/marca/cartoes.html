@@ -249,31 +249,27 @@ const DESENHOS = [
   ['creme', v => `<span class="onda baixa"></span><span class="v" style="left:.55em;top:.6em;font-size:8em;color:rgba(29,29,31,.85);mix-blend-mode:multiply">${RS(v)}</span><span class="marquinha" style="color:#fff"></span>`],
   // 3 cabeça gigante saindo pelo canto
   ['cheio', v => `${head('creme', 'left:-1.2em;bottom:-3.2em;width:13em;transform:rotate(-10deg);background:#fef6ec')}<span class="v" style="right:.7em;top:.75em;font-size:3.2em">${RS(v)}</span>`],
-  // 4 valor gigante no preto, Mangy no meio dos números
-  ['', v => `<span style="inset:0;background:radial-gradient(38% 60% at 62% 58%,#fd228a88,transparent 70%),radial-gradient(40% 70% at 82% 30%,#3aa0ff66,transparent 70%),radial-gradient(50% 50% at 40% 110%,#ff9f1c55,transparent 70%)"></span>`
-    + `<span class="v luz-baixo" style="left:-.2em;top:50%;transform:translateY(-50%);font-size:8.6em">${RS(v)}</span>`
-    + `${stk('left:8.6em;top:2.6em;width:6.6em;transform:rotate(-8deg);filter:drop-shadow(0 .35em .7em #000c) drop-shadow(0 0 1.4em #fd228a88)')}`
-    + `<span class="brilho" style="left:15.2em;top:2.2em"></span><span class="brilho" style="left:16.4em;top:3.4em;width:.5em"></span><span class="brilho" style="left:8.1em;top:8.6em;width:.6em"></span>`
-    + `<span class="espaco" style="right:auto;font-size:.7em;opacity:.7"><span>Pense doce.</span></span><span class="marquinha"></span>`],
+  // 4 nossa cor são todas: as seis cores como luz, valor translúcido gigante
+  ['', v => `<span style="inset:-20%;background:linear-gradient(90deg,#ff9f1c,#1fb57a 20%,#22b5e8 38%,#2f7bff 55%,#7b5cff 72%,#ff5e7e 88%,#ff9f1c);filter:blur(1.4em)"></span><span style="inset:0;background:linear-gradient(180deg,#0b0b0c00 40%,#0b0b0c66)"></span><span class="espaco" style="right:auto;color:#fff"><span>Nossa cor são todas.</span></span><span class="v" style="left:-.12em;bottom:-.16em;font-size:9.4em;color:rgba(255,255,255,.78);mix-blend-mode:soft-light">${RS(v)}</span><span class="v" style="left:-.12em;bottom:-.16em;font-size:9.4em;color:rgba(255,255,255,.42)">${RS(v)}</span>`],
   // 5 número claro afundando na onda
   ['', v => `<span class="onda"></span>${stk('left:13.4em;top:2.2em;width:6.2em;transform:rotate(6deg);filter:drop-shadow(0 .3em .6em #0009)')}<span class="onda" style="top:66%;opacity:.95"></span><span class="v" style="left:.5em;top:.7em;font-size:6.1em;color:rgba(255,255,255,.92)">${RS(v)}</span><span class="brilho" style="left:13.2em;top:2.3em;width:.6em"></span><span class="marquinha"></span>`],
-  // 6 slogan + onda
-  ['', v => `<span class="onda"></span><span class="frase" style="left:.8em;top:.9em;font-size:2.6em">Pense<br>doce.</span><span class="v" style="right:.7em;bottom:.8em;font-size:3em">${RS(v)}</span><span class="marquinha"></span>`],
+  // 6 só os olhos: zoom no rosto do Mangy, em creme, sobre o degradê
+  ['', v => `<span style="inset:0;background:linear-gradient(95deg,#ffa53a,#fd228a)"></span><img src="mascote/eyes-1.webp" alt="" style="left:-10%;top:.9em;width:120%;height:auto"><span class="v" style="right:.7em;top:.55em;font-size:2.4em">${RS(v)}</span><span class="espaco" style="right:auto;color:#fff"><span>Pense doce.</span></span>`],
   // 7 o Mangy é o zero
   ['', v => `<span class="v" style="left:.08em;top:50%;transform:translateY(-50%);font-size:7.6em;display:flex;align-items:center">${RS(String(v).slice(0, -1))}<span class="cabeca" style="position:static;height:.74em;margin-left:.03em"></span></span><span class="marquinha"></span>`],
   // 8 presente: fita cruzada, Mangy no laço
   ['creme', v => `<span class="v" style="left:-.25em;top:.15em;font-size:10.5em">${RS(v)}</span><span class="fita-h"></span><span class="fita-v"></span>${stk('left:11.3em;top:5em;width:5.4em;transform:rotate(10deg)')}`],
   // 9 slogan no degradê cheio
   ['cheio', v => `<span class="frase" style="left:.8em;top:.8em;font-size:2.9em">Pense<br>doce<span class="cabeca" style="display:inline-block;position:static;background:#fef6ec;height:.5em;margin-left:.06em;vertical-align:baseline"></span></span><span class="brilho" style="left:9.6em;top:1.4em;width:.7em"></span><span class="v" style="right:.7em;bottom:.75em;font-size:3em">${RS(v)}</span><span class="marquinha"></span>`],
-  // 10 número que some na onda + slogan espaçado
-  ['', v => `<span class="onda baixa"></span><span class="v" style="left:.06em;top:.08em;font-size:7.2em;background:linear-gradient(180deg,#fff 35%,#fff0 95%);-webkit-background-clip:text;background-clip:text;color:transparent">${RS(v)}</span><span class="espaco" style="top:auto;bottom:.9em"><span>Pense</span><span>doce</span><span>Mango</span></span>`],
+  // 10 parede de valor: o número repetido em linhas, contorno e cheio
+  ['', v => `<span style="inset:0;background:radial-gradient(60% 70% at 70% 60%,#a46bff55,transparent 70%)"></span><span style="left:-1.4em;top:-.35em;display:grid;gap:.08em;font-size:3.05em;line-height:.86">${[0, 1, 2, 3, 4].map(k => `<span class="v" style="position:static;${k === 2 ? 'background:var(--arco);-webkit-background-clip:text;background-clip:text;color:transparent' : k % 2 ? 'color:#fff' : 'color:transparent;-webkit-text-stroke:.025em #ffffff99'};margin-left:${k % 2 ? -.9 : 0}em">${Array(4).fill(RS(v)).join(' ')}</span>`).join('')}</span><span class="marquinha" style="color:#fff"></span>`],
   // 11 creme, slogan espaçado no topo, número em degradê saindo por baixo
   ['creme', v => `<span class="espaco"><span>Pense</span><span>doce</span><span>Mango</span></span><span class="v preenche" style="left:.03em;bottom:-.1em;font-size:10.5em">${RS(v)}</span>`],
   // 12 aura com a cabeça brilhando
   ['', v => `<span class="aura"></span>${head('creme', 'left:50%;top:46%;width:6.4em;transform:translate(-50%,-50%);background:#fef6ec;filter:drop-shadow(0 0 .8em #fff8)')}<span class="v" style="right:.7em;bottom:.75em;font-size:2.6em">${RS(v)}</span><span class="marquinha"></span>`],
 ];
 // valores como na referência: quase todos 50, alguns 300 e 100
-const VAL = [50, 50, 50, 300, 50, 50, 50, 50, 100, 300, 50, 50];
+const VAL = [50, 50, 50, 300, 50, 100, 50, 50, 100, 50, 50, 50];
 const cartao = (i, v = VAL[i], w) => {
   const [cls, miolo] = DESENHOS[i];
   return `<div class="cartao ${cls}" style="${w ? `--w:${w}` : ''}" role="img" aria-label="Cartão-presente Mango Store de R$ ${v}"><div class="in">${miolo(v)}</div></div>`;
