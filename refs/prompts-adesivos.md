@@ -80,7 +80,7 @@ with a cream background and gradient head.
 ### 7. Selo circular
 ```
 Round badge sticker: the mascot in the center waving, a ring around it with the text "MANGO · EST. 2026"
-on top and "NOSSA COR SÃO TODAS" at the bottom in bold rounded capitals, cream ring, orange-to-hot-pink outer edge,
+on top and "PENSE DOCE" at the bottom in bold rounded capitals, cream ring, orange-to-hot-pink outer edge,
 white die-cut border.
 ```
 

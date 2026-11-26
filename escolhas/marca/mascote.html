@@ -192,7 +192,7 @@ img{display:block;max-width:100%;height:auto}
     <div class="titulo">
       <h1>Mangy</h1>
       <p class="sub">O mascote da Mango. Ele cuida da parte divertida, o logo cuida do resto.</p>
-      <span class="pilula"><span class="logo-m"></span>Nossa cor são todas.</span>
+      <span class="pilula"><span class="logo-m"></span>Pense doce.</span>
     </div>
     <img class="heroi adesivo" src="mascote/mangy-final-1.webp" alt="Mangy, mascote chibi com cabeça de manga, de mão na cintura e punho erguido" width="940" height="1439">
     <div class="ficha"><span>Nome: Mangy</span><span>Aprovado em 24/11/2026</span><span>Usos: campanhas, merch, adesivos, redes</span></div>
@@ -248,10 +248,10 @@ img{display:block;max-width:100%;height:auto}
     <h2><span class="num">04</span>Assinatura com o mascote</h2>
     <p class="rot">Cabeça do Mangy + Mango + slogan fixo · nos quatro fundos</p>
     <div class="lockups">
-      <div class="lock" style="background:#fff;box-shadow:inset 0 0 0 1px #e3e3e8;color:#1d1d1f"><span class="lk" style="font-size:64px"><img src="mascote/expressions-1.webp" alt=""><span class="nome">Mango</span><span class="slogan">Nossa cor são todas.</span></span><small>Claro</small></div>
-      <div class="lock" style="background:#000;color:#fff"><span class="lk" style="font-size:64px"><img src="mascote/expressions-1.webp" alt=""><span class="nome">Mango</span><span class="slogan">Nossa cor são todas.</span></span><small>Escuro</small></div>
-      <div class="lock" style="background:var(--m-creme);color:var(--m-rosa)"><span class="lk" style="font-size:64px"><img src="mascote/expressions-1.webp" alt=""><span class="nome">Mango</span><span class="slogan">Nossa cor são todas.</span></span><small>Creme</small></div>
-      <div class="lock malha" style="color:#fff"><span class="lk" style="font-size:64px"><img src="mascote/expressions-1.webp" alt=""><span class="nome">Mango</span><span class="slogan">Nossa cor são todas.</span></span><small>Degradê do tema</small></div>
+      <div class="lock" style="background:#fff;box-shadow:inset 0 0 0 1px #e3e3e8;color:#1d1d1f"><span class="lk" style="font-size:64px"><img src="mascote/expressions-1.webp" alt=""><span class="nome">Mango</span><span class="slogan">Pense doce.</span></span><small>Claro</small></div>
+      <div class="lock" style="background:#000;color:#fff"><span class="lk" style="font-size:64px"><img src="mascote/expressions-1.webp" alt=""><span class="nome">Mango</span><span class="slogan">Pense doce.</span></span><small>Escuro</small></div>
+      <div class="lock" style="background:var(--m-creme);color:var(--m-rosa)"><span class="lk" style="font-size:64px"><img src="mascote/expressions-1.webp" alt=""><span class="nome">Mango</span><span class="slogan">Pense doce.</span></span><small>Creme</small></div>
+      <div class="lock malha" style="color:#fff"><span class="lk" style="font-size:64px"><img src="mascote/expressions-1.webp" alt=""><span class="nome">Mango</span><span class="slogan">Pense doce.</span></span><small>Degradê do tema</small></div>
     </div>
   </section>
 
@@ -405,7 +405,7 @@ import { iniciarTemas } from './temas.js';
 iniciarTemas();
 
 // Parede de palavras: cada linha repete os microtextos com a cabeça do Mangy entre eles.
-const PALAVRAS = ['Descascando…', 'Doce.', 'Caroço.', 'Caiu do pé.', 'Madura.', 'Nossa cor são todas.', 'Fruteira vazia.'];
+const PALAVRAS = ['Descascando…', 'Doce.', 'Caroço.', 'Caiu do pé.', 'Madura.', 'Pense doce.', 'Nossa cor são todas.', 'Fruteira vazia.'];
 const CABECAS = [1, 2, 3, 4, 5, 6].map(n => `<img src="mascote/expressions-${n}.webp" alt="">`);
 document.querySelectorAll('.linha-p').forEach((linha, i) => {
   const giro = [...PALAVRAS.slice(i), ...PALAVRAS.slice(0, i)];
