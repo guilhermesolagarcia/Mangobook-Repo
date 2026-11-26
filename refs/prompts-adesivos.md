@@ -10,7 +10,7 @@ Para os personagens. Feitos **um por um**; cada resultado vai para `IA/STICKERS/
 ```
 Chibi full-body character sticker with chunky toy proportions: oversized head, small round body,
 short stubby arms and legs, confident pose. The entire character is filled with ONE smooth horizontal
-gradient from warm orange (#FF9F1C) on the left to hot pink (#FF3D7F) on the right, continuous across
+gradient from warm orange (#FF9F1C) on the left to hot pink (#FD228A) on the right, continuous across
 body, head and accessories. Face features and emblems are flat cream-white negative-space cutouts (#FFF4EA).
 No black outlines, no inner lines, no shading, no texture. Natural details keep their own flat colors:
 brown stem, green leaf (#1FB57A). Thick white die-cut sticker border with a very thin light grey outer edge.
@@ -60,7 +60,7 @@ surprised, angry/determined, sleepy, winking with tongue out. Same head shape, s
 ```
 Six full-body stickers of this exact mascot in a row, identical pose, each one in a different two-color gradient:
 orange to yellow (#FF9F1C to #FFD23F), pink to purple (#FF5E7E to #7B5CFF), blue to cyan (#2F7BFF to #22B5E8),
-green to cyan (#1FB57A to #22B5E8), purple to blue (#7B5CFF to #2F7BFF), orange to hot pink (#FF9F1C to #FF3D7F).
+green to cyan (#1FB57A to #22B5E8), purple to blue (#7B5CFF to #2F7BFF), orange to hot pink (#FF9F1C to #FD228A).
 Cream details, white die-cut borders.
 ```
 
@@ -88,7 +88,7 @@ white die-cut border.
 ```
 Three stickers of this mascot in a row as a ripeness scale, each with a small label below:
 "VERDE" (mascot in green gradient #1FB57A to #3DDC97, shy), "MADURA" (orange to hot pink, confident pose),
-"DOCE DEMAIS" (hot pink to purple #FF3D7F to #7B5CFF, sunglasses, ultra confident).
+"DOCE DEMAIS" (hot pink to purple #FD228A to #7B5CFF, sunglasses, ultra confident).
 Bold rounded capital labels, white die-cut borders.
 ```
 

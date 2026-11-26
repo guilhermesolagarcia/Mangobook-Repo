@@ -16,7 +16,7 @@ Plano geral: livro "Ecossistema Mango" (link no `CLAUDE.md`). Spec e plano do ki
 - **Adesivos agora são feitos por IA, um por um.** Padrão aprovado: `IA/STICKERS/batmango.png`
   (corpo inteiro chibi, um degradê laranja → rosa-choque, detalhes vazados em creme, sem linha preta,
   folha verde e cabinho marrom chapados, borda branca grossa, fundo transparente).
-- Rosa dos adesivos: mais choque (~`#FF3D7F`) que o rosa da marca (`#FF5E7E`). Confirmar.
+- Rosa dos adesivos e do Mangy: **`#FD228A`** (decidido em 26/11, está no MARCA.md).
 - Adesivos não precisam falar da Mango; só usar a estética.
 - Não temos limite de escopo: pode fazer bastante, desde que um por um e bem feito.
 
@@ -47,13 +47,14 @@ expressiva para campanhas, merch, adesivos e redes.
 ## Próximos passos (na ordem)
 
 1. ~~Mascote oficial~~ **Mangy** (24/11) e ~~série de imagens 2 a 9~~ (26/11), em `IA/MASCOTE/`.
-   Pendências da série: no **selo** (`circular.png`), a mão acenando saiu transparente; em **maturacao** e **produto**,
+   Selo refeito em 26/11 (mão opaca). Pendência opcional: em **maturacao** e **produto**,
    o fundo saiu cinza e apareceu um cabinho (o Mangy tem folha solta). Pra refazer, é só trocar o PNG e rodar
    `python scripts/recortar-mascote.py` (gera os recortes em `escolhas/marca/mascote/`).
 2. ~~Prancha `escolhas/marca/mascote.html`~~ (26/11): capa, duas camadas, quem é, folha, assinatura em 4 fundos,
    expressões, 6 cores, só os olhos, ícone, selo, maturação, produtos, parede de palavras, cartaz, textura, pode/não pode.
    Ícone **oficial = fundo creme**: o de degradê fica como alternativa (o MARCA.md rejeita glifo em quadrado com degradê).
-   Rosa do Mangy medido: `#FD228A` (ainda mais choque que o `#FF3D7F` dos adesivos); falta decidir qual fica.
+   Seção **09 Uma cor só**: máscaras `mono-corpo`/`mono-cabeca` geradas pelo script (cor vira tinta, creme vira vazado),
+   pintadas por CSS em qualquer cor. Se quiser mais capricho, refazer no GPT como silhueta branca.
 3. **Adesivos por IA, um por um.** Próximo: **Manga veloz** (prompt pronto em `refs/prompts-adesivos.md`).
    Depois urso, kaiju, rabisco; depois padrão próprio para letreiros e selos.
 4. Do plano do kit: `cartoes.html` (cartão-presente) e `apps.html` (ícones do MangoOS).

@@ -57,6 +57,8 @@ A Mango **não tem uma cor só**, e não é laranja. Destaques, ícones acesos n
 
 Cores de apoio para degradês: amarelo `#ffd23f`, lilás `#a46bff`, azul-claro `#3aa0ff`, verde-água `#3ddc97`.
 
+Rosa-choque do Mangy e dos adesivos: `#fd228a` (degradê `#ff9f1c → #fd228a`). Só na camada expressiva (mascote, adesivos, campanhas); no site e na loja o rosa continua `#ff5e7e`.
+
 Degradês que já existem:
 - **Manga:** `linear-gradient(95deg, #ffd23f, #ff9f1c 40%, #ff5e7e)` (números grandes, barra de bateria)
 - **Arco-íris (IA):** `linear-gradient(95deg, #ff9f1c, #ff5e7e 35%, #a46bff 70%, #3aa0ff)`

@@ -106,6 +106,23 @@ img{display:block;max-width:100%;height:auto}
 .escala-ic div{display:grid;gap:8px;justify-items:center}
 .escala-ic img{border-radius:22.5%}
 
+/* Uma cor só: a máscara mono pinta com a cor do texto (como o .logo-m) */
+.mono-m{display:block;background:currentColor;-webkit-mask:var(--src) center/contain no-repeat;mask:var(--src) center/contain no-repeat}
+.mono-m.corpo{--src:url(mascote/mono-corpo.webp);aspect-ratio:890/1389}
+.mono-m.cabeca{--src:url(mascote/mono-cabeca.webp);aspect-ratio:466/394}
+.monos{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.monos figure{display:grid;gap:10px}
+.monos .placa{border-radius:22px;aspect-ratio:.8;display:grid;place-items:center;padding:28px;position:relative}
+.monos .placa small{position:absolute;left:14px;bottom:12px;font:500 11px ui-monospace,Consolas,monospace;opacity:.7}
+.monos .corpo{height:78%}
+.monos .cabeca{width:78%}
+.mini{display:flex;align-items:center;gap:22px;margin-top:20px;padding:20px 24px;border-radius:22px;background:#000;color:#fff;flex-wrap:wrap}
+.mini div{display:grid;gap:6px;justify-items:center}
+.mini .mono{color:#a1a1a6}
+.mini .notif{display:flex;align-items:center;gap:10px;margin-left:auto;background:#1c1c1e;border-radius:16px;padding:10px 14px;font-size:13px}
+.notif .cabeca{width:22px}
+@media (max-width:900px){.monos{grid-template-columns:1fr 1fr}}
+
 /* Selo */
 .selos{display:grid;grid-template-columns:1.2fr 1fr;gap:16px}
 .selos .palco{aspect-ratio:1.1}
@@ -296,8 +313,25 @@ img{display:block;max-width:100%;height:auto}
     <p class="mono" style="margin-top:14px">O degradê no quadrado é a alternativa porque o MARCA.md já rejeitou "glifo em quadrado com degradê". Pra uso real, o ícone é redesenhado em vetor.</p>
   </section>
 
+  <section class="bloco" id="uma-cor">
+    <h2><span class="num">09</span>Uma cor só</h2>
+    <p class="rot">Quando só dá pra usar uma tinta · o creme vira vazado</p>
+    <div class="monos">
+      <figure><div class="placa" style="background:#1d1d1f;color:#fff"><span class="mono-m corpo" role="img" aria-label="Mangy branco"></span><small>Branco no escuro</small></div><span class="mono">Gravação a laser na tampa</span></figure>
+      <figure><div class="placa" style="background:#fff;box-shadow:inset 0 0 0 1px #e3e3e8;color:#1d1d1f"><span class="mono-m corpo" role="img" aria-label="Mangy preto"></span><small>Preto no claro</small></div><span class="mono">Serigrafia de uma cor</span></figure>
+      <figure><div class="placa malha" style="color:#fff"><span class="mono-m cabeca" role="img" aria-label="Cabeça do Mangy branca"></span><small>Branco na cor</small></div><span class="mono">Marca d'água em foto e vídeo</span></figure>
+      <figure><div class="placa" style="background:var(--m-creme);color:var(--m-rosa)"><span class="mono-m cabeca" role="img" aria-label="Cabeça do Mangy rosa"></span><small>Rosa no creme</small></div><span class="mono">Carimbo, embalagem</span></figure>
+    </div>
+    <div class="mini">
+      <div><span class="mono-m cabeca" style="width:64px"></span><span class="mono">64</span></div>
+      <div><span class="mono-m cabeca" style="width:32px"></span><span class="mono">32</span></div>
+      <div><span class="mono-m cabeca" style="width:20px"></span><span class="mono">20</span></div>
+      <div class="notif"><span class="mono-m cabeca"></span><span><b>Mango</b> · Seu pedido saiu pra entrega.</span></div>
+    </div>
+  </section>
+
   <section class="bloco">
-    <h2><span class="num">09</span>Selo</h2>
+    <h2><span class="num">10</span>Selo</h2>
     <div class="selos">
       <div class="palco"><img src="mascote/circular-1.webp" alt="Selo redondo: MANGO · EST. 2026 · NOSSA COR SÃO TODAS, com o Mangy acenando" loading="lazy"></div>
       <div class="selo-usos">
@@ -308,7 +342,7 @@ img{display:block;max-width:100%;height:auto}
   </section>
 
   <section class="bloco">
-    <h2><span class="num">10</span>Escala de maturação</h2>
+    <h2><span class="num">11</span>Escala de maturação</h2>
     <p class="rot">O nível de pimenta do Blazo, na versão Mango</p>
     <div class="matur">
       <figure><div class="palco"><img class="adesivo" src="mascote/maturacao-1.webp" alt="Mangy verde, tímido" loading="lazy"></div><div class="legenda"><b>Verde</b><span class="mono">Começando. Conta nova, plano grátis.</span></div></figure>
@@ -320,7 +354,7 @@ img{display:block;max-width:100%;height:auto}
   </section>
 
   <section class="bloco">
-    <h2><span class="num">11</span>Com os produtos</h2>
+    <h2><span class="num">12</span>Com os produtos</h2>
     <div class="grade g2 prod">
       <figure><div class="palco"><img class="adesivo" src="mascote/produto-1.webp" alt="Mangy com um notebook" loading="lazy"></div><div class="legenda"><span class="mono">MangoBook · lançamento, redes</span></div></figure>
       <figure><div class="palco"><img class="adesivo" src="mascote/produto-2.webp" alt="Mangy tirando selfie com o celular" loading="lazy"></div><div class="legenda"><span class="mono">Mangophone · stories, adesivo de câmera</span></div></figure>
@@ -335,11 +369,11 @@ img{display:block;max-width:100%;height:auto}
       <div class="linha-p" style="--cor:var(--c-verde)"></div>
       <div class="linha-p" style="--cor:var(--c-roxo)"></div>
     </div>
-    <p class="mono" style="padding:10px 4px">12 · Parede de palavras · os microtextos da marca repetidos, nas seis cores, com o Mangy no meio</p>
+    <p class="mono" style="padding:10px 4px">13 · Parede de palavras · os microtextos da marca repetidos, nas seis cores, com o Mangy no meio</p>
   </section>
 
   <section class="bloco">
-    <h2><span class="num">13</span>Cartaz</h2>
+    <h2><span class="num">14</span>Cartaz</h2>
     <div class="cartazes">
       <div class="cartaz" style="background:var(--m-degrade)"><p>Doce<br>por fora.</p><img class="adesivo" src="mascote/expressions-2.webp" alt=""><small><span>Mango · Est. 2026</span></small></div>
       <div class="cartaz olho" style="background:#000"><p style="color:var(--m-rosa)">Caiu<br>do pé.</p><img src="mascote/eyes-2.webp" alt=""><small><span>Erro 404</span><span>Mango</span></small></div>
@@ -348,7 +382,7 @@ img{display:block;max-width:100%;height:auto}
   </section>
 
   <section class="bloco">
-    <h2><span class="num">14</span>Textura</h2>
+    <h2><span class="num">15</span>Textura</h2>
     <p class="rot">Linhas de relevo nas seis cores · fundo de pôster, caixa, tela de carregamento</p>
     <div class="texturas" id="texturas"></div>
   </section>

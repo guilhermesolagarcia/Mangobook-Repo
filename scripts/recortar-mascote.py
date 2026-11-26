@@ -69,7 +69,27 @@ def recortar(arq, inteira=False):
     return len(pecas)
 
 
+def mono(recorte, nome):
+    """Versão de uma cor: o que tem cor vira tinta (branco), o creme e a borda viram vazado.
+    Sai como máscara: no CSS, mask:url(...) + background pinta de qualquer cor."""
+    rgba = np.asarray(Image.open(SAIDA / recorte).convert('RGBA')).astype(float)
+    mx, mn = rgba[..., :3].max(axis=2), rgba[..., :3].min(axis=2)
+    sat = (mx - mn) / np.maximum(mx, 1)
+    # ponytail: corte fixo de saturação (creme ~0.07, degradê ~0.9); ajustar se a IA mudar o creme
+    tinta = np.clip((sat - .2) / .25, 0, 1) * rgba[..., 3] / 255
+    a = (tinta * 255).astype(np.uint8)
+    ys, xs = np.nonzero(a > 8)
+    a = a[ys.min():ys.max() + 1, xs.min():xs.max() + 1]
+    Image.fromarray(np.dstack([np.full(a.shape + (3,), 255, np.uint8), a])).save(SAIDA / nome, quality=90, method=6)
+
+
 if __name__ == '__main__':
     SAIDA.mkdir(parents=True, exist_ok=True)
     for arq in sorted(ORIGEM.glob('*.png')):
         print(arq.name, recortar(arq, inteira=arq.stem in INTEIRAS))
+    mono('mangy-final-1.webp', 'mono-corpo.webp')
+    mono('expressions-1.webp', 'mono-cabeca.webp')
+    # teste: a máscara tem que ter tinta (cabelo/corpo) e vazado (rosto) dentro do contorno
+    m = np.asarray(Image.open(SAIDA / 'mono-cabeca.webp'))[..., 3]
+    assert (m > 200).mean() > .25 and (m < 20).mean() > .15, 'máscara mono saiu cheia ou vazia demais'
+    print('mono ok')
