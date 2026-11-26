@@ -40,6 +40,9 @@
 .explosao{inset:-30%;background:conic-gradient(from 20deg,#3aa0ff,#a46bff,#fd228a,#ff9f1c,#fd228a,#a46bff,#3aa0ff)}
 .fita-h{left:0;right:0;top:62%;height:1.1em;background:var(--arco)}
 .fita-v{top:0;bottom:0;left:72%;width:1.1em;background:linear-gradient(180deg,#3aa0ff,#a46bff 50%,#fd228a)}
+.brilho{width:.9em;aspect-ratio:1;background:#fef6ec;clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%)}
+.contorno{filter:drop-shadow(.14em 0 0 #fef6ec) drop-shadow(-.14em 0 0 #fef6ec) drop-shadow(0 .14em 0 #fef6ec) drop-shadow(0 -.14em 0 #fef6ec) drop-shadow(0 .35em .5em #0004)}
+.luz-baixo{background:linear-gradient(180deg,#fff 55%,#ffd6ea 78%,#ffb37a 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
 .aura{inset:0;background:radial-gradient(45% 60% at 50% 48%,#fff6,transparent 70%),radial-gradient(70% 90% at 50% 50%,#fd228a,transparent 70%),radial-gradient(90% 110% at 50% 60%,#a46bff,transparent 75%),#3aa0ff}
 
 /* Grade: os 12 num painel preto, sem legenda, como a referência */
@@ -214,7 +217,11 @@ const head = (cls, st) => `<span class="cabeca ${cls}" style="${st}"></span>`;
 const stk = st => `<img class="adesivo-c" src="mascote/expressions-1.webp" alt="" style="${st}">`;
 const DESENHOS = [
   // 1 valor gigante no preto, Mangy no meio dos números
-  ['', v => `<span class="v" style="left:-.2em;top:50%;transform:translateY(-50%);font-size:8.6em">${RS(v)}</span>${head('', 'left:8.6em;top:3.3em;width:6.2em;transform:rotate(-8deg);filter:drop-shadow(0 .3em .6em #0008)')}<span class="marquinha"></span>`],
+  ['', v => `<span style="inset:0;background:radial-gradient(38% 60% at 62% 58%,#fd228a88,transparent 70%),radial-gradient(40% 70% at 82% 30%,#3aa0ff66,transparent 70%),radial-gradient(50% 50% at 40% 110%,#ff9f1c55,transparent 70%)"></span>`
+    + `<span class="v luz-baixo" style="left:-.2em;top:50%;transform:translateY(-50%);font-size:8.6em">${RS(v)}</span>`
+    + `${head('', 'left:8.3em;top:2.7em;width:7em;transform:rotate(-8deg);filter:drop-shadow(0 .3em .7em #000a) drop-shadow(0 0 1.2em #fd228a99)')}`
+    + `<span class="brilho" style="left:15.2em;top:2.2em"></span><span class="brilho" style="left:16.4em;top:3.4em;width:.5em"></span><span class="brilho" style="left:8.1em;top:8.6em;width:.6em"></span>`
+    + `<span class="espaco" style="right:auto;font-size:.7em;opacity:.7"><span>Pense doce.</span></span><span class="marquinha"></span>`],
   // 2 creme com a onda subindo por trás do número
   ['creme', v => `<span class="onda baixa"></span><span class="v" style="left:.55em;top:.6em;font-size:8em;color:rgba(29,29,31,.85);mix-blend-mode:multiply">${RS(v)}</span><span class="marquinha" style="color:#fff"></span>`],
   // 3 cabeça gigante saindo pelo canto
@@ -222,15 +229,15 @@ const DESENHOS = [
   // 4 explosão
   ['', v => `<span class="explosao"></span><span class="v" style="left:50%;top:50%;transform:translate(-50%,-50%);font-size:4.4em;text-shadow:0 .05em .25em #0007">${RS(v)}</span><span class="marquinha"></span>`],
   // 5 número claro afundando na onda
-  ['', v => `<span class="onda"></span><span class="v" style="left:.5em;top:.55em;font-size:8.2em;color:rgba(255,255,255,.9)">${RS(v)}</span><span class="marquinha"></span>`],
+  ['', v => `<span class="onda"></span>${head('', 'left:13.5em;top:2.4em;width:6.2em;transform:rotate(6deg);filter:drop-shadow(0 0 1em #fd228aaa)')}<span class="onda" style="top:66%;opacity:.95"></span><span class="v" style="left:.5em;top:.7em;font-size:6.1em;color:rgba(255,255,255,.92)">${RS(v)}</span><span class="brilho" style="left:13.2em;top:2.3em;width:.6em"></span><span class="marquinha"></span>`],
   // 6 slogan + onda
   ['', v => `<span class="onda"></span><span class="frase" style="left:.8em;top:.9em;font-size:2.6em">Pense<br>doce.</span><span class="v" style="right:.7em;bottom:.8em;font-size:3em">${RS(v)}</span><span class="marquinha"></span>`],
   // 7 o Mangy é o zero
   ['', v => `<span class="v" style="left:.08em;top:50%;transform:translateY(-50%);font-size:7.6em;display:flex;align-items:center">${RS(String(v).slice(0, -1))}<span class="cabeca" style="position:static;height:.74em;margin-left:.03em"></span></span><span class="marquinha"></span>`],
   // 8 presente: fita cruzada, Mangy no laço
-  ['creme', v => `<span class="v" style="left:-.25em;top:.15em;font-size:10.5em">${RS(v)}</span><span class="fita-h"></span><span class="fita-v"></span>${head('', 'left:11.7em;top:5.5em;width:4.6em;transform:rotate(10deg);filter:drop-shadow(0 .2em .4em #0005)')}`],
+  ['creme', v => `<span class="v" style="left:-.25em;top:.15em;font-size:10.5em">${RS(v)}</span><span class="fita-h"></span><span class="fita-v"></span>${stk('left:11.3em;top:5em;width:5.4em;transform:rotate(10deg)')}`],
   // 9 slogan no degradê cheio
-  ['cheio', v => `<span class="frase" style="left:.8em;top:.8em;font-size:2.9em">Pense<br>doce.</span><span class="v" style="right:.7em;bottom:.75em;font-size:3em">${RS(v)}</span><span class="marquinha"></span>`],
+  ['cheio', v => `<span class="frase" style="left:.8em;top:.8em;font-size:2.9em">Pense<br>doce<span class="cabeca" style="display:inline-block;position:static;background:#fef6ec;height:.5em;margin-left:.06em;vertical-align:baseline"></span></span><span class="brilho" style="left:9.6em;top:1.4em;width:.7em"></span><span class="v" style="right:.7em;bottom:.75em;font-size:3em">${RS(v)}</span><span class="marquinha"></span>`],
   // 10 número que some na onda + slogan espaçado
   ['', v => `<span class="onda baixa"></span><span class="v" style="left:.06em;top:.08em;font-size:7.2em;background:linear-gradient(180deg,#fff 35%,#fff0 95%);-webkit-background-clip:text;background-clip:text;color:transparent">${RS(v)}</span><span class="espaco" style="top:auto;bottom:.9em"><span>Pense</span><span>doce</span><span>Mango</span></span>`],
   // 11 creme, slogan espaçado no topo, número em degradê saindo por baixo
