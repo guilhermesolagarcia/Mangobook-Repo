@@ -37,7 +37,7 @@
 .adesivo-c{filter:drop-shadow(0 .25em .5em rgba(0,0,0,.35))}
 .frase{font-size:2.15em;line-height:.92;letter-spacing:-.055em}
 .espaco{left:1em;right:1em;top:.9em;display:flex;justify-content:space-between;font-size:.72em;font-weight:600;letter-spacing:-.01em;line-height:1}
-.explosao{inset:-30%;background:conic-gradient(from 20deg,#3aa0ff,#a46bff,#fd228a,#ff9f1c,#fd228a,#a46bff,#3aa0ff)}
+.explosao{inset:0;width:100%;height:100%}
 .fita-h{left:0;right:0;top:62%;height:1.1em;background:var(--arco)}
 .fita-v{top:0;bottom:0;left:72%;width:1.1em;background:linear-gradient(180deg,#3aa0ff,#a46bff 50%,#fd228a)}
 .brilho{width:.9em;aspect-ratio:1;background:#fef6ec;clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%)}
@@ -215,19 +215,46 @@ iniciarTemas();
 const RS = v => `<small>R$</small>${v}`;
 const head = (cls, st) => `<span class="cabeca ${cls}" style="${st}"></span>`;
 const stk = st => `<img class="adesivo-c" src="mascote/expressions-1.webp" alt="" style="${st}">`;
+// Explosão em camadas: a mesma estrela de pontas curvas, em escalas menores, degradê e preto alternados.
+// ponytail: as pontas variam por uma lista fixa; mude VARIA pra outra explosão
+const VARIA = [1, .82, .95, .78, 1.05, .86, .97, .8, 1.02, .88];
+const estrela = (cx, cy, R, giro) => {
+  const n = VARIA.length, pts = [];
+  for (let k = 0; k < n; k++) {
+    const a = giro + k / n * Math.PI * 2, b = a + Math.PI / n;
+    pts.push([cx + R * VARIA[k] * Math.cos(a), cy + R * VARIA[k] * Math.sin(a) * .72], [cx + R * .58 * Math.cos(b), cy + R * .58 * Math.sin(b) * .72]);
+  }
+  // lados côncavos: de ponta a vale, curva puxada pro centro
+  let d = `M${pts[0][0].toFixed(1)},${pts[0][1].toFixed(1)}`;
+  for (let k = 1; k <= pts.length; k++) {
+    const [x, y] = pts[k % pts.length], [px, py] = pts[k - 1];
+    const mx = (x + px) / 2, my = (y + py) / 2;
+    d += `Q${(cx + (mx - cx) * .8).toFixed(1)},${(cy + (my - cy) * .8).toFixed(1)} ${x.toFixed(1)},${y.toFixed(1)}`;
+  }
+  return d + 'Z';
+};
+const explosao = () => {
+  const cam = [[210, 'url(#gEx)'], [172, '#0b0b0c'], [146, 'url(#gEx2)'], [104, '#0b0b0c']];
+  return `<svg class="explosao" viewBox="0 0 200 126" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs><linearGradient id="gEx" x1="0" y1="0" x2="200" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#ff9f1c"/><stop offset=".3" stop-color="#fd228a"/><stop offset=".62" stop-color="#a46bff"/><stop offset="1" stop-color="#2f7bff"/></linearGradient>
+    <linearGradient id="gEx2" x1="0" y1="126" x2="200" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fd228a"/><stop offset=".55" stop-color="#d48cff"/><stop offset="1" stop-color="#3aa0ff"/></linearGradient></defs>
+    <rect width="200" height="126" fill="#0b0b0c"/>
+    ${cam.map(([R, cor], i) => `<path d="${estrela(100, 63, R, -Math.PI / 2 + i * .05)}" fill="${cor}"/>`).join('')}
+  </svg>`;
+};
 const DESENHOS = [
-  // 1 valor gigante no preto, Mangy no meio dos números
+  // 1 explosão em camadas (Lovable, topo direito): bursts de pontas curvas, degradê e preto alternados
+  ['', v => `${explosao()}<span class="v" style="left:50%;top:50%;transform:translate(-50%,-50%);font-size:5em;color:#fef6ec">${RS(v)}</span><span class="marquinha" style="color:#fef6ec"></span>`],
+  // 2 creme com a onda subindo por trás do número
+  ['creme', v => `<span class="onda baixa"></span><span class="v" style="left:.55em;top:.6em;font-size:8em;color:rgba(29,29,31,.85);mix-blend-mode:multiply">${RS(v)}</span><span class="marquinha" style="color:#fff"></span>`],
+  // 3 cabeça gigante saindo pelo canto
+  ['cheio', v => `${head('creme', 'left:-1.2em;bottom:-3.2em;width:13em;transform:rotate(-10deg);background:#fef6ec')}<span class="v" style="right:.7em;top:.75em;font-size:3.2em">${RS(v)}</span>`],
+  // 4 valor gigante no preto, Mangy no meio dos números
   ['', v => `<span style="inset:0;background:radial-gradient(38% 60% at 62% 58%,#fd228a88,transparent 70%),radial-gradient(40% 70% at 82% 30%,#3aa0ff66,transparent 70%),radial-gradient(50% 50% at 40% 110%,#ff9f1c55,transparent 70%)"></span>`
     + `<span class="v luz-baixo" style="left:-.2em;top:50%;transform:translateY(-50%);font-size:8.6em">${RS(v)}</span>`
     + `${stk('left:8.6em;top:2.6em;width:6.6em;transform:rotate(-8deg);filter:drop-shadow(0 .35em .7em #000c) drop-shadow(0 0 1.4em #fd228a88)')}`
     + `<span class="brilho" style="left:15.2em;top:2.2em"></span><span class="brilho" style="left:16.4em;top:3.4em;width:.5em"></span><span class="brilho" style="left:8.1em;top:8.6em;width:.6em"></span>`
     + `<span class="espaco" style="right:auto;font-size:.7em;opacity:.7"><span>Pense doce.</span></span><span class="marquinha"></span>`],
-  // 2 creme com a onda subindo por trás do número
-  ['creme', v => `<span class="onda baixa"></span><span class="v" style="left:.55em;top:.6em;font-size:8em;color:rgba(29,29,31,.85);mix-blend-mode:multiply">${RS(v)}</span><span class="marquinha" style="color:#fff"></span>`],
-  // 3 cabeça gigante saindo pelo canto
-  ['cheio', v => `${head('creme', 'left:-1.2em;bottom:-3.2em;width:13em;transform:rotate(-10deg);background:#fef6ec')}<span class="v" style="right:.7em;top:.75em;font-size:3.2em">${RS(v)}</span>`],
-  // 4 explosão
-  ['', v => `<span class="explosao"></span><span class="v" style="left:50%;top:50%;transform:translate(-50%,-50%);font-size:4.4em;text-shadow:0 .05em .25em #0007">${RS(v)}</span><span class="marquinha"></span>`],
   // 5 número claro afundando na onda
   ['', v => `<span class="onda"></span>${stk('left:13.4em;top:2.2em;width:6.2em;transform:rotate(6deg);filter:drop-shadow(0 .3em .6em #0009)')}<span class="onda" style="top:66%;opacity:.95"></span><span class="v" style="left:.5em;top:.7em;font-size:6.1em;color:rgba(255,255,255,.92)">${RS(v)}</span><span class="brilho" style="left:13.2em;top:2.3em;width:.6em"></span><span class="marquinha"></span>`],
   // 6 slogan + onda
@@ -246,7 +273,7 @@ const DESENHOS = [
   ['', v => `<span class="aura"></span>${head('creme', 'left:50%;top:46%;width:6.4em;transform:translate(-50%,-50%);background:#fef6ec;filter:drop-shadow(0 0 .8em #fff8)')}<span class="v" style="right:.7em;bottom:.75em;font-size:2.6em">${RS(v)}</span><span class="marquinha"></span>`],
 ];
 // valores como na referência: quase todos 50, alguns 300 e 100
-const VAL = [300, 50, 50, 50, 50, 50, 50, 50, 100, 300, 50, 50];
+const VAL = [50, 50, 50, 300, 50, 50, 50, 50, 100, 300, 50, 50];
 const cartao = (i, v = VAL[i], w) => {
   const [cls, miolo] = DESENHOS[i];
   return `<div class="cartao ${cls}" style="${w ? `--w:${w}` : ''}" role="img" aria-label="Cartão-presente Mango Store de R$ ${v}"><div class="in">${miolo(v)}</div></div>`;
@@ -254,19 +281,9 @@ const cartao = (i, v = VAL[i], w) => {
 
 document.getElementById('pilha').innerHTML = [cartao(5, 100), cartao(1, 50), cartao(6, 100)].join('');
 document.getElementById('grade').innerHTML = DESENHOS.map((_, i) => cartao(i)).join('');
-document.getElementById('frente').innerHTML = cartao(0, 300, '100%');
+document.getElementById('frente').innerHTML = cartao(3, 300, '100%');
 document.getElementById('no-envelope').innerHTML = cartao(6, 50, '62%');
 document.getElementById('no-chat').innerHTML = cartao(11, 100, '280px');
-
-// Explosão: estrela de 14 pontas recortada no conic-gradient
-document.querySelectorAll('.explosao').forEach(el => {
-  const p = [];
-  for (let k = 0; k < 28; k++) {
-    const r = k % 2 ? 22 : 46 + (k % 4 ? 4 : -6), t = k / 28 * Math.PI * 2;
-    p.push(`${(50 + r * Math.cos(t)).toFixed(1)}% ${(50 + r * Math.sin(t) * 1.25).toFixed(1)}%`);
-  }
-  el.style.clipPath = `polygon(${p.join(',')})`;
-});
 
 // QR de mentira: 9x9 com os três cantos de QR e o miolo sorteado (fixo pela semente)
 let s = 7;
