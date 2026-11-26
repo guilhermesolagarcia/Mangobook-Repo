@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="pt-BR" data-tema="manga">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mango · Mascote</title>
+<link rel="icon" href="/mango.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap">
+<link rel="stylesheet" href="/src/marca/marca.css">
+<link rel="stylesheet" href="./temas.css">
+<link rel="stylesheet" href="./base.css">
+<style>
+/* Cores do próprio Mangy (medidas em IA/MASCOTE/mangy-final.png) */
+:root{--m-laranja:#ff9f1c;--m-rosa:#fd228a;--m-creme:#fef6ec;--m-folha:#25ba7b;--m-degrade:linear-gradient(95deg,var(--m-laranja),var(--m-rosa))}
+img{display:block;max-width:100%;height:auto}
+.prancha>*,.grade>*,.capa>*,.quem>*,.lockups>*,.selos>*,.icones>*{min-width:0}
+.adesivo{filter:drop-shadow(0 .5em 1em rgba(0,0,0,.12))}
+.palco{border-radius:22px;background:var(--fundo);box-shadow:inset 0 0 0 1px var(--linha);display:grid;place-items:center;padding:24px;position:relative;min-height:0}
+/* imagem dentro do palco: preenche e encaixa, sem esticar o palco */
+.palco>img{position:absolute;inset:var(--folga,24px);width:calc(100% - 2 * var(--folga,24px));height:calc(100% - 2 * var(--folga,24px));object-fit:contain}
+.legenda{display:grid;gap:4px;margin-top:10px}
+.legenda b{font-size:15px;font-weight:600;letter-spacing:-.01em}
+.grade{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}.g6{grid-template-columns:repeat(6,1fr)}
+.lead{font-size:21px;line-height:1.38;letter-spacing:-.022em;max-width:36em}
+.lead+.lead{margin-top:10px}
+.tinta2{color:var(--tinta-2)}
+
+/* Capa */
+.capa{border-radius:32px;min-height:620px;color:#fff;display:grid;grid-template-columns:1.1fr 1fr;grid-template-rows:auto 1fr auto;padding:36px;column-gap:24px}
+.capa .topo,.capa .ficha{grid-column:1/-1;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px}
+.capa .topo{font-weight:600}
+.capa .ficha{opacity:.92;border-top:1px solid rgba(255,255,255,.35);padding-top:14px}
+.capa .titulo{align-self:center}
+.capa h1{font-size:clamp(88px,13vw,190px);font-weight:800;letter-spacing:-.06em;line-height:.85}
+.capa .sub{font-size:clamp(20px,2.2vw,28px);font-weight:500;letter-spacing:-.03em;margin-top:18px;max-width:14em}
+.capa .heroi{align-self:center;justify-self:center;width:min(100%,400px);transform:rotate(4deg)}
+.pilula{display:inline-flex;align-items:center;gap:.4em;border-radius:980px;padding:.45em .9em;font-size:14px;font-weight:600;background:rgba(255,255,255,.18);backdrop-filter:blur(8px);margin-top:26px}
+.pilula .logo-m{height:1.05em;width:auto}
+
+/* Duas camadas */
+.camadas{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
+.camada{border-radius:22px;padding:24px;display:grid;gap:10px;align-content:start}
+.camada.limpa{background:var(--fundo);box-shadow:inset 0 0 0 1px var(--linha)}
+.camada.expressiva{background:var(--m-degrade);color:#fff}
+.camada h3{font-size:24px;font-weight:700;letter-spacing:-.035em}
+.camada ul{padding-left:1.1em;font-size:15px;display:grid;gap:4px}
+
+/* Quem é */
+.quem{display:grid;grid-template-columns:.8fr 1.2fr;gap:28px;align-items:center}
+.quem .palco{aspect-ratio:3/4;--folga:36px}
+.tracos{display:grid;gap:14px;margin-top:20px}
+.tracos li{position:relative;padding-left:38px;font-size:16px;list-style:none}
+.tracos li span{position:absolute;left:0;top:0;font:600 12px/24px ui-monospace,Consolas,monospace;color:var(--tinta-2)}
+.tracos{padding:0}
+.cores{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:22px}
+.cor{border-radius:16px;aspect-ratio:1.5;padding:10px 12px;display:flex;align-items:flex-end;font:500 11px ui-monospace,Consolas,monospace;box-shadow:inset 0 0 0 1px rgba(0,0,0,.06)}
+
+/* Folha de personagem */
+.folha{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;align-items:end}
+.folha figure{display:grid;gap:10px;justify-items:center}
+.folha img{height:300px;width:auto}
+
+/* Lockups */
+.lockups{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.lock{border-radius:22px;aspect-ratio:1.9;display:grid;place-items:center;padding:24px;position:relative}
+.lock small{position:absolute;left:16px;bottom:12px;font:500 11px ui-monospace,Consolas,monospace;opacity:.75}
+.lk{display:grid;grid-template-columns:auto auto;align-items:center;column-gap:.25em}
+.lk img{grid-row:span 2;height:1.9em;width:auto}
+.lk .nome{font-size:1em;font-weight:700;letter-spacing:-.055em;line-height:.9}
+.lk .slogan{font-size:.26em;font-weight:600;letter-spacing:-.01em;line-height:1.2;margin-top:.35em;opacity:.85}
+
+/* Expressões */
+.expr figure{display:grid;gap:8px}
+.expr .palco{aspect-ratio:1.15;--folga:14px}
+
+/* Cores */
+.fileira{aspect-ratio:3.4;--folga:20px}
+.hexes{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:16px}
+.hexes div{display:grid;gap:6px;justify-items:center;text-align:center}
+.hexes i{display:block;width:100%;height:10px;border-radius:99px}
+
+/* Olhos */
+.olhos{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.olhos img{border-radius:14px}
+.aplic{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:16px;margin-top:20px}
+.aplic>div{border-radius:22px;background:var(--fundo);box-shadow:inset 0 0 0 1px var(--linha);padding:22px;display:grid;gap:14px;align-content:center;justify-items:center;min-height:220px}
+.carregando{width:100%;max-width:320px;display:grid;gap:10px;justify-items:center}
+.carregando .barra{width:100%;aspect-ratio:2;border-radius:14px;background:url(mascote/eyes-1.webp) center/cover}
+.carregando .trilho{width:100%;height:6px;border-radius:9px;background:var(--linha);overflow:hidden}
+.carregando .trilho i{display:block;height:100%;width:40%;border-radius:9px;background:var(--m-degrade);animation:anda 1.6s cubic-bezier(.6,0,.4,1) infinite}
+@keyframes anda{from{transform:translateX(-100%)}to{transform:translateX(250%)}}
+.avatar{width:120px;height:120px;border-radius:50%;background:url(mascote/eyes-1.webp) center/112% auto no-repeat,var(--m-degrade);box-shadow:0 0 0 4px var(--cartao),0 0 0 5px var(--linha)}
+.avatar.p{width:56px;height:56px}
+.faixa-olhos{width:100%;height:64px;border-radius:12px;background:url(mascote/eyes-3.webp) center/auto 100% repeat-x}
+
+/* Ícones */
+.icones{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:16px}
+.icones .palco{aspect-ratio:1;--folga:15%}
+.icones .palco.tamanhos{aspect-ratio:auto;align-content:center}
+.selo-tag{z-index:1;position:absolute;top:14px;left:14px;font:600 11px Inter;letter-spacing:.04em;text-transform:uppercase;padding:5px 9px;border-radius:99px}
+.selo-tag.ok{background:var(--m-folha);color:#fff}
+.selo-tag.alt{background:var(--linha);color:var(--tinta-2)}
+.escala-ic{display:flex;align-items:flex-end;gap:18px;flex-wrap:wrap}
+.escala-ic div{display:grid;gap:8px;justify-items:center}
+.escala-ic img{border-radius:22.5%}
+
+/* Selo */
+.selos{display:grid;grid-template-columns:1.2fr 1fr;gap:16px}
+.selos .palco{aspect-ratio:1.1}
+.selos .palco{--folga:40px}.selos .palco img{animation:gira 40s linear infinite}
+@keyframes gira{to{transform:rotate(360deg)}}
+.selo-usos{display:grid;grid-template-rows:1fr 1fr;gap:16px}
+.selo-usos>div{border-radius:22px;display:flex;align-items:center;gap:18px;padding:20px;position:relative;overflow:hidden}
+.selo-usos img{width:110px;flex:none}
+.selo-usos p{font-size:15px}
+
+/* Maturação */
+.matur{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.matur figure{display:grid;gap:12px}
+.matur .palco{aspect-ratio:.85}
+.seta{height:10px;border-radius:99px;background:linear-gradient(90deg,#1fb57a,#3ddc97 20%,var(--m-laranja) 45%,var(--m-rosa) 70%,#7b5cff);margin:20px 0 6px;position:relative}
+.seta-rot{display:flex;justify-content:space-between;font:500 11px ui-monospace,Consolas,monospace;color:var(--tinta-2)}
+
+/* Produtos */
+.prod .palco{aspect-ratio:1.05}
+
+/* Parede de palavras */
+.parede{border-radius:28px;background:#111;color:#fff;overflow:hidden;padding:26px 0;display:grid;gap:4px;position:relative}
+.linha-p{display:flex;gap:.45em;white-space:nowrap;font-size:clamp(38px,5.4vw,74px);font-weight:900;letter-spacing:-.05em;line-height:1;text-transform:uppercase;align-items:center;width:max-content;animation:corre 60s linear infinite}
+.linha-p:nth-child(even){animation-direction:reverse;margin-left:-4em}
+.linha-p img{height:.95em;width:auto;display:inline-block}
+.linha-p{color:var(--cor)}
+.linha-p .vazado{color:transparent;-webkit-text-stroke:2px var(--cor)}
+@keyframes corre{to{transform:translateX(-25%)}}
+
+/* Cartaz */
+.cartazes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.cartaz{border-radius:22px;aspect-ratio:3/4;padding:22px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;color:#fff}
+.cartaz p{font-size:clamp(44px,5.6vw,82px);font-weight:900;letter-spacing:-.065em;line-height:.86;text-transform:uppercase}
+.cartaz small{font-size:12px;font-weight:600;display:flex;justify-content:space-between;opacity:.9;position:relative;z-index:1}
+.cartaz img{position:absolute;width:62%;right:-6%;bottom:-4%;transform:rotate(-10deg)}
+.cartaz.olho img{width:100%;right:0;left:0;bottom:22%;transform:rotate(-4deg) scale(1.15);border-radius:0}
+
+/* Textura */
+.texturas{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.texturas svg{width:100%;aspect-ratio:.75;border-radius:18px;display:block;background:#0c0c0e}
+
+/* Regras */
+.regras{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.regras ul{padding-left:1.1em;display:grid;gap:8px;font-size:15px}
+.regras h3{font-size:17px;font-weight:600;margin-bottom:12px;display:flex;gap:8px;align-items:center}
+.regras h3 i{width:20px;height:20px;border-radius:50%;display:inline-grid;place-items:center;color:#fff;font:700 12px Inter;font-style:normal}
+
+@media (max-width:900px){
+  .capa{grid-template-columns:1fr;min-height:0;padding:24px}
+  .capa .heroi{width:min(70%,300px);margin:18px 0}
+  .camadas,.quem,.lockups,.selos,.regras,.g2{grid-template-columns:1fr}
+  .folha,.g4,.icones{grid-template-columns:1fr 1fr}
+  .folha img{height:200px}
+  .g3,.g6,.olhos,.matur,.cartazes,.aplic{grid-template-columns:1fr 1fr}
+  .texturas,.hexes{grid-template-columns:repeat(3,1fr)}
+  .cores{grid-template-columns:1fr 1fr}
+}
+@media (max-width:520px){ .g3,.g6,.olhos,.matur,.cartazes,.aplic,.icones{grid-template-columns:1fr} .lockups .lock{aspect-ratio:1.4} }
+@media (prefers-reduced-motion:reduce){ .linha-p,.selos .palco img,.carregando .trilho i{animation:none} }
+</style>
+</head>
+<body>
+<main class="prancha">
+
+  <section class="capa malha" aria-label="Capa">
+    <div class="topo"><span>Mango · Mascote</span><span>Camada expressiva</span></div>
+    <div class="titulo">
+      <h1>Mangy</h1>
+      <p class="sub">O mascote da Mango. Ele cuida da parte divertida, o logo cuida do resto.</p>
+      <span class="pilula"><span class="logo-m"></span>Nossa cor são todas.</span>
+    </div>
+    <img class="heroi adesivo" src="mascote/mangy-final-1.webp" alt="Mangy, mascote chibi com cabeça de manga, de mão na cintura e punho erguido" width="940" height="1439">
+    <div class="ficha"><span>Nome: Mangy</span><span>Aprovado em 24/11/2026</span><span>Usos: campanhas, merch, adesivos, redes</span></div>
+  </section>
+
+  <section class="bloco">
+    <h2><span class="num">01</span>Duas camadas</h2>
+    <p class="lead">A Mango tem duas caras. A <b>limpa</b> vende produto: logo pequeno, foto grande, frase curta. A <b>expressiva</b> faz as pessoas gostarem da marca, e é nela que o Mangy aparece.</p>
+    <div class="camadas">
+      <div class="camada limpa">
+        <h3>Limpa</h3>
+        <ul><li>Páginas de produto e lançamento</li><li>Loja, checkout, suporte</li><li>Logo D · Caroço, Inter, preto e branco</li><li>Cor só nos destaques</li></ul>
+      </div>
+      <div class="camada expressiva">
+        <h3>Expressiva</h3>
+        <ul><li>Campanhas, redes, merch, adesivos</li><li>Microtextos: 404, carrinho vazio, carregando</li><li>Mangy, selos, parede de palavras</li><li>Degradê à vontade</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloco quem">
+    <div class="palco"><img class="adesivo" src="mascote/mangy-final-1.webp" alt="Mangy de corpo inteiro" width="940" height="1439" loading="lazy"></div>
+    <div>
+      <h2><span class="num">02</span>Quem é</h2>
+      <p class="lead">Uma criança chibi com cabeça de manga. Confiante, de mão na cintura, punho pra cima. Nunca está parado nem sério demais.</p>
+      <ul class="tracos">
+        <li><span>01</span>Cabeça de manga com franja bagunçada e brilho no topo.</li>
+        <li><span>02</span>Folha <b>solta</b>, sem cabinho, igual à do logo.</li>
+        <li><span>03</span>Logo da Mango em creme no peito. Nunca a maçã.</li>
+        <li><span>04</span>Degradê laranja → rosa-choque, detalhes vazados em creme, sem linha preta.</li>
+        <li><span>05</span>Borda branca grossa de adesivo, sempre.</li>
+      </ul>
+      <div class="cores">
+        <div class="cor" style="background:var(--m-laranja);color:#fff">#FF9F1C</div>
+        <div class="cor" style="background:var(--m-rosa);color:#fff">#FD228A</div>
+        <div class="cor" style="background:var(--m-creme)">#FEF6EC</div>
+        <div class="cor" style="background:var(--m-folha);color:#fff">#25BA7B</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloco">
+    <h2><span class="num">03</span>Folha de personagem</h2>
+    <div class="folha">
+      <figure><img class="adesivo" src="mascote/folha-1.webp" alt="Mangy de frente" loading="lazy"><span class="mono">Frente</span></figure>
+      <figure><img class="adesivo" src="mascote/folha-2.webp" alt="Mangy em três quartos" loading="lazy"><span class="mono">Três quartos</span></figure>
+      <figure><img class="adesivo" src="mascote/folha-3.webp" alt="Mangy de lado" loading="lazy"><span class="mono">Lado</span></figure>
+      <figure><img class="adesivo" src="mascote/folha-4.webp" alt="Mangy de costas" loading="lazy"><span class="mono">Costas</span></figure>
+    </div>
+  </section>
+
+  <section class="bloco">
+    <h2><span class="num">04</span>Assinatura com o mascote</h2>
+    <p class="rot">Cabeça do Mangy + Mango + slogan fixo · nos quatro fundos</p>
+    <div class="lockups">
+      <div class="lock" style="background:#fff;box-shadow:inset 0 0 0 1px #e3e3e8;color:#1d1d1f"><span class="lk" style="font-size:64px"><img src="mascote/expressions-1.webp" alt=""><span class="nome">Mango</span><span class="slogan">Nossa cor são todas.</span></span><small>Claro</small></div>
+      <div class="lock" style="background:#000;color:#fff"><span class="lk" style="font-size:64px"><img src="mascote/expressions-1.webp" alt=""><span class="nome">Mango</span><span class="slogan">Nossa cor são todas.</span></span><small>Escuro</small></div>
+      <div class="lock" style="background:var(--m-creme);color:var(--m-rosa)"><span class="lk" style="font-size:64px"><img src="mascote/expressions-1.webp" alt=""><span class="nome">Mango</span><span class="slogan">Nossa cor são todas.</span></span><small>Creme</small></div>
+      <div class="lock malha" style="color:#fff"><span class="lk" style="font-size:64px"><img src="mascote/expressions-1.webp" alt=""><span class="nome">Mango</span><span class="slogan">Nossa cor são todas.</span></span><small>Degradê do tema</small></div>
+    </div>
+  </section>
+
+  <section class="bloco">
+    <h2><span class="num">05</span>Expressões</h2>
+    <p class="rot">Cada uma tem um lugar</p>
+    <div class="grade g6 expr">
+      <figure><div class="palco"><img class="adesivo" src="mascote/expressions-1.webp" alt="Feliz" loading="lazy"></div><div class="legenda"><b>Feliz</b><span class="mono">Padrão, avatar</span></div></figure>
+      <figure><div class="palco"><img class="adesivo" src="mascote/expressions-2.webp" alt="Rindo" loading="lazy"></div><div class="legenda"><b>Rindo</b><span class="mono">Pedido feito</span></div></figure>
+      <figure><div class="palco"><img class="adesivo" src="mascote/expressions-3.webp" alt="Surpreso" loading="lazy"></div><div class="legenda"><b>Surpreso</b><span class="mono">Lançamento</span></div></figure>
+      <figure><div class="palco"><img class="adesivo" src="mascote/expressions-4.webp" alt="Bravo" loading="lazy"></div><div class="legenda"><b>Decidido</b><span class="mono">Promoção, desafio</span></div></figure>
+      <figure><div class="palco"><img class="adesivo" src="mascote/expressions-5.webp" alt="Com sono" loading="lazy"></div><div class="legenda"><b>Com sono</b><span class="mono">Carrinho vazio, offline</span></div></figure>
+      <figure><div class="palco"><img class="adesivo" src="mascote/expressions-6.webp" alt="Piscando com a língua de fora" loading="lazy"></div><div class="legenda"><b>Zoeira</b><span class="mono">404, redes</span></div></figure>
+    </div>
+  </section>
+
+  <section class="bloco">
+    <h2><span class="num">06</span>Nossa cor são todas</h2>
+    <p class="rot">O Mangy veste as seis cores da marca</p>
+    <div class="palco fileira"><img class="adesivo" src="mascote/six-colors-1.webp" alt="Seis Mangys lado a lado, um em cada degradê da marca" loading="lazy"></div>
+    <div class="hexes">
+      <div><i style="background:linear-gradient(90deg,#ff9f1c,#ffd23f)"></i><span class="mono">Manga</span></div>
+      <div><i style="background:linear-gradient(90deg,#ff5e7e,#7b5cff)"></i><span class="mono">Uva</span></div>
+      <div><i style="background:linear-gradient(90deg,#2f7bff,#22b5e8)"></i><span class="mono">Oceano</span></div>
+      <div><i style="background:linear-gradient(90deg,#1fb57a,#22b5e8)"></i><span class="mono">Folha</span></div>
+      <div><i style="background:linear-gradient(90deg,#7b5cff,#2f7bff)"></i><span class="mono">Noite</span></div>
+      <div><i style="background:var(--m-degrade)"></i><span class="mono">Original</span></div>
+    </div>
+  </section>
+
+  <section class="bloco">
+    <h2><span class="num">07</span>Só os olhos</h2>
+    <p class="rot">A assinatura mínima: funciona sem o corpo, sem o logo, sem texto</p>
+    <div class="olhos">
+      <figure><img src="mascote/eyes-1.webp" alt="Olhos felizes" loading="lazy"><div class="legenda"><span class="mono">Feliz</span></div></figure>
+      <figure><img src="mascote/eyes-2.webp" alt="Olhos decididos" loading="lazy"><div class="legenda"><span class="mono">Decidido</span></div></figure>
+      <figure><img src="mascote/eyes-3.webp" alt="Olhos piscando" loading="lazy"><div class="legenda"><span class="mono">Piscando</span></div></figure>
+    </div>
+    <div class="aplic">
+      <div><div class="carregando"><div class="barra" role="img" aria-label="Olhos do Mangy"></div><div class="trilho"><i></i></div><span class="mono">Descascando…</span></div></div>
+      <div><div style="display:flex;align-items:center;gap:14px"><span class="avatar"></span><span class="avatar p"></span></div><span class="mono">Avatar das redes</span></div>
+      <div><div class="faixa-olhos" role="img" aria-label="Faixa com olhos repetidos"></div><span class="mono">Faixa de rodapé, embalagem</span></div>
+    </div>
+  </section>
+
+  <section class="bloco">
+    <h2><span class="num">08</span>Ícone de app</h2>
+    <div class="icones">
+      <div class="palco"><span class="selo-tag ok">Oficial</span><img src="mascote/icon-app-2.webp" alt="Ícone com fundo creme e cabeça do Mangy em degradê" loading="lazy"></div>
+      <div class="palco"><span class="selo-tag alt">Alternativa</span><img src="mascote/icon-app-1.webp" alt="Ícone com fundo em degradê" loading="lazy"></div>
+      <div class="palco tamanhos">
+        <div class="escala-ic">
+          <div><img src="mascote/icon-app-2.webp" alt="" width="120" loading="lazy"><span class="mono">120</span></div>
+          <div><img src="mascote/icon-app-2.webp" alt="" width="64" loading="lazy"><span class="mono">64</span></div>
+          <div><img src="mascote/icon-app-2.webp" alt="" width="32" loading="lazy"><span class="mono">32</span></div>
+        </div>
+      </div>
+    </div>
+    <p class="mono" style="margin-top:14px">O degradê no quadrado é a alternativa porque o MARCA.md já rejeitou "glifo em quadrado com degradê". Pra uso real, o ícone é redesenhado em vetor.</p>
+  </section>
+
+  <section class="bloco">
+    <h2><span class="num">09</span>Selo</h2>
+    <div class="selos">
+      <div class="palco"><img src="mascote/circular-1.webp" alt="Selo redondo: MANGO · EST. 2026 · NOSSA COR SÃO TODAS, com o Mangy acenando" loading="lazy"></div>
+      <div class="selo-usos">
+        <div style="background:#000;color:#fff"><img src="mascote/circular-1.webp" alt="" loading="lazy"><p><b>Merch.</b> Costas da camiseta, ecobag, tampa do notebook.</p></div>
+        <div class="malha" style="color:#fff"><img src="mascote/circular-1.webp" alt="" loading="lazy"><p><b>Lacre.</b> Fecha a caixa do produto e o envelope do cartão-presente.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloco">
+    <h2><span class="num">10</span>Escala de maturação</h2>
+    <p class="rot">O nível de pimenta do Blazo, na versão Mango</p>
+    <div class="matur">
+      <figure><div class="palco"><img class="adesivo" src="mascote/maturacao-1.webp" alt="Mangy verde, tímido" loading="lazy"></div><div class="legenda"><b>Verde</b><span class="mono">Começando. Conta nova, plano grátis.</span></div></figure>
+      <figure><div class="palco"><img class="adesivo" src="mascote/maturacao-2.webp" alt="Mangy maduro, confiante" loading="lazy"></div><div class="legenda"><b>Madura</b><span class="mono">No ponto. Assinante, cliente fiel.</span></div></figure>
+      <figure><div class="palco"><img class="adesivo" src="mascote/maturacao-3.webp" alt="Mangy doce demais, de óculos escuros" loading="lazy"></div><div class="legenda"><b>Doce demais</b><span class="mono">Topo. Conquista rara, edição limitada.</span></div></figure>
+    </div>
+    <div class="seta"></div>
+    <div class="seta-rot"><span>Verde</span><span>Madura</span><span>Doce demais</span></div>
+  </section>
+
+  <section class="bloco">
+    <h2><span class="num">11</span>Com os produtos</h2>
+    <div class="grade g2 prod">
+      <figure><div class="palco"><img class="adesivo" src="mascote/produto-1.webp" alt="Mangy com um notebook" loading="lazy"></div><div class="legenda"><span class="mono">MangoBook · lançamento, redes</span></div></figure>
+      <figure><div class="palco"><img class="adesivo" src="mascote/produto-2.webp" alt="Mangy tirando selfie com o celular" loading="lazy"></div><div class="legenda"><span class="mono">Mangophone · stories, adesivo de câmera</span></div></figure>
+    </div>
+  </section>
+
+  <section aria-label="Parede de palavras">
+    <div class="parede" aria-hidden="true">
+      <div class="linha-p" style="--cor:var(--c-manga)"></div>
+      <div class="linha-p" style="--cor:var(--c-rosa)"></div>
+      <div class="linha-p" style="--cor:var(--c-azul)"></div>
+      <div class="linha-p" style="--cor:var(--c-verde)"></div>
+      <div class="linha-p" style="--cor:var(--c-roxo)"></div>
+    </div>
+    <p class="mono" style="padding:10px 4px">12 · Parede de palavras · os microtextos da marca repetidos, nas seis cores, com o Mangy no meio</p>
+  </section>
+
+  <section class="bloco">
+    <h2><span class="num">13</span>Cartaz</h2>
+    <div class="cartazes">
+      <div class="cartaz" style="background:var(--m-degrade)"><p>Doce<br>por fora.</p><img class="adesivo" src="mascote/expressions-2.webp" alt=""><small><span>Mango · Est. 2026</span></small></div>
+      <div class="cartaz olho" style="background:#000"><p style="color:var(--m-rosa)">Caiu<br>do pé.</p><img src="mascote/eyes-2.webp" alt=""><small><span>Erro 404</span><span>Mango</span></small></div>
+      <div class="cartaz" style="background:var(--c-azul)"><p>Rápido<br>até o<br>caroço.</p><img class="adesivo" src="mascote/expressions-4.webp" alt=""><small><span>Chip Palmer · Mango</span></small></div>
+    </div>
+  </section>
+
+  <section class="bloco">
+    <h2><span class="num">14</span>Textura</h2>
+    <p class="rot">Linhas de relevo nas seis cores · fundo de pôster, caixa, tela de carregamento</p>
+    <div class="texturas" id="texturas"></div>
+  </section>
+
+  <section class="bloco regras">
+    <div>
+      <h3><i style="background:var(--m-folha)">✓</i>Pode</h3>
+      <ul><li>Campanha, redes, merch, adesivos, embalagem.</li><li>Microtextos e estados: 404, carrinho vazio, carregando.</li><li>Trocar de cor entre as seis da marca.</li><li>Usar só os olhos quando o espaço é pequeno.</li></ul>
+    </div>
+    <div>
+      <h3><i style="background:var(--c-rosa)">✕</i>Não pode</h3>
+      <ul><li>Aparecer na página de produto ao lado de preço e especificação.</li><li>Cabinho ligando a folha à cabeça.</li><li>Contorno preto, sombra dura, 3D.</li><li>Maçã no peito, mordida, qualquer coisa da Apple.</li><li>Cores fora da paleta.</li></ul>
+    </div>
+  </section>
+
+  <footer class="rodape"><span>Mango · Mascote · 2026</span><span>Paródia de portfólio. Sem relação com a Apple.</span></footer>
+</main>
+<script type="module">
+import { iniciarTemas } from './temas.js';
+iniciarTemas();
+
+// Parede de palavras: cada linha repete os microtextos com a cabeça do Mangy entre eles.
+const PALAVRAS = ['Descascando…', 'Doce.', 'Caroço.', 'Caiu do pé.', 'Madura.', 'Nossa cor são todas.', 'Fruteira vazia.'];
+const CABECAS = [1, 2, 3, 4, 5, 6].map(n => `<img src="mascote/expressions-${n}.webp" alt="">`);
+document.querySelectorAll('.linha-p').forEach((linha, i) => {
+  const giro = [...PALAVRAS.slice(i), ...PALAVRAS.slice(0, i)];
+  const um = giro.map((p, j) => `<span class="${j % 2 ? 'vazado' : ''}">${p}</span>${CABECAS[(i + j) % 6]}`).join('');
+  linha.innerHTML = um.repeat(4); // ponytail: 4 cópias cobrem 1440 px com a animação de -25%
+});
+
+// Textura: curvas de nível de um relevo de senos, uma placa por cor.
+const CORES = ['#ff9f1c', '#1fb57a', '#ff5e7e', '#2f7bff', '#7b5cff', '#22b5e8'];
+const placa = (cor, s) => {
+  const linhas = [];
+  for (let k = 1; k <= 16; k++) {
+    const pts = [];
+    for (let a = 0; a <= 64; a++) {
+      const t = a / 64 * Math.PI * 2;
+      const r = k * 9 * (1 + .18 * Math.sin(3 * t + s) + .1 * Math.sin(5 * t + k * .3 + s * 2));
+      pts.push(`${(60 + r * Math.cos(t)).toFixed(1)},${(70 + r * Math.sin(t) * 1.15).toFixed(1)}`);
+    }
+    linhas.push(`<polyline points="${pts.join(' ')}" fill="none" stroke="${cor}" stroke-width="1.1" opacity="${(1 - k / 20).toFixed(2)}"/>`);
+  }
+  return `<svg viewBox="0 0 120 160" role="img" aria-label="Textura de linhas">${linhas.join('')}</svg>`;
+};
+document.getElementById('texturas').innerHTML = CORES.map((c, i) => placa(c, i * 1.7)).join('');
+</script>
+</body>
+</html>
