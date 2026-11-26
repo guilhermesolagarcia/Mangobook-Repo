@@ -1,6 +1,6 @@
 # RETOMAR — onde paramos
 
-Última sessão: **24/11/2026**, branch `planejamento-ecossistema`.
+Última sessão: **26/11/2026**, branch `planejamento-ecossistema`.
 Plano geral: livro "Ecossistema Mango" (link no `CLAUDE.md`). Spec e plano do kit: `docs/superpowers/specs|plans/2026-11-24-design-system-kit*`.
 
 ## Pronto
@@ -46,14 +46,14 @@ expressiva para campanhas, merch, adesivos e redes.
 
 ## Próximos passos (na ordem)
 
-1. ~~Decidir o mascote oficial.~~ **Aprovado em 24/11: Mangy** — `IA/MASCOTE/mangy-final.png`
-   (chibi com cabeça de manga, cabelo bagunçado, folha solta sem cabinho como no logo, logo da Mango em creme no peito,
-   degradê laranja → rosa-choque). É a referência de tudo daqui pra frente. Próximo: série de prompts 2 a 9
-   (folha de personagem, expressões, 6 cores, só os olhos, ícone, selo, escala, com produtos) em `refs/prompts-adesivos.md`,
-   sempre anexando o `mangy-final.png` e pedindo fundo branco liso.
-2. **Prancha `escolhas/marca/mascote.html`** no estilo Blazo: lockups com mascote, mascote nas 6 cores e expressões,
-   só os olhos, ícones de app, selos circulares, escala de maturação, parede de palavras, textura.
-   Imagens do mascote por IA (padrão Batmango); pranchas em código.
+1. ~~Mascote oficial~~ **Mangy** (24/11) e ~~série de imagens 2 a 9~~ (26/11), em `IA/MASCOTE/`.
+   Pendências da série: no **selo** (`circular.png`), a mão acenando saiu transparente; em **maturacao** e **produto**,
+   o fundo saiu cinza e apareceu um cabinho (o Mangy tem folha solta). Pra refazer, é só trocar o PNG e rodar
+   `python scripts/recortar-mascote.py` (gera os recortes em `escolhas/marca/mascote/`).
+2. ~~Prancha `escolhas/marca/mascote.html`~~ (26/11): capa, duas camadas, quem é, folha, assinatura em 4 fundos,
+   expressões, 6 cores, só os olhos, ícone, selo, maturação, produtos, parede de palavras, cartaz, textura, pode/não pode.
+   Ícone **oficial = fundo creme**: o de degradê fica como alternativa (o MARCA.md rejeita glifo em quadrado com degradê).
+   Rosa do Mangy medido: `#FD228A` (ainda mais choque que o `#FF3D7F` dos adesivos); falta decidir qual fica.
 3. **Adesivos por IA, um por um.** Próximo: **Manga veloz** (prompt pronto em `refs/prompts-adesivos.md`).
    Depois urso, kaiju, rabisco; depois padrão próprio para letreiros e selos.
 4. Do plano do kit: `cartoes.html` (cartão-presente) e `apps.html` (ícones do MangoOS).
