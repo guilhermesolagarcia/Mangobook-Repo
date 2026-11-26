@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="pt-BR" data-tema="manga">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mango · Cartão-presente</title>
+<link rel="icon" href="/mango.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap">
+<link rel="stylesheet" href="/src/marca/marca.css">
+<link rel="stylesheet" href="./temas.css">
+<link rel="stylesheet" href="./base.css">
+<style>
+/* Cartão: proporção de cartão de crédito (85,6 × 54 mm). Tudo em em, então o tamanho vem do font-size. */
+/* o conteúdo fica em .in, que mede 5% da largura do cartão (cqw): escala igual em qualquer tamanho */
+.cartao{--w:340px;width:var(--w);aspect-ratio:85.6/54;border-radius:4.5%/7.1%;container-type:inline-size;position:relative;overflow:hidden;color:#fff;flex:none;
+  background:radial-gradient(70% 90% at 15% 10%,var(--a),transparent 70%),radial-gradient(70% 90% at 95% 100%,var(--c),transparent 70%),var(--b);
+  box-shadow:0 2px 4px rgba(0,0,0,.08),0 18px 36px -8px rgba(0,0,0,.28);isolation:isolate}
+.cartao .in{position:absolute;inset:0;font-size:5cqw}
+.cartao::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(255,255,255,.25);background:linear-gradient(115deg,rgba(255,255,255,.18),transparent 38%);pointer-events:none}
+.cartao .topo{position:absolute;left:1.1em;top:1em;right:1.1em;display:flex;justify-content:space-between;align-items:center;font-size:.78em;font-weight:600;letter-spacing:-.01em;z-index:2}
+.cartao .marca{display:flex;align-items:center;gap:.35em;font-size:1.15em;letter-spacing:-.035em}
+.cartao .marca .logo-m{height:1em;width:auto}
+.cartao .valor{position:absolute;left:1.05em;bottom:.9em;z-index:2;line-height:.9}
+.cartao .valor small{display:block;font-size:.68em;font-weight:500;opacity:.85;margin-bottom:.35em;letter-spacing:0}
+.cartao .valor b{font-size:2.6em;font-weight:700;letter-spacing:-.05em}
+.cartao .valor b span{font-size:.45em;font-weight:600;letter-spacing:-.02em;margin-right:.12em;vertical-align:.95em}
+.cartao .cod{position:absolute;right:1.1em;bottom:1.05em;font:500 .62em ui-monospace,Consolas,monospace;opacity:.8;z-index:2;letter-spacing:.06em}
+/* estilos */
+.cartao.mangy img{position:absolute;right:-6%;top:10%;height:112%;width:auto;transform:rotate(9deg);z-index:1;filter:drop-shadow(0 .4em .6em rgba(0,0,0,.2))}
+.cartao.mangy .cod,.cartao.mangy .topo span:last-child,.cartao.creme .cod,.cartao.creme .topo span:last-child{display:none}
+.cartao.tipo{background:#0b0b0c}
+.cartao.tipo .palavra{position:absolute;left:.3em;top:.75em;font-size:3.4em;font-weight:900;letter-spacing:-.07em;line-height:.85;
+  background:linear-gradient(120deg,var(--a),var(--b) 50%,var(--c));-webkit-background-clip:text;background-clip:text;color:transparent}
+.cartao.creme{background:#fef6ec;color:#1d1d1f}
+.cartao.creme::after{box-shadow:inset 0 0 0 1px rgba(0,0,0,.06);background:none}
+.cartao.creme .sombra{position:absolute;right:-10%;top:4%;height:104%;aspect-ratio:466/394;background:linear-gradient(135deg,var(--a),var(--b) 55%,var(--c));
+  -webkit-mask:url(mascote/mono-cabeca.webp) center/contain no-repeat;mask:url(mascote/mono-cabeca.webp) center/contain no-repeat;transform:rotate(-8deg);opacity:.95}
+.cartao.creme .valor b{background:linear-gradient(120deg,var(--b),var(--c));-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* Capa */
+.capa{border-radius:32px;min-height:560px;color:#fff;display:grid;grid-template-columns:1fr 1.1fr;grid-template-rows:auto 1fr auto;padding:36px;column-gap:24px;overflow:hidden}
+.capa .topo,.capa .ficha{grid-column:1/-1;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px;position:relative;z-index:3}
+.capa .topo{font-weight:600}
+.capa .ficha{border-top:1px solid rgba(255,255,255,.35);padding-top:14px;opacity:.92}
+.capa h1{font-size:clamp(56px,7.4vw,104px);font-weight:700;letter-spacing:-.06em;line-height:.92;align-self:center}
+.capa .sub{font-size:clamp(19px,2vw,24px);font-weight:500;letter-spacing:-.025em;margin-top:18px;max-width:15em;line-height:1.3}
+.pilha{position:relative;align-self:center;height:360px}
+.pilha .cartao{position:absolute;--w:min(380px,30vw)}
+.pilha .cartao:nth-child(1){left:2%;top:8%;transform:rotate(-14deg)}
+.pilha .cartao:nth-child(2){left:18%;top:22%;transform:rotate(-3deg)}
+.pilha .cartao:nth-child(3){left:32%;top:40%;transform:rotate(8deg)}
+
+/* Grade */
+.grade{display:grid;grid-template-columns:auto repeat(3,1fr);gap:22px 18px;align-items:center}
+.grade .cab{font:600 12px Inter;letter-spacing:.08em;text-transform:uppercase;color:var(--tinta-2)}
+.grade .lin{display:grid;gap:3px}
+.grade .lin b{font-size:15px}
+.grade .cartao{--w:100%;width:100%}
+
+/* Frente e verso */
+.fv{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+.fv figure{display:grid;gap:12px}
+.fv .cartao{--w:100%;width:100%}
+.verso{background:#fef6ec;color:#1d1d1f}
+.verso::after{display:none}
+.verso .tarja{position:absolute;left:0;right:0;top:1.3em;height:2.2em;background:#1d1d1f}
+.verso .raspe{position:absolute;left:1.1em;top:4.6em;width:58%;height:2.3em;border-radius:.45em;display:grid;place-items:center;font:600 .75em Inter;color:#fff;letter-spacing:.02em;
+  background:repeating-linear-gradient(135deg,#c7c7cc 0 .35em,#b8b8bd .35em .7em)}
+.verso .qr{position:absolute;right:1.1em;top:4.1em;width:5.4em;aspect-ratio:1;display:grid;grid-template-columns:repeat(9,1fr);gap:.08em;padding:.3em;background:#fff;border-radius:.3em}
+.verso .qr i{background:#1d1d1f;border-radius:.08em}
+.verso .qr i.v{background:transparent}
+.verso .passos{position:absolute;left:1.1em;bottom:1em;right:8em;font-size:.62em;line-height:1.45;color:#3a3a3c}
+.verso .passos b{color:#1d1d1f}
+.verso .mini{position:absolute;right:1.1em;bottom:1em;display:flex;align-items:center;gap:.3em;font-size:.72em;font-weight:600}
+.verso .mini .logo-m{height:1em;width:auto}
+.notas{display:grid;gap:10px;padding:0}
+.notas li{list-style:none;position:relative;padding-left:32px;font-size:15px}
+.notas li span{position:absolute;left:0;top:0;font:600 12px/22px ui-monospace,Consolas,monospace;color:var(--tinta-2)}
+
+/* Embalagem */
+.emb{display:grid;grid-template-columns:1.2fr 1fr;gap:16px}
+.mesa{border-radius:22px;background:#e9e4dc;aspect-ratio:1.35;position:relative;overflow:hidden}
+.envelope{position:absolute;left:12%;top:20%;width:70%;aspect-ratio:1.55;background:#fef6ec;border-radius:10px;box-shadow:0 20px 40px rgba(0,0,0,.18);transform:rotate(-4deg)}
+.envelope::before{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(160deg,transparent 49.6%,rgba(0,0,0,.06) 50%,transparent 50.4%),linear-gradient(20deg,transparent 49.6%,rgba(0,0,0,.06) 50%,transparent 50.4%)}
+.envelope .cartao{position:absolute;--w:62%;width:62%;left:6%;top:-38%;transform:rotate(-7deg);z-index:0}
+.envelope .frente{position:absolute;inset:0;border-radius:inherit;background:#fef6ec;clip-path:polygon(0 30%,50% 62%,100% 30%,100% 100%,0 100%);z-index:1;box-shadow:inset 0 -1px 0 rgba(0,0,0,.04)}
+.envelope .lacre{position:absolute;width:24%;left:38%;top:46%;z-index:2;filter:drop-shadow(0 4px 8px rgba(0,0,0,.2))}
+.envelope .para{position:absolute;right:7%;bottom:9%;z-index:2;font-size:13px;color:#6e6e73;text-align:right;line-height:1.35}
+.envelope .para b{color:#1d1d1f;font-size:16px}
+.digital{border-radius:22px;background:var(--fundo);box-shadow:inset 0 0 0 1px var(--linha);padding:22px;display:grid;gap:12px;align-content:center}
+.balao{max-width:300px;border-radius:20px 20px 20px 6px;background:#e9e9eb;color:#1d1d1f;padding:12px 14px;font-size:14px;line-height:1.35}
+.balao.eu{justify-self:end;border-radius:20px 20px 6px 20px;background:#2f7bff;color:#fff}
+.digital .cartao{--w:280px;justify-self:end}
+
+/* Valores */
+.valores{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.chip-v{border-radius:980px;padding:10px 18px;font-size:15px;font-weight:600;box-shadow:inset 0 0 0 1px var(--linha);background:var(--fundo)}
+.chip-v.on{background:var(--tinta);color:var(--cartao);box-shadow:none}
+
+/* Regras */
+.regras{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.regras ul{padding-left:1.1em;display:grid;gap:8px;font-size:15px}
+.regras h3{font-size:17px;font-weight:600;margin-bottom:12px;display:flex;gap:8px;align-items:center}
+.regras h3 i{width:20px;height:20px;border-radius:50%;display:inline-grid;place-items:center;color:#fff;font:700 12px Inter;font-style:normal}
+
+@media (max-width:900px){
+  .capa,.fv,.emb,.regras{grid-template-columns:1fr}
+  .pilha{height:300px}.pilha .cartao{--w:min(300px,70vw)}
+  .grade{grid-template-columns:1fr;gap:14px}
+  .grade .cab{display:none}
+}
+</style>
+</head>
+<body>
+<main class="prancha">
+
+  <section class="capa malha" aria-label="Capa">
+    <div class="topo"><span>Mango · Mango Store</span><span>Cartão-presente</span></div>
+    <div style="align-self:center">
+      <h1>Cartão-presente</h1>
+      <p class="sub">Você escolhe a cor. Quem ganha escolhe o resto.</p>
+    </div>
+    <div class="pilha" id="pilha" aria-hidden="true"></div>
+    <div class="ficha"><span>R$ 50 · R$ 100 · R$ 300</span><span>Físico e digital</span><span>Vale em tudo da Mango Store</span></div>
+  </section>
+
+  <section class="bloco">
+    <h2><span class="num">01</span>A coleção</h2>
+    <p class="rot">Cada valor tem uma família de cor · quatro estilos</p>
+    <div class="grade" id="grade"></div>
+  </section>
+
+  <section class="bloco">
+    <h2><span class="num">02</span>Frente e verso</h2>
+    <div class="fv">
+      <figure><div id="frente"></div><span class="mono">Frente · estilo Malha, R$ 100</span></figure>
+      <figure>
+        <div class="cartao verso" style="--w:100%;width:100%"><div class="in">
+          <span class="tarja"></span>
+          <span class="raspe">Raspe aqui</span>
+          <span class="qr" id="qr"></span>
+          <p class="passos"><b>Como usar:</b> abra a Mango Store, toque em Resgatar e digite o código ou aponte a câmera pro QR. O saldo vai pro seu Mango ID e não expira.</p>
+          <span class="mini"><span class="logo-m"></span>Mango Store</span>
+        </div></div>
+        <span class="mono">Verso · código raspável, QR e instruções</span>
+      </figure>
+    </div>
+    <ul class="notas" style="margin-top:22px">
+      <li><span>01</span>Valor sempre em <b>R$ inteiro</b>, sem centavos: "R$ 100", nunca "R$ 100,00".</li>
+      <li><span>02</span>Logo e "Mango Store" em cima, valor embaixo à esquerda. Nada mais na frente.</li>
+      <li><span>03</span>O verso é sempre creme e sério: é onde está a informação.</li>
+    </ul>
+  </section>
+
+  <section class="bloco">
+    <h2><span class="num">03</span>Embalagem e digital</h2>
+    <div class="emb">
+      <div class="mesa" aria-label="Cartão saindo do envelope, lacrado com o selo do Mangy">
+        <div class="envelope">
+          <span id="no-envelope"></span>
+          <span class="frente"></span>
+          <img class="lacre" src="mascote/circular-1.webp" alt="">
+          <span class="para">Para<br><b>Ana</b></span>
+        </div>
+      </div>
+      <div class="digital" aria-label="Cartão enviado por mensagem">
+        <div class="balao">Feliz aniversário! Escolhe o que quiser 🧡</div>
+        <div id="no-chat"></div>
+        <div class="balao">Você ganhou um cartão-presente da Mango Store. Toque pra resgatar.</div>
+        <div class="balao eu">AAAA obrigada!!! já sei o que vou comprar</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloco">
+    <h2><span class="num">04</span>Valores</h2>
+    <p class="rot">Três prontos na vitrine · outro valor de R$ 25 a R$ 2.000</p>
+    <div class="valores">
+      <span class="chip-v">R$ 50</span><span class="chip-v on">R$ 100</span><span class="chip-v">R$ 300</span><span class="chip-v">Outro valor</span>
+    </div>
+    <p class="mono" style="margin-top:14px">"Outro valor" usa a cor do valor pronto mais perto: até R$ 75 é manga, até R$ 200 é uva, acima é oceano.</p>
+  </section>
+
+  <section class="bloco regras">
+    <div>
+      <h3><i style="background:var(--c-verde)">✓</i>Pode</h3>
+      <ul><li>Mangy e degradê na frente: presente é camada expressiva.</li><li>Trocar o estilo; o valor manda na cor.</li><li>Selo do Mangy como lacre do envelope.</li></ul>
+    </div>
+    <div>
+      <h3><i style="background:var(--c-rosa)">✕</i>Não pode</h3>
+      <ul><li>Centavos, letras miúdas ou validade na frente.</li><li>Foto de produto: o cartão vale pra loja toda.</li><li>Misturar a família de cor de dois valores.</li></ul>
+    </div>
+  </section>
+
+  <footer class="rodape"><span>Mango · Cartão-presente · 2026</span><span>Paródia de portfólio. Sem relação com a Apple.</span></footer>
+</main>
+<script type="module">
+import { iniciarTemas } from './temas.js';
+iniciarTemas();
+
+// Valor manda na cor: 50 manga, 100 uva, 300 oceano
+const VALORES = [
+  { v: 50, nome: 'Manga', a: '#ffd23f', b: '#ff9f1c', c: '#ff5e7e', palavra: 'Doce.' },
+  { v: 100, nome: 'Uva', a: '#ff5e7e', b: '#a46bff', c: '#7b5cff', palavra: 'Madura.' },
+  { v: 300, nome: 'Oceano', a: '#22b5e8', b: '#2f7bff', c: '#7b5cff', palavra: 'Demais.' },
+];
+const ESTILOS = [['malha', 'Malha', 'Padrão da vitrine'], ['mangy', 'Mangy', 'Aniversário, data especial'], ['tipo', 'Tipográfico', 'Fim de ano, campanha'], ['creme', 'Creme', 'Empresa, mais discreto']];
+const cartao = ({ v, a, b, c, palavra }, estilo, w) => {
+  const miolo = { mangy: '<img src="mascote/mangy-final-1.webp" alt="">', tipo: `<span class="palavra">${palavra}</span>`, creme: '<span class="sombra"></span>' }[estilo] ?? '';
+  return `<div class="cartao ${estilo}" style="--a:${a};--b:${b};--c:${c}${w ? `;--w:${w}` : ''}" role="img" aria-label="Cartão-presente de R$ ${v}, estilo ${estilo}">
+    <div class="in">${miolo}<div class="topo"><span class="marca"><span class="logo-m"></span>Mango</span><span>Mango Store</span></div>
+    <div class="valor"><small>Cartão-presente</small><b><span>R$</span>${v}</b></div><span class="cod">•••• ${String(4821 + v).slice(-4)}</span></div></div>`;
+};
+
+document.getElementById('pilha').innerHTML = [cartao(VALORES[2], 'tipo'), cartao(VALORES[0], 'malha'), cartao(VALORES[1], 'mangy')].join('');
+document.getElementById('grade').innerHTML =
+  `<span></span>${VALORES.map(x => `<span class="cab">R$ ${x.v} · ${x.nome}</span>`).join('')}` +
+  ESTILOS.map(([id, nome, uso]) => `<div class="lin"><b>${nome}</b><span class="mono">${uso}</span></div>${VALORES.map(x => cartao(x, id)).join('')}`).join('');
+document.getElementById('frente').innerHTML = cartao(VALORES[1], 'malha', '100%');
+document.getElementById('no-envelope').innerHTML = cartao(VALORES[0], 'mangy', '62%');
+document.getElementById('no-chat').innerHTML = cartao(VALORES[1], 'mangy', '280px');
+
+// QR de mentira: 9x9 com os três cantos de QR e o miolo sorteado (fixo pela semente)
+let s = 7;
+const sorte = () => (s = (s * 9301 + 49297) % 233280) / 233280 > .5;
+const canto = (r, c) => (r < 3 && c < 3) || (r < 3 && c > 5) || (r > 5 && c < 3);
+document.getElementById('qr').innerHTML = Array.from({ length: 81 }, (_, i) => {
+  const r = Math.floor(i / 9), c = i % 9;
+  const cheio = canto(r, c) ? !(r % 6 === 1 && c % 6 === 1) : sorte();
+  return `<i class="${cheio ? '' : 'v'}"></i>`;
+}).join('');
+</script>
+</body>
+</html>

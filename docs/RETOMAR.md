@@ -57,7 +57,11 @@ expressiva para campanhas, merch, adesivos e redes.
    pintadas por CSS em qualquer cor. Se quiser mais capricho, refazer no GPT como silhueta branca.
 3. **Adesivos por IA, um por um.** Próximo: **Manga veloz** (prompt pronto em `refs/prompts-adesivos.md`).
    Depois urso, kaiju, rabisco; depois padrão próprio para letreiros e selos.
-4. Do plano do kit: `cartoes.html` (cartão-presente) e `apps.html` (ícones do MangoOS).
+4. ~~`apps.html`~~ e ~~`cartoes.html`~~ (26/11): **kit da marca fechado.** Apps do MangoOS usam degradê (exceção no MARCA.md);
+   cartão-presente: R$ 50 manga, R$ 100 uva, R$ 300 oceano × 4 estilos (malha, Mangy, tipográfico, creme).
+
+**Próximo (26/11): Fase 1 do livro, "A base"** — rotas + catálogo + layout comum (item 2 dos "Primeiros passos"),
+depois a loja em `/loja`. Adesivos ficam pro fim, depois da loja inteira.
 
 ## Texto para colar numa sessão nova
 

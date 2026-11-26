@@ -9,7 +9,7 @@ const base = process.argv[2] ?? 'http://localhost:5173';
 const so = process.argv[3];
 const chrome = process.env.CHROME ?? 'C:/Program Files/Google/Chrome/Application/chrome.exe';
 // ponytail: altura fixa por prancha; se a prancha crescer, aumente aqui
-const PRANCHAS = { prancha: 3870, logo: 2520, adesivos: 1760, mascote: 10100, apps: 4000 };
+const PRANCHAS = { prancha: 3870, logo: 2520, adesivos: 1760, mascote: 10100, apps: 4000, cartoes: 3400 };
 const saida = resolve('docs/imagens/kit');
 mkdirSync(saida, { recursive: true });
 
