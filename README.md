@@ -258,6 +258,9 @@ npm run dev
 | Endereço | O que abre |
 |:--|:--|
 | `localhost:5173/` | 🥭 O site do MangoBook Pure em React |
+| `localhost:5173/mangobook-pure` | A mesma página, no endereço próprio |
+| `localhost:5173/go-d1`, `/mangopad`, `/loja`... | "Em breve" para o que ainda não tem página (lido do catálogo) |
+| qualquer outro endereço | 404: "Essa página caiu do pé." |
 | `localhost:5173/escolhas/` | As páginas de escolha de design |
 | `localhost:5173/escolhas/pure.html` | O protótipo original em HTML, mantido como referência |
 
@@ -274,6 +277,8 @@ npm run build   # build de produção
 Projeto-Hardware/
 ├── MARCA.md           manual da marca Mango (vale pra tudo)
 ├── src/               o site em React
+│   ├── catalogo/      produtos.js: a fonte única de nomes, preços e status
+│   ├── paginas/       uma por rota (MangoBook Pure, em breve, 404) + Moldura
 │   ├── marca/         peças da marca, reaproveitáveis na loja
 │   ├── secoes/        as 15 seções da página
 │   ├── ganchos/       lógica repetida (aparição, abas, cor da foto)

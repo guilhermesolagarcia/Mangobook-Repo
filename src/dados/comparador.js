@@ -1,8 +1,11 @@
-// Comparador "Qual MangoBook é o seu?": modelos e as specs que viram barras.
+// Comparador "Qual MangoBook é o seu?": modelos e as specs que viram barras. Nome e preço vêm do catálogo.
+import { produto, precoAPartir, parcela } from '../catalogo/produtos.js';
+
+const PURE = produto('mangobook-pure'), PRIME = produto('mangobook-prime');
 export const MODELOS = {
-  pure: { nome: 'MangoBook Pure', desc: 'Leve, colorido e silencioso. Pra levar pra todo lado.', preco: 'A partir de R$ 7.999', parc: 'ou 12x de R$ 666,58 sem juros', tom: '#fff3d1',
+  pure: { nome: PURE.nome, desc: 'Leve, colorido e silencioso. Pra levar pra todo lado.', preco: precoAPartir(PURE), parc: parcela(PURE), tom: '#fff3d1',
     cores: ['var(--manga)', 'var(--rosa)', 'var(--folha)', 'var(--prata)'] },
-  prime: { nome: 'MangoBook Prime', desc: 'Tela maior, chip mais forte. Pra quem edita, compila e renderiza.', preco: 'A partir de R$ 12.999', parc: 'ou 12x de R$ 1.083,25 sem juros', tom: '#eceef3',
+  prime: { nome: PRIME.nome, desc: 'Tela maior, chip mais forte. Pra quem edita, compila e renderiza.', preco: precoAPartir(PRIME), parc: parcela(PRIME), tom: '#eceef3',
     cores: ['var(--prata)', '#3a3a3c'] },
 };
 

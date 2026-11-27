@@ -1,0 +1,8 @@
+/* "Em breve" e 404: uma coisa só no meio da tela, muito espaço em volta (MARCA.md: o produto é a decoração). */
+.aviso { min-height: 100svh; padding: 140px var(--gutter) 100px; display: grid; place-content: center; justify-items: center; gap: 18px;
+  text-align: center; background: var(--tile); }
+.aviso .olho { margin-bottom: 4px; }
+.aviso h1 { font-size: clamp(44px, 8vw, 96px); font-weight: 600; letter-spacing: -.04em; line-height: 1.02; }
+.aviso .frase { font-size: clamp(19px, 2.2vw, 24px); color: var(--ink-2); max-width: 30ch; text-wrap: balance; }
+.aviso .preco { font-size: 17px; }
+.aviso .acoes { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; justify-content: center; margin-top: 14px; }

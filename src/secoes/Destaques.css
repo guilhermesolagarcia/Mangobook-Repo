@@ -68,7 +68,7 @@
 .card.glifo .peca { margin: auto 0; display: grid; justify-items: center; gap: 18px; }
 .card.glifo .nota { color: rgba(0,0,0,.62); }
 
-/* Mango + Mangophone: verde-folha a ciano; o "copiado" viaja do celular para o notebook */
+/* Mango + Go D1: verde-folha a ciano; o "copiado" viaja do celular para o notebook */
 .card.juntos-c { background:
   radial-gradient(120% 70% at 50% 0%, #6fd3a8 0%, transparent 60%),
   radial-gradient(80% 60% at 0% 100%, #b6e880 0%, transparent 60%),

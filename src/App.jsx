@@ -1,46 +1,39 @@
-import Icones from './marca/Icones.jsx';
-import Navbar from './marca/Navbar.jsx';
-import Abertura from './secoes/Abertura.jsx';
-import Destaques from './secoes/Destaques.jsx';
-import Amor from './secoes/Amor.jsx';
-import Cores from './secoes/Cores.jsx';
-import Desempenho from './secoes/Desempenho.jsx';
-import Bateria from './secoes/Bateria.jsx';
-import Sentidos from './secoes/Sentidos.jsx';
-import Ia from './secoes/Ia.jsx';
-import Sistema from './secoes/Sistema.jsx';
-import Juntos from './secoes/Juntos.jsx';
-import Seguranca from './secoes/Seguranca.jsx';
-import Motivos from './secoes/Motivos.jsx';
-import Comparar from './secoes/Comparar.jsx';
-import Ambiente from './secoes/Ambiente.jsx';
-import Final from './secoes/Final.jsx';
-import Rodape from './marca/Rodape.jsx';
+import { lazy, Suspense, useEffect } from 'react';
+import { Routes, Route, useLocation, useParams } from 'react-router';
+import { produto } from './catalogo/produtos.js';
+import { EmBreve, NaoAchou } from './paginas/Aviso.jsx';
 
-// A ordem dos imports é a ordem do CSS: Navbar → seções na ordem da página → Rodapé.
+// Cada página carrega só o próprio código: quem abre a loja não paga pela página do MangoBook.
+const MangoBookPure = lazy(() => import('./paginas/MangoBookPure.jsx'));
+const LOJA = { nome: 'Mango Store', frase: 'Todos os aparelhos da Mango, num lugar só.' };
+
+// /go-d1, /mangopad...: produto do catálogo ainda sem página cai no "em breve"; o resto é 404.
+function Produto() {
+  const p = produto(useParams().id);
+  return p?.status === 'em-breve' ? <EmBreve key={p.id} produto={p} /> : <NaoAchou />;
+}
+
+// Trocar de página começa do topo (menos quando o endereço tem âncora, tipo #cores).
+function VoltaAoTopo() {
+  const { pathname, hash } = useLocation();
+  useEffect(() => { if (!hash) scrollTo(0, 0); }, [pathname, hash]);
+  return null;
+}
+
+// ponytail: / ainda é o MangoBook; quando a tela inicial da Mango existir, ela entra aqui.
 export default function App() {
   return (
     <>
-      <Icones />
-      <Navbar />
-      <main>
-        <Abertura />
-        <Destaques />
-        <Amor />
-        <Cores />
-        <Desempenho />
-        <Bateria />
-        <Sentidos />
-        <Ia />
-        <Sistema />
-        <Juntos />
-        <Seguranca />
-        <Motivos />
-        <Comparar />
-        <Ambiente />
-        <Final />
-      </main>
-      <Rodape />
+      <VoltaAoTopo />
+      <Suspense fallback={null}>
+        <Routes>
+          <Route path="/" element={<MangoBookPure />} />
+          <Route path="/mangobook-pure" element={<MangoBookPure />} />
+          <Route path="/loja" element={<EmBreve produto={LOJA} />} />
+          <Route path="/:id" element={<Produto />} />
+          <Route path="*" element={<NaoAchou />} />
+        </Routes>
+      </Suspense>
     </>
   );
 }

@@ -53,7 +53,7 @@ export default function Destaques() {
           <div className="peca"><p className="grande">13,6<small>"</small></p><p className="nota">Tela Pure Retina, 500 nits.</p></div></article>
         <article className="card claro"><span className="sobre">Mango Intelligence</span><h3>Inteligente.<br />E <span className="grad-ia">bem docinha</span>.</h3>
           <div className="peca"><div className="ia-art" aria-hidden="true"><svg viewBox="0 0 96 96"><defs><linearGradient id="g-ia" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#ff9f1c" /><stop offset=".45" stopColor="#ff5e7e" /><stop offset="1" stopColor="#7b5cff" /></linearGradient></defs><path d="M48 8c3 18 10 27 28 30-18 3-25 12-28 30-3-18-10-27-28-30 18-3 25-12 28-30z" fill="url(#g-ia)" /><path d="M76 58c1.5 8 4.5 11.5 12 13-7.5 1.5-10.5 5-12 13-1.5-8-4.5-11.5-12-13 7.5-1.5 10.5-5 12-13z" fill="url(#g-ia)" opacity=".8" /></svg></div><p className="nota">Escreve, resume e organiza, sem tirar nada do seu notebook.</p></div></article>
-        <article className="card juntos-c glifo"><span className="sobre">Mango + Mangophone</span><h3>Juntos, ficam<br />ainda mais doces.</h3>
+        <article className="card juntos-c glifo"><span className="sobre">Mango + Go D1</span><h3>Juntos, ficam<br />ainda mais doces.</h3>
           <div className="peca"><svg className="juntos-art" viewBox="0 0 260 190" aria-hidden="true">
             {/* notebook */}
             <rect x="10" y="40" width="160" height="104" rx="12" fill="#fff" />
@@ -64,7 +64,7 @@ export default function Destaques() {
             <rect x="203" y="84" width="42" height="84" rx="8" fill="#8fdcb6" opacity=".45" />
             {/* "copiado" saindo do celular */}
             <g className="bolha"><rect x="192" y="110" width="64" height="26" rx="13" fill="#1d1d1f" /><text x="224" y="127.5" fontSize="11" fontWeight="600" fill="#fff" textAnchor="middle" fontFamily="Inter, system-ui">copiado</text></g>
-          </svg><p className="nota">Copie no Mangophone, cole no MangoBook.</p></div></article>
+          </svg><p className="nota">Copie no Go D1, cole no MangoBook.</p></div></article>
         <article className="card priv-c glifo"><span className="sobre">Privacidade</span><h3>O que é seu<br />fica com você.</h3>
           <div className="peca"><svg className="priv-art" viewBox="0 -34 100 150" aria-hidden="true">
             {/* alça do cadeado no lugar da folha; a manga é o corpo, com o caroço vazado */}

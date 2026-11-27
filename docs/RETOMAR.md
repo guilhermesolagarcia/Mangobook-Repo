@@ -60,9 +60,14 @@ expressiva para campanhas, merch, adesivos e redes.
 4. ~~`apps.html`~~ e ~~`cartoes.html`~~ (26/11): **kit da marca fechado.** Apps do MangoOS usam degradê (exceção no MARCA.md);
    cartão-presente: 12 desenhos no estilo Lovable (system-3): valor gigante, um degradê só (arco), Mangy no lugar do coração.
 
-**Próximo (26/11): Fase 1 do livro, "A base"** — rotas + catálogo + layout comum (item 2 dos "Primeiros passos"),
-depois a loja em `/loja`. Adesivos ficam pro fim, depois da loja inteira.
+~~**Fase 1 do livro, "A base"**~~ (26/11, branch `fase-1-base`): React Router 7.18.5; catálogo único em
+`src/catalogo/produtos.js` (nome, linha, frase, preço, status; comparador já lê dele); `src/paginas/` com `Moldura`
+(ícones + navbar + rodapé lendo o catálogo), `MangoBookPure` (lazy, em `/` e `/mangobook-pure`), "em breve" e 404
+"Essa página caiu do pé." em `Aviso.jsx`. Mangophone virou **Go D1** no site todo. O MangoBook ficou idêntico (só o menu mudou).
+
+**Próximo: Fase 2, a loja (Galeria 2.0) em React, em `/loja`, lendo o catálogo.** Antes do código, aprovar o visual
+(seções na tabela "Vitrine escolhida" do livro). Adesivos ficam pro fim, depois da loja inteira.
 
 ## Texto para colar numa sessão nova
 
-> Lê o `docs/RETOMAR.md`. Vamos continuar o kit da marca: primeiro decidir o mascote oficial e montar a prancha do mascote no estilo da system-2 (Blazo), depois seguir os adesivos por IA um por um no padrão Batmango.
+> Lê o `docs/RETOMAR.md`. Vamos fazer a Fase 2: a loja (Galeria 2.0) em `/loja`, lendo `src/catalogo/produtos.js`.
