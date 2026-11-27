@@ -196,8 +196,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
     <div class="acoes"><a class="pill" href="#a">Comprar</a><span class="preco">A partir de R$ 7.999 ou 12x</span></div>
   </div>
   <picture class="fotoA produto">
-    <source media="(max-width: 734px)" srcset="/mango-book/mango-book/hero-manga-mobile.png">
-    <img src="/mango-book/mango-book/hero-manga.png" alt="MangoBook Pure amarelo-manga equilibrado na palma de uma mão">
+    <source media="(max-width: 734px)" srcset="/mango-book/hero-manga-mobile.png">
+    <img src="/mango-book/hero-manga.png" alt="MangoBook Pure amarelo-manga equilibrado na palma de uma mão">
   </picture>
   <span class="rotulo vidro">A · Neo clássico</span>
 </section>
@@ -206,7 +206,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 <!-- ======================= B ======================= -->
 <section class="dir" id="b">
   <picture class="fotoB produto">
-    <source media="(max-width: 734px)" srcset="/mango-book/mango-book/hero-manga-mobile.png">
+    <source media="(max-width: 734px)" srcset="/mango-book/hero-manga-mobile.png">
     <img src="/mango-book/image-4.png" alt="MangoBook Pure amarelo-manga aberto sobre a mão">
   </picture>
   <nav class="navB vidro" aria-label="Mango">
@@ -249,7 +249,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
       <div class="acoes"><a class="pill" href="#c">Comprar</a><a class="pill pill-sec" href="#c">Ver o filme</a></div>
     </div>
     <div class="fotoC produto">
-      <img src="/mango-book/mango-book/hero-manga.png" alt="MangoBook Pure amarelo-manga equilibrado na palma de uma mão">
+      <img src="/mango-book/hero-manga.png" alt="MangoBook Pure amarelo-manga equilibrado na palma de uma mão">
       <div class="flutua vidro f1"><b>18 h</b><span>de bateria</span></div>
       <div class="flutua vidro f2"><b>1,2 kg</b><span>alumínio reciclado</span></div>
       <div class="flutua vidro f3"><b>13,6"</b><span>tela Pure Retina</span></div>
@@ -275,8 +275,8 @@ function amostrar(src, variavel, alvo = document.documentElement) {
     alvo.style.setProperty(variavel, `rgb(${r} ${gr} ${b})`);
   };
 }
-amostrar('/mango-book/mango-book/hero-manga.png', '--papel');
-amostrar(matchMedia('(max-width: 734px)').matches ? '/mango-book/mango-book/hero-manga-mobile.png' : '/mango-book/image-4.png', '--papel-b', document.getElementById('b'));
+amostrar('/mango-book/hero-manga.png', '--papel');
+amostrar(matchMedia('(max-width: 734px)').matches ? '/mango-book/hero-manga-mobile.png' : '/mango-book/image-4.png', '--papel-b', document.getElementById('b'));
 </script>
 </body>
 </html>

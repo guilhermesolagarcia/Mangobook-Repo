@@ -1,6 +1,6 @@
-"""Recorta as folhas do Mangy (IA/MASCOTE) em adesivos soltos com fundo transparente.
+"""Recorta as folhas do Mangy (arte-ia/mangy) em adesivos soltos com fundo transparente.
 
-Uso: python scripts/recortar-mascote.py  ->  escolhas/marca/mascote/<folha>-<n>.webp
+Uso: python scripts/recortar-mascote.py  ->  design/marca/mascote/<folha>-<n>.webp
 O fundo é o que encosta na borda e tem a cor do canto (branco ou cinza da IA).
 """
 from pathlib import Path
@@ -8,8 +8,8 @@ import numpy as np
 from PIL import Image
 from scipy import ndimage
 
-ORIGEM = Path('IA/MASCOTE')
-SAIDA = Path('escolhas/marca/mascote')
+ORIGEM = Path('arte-ia/mangy')
+SAIDA = Path('design/marca/mascote')
 TOL = 10        # ponytail: tolerância fixa de cor do fundo; subir se sobrar halo, descer se comer a borda branca
 INTEIRAS = {'six-colors'}  # adesivos encostados: fica a fileira inteira
 # ponytail: adesivos cuja borda branca vaza pelo contorno da IA; a borda é refeita com BORDA px. Lista manual.

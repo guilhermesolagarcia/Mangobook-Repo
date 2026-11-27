@@ -4,12 +4,12 @@ Data: 24/11/2026 · Status: aguardando aprovação
 
 ## Por quê
 
-Recrutador de front-end olha por poucos segundos. A Mango já tem um design system de verdade (`MARCA.md` + `src/marca/`), mas ele está escondido num `.md`. Este trabalho deixa o sistema **visível**: pranchas em HTML no estilo dos kits de marca de `refs/systems/` (Mastercard, Blazo, Lovable, ícones de app, Altitude), e imagens PNG tiradas delas para usar no README, em posts e na futura página Bastidores.
+Recrutador de front-end olha por poucos segundos. A Mango já tem um design system de verdade (`MARCA.md` + `src/marca/`), mas ele está escondido num `.md`. Este trabalho deixa o sistema **visível**: pranchas em HTML no estilo dos kits de marca de `referencias/sistemas-de-marca/` (Mastercard, Blazo, Lovable, ícones de app, Altitude), e imagens PNG tiradas delas para usar no README, em posts e na futura página Bastidores.
 
 ## Metas
 
 - Pranchas em HTML, visuais, com as cores e o logo **iguais ao código**.
-- Cada prancha tem **variações** para escolher, com o mesmo seletor do `escolhas/loja.html` (`proto-picker`).
+- Cada prancha tem **variações** para escolher, com o mesmo seletor do `design/prototipos/loja.html` (`proto-picker`).
 - Um comando gera os PNGs do kit.
 
 ## Fora do escopo (hoje)
@@ -28,7 +28,7 @@ Recrutador de front-end olha por poucos segundos. A Mango já tem um design syst
 
 | | Abordagem | Troca |
 |---|---|---|
-| **A (escolhida)** | Pranchas HTML em `escolhas/marca/`, abertas pelo `npm run dev`, PNG via Playwright | rápido, ver antes de aprovar; depois precisa virar React |
+| **A (escolhida)** | Pranchas HTML em `design/marca/`, abertas pelo `npm run dev`, PNG via Playwright | rápido, ver antes de aprovar; depois precisa virar React |
 | B | Direto em React (`/marca`) | já nasce no site, mas exige Router antes e só se vê no fim |
 | C | Gerar com IA | bonito de cara, mas não bate com o código |
 
@@ -36,7 +36,7 @@ Escolhida A: segue o método do Âmbar (visual primeiro) e cabe no uso de hoje.
 
 ## Como fica
 
-Arquivos em `escolhas/marca/`, servidos pelo Vite em `http://localhost:5173/escolhas/marca/<arquivo>.html`. Todos importam `/src/marca/marca.css` (tokens e peças) e usam `/mango.svg` como máscara do logo, então trocar uma cor no CSS muda as pranchas.
+Arquivos em `design/marca/`, servidos pelo Vite em `http://localhost:5173/design/marca/<arquivo>.html`. Todos importam `/src/marca/marca.css` (tokens e peças) e usam `/mango.svg` como máscara do logo, então trocar uma cor no CSS muda as pranchas.
 
 As 6 cores "todas" (`#ff9f1c #1fb57a #ff5e7e #2f7bff #7b5cff #22b5e8`) ainda não estão no `marca.css`; entram lá como `--c-manga`, `--c-verde`, `--c-rosa`, `--c-azul`, `--c-roxo`, `--c-ciano`, junto com os degradês do manual.
 
@@ -50,7 +50,7 @@ Todas as pranchas trocam entre os 6 temas de degradê (ver "Decisões"). A colun
 | 4 | `cartoes.html` | Lovable | cartão-presente da Mango Store (R$ 50 / 100 / 300) com os degradês da marca | grade com 12 combinações |
 | 5 | `apps.html` | ícones de app | ícones dos apps do MangoOS em squircle com degradê de malha | claro · escuro |
 
-`escolhas/marca/index.html` lista as cinco.
+`design/marca/index.html` lista as cinco.
 
 Cada variação também abre pela URL (`prancha.html?v=escura`), para o print achar ela sem clicar.
 

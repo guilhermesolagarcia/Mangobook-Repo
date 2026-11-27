@@ -1,19 +1,8 @@
 <p align="center">
-  <img src="docs/readme/banner.svg" alt="Mango. Pense doce." width="100%">
+  <img src="docs/imagens/readme/banner.svg" alt="Mango. Pense doce." width="100%">
 </p>
 
 <h3 align="center">Uma marca de tecnologia inventada do zero, da fruta ao site.</h3>
-
-<p align="center">
-  <a href="#-a-mango"><b>A Mango</b></a> ·
-  <a href="#-a-família"><b>A família</b></a> ·
-  <a href="#️-roteiro"><b>Roteiro</b></a> ·
-  <a href="#-kit-da-marca"><b>Kit da marca</b></a> ·
-  <a href="#️-mango-store"><b>Loja</b></a> ·
-  <a href="#-mangobook-pure"><b>MangoBook Pure</b></a> ·
-  <a href="#-como-a-gente-trabalha"><b>Processo</b></a> ·
-  <a href="#-rodar-localmente"><b>Rodar</b></a>
-</p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/agora-páginas%20de%20produto-ff9f1c?style=flat-square" alt="Agora: páginas de produto">
@@ -27,6 +16,24 @@
 
 > [!NOTE]
 > **A Mango é uma marca fictícia.** Este repositório é uma peça de portfólio: uma paródia de empresa de tecnologia, sem nenhuma relação com a Apple. Produtos, preços e números são inventados.
+
+<br>
+
+## 📑 Sumário
+
+| | Parte | O que tem |
+|:-:|:--|:--|
+| 1 | [🥭 A Mango](#-a-mango) | A ideia, o logo, as cores, os princípios e [as duas camadas da marca](#duas-camadas-a-limpa-e-o-mangy) |
+| 2 | [🧺 A família](#-a-família) | Os 7 produtos e em que pé está cada um |
+| 3 | [🗺️ Roteiro](#️-roteiro) | O que já foi feito e a ordem do que vem |
+| 4 | [🎨 Kit da marca](#-kit-da-marca) | As pranchas: marca, logo, Mangy, apps, cartões e adesivos |
+| 5 | [🛍️ Mango Store](#️-mango-store) | O protótipo aprovado da loja |
+| 6 | [💻 MangoBook Pure](#-mangobook-pure) | A primeira página de produto, já em React |
+| 7 | [🧪 Como a gente trabalha](#-como-a-gente-trabalha) | Escolhas lado a lado, protótipo, crítica e React |
+| 8 | [🛠️ Stack](#️-stack) | O que foi usado (e o que não foi) |
+| 9 | [🚀 Rodar localmente](#-rodar-localmente) | Instalar, abrir e testar |
+| 10 | [🗂️ Onde está cada coisa](#️-onde-está-cada-coisa) | O mapa das pastas |
+| 11 | [👋 Autor](#-autor) | Quem fez |
 
 <br>
 
@@ -56,7 +63,7 @@ A Mango faz objetos que dão vontade de pegar na mão. Alumínio na cor, das bor
 </table>
 
 <p align="center">
-  <img src="docs/readme/cores.svg" alt="As cores da Mango" width="100%">
+  <img src="docs/imagens/readme/cores.svg" alt="As cores da Mango" width="100%">
 </p>
 
 | Princípio | O que significa |
@@ -70,7 +77,7 @@ A Mango faz objetos que dão vontade de pegar na mão. Alumínio na cor, das bor
 
 <table>
 <tr>
-<td width="34%" align="center"><img src="IA/MASCOTE/mangy-final.png" width="220" alt="Mangy, o mascote da Mango"></td>
+<td width="34%" align="center"><img src="arte-ia/mangy/mangy-final.png" width="220" alt="Mangy, o mascote da Mango"></td>
 <td width="66%" valign="middle">
 
 A camada **limpa** vende o produto: páginas de lançamento, loja, comparador.
@@ -131,12 +138,12 @@ O design system saiu do `MARCA.md` e virou prancha, feita em código e lendo as 
 
 | Prancha | O que mostra |
 |:--|:--|
-| [`prancha.html`](escolhas/marca/prancha.html) | Cores, degradês, tipografia, peças, aplicações, tom de voz e campanhas. |
-| [`logo.html`](escolhas/marca/logo.html) | Versões do logo, fundos, respiro, tamanhos e o que não fazer. |
-| [`mascote.html`](escolhas/marca/mascote.html) | O Mangy: expressões, 6 cores, só os olhos, ícone, selo, maturação, cartaz e textura. |
-| [`apps.html`](escolhas/marca/apps.html) | Os ícones dos apps do MangoOS. |
-| [`cartoes.html`](escolhas/marca/cartoes.html) | 12 cartões-presente: valor gigante, um degradê e o Mangy. |
-| [`adesivos.html`](escolhas/marca/adesivos.html) | Rascunho em SVG. Os definitivos vão ser feitos por IA. |
+| [`prancha.html`](design/marca/prancha.html) | Cores, degradês, tipografia, peças, aplicações, tom de voz e campanhas. |
+| [`logo.html`](design/marca/logo.html) | Versões do logo, fundos, respiro, tamanhos e o que não fazer. |
+| [`mascote.html`](design/marca/mascote.html) | O Mangy: expressões, 6 cores, só os olhos, ícone, selo, maturação, cartaz e textura. |
+| [`apps.html`](design/marca/apps.html) | Os ícones dos apps do MangoOS. |
+| [`cartoes.html`](design/marca/cartoes.html) | 12 cartões-presente: valor gigante, um degradê e o Mangy. |
+| [`adesivos.html`](design/marca/adesivos.html) | Rascunho em SVG. Os definitivos vão ser feitos por IA. |
 
 Cada prancha troca entre **6 temas de degradê** (Manga, Arco-íris, Uva, Oceano, Folha, Noite) pelo seletor ou pela URL (`?v=uva`). Com `npm run dev` rodando, `node scripts/kit.mjs` gera os PNGs de todas em `docs/imagens/kit/`.
 
@@ -145,7 +152,7 @@ Cada prancha troca entre **6 temas de degradê** (Manga, Arco-íris, Uva, Oceano
 ## 🛍️ Mango Store
 
 <p align="center">
-  <img src="docs/readme/loja.png" alt="Protótipo da Mango Store: campanha Presentes doces com o Mangy, fileira de categorias e lançamentos" width="100%">
+  <img src="docs/imagens/readme/loja.png" alt="Protótipo da Mango Store: campanha Presentes doces com o Mangy, fileira de categorias e lançamentos" width="100%">
 </p>
 
 O protótipo testou **5 vitrines** lado a lado. A escolhida foi a **Galeria**, depois revisada como **Galeria 2.0**:
@@ -154,7 +161,7 @@ O protótipo testou **5 vitrines** lado a lado. A escolhida foi a **Galeria**, d
 - **"Juntos é mais doce"**, o ponto alto da página: você monta um kit e vê o que os aparelhos fazem juntos e quanto economiza;
 - espaços de anúncio nos formatos finais (21:9, 4:5, 3:1), seção **"Por que Mango"**, gravação na tampa, oficinas e lojas especiais.
 
-Protótipo em [`escolhas/loja.html`](escolhas/loja.html). Vai pro React depois das páginas de produto.
+Protótipo em [`design/prototipos/loja.html`](design/prototipos/loja.html). Vai pro React depois das páginas de produto.
 
 <br>
 
@@ -163,7 +170,7 @@ Protótipo em [`escolhas/loja.html`](escolhas/loja.html). Vai pro React depois d
 <p align="center"><b>Doce por fora. Rápido por dentro.</b></p>
 
 <p align="center">
-  <img src="docs/readme/01-abertura.png" alt="Abertura do site: o MangoBook Pure amarelo equilibrado na palma de uma mão" width="100%">
+  <img src="docs/imagens/readme/01-abertura.png" alt="Abertura do site: o MangoBook Pure amarelo equilibrado na palma de uma mão" width="100%">
 </p>
 
 <table>
@@ -178,18 +185,18 @@ Protótipo em [`escolhas/loja.html`](escolhas/loja.html). Vai pro React depois d
 A primeira página de produto da Mango e o molde das próximas: **15 seções** contadas pelo scroll, no estilo das páginas de lançamento. O nome vem de **purê** de manga, sem o "ê".
 
 <p align="center">
-  <img src="docs/readme/10-amor.png" alt="Amor à primeira fruta: quatro MangoBook Pure abertos, vistos de cima, como fatias de manga" width="100%">
+  <img src="docs/imagens/readme/10-amor.png" alt="Amor à primeira fruta: quatro MangoBook Pure abertos, vistos de cima, como fatias de manga" width="100%">
   <br><b>Amor à primeira fruta.</b> <sub>Os quatro sabores abertos, arrumados como as fatias de uma manga.</sub>
 </p>
 
 <table>
 <tr>
-<td width="50%"><img src="docs/readme/03-cores.png" alt="Seletor de cor com a seção tingida de rosa"><br><b>Escolha o seu sabor.</b><br><sub>A seção inteira tinge na cor escolhida.</sub></td>
-<td width="50%"><img src="docs/readme/04-desempenho.png" alt="Desempenho com cartões de vidro sobre a foto"><br><b>Feito pra fazer e acontecer.</b><br><sub>Cartões de vidro e abas de uso.</sub></td>
+<td width="50%"><img src="docs/imagens/readme/03-cores.png" alt="Seletor de cor com a seção tingida de rosa"><br><b>Escolha o seu sabor.</b><br><sub>A seção inteira tinge na cor escolhida.</sub></td>
+<td width="50%"><img src="docs/imagens/readme/04-desempenho.png" alt="Desempenho com cartões de vidro sobre a foto"><br><b>Feito pra fazer e acontecer.</b><br><sub>Cartões de vidro e abas de uso.</sub></td>
 </tr>
 <tr>
-<td width="50%"><img src="docs/readme/05-bateria.png" alt="Bateria com o número 18 e a linha do dia"><br><b>Carregue de manhã. Esqueça até amanhã.</b><br><sub>O número conta até 18 e a linha do dia enche.</sub></td>
-<td width="50%"><img src="docs/readme/07-ia.png" alt="Mango Intelligence reescrevendo uma mensagem"><br><b>Pede que ele faz.</b><br><sub>Uma mensagem reescrita letra por letra, em três tons.</sub></td>
+<td width="50%"><img src="docs/imagens/readme/05-bateria.png" alt="Bateria com o número 18 e a linha do dia"><br><b>Carregue de manhã. Esqueça até amanhã.</b><br><sub>O número conta até 18 e a linha do dia enche.</sub></td>
+<td width="50%"><img src="docs/imagens/readme/07-ia.png" alt="Mango Intelligence reescrevendo uma mensagem"><br><b>Pede que ele faz.</b><br><sub>Uma mensagem reescrita letra por letra, em três tons.</sub></td>
 </tr>
 </table>
 
@@ -199,16 +206,16 @@ A primeira página de produto da Mango e o molde das próximas: **15 seções** 
 
 <table>
 <tr>
-<td width="50%"><img src="docs/readme/02-destaques.png" alt="Carrossel de destaques"><br><sub><b>Destaques:</b> 7 cards com avanço automático.</sub></td>
-<td width="50%"><img src="docs/readme/06-sentidos.png" alt="Bento de tela, câmera e som"><br><sub><b>Sentidos:</b> bento com equalizador e microfones.</sub></td>
+<td width="50%"><img src="docs/imagens/readme/02-destaques.png" alt="Carrossel de destaques"><br><sub><b>Destaques:</b> 7 cards com avanço automático.</sub></td>
+<td width="50%"><img src="docs/imagens/readme/06-sentidos.png" alt="Bento de tela, câmera e som"><br><sub><b>Sentidos:</b> bento com equalizador e microfones.</sub></td>
 </tr>
 <tr>
-<td width="50%"><img src="docs/readme/08-comparar.png" alt="Comparador Pure e Prime"><br><sub><b>Comparador:</b> o modelo escolhido vem pra frente.</sub></td>
-<td width="50%"><img src="docs/readme/09-seguranca.png" alt="Segurança em fundo preto"><br><sub><b>Segurança:</b> ícones que acendem em cada cor.</sub></td>
+<td width="50%"><img src="docs/imagens/readme/08-comparar.png" alt="Comparador Pure e Prime"><br><sub><b>Comparador:</b> o modelo escolhido vem pra frente.</sub></td>
+<td width="50%"><img src="docs/imagens/readme/09-seguranca.png" alt="Segurança em fundo preto"><br><sub><b>Segurança:</b> ícones que acendem em cada cor.</sub></td>
 </tr>
 <tr>
-<td width="50%" align="center"><img src="docs/readme/cel-cores.png" alt="Seletor de cor no celular" width="260"><br><sub>No celular: o banho de cor no sabor Folha.</sub></td>
-<td width="50%" align="center"><img src="docs/readme/cel-bateria.png" alt="Bateria no celular" width="260"><br><sub>A linha do dia em duas colunas.</sub></td>
+<td width="50%" align="center"><img src="docs/imagens/readme/cel-cores.png" alt="Seletor de cor no celular" width="260"><br><sub>No celular: o banho de cor no sabor Folha.</sub></td>
+<td width="50%" align="center"><img src="docs/imagens/readme/cel-bateria.png" alt="Bateria no celular" width="260"><br><sub>A linha do dia em duas colunas.</sub></td>
 </tr>
 </table>
 
@@ -236,7 +243,7 @@ A primeira página de produto da Mango e o molde das próximas: **15 seções** 
 
 ## 🧪 Como a gente trabalha
 
-O visual é decidido **antes** do código. Cada escolha vira uma página em [`escolhas/`](escolhas/) com várias opções lado a lado, testadas no navegador. Só o que foi aprovado vai pro React.
+O visual é decidido **antes** do código. Cada escolha vira uma página em [`design/`](design/) com várias opções lado a lado, testadas no navegador. Só o que foi aprovado vai pro React.
 
 ```mermaid
 flowchart LR
@@ -248,12 +255,12 @@ flowchart LR
 
 | Decisão | Opções testadas | Escolha |
 |:--|:--|:--|
-| **Abertura do MangoBook** | Neo clássico · Imersivo · Editorial | [Imersivo](escolhas/abertura-notebook.html) |
-| **Navbar** | 6 variações de vidro | [Ilha que encolhe](escolhas/navbars.html) ao rolar |
-| **Troca de cor** | 7 transições | [Banho de cor](escolhas/transicao-cores.html) |
-| **Ícones** | 5 estilos | [Traço fino, uma cor só](escolhas/icones.html) |
-| **Imagem do "Amor à primeira fruta"** | Fatias · Fruteira · Pilha de sabores | [Fatias](escolhas/amor-imagem.html) |
-| **Loja** | Galeria · Bento · Editorial · Catálogo · Palco | [Galeria 2.0](escolhas/loja.html) |
+| **Abertura do MangoBook** | Neo clássico · Imersivo · Editorial | [Imersivo](design/escolhas/abertura-notebook.html) |
+| **Navbar** | 6 variações de vidro | [Ilha que encolhe](design/escolhas/navbars.html) ao rolar |
+| **Troca de cor** | 7 transições | [Banho de cor](design/escolhas/transicao-cores.html) |
+| **Ícones** | 5 estilos | [Traço fino, uma cor só](design/escolhas/icones.html) |
+| **Imagem do "Amor à primeira fruta"** | Fatias · Fruteira · Pilha de sabores | [Fatias](design/escolhas/amor-imagem.html) |
+| **Loja** | Galeria · Bento · Editorial · Catálogo · Palco | [Galeria 2.0](design/prototipos/loja.html) |
 
 **Do protótipo ao React, sem mudar um pixel.** Um script abre o protótipo e o React lado a lado no Chrome, em 1440 × 900 e 390 × 844, tira um print de cada seção e de cada interação e compara pixel a pixel. Resultado no MangoBook Pure: **0,00% de diferença**.
 
@@ -310,39 +317,62 @@ npm run dev
 | `localhost:5173/mangobook-pure` | A mesma página, no endereço próprio |
 | `/go-d1`, `/mangopad`, `/loja`… | "Em breve" pro que ainda não tem página, lido do catálogo |
 | qualquer outro endereço | 404: "Essa página caiu do pé." |
-| `localhost:5173/escolhas/` | O índice das escolhas de design e do kit da marca |
-| `localhost:5173/escolhas/loja.html` | O protótipo da Mango Store |
+| `localhost:5173/design/` | O índice de todo o design: escolhas, protótipos e kit da marca |
+| `localhost:5173/design/marca/` | O kit da marca |
+| `localhost:5173/design/prototipos/loja.html` | O protótipo da Mango Store |
 
 ```bash
-npm test        # catálogo, abas, specs, textos e a independência de src/marca
+npm test        # catálogo, abas, specs, textos, temas das pranchas e a independência de src/marca
 npm run build   # build de produção
 ```
 
-<details>
-<summary><b>Estrutura de pastas</b></summary>
 <br>
+
+## 🗂️ Onde está cada coisa
+
+O repositório tem três tipos de coisa: **o site** (o que roda), **o design** (o que foi decidido antes do código) e **os bastidores** (arte, referências, documentação).
 
 ```
 Projeto-Hardware/
-├── MARCA.md           manual da marca (vale pra tudo da Mango)
-├── src/               o site em React
-│   ├── catalogo/      produtos.js: fonte única de nomes, preços e status
-│   ├── paginas/       uma por rota + a Moldura (navbar e rodapé)
-│   ├── marca/         peças da marca, reaproveitadas em todas as páginas
-│   ├── secoes/        as seções do MangoBook Pure
-│   ├── ganchos/       lógica repetida (aparição, abas, cor da foto)
-│   └── dados/         textos, specs e funções puras (com testes)
-├── public/            logo e imagens dos produtos
-├── escolhas/          páginas de decisão de design e protótipos (loja)
-│   └── marca/         o kit da marca: prancha, logo, mascote, apps, cartões
-├── IA/                o que a gente gerou por IA (Mangy, adesivos)
-├── refs/              inspiração de fora e prompts
-├── scripts/           kit.mjs (PNGs das pranchas), recortar-mascote.py
-├── docs/              RETOMAR.md, specs, planos e imagens deste README
-└── arquivo/teclado/   o FORGE 75 arquivado
+│
+├── README.md                você está aqui
+├── MARCA.md                 manual da marca: vale pra tudo da Mango
+│
+│  ── O SITE ─────────────────────────────────────────────────────────────
+├── src/                     o site em React
+│   ├── catalogo/            produtos.js: nomes, preços e status (fonte única)
+│   ├── paginas/             uma por rota + a Moldura (navbar e rodapé)
+│   ├── marca/               peças da marca usadas em todas as páginas
+│   ├── secoes/              as 15 seções do MangoBook Pure
+│   ├── ganchos/             lógica repetida (aparição, abas, cor da foto)
+│   └── dados/               textos, specs e funções puras (com testes)
+├── public/                  logo e imagens dos produtos
+│
+│  ── O DESIGN ───────────────────────────────────────────────────────────
+├── design/                  abre em localhost:5173/design/
+│   ├── marca/               o kit da marca: prancha, logo, Mangy, apps, cartões
+│   ├── prototipos/          os protótipos aprovados (MangoBook Pure, loja)
+│   └── escolhas/            as decisões, com as opções lado a lado
+│
+│  ── OS BASTIDORES ──────────────────────────────────────────────────────
+├── arte-ia/                 o que a gente gerou com IA
+│   ├── mangy/               o mascote: folhas originais e o histórico (v1, v2)
+│   ├── adesivos/            adesivos prontos (o Batmango é o padrão)
+│   ├── prompts/             os prompts usados
+│   └── referencias/         imagens de apoio pros prompts
+├── referencias/             inspiração de fora (não é nosso)
+│   ├── sistemas-de-marca/   sistemas de marca que guiaram o kit
+│   └── adesivos/            estilos de adesivo de referência
+├── scripts/                 kit.mjs (PNGs das pranchas), recortar-mascote.py
+├── docs/
+│   ├── RETOMAR.md           onde o trabalho parou e o próximo passo
+│   ├── specs/               o desenho de cada etapa, antes do código
+│   ├── planos/              o passo a passo de cada etapa
+│   └── imagens/             imagens do README e PNGs do kit
+└── arquivo/teclado/         o FORGE 75, primeira ideia do projeto, arquivada
 ```
 
-</details>
+<sub>`.ferramentas/` é uma cópia de consulta das skills de IA usadas no projeto; não faz parte do site.</sub>
 
 <br>
 

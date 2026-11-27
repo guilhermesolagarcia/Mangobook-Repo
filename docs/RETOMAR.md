@@ -1,19 +1,19 @@
 # RETOMAR — onde paramos
 
 Última sessão: **26/11/2026**, branch `planejamento-ecossistema`.
-Plano geral: livro "Ecossistema Mango" (link no `CLAUDE.md`). Spec e plano do kit: `docs/superpowers/specs|plans/2026-11-24-design-system-kit*`.
+Plano geral: livro "Ecossistema Mango" (link no `CLAUDE.md`). Spec e plano do kit: `docs/specs|plans/2026-11-24-design-system-kit*`.
 
 ## Pronto
 
-- `escolhas/marca/prancha.html` — prancha da marca (cores, tipo, peças, aplicações, tom de voz, 06 Campanhas), 6 temas de degradê (`?v=manga|arco-iris|uva|oceano|folha|noite`).
-- `escolhas/marca/logo.html` — versões, fundos, respiro, tamanhos, não fazer.
-- `escolhas/marca/adesivos.html` — **rascunho** em SVG (v5). Vai ser substituído por adesivos feitos por IA.
+- `design/marca/prancha.html` — prancha da marca (cores, tipo, peças, aplicações, tom de voz, 06 Campanhas), 6 temas de degradê (`?v=manga|arco-iris|uva|oceano|folha|noite`).
+- `design/marca/logo.html` — versões, fundos, respiro, tamanhos, não fazer.
+- `design/marca/adesivos.html` — **rascunho** em SVG (v5). Vai ser substituído por adesivos feitos por IA.
 - `scripts/kit.mjs` — `npm run dev` + `node scripts/kit.mjs` gera PNGs em `docs/imagens/kit/`.
-- `refs/prompts-adesivos.md` — prompts de todos os adesivos + **padrão Batmango**.
+- `arte-ia/prompts/adesivos.md` — prompts de todos os adesivos + **padrão Batmango**.
 
 ## Decisões desta sessão
 
-- **Adesivos agora são feitos por IA, um por um.** Padrão aprovado: `IA/STICKERS/batmango.png`
+- **Adesivos agora são feitos por IA, um por um.** Padrão aprovado: `arte-ia/adesivos/batmango.png`
   (corpo inteiro chibi, um degradê laranja → rosa-choque, detalhes vazados em creme, sem linha preta,
   folha verde e cabinho marrom chapados, borda branca grossa, fundo transparente).
 - Rosa dos adesivos e do Mangy: **`#FD228A`** (decidido em 26/11, está no MARCA.md).
@@ -22,7 +22,7 @@ Plano geral: livro "Ecossistema Mango" (link no `CLAUDE.md`). Spec e plano do ki
 
 ## A virada: a system-2 (Blazo) mostra o que falta
 
-`refs/systems/system-2.png` é um sistema de marca **inteiro que nasce de um mascote**. Tudo deriva dele:
+`referencias/sistemas-de-marca/system-2.png` é um sistema de marca **inteiro que nasce de um mascote**. Tudo deriva dele:
 
 | No Blazo | O que é | Como seria na Mango |
 |---|---|---|
@@ -46,16 +46,16 @@ expressiva para campanhas, merch, adesivos e redes.
 
 ## Próximos passos (na ordem)
 
-1. ~~Mascote oficial~~ **Mangy** (24/11) e ~~série de imagens 2 a 9~~ (26/11), em `IA/MASCOTE/`.
+1. ~~Mascote oficial~~ **Mangy** (24/11) e ~~série de imagens 2 a 9~~ (26/11), em `arte-ia/mangy/`.
    Selo refeito em 26/11 (mão opaca); fica com "NOSSA COR SÃO TODAS" (decidido: não refazer). Pendência opcional: em **maturacao** e **produto**,
    o fundo saiu cinza e apareceu um cabinho (o Mangy tem folha solta). Pra refazer, é só trocar o PNG e rodar
-   `python scripts/recortar-mascote.py` (gera os recortes em `escolhas/marca/mascote/`).
-2. ~~Prancha `escolhas/marca/mascote.html`~~ (26/11): capa, duas camadas, quem é, folha, assinatura em 4 fundos,
+   `python scripts/recortar-mascote.py` (gera os recortes em `design/marca/mascote/`).
+2. ~~Prancha `design/marca/mascote.html`~~ (26/11): capa, duas camadas, quem é, folha, assinatura em 4 fundos,
    expressões, 6 cores, só os olhos, ícone, selo, maturação, produtos, parede de palavras, cartaz, textura, pode/não pode.
    Ícone **oficial = fundo creme**: o de degradê fica como alternativa (o MARCA.md rejeita glifo em quadrado com degradê).
    Seção **09 Uma cor só**: máscaras `mono-corpo`/`mono-cabeca` geradas pelo script (cor vira tinta, creme vira vazado),
    pintadas por CSS em qualquer cor. Se quiser mais capricho, refazer no GPT como silhueta branca.
-3. **Adesivos por IA, um por um.** Próximo: **Manga veloz** (prompt pronto em `refs/prompts-adesivos.md`).
+3. **Adesivos por IA, um por um.** Próximo: **Manga veloz** (prompt pronto em `arte-ia/prompts/adesivos.md`).
    Depois urso, kaiju, rabisco; depois padrão próprio para letreiros e selos.
 4. ~~`apps.html`~~ e ~~`cartoes.html`~~ (26/11): **kit da marca fechado.** Apps do MangoOS usam degradê (exceção no MARCA.md);
    cartão-presente: 12 desenhos no estilo Lovable (system-3): valor gigante, um degradê só (arco), Mangy no lugar do coração.
@@ -75,7 +75,11 @@ A loja vira vitrine que manda pras páginas; o kit e a sacola dependem dos preç
 Loja no React em duas levas (1: campanha, categorias, lançamentos, kit, acessórios, sacola; 2: o resto).
 Pergunta adiada pra quando a loja voltar: o desconto do kit na sacola (hoje o protótipo perde o desconto ao adicionar;
 proposta: desconto automático por quantidade de aparelhos, com a linha "Juntos é mais doce: −R$ X").
-README reescrito com foco na Mango (marca → família → roteiro → kit → loja → MangoBook).
+README reescrito com foco na Mango (marca → família → roteiro → kit → loja → MangoBook), com sumário e mapa de pastas.
+**Pastas reorganizadas (27/11):** `escolhas/` virou `design/` (`marca/`, `prototipos/`, `escolhas/`); `IA/` virou `arte-ia/`
+(`mangy/`, `adesivos/`, `prompts/`, `referencias/`); `refs/` virou `referencias/` (`sistemas-de-marca/`, `adesivos/`);
+`docs/superpowers/` virou `docs/specs/` e `docs/planos/`; `public/mango-book/mango-book/` foi achatado. `npm test` agora roda os testes de `design/` também.
+O servidor do Vite iniciado pelo Claude é derrubado por falta de memória quando a sessão fica parada: melhor rodar `npm run dev` num terminal próprio.
 
 **Próximo: páginas de produto, uma por uma.** Começar pelo **MangoBook Prime** (já tem preço). Antes do código, pensar o visual.
 

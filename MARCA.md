@@ -1,6 +1,6 @@
 # Manual da marca Mango
 
-Tudo o que define a Mango, para qualquer projeto dela (a página do MangoBook, a futura loja, o que vier) parecer da mesma empresa. Os valores saem do protótipo `escolhas/pure.html`; se os dois discordarem, o protótipo aprovado ganha e este arquivo é corrigido.
+Tudo o que define a Mango, para qualquer projeto dela (a página do MangoBook, a futura loja, o que vier) parecer da mesma empresa. Os valores saem do protótipo `design/prototipos/pure.html`; se os dois discordarem, o protótipo aprovado ganha e este arquivo é corrigido.
 
 **O que é fixo:** logo, cores da marca, tipografia, peças visuais e tom de voz.
 **O que é provisório:** os produtos e as cores de produto. Podem mudar a qualquer momento, inclusive o MangoBook.
@@ -185,7 +185,7 @@ Padrão dos nomes até agora: "Mango" + palavra em inglês, colado (MangoBook, M
 
 - **Botões azuis.** Botão é preto; azul só em link de texto.
 - **Laranja como "a cor da marca".** A Mango é todas as cores.
-- **Glifo em quadrado com degradê** (estilo ícone de app): "muito comum". **Exceção (26/11):** os ícones dos apps do MangoOS usam degradê, porque é o uniforme do sistema (`escolhas/marca/apps.html`). Logo, Mangy e o resto da marca seguem a regra.
+- **Glifo em quadrado com degradê** (estilo ícone de app): "muito comum". **Exceção (26/11):** os ícones dos apps do MangoOS usam degradê, porque é o uniforme do sistema (`design/marca/apps.html`). Logo, Mangy e o resto da marca seguem a regra.
 - **Cópia literal da Apple:** a imagem `mango-book/quatro-cores.png` ficou parecida demais com o Neo e é provisória.
 - **Navbar simples, sem vidro.**
 - **Abertura sem impacto** e seções sem foco no produto (o erro da primeira versão do teclado FORGE 75).

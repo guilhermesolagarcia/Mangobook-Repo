@@ -825,7 +825,7 @@ footer { background: var(--tile); color: var(--ink-2); font-size: 12px; padding:
   <section class="sec papel final" aria-labelledby="t-final">
     <h2 class="titulo" id="t-final" style="margin-inline:auto">O seu sabor está esperando.</h2>
     <div class="acoes"><a class="pill" href="#cores">Comprar</a><span class="preco" style="color:var(--ink-2)">A partir de R$ 7.999 ou 12x de R$ 666,58</span></div>
-    <img class="funde" src="/mango-book/mango-book/hero-manga.png" alt="MangoBook Pure equilibrado na palma de uma mão">
+    <img class="funde" src="/mango-book/hero-manga.png" alt="MangoBook Pure equilibrado na palma de uma mão">
   </section>
 
 </main>
@@ -920,7 +920,7 @@ amostrar('/mango-book/image-4.png', '--papel');
   const ver = () => { const y = 40; nav.classList.toggle('sobre-escuro', pretas.some((p) => { const r = p.getBoundingClientRect(); return r.top < y && r.bottom > y; })); };
   addEventListener('scroll', ver, { passive: true }); ver();
 })();
-amostrar('/mango-book/mango-book/hero-manga.png', '--papel-final');
+amostrar('/mango-book/hero-manga.png', '--papel-final');
 amostrar('/mango-book/cor-manga.png', '--fundo-cmp'); // fundo do comparador = fundo das fotos, sem halo
 const semMovimento = matchMedia('(prefers-reduced-motion: reduce)').matches;
 

@@ -8,7 +8,7 @@
 
 **Tech Stack:** React 19.3, Vite 8, three 0.186, @react-three/fiber 9, GSAP 3 + ScrollTrigger, liquid-glass-react 1.1, @shadergradient/react 2.4, testes com `node --test` (stdlib, sem dependência nova).
 
-**Spec:** `docs/superpowers/specs/2026-10-06-mango-forge75-site-design.md`
+**Spec:** `docs/specs/2026-10-06-mango-forge75-site-design.md`
 
 **Parte 2 (outro plano, depois desta):** Destaques, Cores, Switch, Números, `prefers-reduced-transparency`, passada de polish.
 

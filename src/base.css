@@ -1,4 +1,4 @@
-/* Base do site: reset e classes compartilhadas entre seções. Copiado de escolhas/pure.html. */
+/* Base do site: reset e classes compartilhadas entre seções. Copiado de design/prototipos/pure.html. */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font: 400 17px/1.47 "Inter", system-ui, sans-serif; letter-spacing: -0.022em; color: var(--ink);
   background: var(--branco); font-feature-settings: "cv11", "ss01"; -webkit-font-smoothing: antialiased; }

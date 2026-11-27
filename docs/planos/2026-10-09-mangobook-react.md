@@ -2,17 +2,17 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Passar `escolhas/pure.html` para React + Vite, idêntico no visual e no comportamento, com as peças de marca separadas em `src/marca/`.
+**Goal:** Passar `design/prototipos/pure.html` para React + Vite, idêntico no visual e no comportamento, com as peças de marca separadas em `src/marca/`.
 
 **Architecture:** Um componente por seção (`src/secoes/`), cada um com o seu `.css` copiado do protótipo; peças de marca em `src/marca/`; lógica repetida em `src/ganchos/`; dados e funções puras testáveis em `src/dados/`. O protótipo é a fonte da verdade: HTML vira JSX, CSS é copiado, o JS imperativo vira estado + efeitos.
 
 **Tech Stack:** React 19, Vite 8, `@phosphor-icons/web` 2.1.1, `node --test`, Chrome headless via CDP (Node 24, WebSocket nativo) para a comparação visual.
 
-**Spec:** `docs/superpowers/specs/2026-10-09-mangobook-react-design.md`
+**Spec:** `docs/specs/2026-10-09-mangobook-react-design.md`
 
 ## Global Constraints
 
-- Nenhuma mudança de visual, texto ou imagem em relação a `escolhas/pure.html` (linhas citadas abaixo se referem a esse arquivo no commit `b4535b9`).
+- Nenhuma mudança de visual, texto ou imagem em relação a `design/prototipos/pure.html` (linhas citadas abaixo se referem a esse arquivo no commit `b4535b9`).
 - Nomes de classe e ids do protótipo mantidos.
 - Ordem do CSS: `marca.css` → `base.css` → `Navbar.css` → seções na ordem do DOM → `Rodape.css`. Dentro de cada arquivo, as regras na ordem do protótipo e as media queries da seção no fim do arquivo.
 - Regras redefinidas mais adiante no protótipo (`.nav` transition na linha 234; `.motivos .mt` nas linhas 471–487) são fundidas na versão final dentro do arquivo dono.
@@ -166,14 +166,14 @@ test('ondas: 48 barras, 23 do meio acesas', () => {
 - [ ] Sistema: JSX 731–748; estado `aberta`; `ITENS_OS` e `CENAS_OS` (posições das janelas em `%`).
 - [ ] Juntos e Seguranca: JSX 751–776. Motivos: JSX 779–788; `Set` de abertos.
 - [ ] Comparar: JSX 791–811; `useAbas(2)`; `useCorDaFoto('/mango-book/cor-manga.png', '--fundo-cmp')`; `cresceu` liga com `useApareceu(barrasRef, {limiar: 0.3})`; bolha medida num `useLayoutEffect` com `ref` da aba ativa (`width = offsetWidth`, `translateX(offsetLeft - 5px)`) e de novo em `document.fonts.ready`; barras com `larguraBarra` só depois de `cresceu`.
-- [ ] Ambiente e Final: JSX 814–829; `useCorDaFoto('/mango-book/mango-book/hero-manga.png', '--papel-final')`.
+- [ ] Ambiente e Final: JSX 814–829; `useCorDaFoto('/mango-book/hero-manga.png', '--papel-final')`.
 - [ ] `npm run build` + `npm test` passam. Commit: `feat: seções de desempenho ao final em React`.
 
 ### Task 6: Comparação visual e correções
 
 **Files:** Create (scratchpad, fora do repositório) `compara.mjs`.
 
-- [ ] Script CDP: sobe nada (usa `npm run dev` já rodando em background), abre `chrome --headless=new --remote-debugging-port=9333`, para cada página (`/escolhas/pure.html` e `/`) e cada tamanho (1440×900, 390×844): rola até cada `section`/`footer`, espera 1,5 s, salva `pure-<tamanho>-<n>.png` e `react-<tamanho>-<n>.png`. Depois executa as interações (clicar chip Rosa, aba Criar, aba Resumir, segundo item da sanfona, primeiro "+", aba Prime, pausar carrossel) e salva prints de cada uma nos dois lados. Uma rodada extra com movimento reduzido (`Emulation.setEmulatedMedia` com `prefers-reduced-motion: reduce`).
+- [ ] Script CDP: sobe nada (usa `npm run dev` já rodando em background), abre `chrome --headless=new --remote-debugging-port=9333`, para cada página (`/design/prototipos/pure.html` e `/`) e cada tamanho (1440×900, 390×844): rola até cada `section`/`footer`, espera 1,5 s, salva `pure-<tamanho>-<n>.png` e `react-<tamanho>-<n>.png`. Depois executa as interações (clicar chip Rosa, aba Criar, aba Resumir, segundo item da sanfona, primeiro "+", aba Prime, pausar carrossel) e salva prints de cada uma nos dois lados. Uma rodada extra com movimento reduzido (`Emulation.setEmulatedMedia` com `prefers-reduced-motion: reduce`).
 - [ ] Olhar os pares; listar diferenças; corrigir; repetir até não sobrar diferença além do conteúdo animado no momento do print.
 - [ ] Commit(s): `fix: <diferença> igual ao protótipo`.
 - [ ] Final: `npm test`, `npm run build`, atualizar a memória do projeto.

@@ -4,7 +4,7 @@ Data: 2026-10-09 · Branch: `mangobook-react` (a partir da `main`)
 
 ## Objetivo
 
-Passar o protótipo aprovado `escolhas/pure.html` para o app React + Vite do projeto, **idêntico no visual e no comportamento**, com o código dividido em peças pequenas. As peças de marca ficam separadas para irem depois para o repositório da loja da Mango.
+Passar o protótipo aprovado `design/prototipos/pure.html` para o app React + Vite do projeto, **idêntico no visual e no comportamento**, com o código dividido em peças pequenas. As peças de marca ficam separadas para irem depois para o repositório da loja da Mango.
 
 **Sucesso =** prints do React iguais aos do protótipo nas mesmas posições de rolagem (desktop e celular), todas as interações funcionando igual, `npm run build` e `npm test` passando.
 
@@ -23,7 +23,7 @@ Passar o protótipo aprovado `escolhas/pure.html` para o app React + Vite do pro
 - `package.json`: `name` passa a `mangobook-pure`.
 - `index.html`: título "MangoBook Pure", descrição nova (paródia de portfólio), mantém Inter e o favicon `mango.svg`.
 - Imagens: `mango-book/` é movida para `public/mango-book/` (com a subpasta `mango-book/mango-book/`), para os caminhos `/mango-book/...` do protótipo continuarem valendo.
-- `escolhas/pure.html` fica intocado, como referência. Como ele busca `/mango-book/...` na raiz, depois da mudança ele é servido pelo próprio Vite (a pasta `public/` responde nesses caminhos).
+- `design/prototipos/pure.html` fica intocado, como referência. Como ele busca `/mango-book/...` na raiz, depois da mudança ele é servido pelo próprio Vite (a pasta `public/` responde nesses caminhos).
 - `public/teclado.png` sai (era do FORGE 75).
 
 ## 2. Estrutura

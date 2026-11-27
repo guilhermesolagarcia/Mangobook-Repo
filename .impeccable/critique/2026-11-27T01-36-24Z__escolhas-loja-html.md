@@ -11,7 +11,7 @@ target_path: "C:\\Users\\Pichau\\Desktop\\mango\\Projeto-Hardware\\escolhas\\loj
 timestamp: 2026-11-27T01-36-24Z
 slug: escolhas-loja-html
 ---
-# Crítica: Galeria 2.0 (escolhas/loja.html?v=1), 26/11
+# Crítica: Galeria 2.0 (design/prototipos/loja.html?v=1), 26/11
 
 Method: dual-agent (A: revisão de design · B: detector + navegador)
 

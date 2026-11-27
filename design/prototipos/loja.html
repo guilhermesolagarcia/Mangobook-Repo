@@ -294,7 +294,7 @@ ul{list-style:none;padding:0}
 .g2-cartao{aspect-ratio:1.586;border-radius:clamp(12px,1.6vw,20px);position:relative;overflow:hidden;color:#fff;
   background:linear-gradient(120deg,#ff9f1c,#fd228a 45%,#7b5cff 80%,#2f7bff);box-shadow:0 30px 50px -24px rgba(0,0,0,.45);transform:rotate(-6deg)}
 .g2-cartao .cab{position:absolute;left:-8%;bottom:-30%;width:70%;aspect-ratio:466/394;background:#fef6ec;
-  -webkit-mask:url(marca/mascote/mono-cabeca.webp) center/contain no-repeat;mask:url(marca/mascote/mono-cabeca.webp) center/contain no-repeat}
+  -webkit-mask:url(../marca/mascote/mono-cabeca.webp) center/contain no-repeat;mask:url(../marca/mascote/mono-cabeca.webp) center/contain no-repeat}
 .g2-cartao b{position:absolute;right:7%;top:9%;font-size:clamp(30px,4vw,56px);font-weight:700;letter-spacing:-.04em;line-height:1}
 .g2-cartao b small{font-size:.4em;font-weight:600;margin-right:.1em}
 
@@ -857,7 +857,7 @@ const galeria2 = {html: () => `<div class="g2-promo" role="region" aria-label="P
     <div class="txt"><h2 id="g2-camp-t">Presentes<br>doces.</h2><p>Tem um Mango pra cada pessoa da sua lista. Na dúvida, dá o cartão-presente: vale pra loja inteira.</p>
       <div class="g2-valores" role="group" aria-label="Valor do cartão-presente">${[50, 100, 300, 500].map(v => `<button data-vale-v="${v}" aria-pressed="${v === 100}">R$ ${v}</button>`).join('')}</div>
       <div class="acoes-camp"><a class="pill" href="#">Dar um cartão-presente</a><a class="mais" href="#lancamentos">Ver ideias de presente</a></div></div>
-    <div class="cena" aria-hidden="true"><div class="g2-cartao"><span class="cab"></span><b data-vale><small>R$</small>100</b></div><img src="marca/mascote/produto-1.webp" alt=""></div></section>
+    <div class="cena" aria-hidden="true"><div class="g2-cartao"><span class="cab"></span><b data-vale><small>R$</small>100</b></div><img src="../marca/mascote/produto-1.webp" alt=""></div></section>
 
   <nav class="trilho g-cats" aria-label="Categorias">${P.map(p => `<a class="g-cat" href="#prod-${p.id}" style="${vars(p)}"><span class="art">${art(p)}</span>${p.nome}${p.novo ? '<em>Novo</em>' : ''}</a>`).join('')}</nav>
 
@@ -884,7 +884,7 @@ const galeria2 = {html: () => `<div class="g2-promo" role="region" aria-label="P
 
   <section class="g-bloco" aria-labelledby="g2-p-t">
     <div class="g2-perso">
-      <div class="g2-mesa"><div class="g2-tampa"><span data-grav>Pense doce.</span></div><img class="adesivo" src="marca/mascote/expressions-6.webp" alt="Adesivo Mango Peels do Mangy piscando" loading="lazy"></div>
+      <div class="g2-mesa"><div class="g2-tampa"><span data-grav>Pense doce.</span></div><img class="adesivo" src="../marca/mascote/expressions-6.webp" alt="Adesivo Mango Peels do Mangy piscando" loading="lazy"></div>
       <div><h2 class="h-sec curto" id="g2-p-t">Personalize.</h2><p class="lead">Escreva o que quiser na tampa do MangoBook. A gravação é grátis.</p>
         <label class="sr" for="g2-grav">Texto da gravação</label><input id="g2-grav" class="g2-grav-in" maxlength="24" placeholder="Seu nome, uma frase, um emoji" data-grav-in>
         <p class="g2-conta-grav" data-grav-conta>Até 24 caracteres.</p>
@@ -899,8 +899,8 @@ const galeria2 = {html: () => `<div class="g2-promo" role="region" aria-label="P
     <h2 class="h-sec" id="g2-m-t">Por que Mango. <span>Mais que um aparelho bonito.</span></h2>
     <figure class="anuncio g2-video">${tag('Vídeo-manifesto · 16:9')}<button class="g2-play" aria-label="Assistir ao manifesto">${icon('ph-play')}</button><figcaption>O manifesto da Mango · 1 min</figcaption></figure>
     <div class="g2-bento">
-      <article class="g2-b l4 cores"><h3>Nossa cor são todas.</h3><p>Seis cores, um jeito de ser. Escolha a sua. Ou todas.</p><img src="marca/mascote/six-colors-1.webp" alt="O Mangy nas seis cores da Mango" loading="lazy"></article>
-      <article class="g2-b l2 mangy"><h3>Conheça o Mangy.</h3><p>Cabeça de manga, coração doce.</p><img src="marca/mascote/mangy-final-1.webp" alt="" loading="lazy"><a class="mais" href="#">Ver a turma</a></article>
+      <article class="g2-b l4 cores"><h3>Nossa cor são todas.</h3><p>Seis cores, um jeito de ser. Escolha a sua. Ou todas.</p><img src="../marca/mascote/six-colors-1.webp" alt="O Mangy nas seis cores da Mango" loading="lazy"></article>
+      <article class="g2-b l2 mangy"><h3>Conheça o Mangy.</h3><p>Cabeça de manga, coração doce.</p><img src="../marca/mascote/mangy-final-1.webp" alt="" loading="lazy"><a class="mais" href="#">Ver a turma</a></article>
       <article class="g2-b l3" style="--c:var(--verde)"><i class="ph-light ph-lock-simple ico-grande"></i><h3>Nada sai do aparelho.</h3><p>A Mango Intelligence pensa aí dentro. Seu assunto fica com você.</p><a class="mais" href="#">Privacidade</a></article>
       <article class="g2-b l3" style="--c:var(--ciano)"><i class="ph-light ph-leaf ico-grande"></i><h3>Alumínio que volta.</h3><p>Todo MangoBook nasce de alumínio reciclado e volta pra gente no fim.</p><a class="mais" href="#">Meio ambiente</a></article>
     </div></section>
@@ -925,7 +925,7 @@ const galeria2 = {html: () => `<div class="g2-promo" role="region" aria-label="P
     <nav class="g2-rapidos" aria-label="Links rápidos">${['Status do pedido', 'Devoluções', 'Itens salvos', 'Encontre uma loja', 'Parcelamento', 'Comparar modelos'].map(t => `<a href="#">${t}</a>`).join('')}</nav>
     <div class="g2-parc" aria-label="Parceiros"><span>Patrocinado · 4 espaços 3:1</span>${PARCEIROS.map(n => `<a href="#">${n}</a>`).join('')}</div></section>
 
-  <section class="g2-fim" aria-labelledby="g2-fim-t"><img src="marca/mascote/eyes-1.webp" alt="Os olhos do Mangy" loading="lazy"><h2 id="g2-fim-t">Pense doce.</h2></section>
+  <section class="g2-fim" aria-labelledby="g2-fim-t"><img src="../marca/mascote/eyes-1.webp" alt="Os olhos do Mangy" loading="lazy"><h2 id="g2-fim-t">Pense doce.</h2></section>
 </main>${rodape()}`,
 init(root) {
   const kit = root.querySelector('[data-kit]');

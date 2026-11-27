@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="./base.css">
 <style>
 /* Cartão: proporção de cartão de crédito (85,6 × 54 mm). O conteúdo fica em .in, onde 1em = 5% da largura (cqw):
-   o cartão é 20em × 12,6em em qualquer tamanho. Estilo Lovable (refs/systems/system-3): o valor é o desenho. */
+   o cartão é 20em × 12,6em em qualquer tamanho. Estilo Lovable (referencias/sistemas-de-marca/system-3): o valor é o desenho. */
 .cartao{--w:340px;width:var(--w);aspect-ratio:85.6/54;border-radius:4.5%/7.1%;container-type:inline-size;position:relative;overflow:hidden;flex:none;
   color:#fff;background:#0b0b0c;box-shadow:0 2px 4px rgba(0,0,0,.08),0 18px 36px -8px rgba(0,0,0,.3);isolation:isolate}
 .cartao .in{position:absolute;inset:0;font-size:5cqw;font-weight:800;letter-spacing:-.06em;line-height:.8}
@@ -211,7 +211,7 @@
 import { iniciarTemas } from './temas.js';
 iniciarTemas();
 
-// 12 desenhos (estilo Lovable, refs/systems/system-3). Cada um recebe o valor e devolve o miolo do cartão.
+// 12 desenhos (estilo Lovable, referencias/sistemas-de-marca/system-3). Cada um recebe o valor e devolve o miolo do cartão.
 const RS = v => `<small>R$</small>${v}`;
 const head = (cls, st) => `<span class="cabeca ${cls}" style="${st}"></span>`;
 const stk = st => `<img class="adesivo-c" src="mascote/expressions-1.webp" alt="" style="${st}">`;

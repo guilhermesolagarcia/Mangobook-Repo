@@ -1,11 +1,11 @@
 # Prompts dos adesivos (série 01)
 
-Para gerar por IA os 13 adesivos que hoje estão em SVG em `escolhas/marca/adesivos.html`.
+Para gerar por IA os 13 adesivos que hoje estão em SVG em `design/marca/adesivos.html`.
 Prompts em inglês (os modelos de imagem entendem melhor). Cole o **bloco de estilo** no fim de cada prompt.
 
-## Padrão Batmango (aprovado em 24/11, referência: `IA/STICKERS/batmango.png`)
+## Padrão Batmango (aprovado em 24/11, referência: `arte-ia/adesivos/batmango.png`)
 
-Para os personagens. Feitos **um por um**; cada resultado vai para `IA/STICKERS/<nome>.png`.
+Para os personagens. Feitos **um por um**; cada resultado vai para `arte-ia/adesivos/<nome>.png`.
 
 ```
 Chibi full-body character sticker with chunky toy proportions: oversized head, small round body,
@@ -17,9 +17,9 @@ brown stem, green leaf (#1FB57A). Thick white die-cut sticker border with a very
 Transparent background, flat vector style, centered, no text.
 ```
 
-## Mascote: Mangy — APROVADO: `IA/MASCOTE/mangy-final.png` (24/11)
+## Mascote: Mangy — APROVADO: `arte-ia/mangy/mangy-final.png` (24/11)
 
-A versão final é a referência para todos os prompts abaixo (anexar sempre). Histórico: `IA/STICKERS/mangy.png` (v1), `IA/STICKERS/mangi.png` (v2).
+A versão final é a referência para todos os prompts abaixo (anexar sempre). Histórico: `arte-ia/mangy/historico/mangy-v1.png` (v1), `arte-ia/mangy/historico/mangy-v2.png` (v2).
 
 Origem: o ChatGPT gerou o Mangy só com o **bloco do padrão Batmango**, sem descrever personagem nenhum. Ele mesmo
 inventou a criança chibi (e por conta própria pôs fios de cabelo, traço nos olhos e brilho, que o usuário curtiu).
@@ -27,7 +27,7 @@ inventou a criança chibi (e por conta própria pôs fios de cabelo, traço nos 
 Acertos: chibi, pose confiante (mão na cintura, punho pra cima), degradê laranja → rosa-choque, cabinho e folha.
 Refinar: o emblema do peito é uma **maçã** (símbolo da Apple, proibido no manual); a cabeça tem forma de
 maçã/pêssego (redonda, afundado no topo), não de manga; um pouco de detalhe demais para funcionar pequeno.
-Nome: "mangy" em inglês = "sarnento"; v2 salva como `IA/STICKERS/mangi.png` (maçã trocada por caroço, cabeça de manga; cabelo ficou simples demais, o da v1 era melhor; fundo xadrez FALSO desenhado: pedir fundo branco liso). Logo em PNG para o GPT: `IA/REFERENCIAS/logo-mango.png`. Ideia: cabeça do mascote = silhueta do logo (manga torta + folha solta, sem cabinho).
+Nome: "mangy" em inglês = "sarnento"; v2 salva como `arte-ia/mangy/historico/mangy-v2.png` (maçã trocada por caroço, cabeça de manga; cabelo ficou simples demais, o da v1 era melhor; fundo xadrez FALSO desenhado: pedir fundo branco liso). Logo em PNG para o GPT: `arte-ia/referencias/logo-mango.png`. Ideia: cabeça do mascote = silhueta do logo (manga torta + folha solta, sem cabinho).
 
 ### Como gerar a série no ChatGPT
 Tudo **na mesma conversa**, sempre anexando a versão aprovada e começando o pedido com:
@@ -237,4 +237,4 @@ yellow to mango orange to pink.
 - Gere em **PNG com fundo transparente** (ou fundo cinza liso e remova depois).
 - Para virar **SVG**: Recraft já gera vetor direto; para os outros, `vectorizer.ai` ou Image Trace do Illustrator.
   O estilo chapado com 2 a 3 cores vetoriza limpo.
-- Salvar em `public/adesivos/<nome>.png` (ou `.svg`) e trocar o SVG à mão em `escolhas/marca/adesivos.html` por `<img>`.
+- Salvar em `public/adesivos/<nome>.png` (ou `.svg`) e trocar o SVG à mão em `design/marca/adesivos.html` por `<img>`.
