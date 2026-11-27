@@ -65,6 +65,9 @@ expressiva para campanhas, merch, adesivos e redes.
 (ícones + navbar + rodapé lendo o catálogo), `MangoBookPure` (lazy, em `/` e `/mangobook-pure`), "em breve" e 404
 "Essa página caiu do pé." em `Aviso.jsx`. Mangophone virou **Go D1** no site todo. O MangoBook ficou idêntico (só o menu mudou).
 
+Galeria 2.0 revisada pela crítica do Impeccable (27/11, `.impeccable/critique/`): títulos curtos fora dos 3 pilares,
+degradê só na campanha e no Mangy, kit "Juntos é mais doce" como pico, cartão-presente dentro da campanha.
+
 **Próximo: Fase 2, a loja (Galeria 2.0) em React, em `/loja`, lendo o catálogo.** Antes do código, aprovar o visual
 (seções na tabela "Vitrine escolhida" do livro). Adesivos ficam pro fim, depois da loja inteira.
 
