@@ -68,9 +68,17 @@ expressiva para campanhas, merch, adesivos e redes.
 Galeria 2.0 revisada pela crítica do Impeccable (27/11, `.impeccable/critique/`): títulos curtos fora dos 3 pilares,
 degradê só na campanha e no Mangy, kit "Juntos é mais doce" como pico, cartão-presente dentro da campanha.
 
-**Próximo: Fase 2, a loja (Galeria 2.0) em React, em `/loja`, lendo o catálogo.** Antes do código, aprovar o visual
-(seções na tabela "Vitrine escolhida" do livro). Adesivos ficam pro fim, depois da loja inteira.
+**27/11: visual da Galeria 2.0 aprovado** (rumo "A", sem mascote guiando a loja), com dois consertos: texto do kit
+espremido e botão da campanha cortado. **Nova regra de ordem (está no CLAUDE.md): páginas de produto antes da loja.**
+Só o Pure tem página; Go D1, Mangopad, Seeds e Peels nem têm preço no catálogo (os preços do protótipo da loja são inventados).
+A loja vira vitrine que manda pras páginas; o kit e a sacola dependem dos preços e opções que cada página definir.
+Loja no React em duas levas (1: campanha, categorias, lançamentos, kit, acessórios, sacola; 2: o resto).
+Pergunta adiada pra quando a loja voltar: o desconto do kit na sacola (hoje o protótipo perde o desconto ao adicionar;
+proposta: desconto automático por quantidade de aparelhos, com a linha "Juntos é mais doce: −R$ X").
+README reescrito com foco na Mango (marca → família → roteiro → kit → loja → MangoBook).
+
+**Próximo: páginas de produto, uma por uma.** Começar pelo **MangoBook Prime** (já tem preço). Antes do código, pensar o visual.
 
 ## Texto para colar numa sessão nova
 
-> Lê o `docs/RETOMAR.md`. Vamos fazer a Fase 2: a loja (Galeria 2.0) em `/loja`, lendo `src/catalogo/produtos.js`.
+> Lê o `docs/RETOMAR.md`. Vamos fazer as páginas de produto, começando pelo MangoBook Prime.
