@@ -47,7 +47,7 @@ expressiva para campanhas, merch, adesivos e redes.
 ## Próximos passos (na ordem)
 
 1. ~~Mascote oficial~~ **Mangy** (24/11) e ~~série de imagens 2 a 9~~ (26/11), em `IA/MASCOTE/`.
-   Selo refeito em 26/11 (mão opaca). Pendência opcional: em **maturacao** e **produto**,
+   Selo refeito em 26/11 (mão opaca); fica com "NOSSA COR SÃO TODAS" (decidido: não refazer). Pendência opcional: em **maturacao** e **produto**,
    o fundo saiu cinza e apareceu um cabinho (o Mangy tem folha solta). Pra refazer, é só trocar o PNG e rodar
    `python scripts/recortar-mascote.py` (gera os recortes em `escolhas/marca/mascote/`).
 2. ~~Prancha `escolhas/marca/mascote.html`~~ (26/11): capa, duas camadas, quem é, folha, assinatura em 4 fundos,

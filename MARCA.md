@@ -190,7 +190,7 @@ Padrão dos nomes até agora: "Mango" + palavra em inglês, colado (MangoBook, M
 - **Navbar simples, sem vidro.**
 - **Abertura sem impacto** e seções sem foco no produto (o erro da primeira versão do teclado FORGE 75).
 - **Som sintetizado.**
-- **Hero com card azul e sequência de frames** (`escolhas/hero.html`).
+- **Hero com card azul e sequência de frames** (`arquivo/teclado/escolhas/hero.html`).
 
 ## 9. Variáveis CSS para copiar
 

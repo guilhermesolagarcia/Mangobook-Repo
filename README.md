@@ -272,17 +272,20 @@ npm run build   # build de produção
 
 ```
 Projeto-Hardware/
-├── MARCA.md           manual da marca Mango
-├── escolhas/          páginas de decisão de design + protótipo original (pure.html)
-├── public/
-│   ├── mango.svg      logo da Mango (claro e escuro)
-│   └── mango-book/    imagens do MangoBook Pure geradas por IA
-├── src/
+├── MARCA.md           manual da marca Mango (vale pra tudo)
+├── src/               o site em React
 │   ├── marca/         peças da marca, reaproveitáveis na loja
 │   ├── secoes/        as 15 seções da página
 │   ├── ganchos/       lógica repetida (aparição, abas, cor da foto)
 │   └── dados/         textos, specs e funções puras (com testes)
-└── docs/              specs, planos e imagens deste README
+├── public/            logo e imagens do MangoBook Pure
+├── escolhas/          páginas de decisão de design (índice em /escolhas/)
+│   └── marca/         o kit da marca: prancha, logo, mascote, cartões, apps
+├── IA/                o que a gente gerou por IA (Mangy, adesivos)
+├── refs/              inspiração de fora + prompts
+├── scripts/           kit.mjs (PNGs das pranchas), recortar-mascote.py
+├── docs/              RETOMAR.md, specs, planos e imagens deste README
+└── arquivo/teclado/   o FORGE 75 arquivado (protótipos, modelo 3D, roteiro)
 ```
 
 </details>
