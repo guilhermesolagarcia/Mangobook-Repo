@@ -241,7 +241,15 @@ ul{list-style:none;padding:0}
 .g-cmp .h-sec{margin-bottom:36px}
 @media (max-width:860px){.g-acess{grid-template-columns:1fr}.g-dest{grid-template-columns:1fr}}
 
-/* ===== 0 · GALERIA 2.0 (26/11): a Galeria + espaços de anúncio + "Por que Mango" + Juntos é mais doce ===== */
+/* ===== 0 · GALERIA 2.0 (26/11, revisada pela crítica do Impeccable) =====
+   Regras desta versão:
+   - título em duas partes só nos 3 pilares (Lançamentos, Kit, Por que Mango); o resto ganha título curto;
+   - degradê é da Mango: só na campanha e no Mangy. Cartaz é cor chapada, oficina e parceiro são neutros;
+   - o kit é o pico da página: maior título, mais espaço em volta. */
+.g2-pagina .g-bloco{padding-top:112px}
+.g2-pagina .h-sec.curto{font-size:clamp(28px,3.2vw,40px);letter-spacing:-.03em}
+.g2-pagina .g-bloco-topo:has(.curto){padding-bottom:18px}
+
 /* barra de promoção: três frases que se revezam (só CSS) */
 .g2-promo{position:relative;height:40px;overflow:hidden;background:var(--tile);font-size:13px;letter-spacing:0;text-align:center}
 .g2-promo p{position:absolute;inset:0;display:flex;justify-content:center;align-items:center;gap:6px;padding:0 16px;opacity:0;animation:g2-gira 12s infinite}
@@ -261,129 +269,154 @@ ul{list-style:none;padding:0}
 .g2-drop .grande a{display:block;font-size:21px;font-weight:600;letter-spacing:-.02em;color:var(--ink);padding:2px 0}
 .g2-drop .peq a{display:block;font-size:13px;color:var(--ink);padding:3px 0}
 
-/* espaço de anúncio: moldura no formato final, com etiqueta. Quando a peça existir, entra no lugar do miolo. */
-.anuncio{position:relative;border-radius:32px;overflow:hidden;isolation:isolate;color:#fff}
-.anuncio-tag{position:absolute;z-index:3;top:16px;left:16px;display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:99px;
-  font-size:12px;font-weight:600;letter-spacing:0;background:rgba(0,0,0,.28);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#fff}
-.anuncio.claro .anuncio-tag{background:rgba(255,255,255,.7);color:var(--ink)}
+/* espaço de anúncio: moldura no formato final; a etiqueta some quando a peça de verdade entrar */
+.anuncio{position:relative;border-radius:32px;overflow:hidden;isolation:isolate}
+.anuncio-tag{position:absolute;z-index:3;top:14px;left:14px;display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:99px;
+  font-size:11px;font-weight:600;letter-spacing:0;background:rgba(0,0,0,.32);color:#fff}
 
-/* 📣 campanha da época, 21:9 */
-.g2-camp{margin:28px var(--gut) 0;aspect-ratio:21/9;min-height:340px;display:grid;align-content:end;padding:clamp(24px,4vw,56px);
-  background:radial-gradient(60% 90% at 85% 20%,#ffd23f,transparent 60%),radial-gradient(70% 90% at 10% 100%,#7b5cff,transparent 60%),linear-gradient(120deg,#ff5e7e,#ff9f1c)}
-.g2-camp h2{font-size:clamp(44px,7vw,104px);font-weight:600;letter-spacing:-.05em;line-height:.95}
-.g2-camp p{font-size:clamp(17px,1.6vw,22px);margin:12px 0 22px;max-width:36ch;opacity:.92}
-.g2-camp .pill{background:#fff;color:var(--ink);justify-self:start}
-.g2-camp .mangy{position:absolute;z-index:-1;right:4%;bottom:-6%;height:88%;width:auto;filter:drop-shadow(0 20px 30px rgba(0,0,0,.25))}
+/* campanha da época, 21:9: o único degradê grande da página. Fundo fundo o bastante pro branco passar de 4,5:1 no texto */
+.g2-camp{margin:28px var(--gut) 0;aspect-ratio:21/9;min-height:380px;display:grid;grid-template-columns:1.15fr 1fr;align-items:center;gap:20px;
+  padding:clamp(28px,4vw,56px);color:#fff;
+  background:radial-gradient(55% 80% at 92% 10%,#ff9f1c,transparent 70%),linear-gradient(115deg,#b5175c 0%,#d6246e 45%,#e2481f 100%)}
+.g2-camp h2{font-size:clamp(44px,6.4vw,96px);font-weight:600;letter-spacing:-.04em;line-height:.95}
+.g2-camp .txt>p{font-size:clamp(17px,1.5vw,21px);margin:14px 0 18px;max-width:34ch}
+.g2-camp .pill{background:#fff;color:var(--ink)}
+.g2-camp .acoes-camp{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-top:20px}
+.g2-camp .acoes-camp .mais{color:#fff;font-size:15px}
+.g2-camp .cena{position:relative;height:100%;min-height:260px}
+.g2-camp .cena .g2-cartao{position:absolute;left:0;bottom:8%;width:78%}
+.g2-camp .cena img{position:absolute;right:-4%;bottom:-14%;height:96%;width:auto;filter:drop-shadow(0 18px 24px rgba(60,0,20,.35))}
+.g2-valores{display:flex;gap:8px;flex-wrap:wrap}
+.g2-valores button{padding:7px 14px;border-radius:99px;font-size:14px;color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.55);transition:background .2s}
+.g2-valores button[aria-pressed=true]{background:#fff;color:#b5175c;box-shadow:none}
 
-/* selos dos lançamentos */
+/* cartão-presente (agora dentro da campanha) */
+.g2-cartao{aspect-ratio:1.586;border-radius:clamp(12px,1.6vw,20px);position:relative;overflow:hidden;color:#fff;
+  background:linear-gradient(120deg,#ff9f1c,#fd228a 45%,#7b5cff 80%,#2f7bff);box-shadow:0 30px 50px -24px rgba(0,0,0,.45);transform:rotate(-6deg)}
+.g2-cartao .cab{position:absolute;left:-8%;bottom:-30%;width:70%;aspect-ratio:466/394;background:#fef6ec;
+  -webkit-mask:url(marca/mascote/mono-cabeca.webp) center/contain no-repeat;mask:url(marca/mascote/mono-cabeca.webp) center/contain no-repeat}
+.g2-cartao b{position:absolute;right:7%;top:9%;font-size:clamp(30px,4vw,56px);font-weight:700;letter-spacing:-.04em;line-height:1}
+.g2-cartao b small{font-size:.4em;font-weight:600;margin-right:.1em}
+
+/* selos dos lançamentos (texto escuro na cor, contraste ≥4,5:1) */
 .g2-selo{display:inline-block;font-size:12px;font-weight:600;letter-spacing:0;padding:4px 10px;border-radius:99px;
-  background:color-mix(in srgb,var(--c) 14%,#fff);color:color-mix(in srgb,var(--c) 80%,#000)}
+  background:color-mix(in srgb,var(--c) 14%,#fff);color:color-mix(in srgb,var(--c) 45%,#1d1d1f)}
 
-/* 📣 parede de cartazes, 4:5 */
-.g2-cartazes{grid-auto-columns:min(340px,78vw);padding-block:8px 40px}
-.cartaz{aspect-ratio:4/5;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;background:var(--fundo)}
-.cartaz h3{font-size:clamp(30px,3vw,40px);font-weight:600;letter-spacing:-.04em;line-height:1}
-.cartaz p{font-size:14px;margin-top:8px;opacity:.85}
-.cartaz .art{position:absolute;inset:12% 8% 34%;z-index:-1}
-.cartaz .art svg{filter:drop-shadow(0 20px 30px rgba(0,0,0,.25))}
-.cartaz .art img{mix-blend-mode:normal;position:absolute;inset:0}
-
-/* Juntos é mais doce: monte o kit */
-.g2-kit{margin:0 var(--gut);border-radius:32px;background:var(--tile);padding:clamp(24px,4vw,48px);display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(24px,4vw,56px)}
-.g2-kit-escolhas{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 26px}
+/* O PICO: Juntos é mais doce */
+.g2-pico{padding-top:150px!important;text-align:center}
+.g2-pico .h-sec{font-size:clamp(48px,8vw,112px);letter-spacing:-.045em;line-height:.98;padding:0 var(--gut)}
+.g2-pico .h-sec span{display:block}
+.g2-pico>.lead{max-width:40ch;margin:18px auto 40px;padding:0 var(--gut)}
+.g2-kit{margin:0 var(--gut);border-radius:36px;background:var(--tile);padding:clamp(24px,4vw,56px);display:grid;grid-template-columns:1.1fr 1fr;
+  gap:clamp(24px,4vw,56px);text-align:left}
+.g2-kit-escolhas{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px}
 .g2-chip{display:inline-flex;align-items:center;gap:8px;padding:10px 16px 10px 12px;border-radius:99px;background:#fff;font-size:15px;
   box-shadow:inset 0 0 0 1px var(--linha);transition:box-shadow .2s,background .2s}
 .g2-chip::before{content:"";width:12px;height:12px;border-radius:50%;background:var(--c);opacity:.35;transition:opacity .2s}
 .g2-chip[aria-pressed=true]{box-shadow:inset 0 0 0 2px var(--c)}
 .g2-chip[aria-pressed=true]::before{opacity:1}
-.g2-palco{display:flex;justify-content:center;align-items:flex-end;min-height:190px;margin-bottom:8px}
-.g2-palco .art{width:clamp(80px,14vw,170px);height:clamp(80px,14vw,170px);margin:0 -14px}
-.g2-juntos{display:grid;gap:12px;margin-top:6px}
+.g2-palco{display:flex;justify-content:center;align-items:flex-end;min-height:200px;margin-bottom:8px}
+.g2-palco .art{width:clamp(80px,14vw,180px);height:clamp(80px,14vw,180px);margin:0 -14px}
+.g2-juntos{display:grid;gap:12px}
 .g2-juntos li{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;background:#fff;border-radius:18px;padding:14px 16px;font-size:15px}
 .g2-juntos li i{font-size:22px;color:var(--c)}
 .g2-juntos b{display:block;font-size:15px}
 .g2-juntos span{color:var(--ink-2);font-size:14px}
 .g2-conta{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:22px;padding-top:20px;border-top:1px solid var(--linha)}
-.g2-conta .total{font-size:28px;font-weight:600;letter-spacing:-.03em}
-.g2-conta s{color:var(--ink-3);font-size:15px;margin-left:8px}
-.g2-conta .economia{display:block;font-size:13px;color:var(--verde);font-weight:600;letter-spacing:0}
+.g2-conta .total{font-size:32px;font-weight:600;letter-spacing:-.03em}
+.g2-conta s{color:var(--ink-2);font-size:15px;margin-left:8px}
+.g2-conta .economia{display:block;font-size:13px;color:#0f7a50;font-weight:600;letter-spacing:0}
+.g2-pico .pill:disabled{opacity:.4;cursor:not-allowed}
 
-/* Personalize */
-.g2-duo{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:0 var(--gut)}
-.g2-grav{display:grid;place-items:center;flex:1;margin:18px -12px;border-radius:20px;background:var(--t);min-height:220px}
-.g2-tampa{width:min(300px,80%);aspect-ratio:3/2;border-radius:18px;background:linear-gradient(140deg,#ffd23f,#ff9f1c);display:grid;place-items:center;
-  box-shadow:0 18px 30px -12px rgba(0,0,0,.25),inset 0 0 0 1px rgba(255,255,255,.4)}
-.g2-tampa span{font-size:clamp(16px,2vw,22px);font-weight:600;letter-spacing:-.01em;color:rgba(120,60,0,.55);text-shadow:0 1px 0 rgba(255,255,255,.5);
-  max-width:90%;overflow-wrap:anywhere;text-align:center}
-.g2-grav-in{width:100%;border:1px solid var(--linha);border-radius:12px;padding:11px 14px;font-size:15px;margin-bottom:14px}
+/* cartazes 4:5: uma cor chapada por produto, texto escuro */
+.g2-cartazes{grid-auto-columns:min(320px,76vw);padding-block:8px 24px}
+.cartaz{aspect-ratio:4/5;display:flex;flex-direction:column;justify-content:flex-end;padding:26px;background:var(--fundo);color:var(--ink)}
+.cartaz h3{font-size:clamp(28px,2.8vw,36px);font-weight:600;letter-spacing:-.035em;line-height:1}
+.cartaz p{font-size:14px;margin-top:8px;color:rgba(29,29,31,.78)}
+.cartaz .art{position:absolute;inset:12% 8% 34%;z-index:-1}
+.cartaz .art img{mix-blend-mode:normal;position:absolute;inset:0}
 
-/* 🥭📣 Por que Mango: seção preta com vídeo-manifesto e bento */
-.g2-mango{margin-top:96px;background:#000;color:#f5f5f7;padding:96px var(--gut)}
-.g2-mango .h-sec span{color:#86868b}
-.g2-video{margin:36px 0 20px;aspect-ratio:16/9;display:grid;place-items:center;
-  background:radial-gradient(40% 60% at 30% 40%,#ff9f1c88,transparent 70%),radial-gradient(50% 60% at 75% 60%,#7b5cff88,transparent 70%),#111}
-.g2-play{width:84px;height:84px;border-radius:50%;background:rgba(255,255,255,.16);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
-  display:grid;place-items:center;font-size:34px;color:#fff;transition:transform .2s var(--out)}
+/* Personalize: um palco largo, não um cartão de produto */
+.g2-perso{margin:0 var(--gut);display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(24px,5vw,72px);align-items:center}
+.g2-mesa{border-radius:36px;background:#fff3d1;min-height:380px;display:grid;place-items:center;position:relative;overflow:hidden}
+.g2-tampa{width:min(420px,82%);aspect-ratio:3/2;border-radius:22px;background:linear-gradient(140deg,#ffd23f,#ff9f1c);display:grid;place-items:center;
+  box-shadow:0 26px 40px -16px rgba(120,60,0,.35),inset 0 0 0 1px rgba(255,255,255,.45)}
+.g2-tampa span{font-size:clamp(18px,2.4vw,28px);font-weight:600;letter-spacing:-.01em;color:rgba(110,55,0,.6);text-shadow:0 1px 0 rgba(255,255,255,.55);
+  max-width:88%;overflow-wrap:anywhere;text-align:center}
+.g2-mesa .adesivo{position:absolute;width:clamp(90px,11vw,130px);right:6%;top:8%;transform:rotate(10deg)}
+.g2-perso h3{font-size:clamp(26px,2.6vw,34px);font-weight:600;letter-spacing:-.03em;line-height:1.1}
+.g2-perso .lead{margin:10px 0 20px}
+.g2-grav-in{width:100%;border:1px solid var(--linha);border-radius:14px;padding:13px 16px;font-size:17px}
+.g2-grav-in:focus-visible{outline-offset:0;border-color:var(--focus)}
+.g2-conta-grav{font-size:13px;color:var(--ink-2);margin-top:8px;letter-spacing:0}
+.g2-peels{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:28px;padding-top:20px;border-top:1px solid var(--linha)}
+.g2-peels p{font-size:15px;color:var(--ink-2)}
+.g2-peels b{color:var(--ink)}
+
+/* Por que Mango: seção preta com vídeo-manifesto e bento */
+.g2-mango{margin-top:112px;background:#000;color:#f5f5f7;padding:112px var(--gut)}
+.g2-mango .h-sec span{color:#a1a1a6}
+.g2-video{margin:36px 0 20px;aspect-ratio:16/9;display:grid;place-items:center;color:#fff;
+  background:radial-gradient(40% 60% at 30% 40%,#ff9f1c77,transparent 70%),radial-gradient(50% 60% at 75% 60%,#7b5cff77,transparent 70%),#111}
+.g2-play{width:84px;height:84px;border-radius:50%;background:rgba(255,255,255,.16);display:grid;place-items:center;font-size:34px;color:#fff;transition:transform .2s var(--out)}
 .g2-play:hover{transform:scale(1.06)}
-.g2-video figcaption{position:absolute;left:24px;bottom:22px;font-size:clamp(22px,3vw,36px);font-weight:600;letter-spacing:-.035em}
+.g2-video figcaption{position:absolute;left:24px;bottom:22px;font-size:15px;color:#d2d2d7}
 .g2-bento{display:grid;grid-template-columns:repeat(6,1fr);gap:20px}
 .g2-b{border-radius:28px;background:#1d1d1f;padding:28px;min-height:260px;position:relative;overflow:hidden;display:flex;flex-direction:column}
 .g2-b h3{font-size:clamp(24px,2.4vw,32px);font-weight:600;letter-spacing:-.03em;line-height:1.08}
 .g2-b p{color:#a1a1a6;margin-top:8px;font-size:15px;max-width:34ch}
 .g2-b .mais{margin-top:auto;padding-top:14px;font-size:15px;color:#2997ff}
 .g2-b.l3{grid-column:span 3}.g2-b.l2{grid-column:span 2}.g2-b.l4{grid-column:span 4}
-.g2-b.cores{background:#fff;color:var(--ink)}
+.g2-b.cores{background:#fff;color:var(--ink);min-height:340px}
 .g2-b.cores p{color:var(--ink-2)}
 .g2-b.cores img{position:absolute;right:-1%;bottom:-3%;width:68%}
-.g2-b.mangy{background:linear-gradient(150deg,#ff9f1c,#fd228a)}
-.g2-b.mangy p{color:rgba(255,255,255,.9)}
+.g2-b.mangy{background:linear-gradient(150deg,#ff9f1c,#fd228a);color:#1d1d1f}
+.g2-b.mangy p{color:#1d1d1f;max-width:20ch}
 .g2-b.mangy img{position:absolute;right:-8%;bottom:0;height:64%;width:auto}
-.g2-b.mangy .mais{color:#fff}
+.g2-b.mangy .mais{color:#1d1d1f}
 .g2-b .ico-grande{font-size:44px;margin-bottom:16px;color:var(--c)}
 
-/* Hoje na Mango */
-.g2-hoje{grid-auto-columns:min(320px,80vw);padding-block:8px 40px}
-.g2-hoje article{border-radius:28px;background:#fff;box-shadow:0 4px 20px rgba(0,0,0,.07);overflow:hidden;display:flex;flex-direction:column}
-.g2-hoje .foto{aspect-ratio:3/2;background:var(--fundo);position:relative;display:grid;place-items:center;color:#fff;font-size:44px}
-.g2-hoje .txt{padding:22px 24px 24px;display:grid;gap:4px}
-.g2-hoje .quando{font-size:13px;font-weight:600;color:var(--c);letter-spacing:0}
-.g2-hoje h3{font-size:21px;letter-spacing:-.02em;line-height:1.2}
+/* Oficinas: foto neutra (espaço da foto real) e a data em destaque */
+.g2-hoje{grid-auto-columns:min(320px,80vw);padding-block:8px 24px}
+.g2-hoje article{border-radius:24px;background:var(--tile);overflow:hidden;display:flex;flex-direction:column}
+.g2-hoje .foto{aspect-ratio:3/2;background:#e8e8ed;position:relative;display:grid;place-items:center;color:var(--ink-3);font-size:40px}
+.g2-hoje .dia{position:absolute;left:14px;bottom:14px;background:#fff;border-radius:14px;padding:6px 12px;text-align:center;line-height:1.1;color:var(--ink)}
+.g2-hoje .dia b{display:block;font-size:24px;letter-spacing:-.03em}
+.g2-hoje .dia small{font-size:11px;font-weight:600;color:var(--c);letter-spacing:.04em;text-transform:uppercase}
+.g2-hoje .txt{padding:20px 22px 22px;display:flex;flex-direction:column;gap:4px;flex:1}
+.g2-hoje h3{font-size:19px;letter-spacing:-.02em;line-height:1.2}
 .g2-hoje p{color:var(--ink-2);font-size:15px}
+.g2-hoje .mais{margin-top:auto;padding-top:10px;font-size:15px}
 
-/* 🥭 cartão-presente */
-.g2-presente{margin:0 var(--gut);border-radius:32px;background:var(--tile);padding:clamp(28px,4vw,56px);display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center}
-.g2-cartao{aspect-ratio:1.586;border-radius:clamp(14px,2vw,22px);position:relative;overflow:hidden;color:#fff;
-  background:linear-gradient(120deg,#ff9f1c,#fd228a 45%,#7b5cff 80%,#2f7bff);box-shadow:0 30px 50px -24px rgba(0,0,0,.35);transform:rotate(-4deg)}
-.g2-cartao .cab{position:absolute;left:-8%;bottom:-30%;width:70%;aspect-ratio:466/394;background:#fef6ec;
-  -webkit-mask:url(marca/mascote/mono-cabeca.webp) center/contain no-repeat;mask:url(marca/mascote/mono-cabeca.webp) center/contain no-repeat}
-.g2-cartao b{position:absolute;right:7%;top:9%;font-size:clamp(34px,5vw,64px);font-weight:700;letter-spacing:-.05em;line-height:1}
-.g2-cartao b small{font-size:.4em;font-weight:600;margin-right:.1em}
-.g2-cartao i{position:absolute;right:7%;bottom:9%;font-style:normal;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase}
-.g2-presente .h-sec{font-size:clamp(32px,3.6vw,48px)}
-.g2-valores{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0}
-
-/* 📣 parceiros, 1:1 */
-.g2-parc{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:0 var(--gut)}
-.g2-parc .anuncio{aspect-ratio:1;display:grid;place-items:center;text-align:center;background:var(--fundo);padding:24px}
-.g2-parc b{font-size:clamp(26px,2.6vw,36px);letter-spacing:-.03em}
-.g2-parc small{display:block;font-size:13px;opacity:.75;margin-top:6px;font-weight:400}
-
-/* lojas especiais + links rápidos */
+/* Lojas especiais + links rápidos + parceiros numa faixa neutra (claramente de outra marca) */
 .g2-lojas{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding:0 var(--gut)}
-.g2-loja{border-radius:28px;background:var(--tile);padding:28px;min-height:200px;display:flex;flex-direction:column;gap:6px;color:var(--ink)}
-.g2-loja:hover{text-decoration:none}
-.g2-loja i{font-size:32px;color:var(--c);margin-bottom:10px}
-.g2-loja h3{font-size:24px;letter-spacing:-.025em}
+.g2-loja{border-radius:24px;background:var(--tile);padding:26px;min-height:180px;display:flex;flex-direction:column;gap:6px;color:var(--ink)}
+.g2-loja:hover{text-decoration:none;background:#ededf0}
+.g2-loja i{font-size:30px;color:var(--c);margin-bottom:8px}
+.g2-loja h3{font-size:22px;letter-spacing:-.025em}
 .g2-loja p{color:var(--ink-2);font-size:15px}
-.g2-rapidos{display:flex;flex-wrap:wrap;gap:10px;padding:28px var(--gut) 96px}
+.g2-rapidos{display:flex;flex-wrap:wrap;gap:10px;padding:24px var(--gut) 0}
 .g2-rapidos a{padding:10px 18px;border-radius:99px;box-shadow:inset 0 0 0 1px var(--linha);color:var(--ink);font-size:15px}
 .g2-rapidos a:hover{background:var(--tile);text-decoration:none}
+.g2-parc{margin:56px var(--gut) 0;padding-top:24px;border-top:1px solid var(--linha);display:grid;grid-template-columns:auto repeat(4,1fr);gap:14px;align-items:center}
+.g2-parc>span{font-size:12px;color:var(--ink-2);letter-spacing:0;padding-right:10px}
+.g2-parc a{aspect-ratio:3/1;border-radius:14px;box-shadow:inset 0 0 0 1px var(--linha);display:grid;place-items:center;color:var(--ink);font-weight:600;font-size:17px;letter-spacing:-.01em}
+.g2-parc a:hover{text-decoration:none;background:var(--tile)}
+
+/* fechamento: os olhos do Mangy e a assinatura (único "Pense doce." grande da página) */
+.g2-fim{margin-top:112px;display:grid;justify-items:center;gap:22px;padding:0 var(--gut) 112px;text-align:center}
+.g2-fim img{width:min(560px,90%);border-radius:28px}
+.g2-fim h2{font-size:clamp(40px,6vw,80px);font-weight:600;letter-spacing:-.04em;line-height:1}
 
 @media (max-width:860px){
-  .g2-kit,.g2-presente,.g2-duo{grid-template-columns:1fr}
+  .g2-kit,.g2-perso{grid-template-columns:1fr}
   .g2-bento{grid-template-columns:1fr}.g2-b.l2,.g2-b.l3,.g2-b.l4{grid-column:auto}
-  .g2-parc{grid-template-columns:1fr 1fr}.g2-lojas{grid-template-columns:1fr}
-  .g2-camp{aspect-ratio:auto;min-height:480px}.g2-camp .mangy{height:52%;opacity:.95}
+  .g2-lojas{grid-template-columns:1fr}
+  .g2-parc{grid-template-columns:1fr 1fr}.g2-parc>span{grid-column:1/-1}
+  .g2-camp{grid-template-columns:1fr;aspect-ratio:auto}
+  .g2-camp .cena{min-height:240px}
+  .g2-pagina .g-bloco{padding-top:80px}
+  .g2-pico{padding-top:104px!important}
 }
 
 /* ===== 2 · BENTO ===== */
@@ -765,8 +798,8 @@ const galeria = {html: () => `${aviso()}
   <section class="g-cmp" aria-labelledby="g-c-t"><h2 class="h-sec" id="g-c-t">Qual é o seu? <span>Compare lado a lado.</span></h2>${comparar()}</section>
 </main>${rodape()}`};
 
-/* ===== 0 · GALERIA 2.0: a escolhida, com espaços de anúncio, "Por que Mango" e o kit ===== */
-// 📣 = espaço de anúncio: a moldura já tem o formato final; a peça que a gente criar entra no lugar do miolo.
+/* ===== 0 · GALERIA 2.0: a escolhida, com espaços de anúncio, "Por que Mango" e o kit como pico ===== */
+// Espaço de anúncio = moldura no formato final com etiqueta; a peça que a gente criar entra no lugar do miolo.
 const tag = t => `<span class="anuncio-tag">${icon('ph-megaphone-simple')} ${t}</span>`;
 const SELOS = {go: 'Novo', time: 'Pré-venda', pure: 'Ganhe um Mango Seeds'};
 const MEGA = [
@@ -780,11 +813,12 @@ const mega = () => `<nav class="g-links nao-cel" aria-label="Categorias"><div cl
   <div class="g2-drop vidro"><div class="grande"><h4>Explorar ${nome}</h4>${grandes.map(([t, id]) => `<a href="#" data-act="ir" data-id="${id}">${t}</a>`).join('')}</div>
   <div class="peq"><h4>Comprar</h4>${peq.map(t => `<a href="#">${t}</a>`).join('')}</div></div></div>`).join('')}<div class="g2-item"><a href="#servicos">Ajuda</a></div></nav>`;
 
+// Cartazes: uma cor chapada por produto (o degradê fica só pra campanha e pro Mangy)
 const CARTAZES = [
-  {t: 'Feito no Go D1.', d: 'Fotos de quem tem um. Logo, as suas.', p: 'go', fundo: 'linear-gradient(160deg,#ff5e7e,#7b5cff)'},
-  {t: 'Pense doce.', d: 'O Mangy, nas 6 cores, em todo canto da cidade.', img: 'marca/mascote/mangy-final-1.webp', fundo: 'linear-gradient(160deg,#ff9f1c,#fd228a)'},
-  {t: 'Desenha o dia.', d: 'Mangopad. Uma tela inteira pra caneta.', p: 'pad', fundo: 'linear-gradient(160deg,#22b5e8,#2f7bff)'},
-  {t: 'Som bem alto.', d: 'Mango Seeds. Pequeno no ouvido, grande no resto.', p: 'seeds', fundo: 'linear-gradient(160deg,#1fb57a,#22b5e8)'},
+  {t: 'Feito no Go D1.', d: 'Fotos de quem tem um. Logo, as suas.', p: 'go', fundo: '#ff7d95'},
+  {t: 'Oi, eu sou o Mangy.', d: 'Você vai me ver por aí, nas 6 cores.', img: 'marca/mascote/produto-2.webp', fundo: '#fef6ec'},
+  {t: 'Desenha o dia.', d: 'Mangopad. Uma tela inteira pra caneta.', p: 'pad', fundo: '#6ea6ff'},
+  {t: 'Som bem alto.', d: 'Mango Seeds. Pequeno no ouvido, grande no resto.', p: 'seeds', fundo: '#4cc4ee'},
 ];
 
 // Juntos é mais doce: o que cada combinação faz. "mb" = qualquer MangoBook.
@@ -805,107 +839,93 @@ function juntos(sel) {
 }
 
 const HOJE = [
-  {q: 'Sáb · 14h', t: 'Foto de rua com o Go D1', d: 'Uma volta no quarteirão e o celular no modo retrato.', ic: 'ph-camera', c: '#ff5e7e', fundo: 'linear-gradient(140deg,#ff5e7e,#ff9f1c)'},
-  {q: 'Dom · 11h', t: 'Desenho no Mangopad', d: 'Do rabisco à ilustração, com a caneta e o app Notas.', ic: 'ph-pencil-simple', c: '#2f7bff', fundo: 'linear-gradient(140deg,#22b5e8,#7b5cff)'},
-  {q: 'Qua · 19h', t: 'Primeiros passos no MangoBook', d: 'Atalhos, MangoOS e o Go D1 conversando com ele.', ic: 'ph-laptop', c: '#ff9f1c', fundo: 'linear-gradient(140deg,#ffd23f,#ff9f1c)'},
+  {dia: '29', sem: 'Sáb · 14h', t: 'Foto de rua com o Go D1', d: 'Uma volta no quarteirão e o celular no modo retrato.', ic: 'ph-camera', c: '#d6246e'},
+  {dia: '30', sem: 'Dom · 11h', t: 'Desenho no Mangopad', d: 'Do rabisco à ilustração, com a caneta e o app Notas.', ic: 'ph-pencil-simple', c: '#2f7bff'},
+  {dia: '03', sem: 'Qua · 19h', t: 'Primeiros passos no MangoBook', d: 'Atalhos, MangoOS e o Go D1 conversando com ele.', ic: 'ph-laptop', c: '#c26a00'},
 ];
-const PARCEIROS = [
-  ['ZOD', '#111'], ['Nexo', 'linear-gradient(140deg,#2f7bff,#22b5e8)'], ["Drago's", 'linear-gradient(140deg,#c62828,#ff7043)'],
-  ['Âmbar', 'radial-gradient(circle at 35% 30%,#ffd88a,#e8a33d 60%,#b86e0e)'],
-];
+const PARCEIROS = ['ZOD', 'Nexo', "Drago's", 'Âmbar'];
 const pulseira = {id: 'pulseira', nome: 'Pulseiras do Mango Time', cor: '#1fb57a', tom: '#e4f5ec', art: 'watch', preco: 349, frase: 'Troque a cor em dois cliques.'};
 const semSacola = p => p.id === 'capa' || p.id === 'pulseira';
 
 const galeria2 = {html: () => `<div class="g2-promo" role="region" aria-label="Promoções"><p>12x sem juros em tudo. <a href="#servicos">Ver condições ›</a></p><p>Entrega grátis pra todo o Brasil, ou retire em 1 hora.</p><p>Troque seu aparelho antigo e ganhe crédito no novo.</p></div>
 <header class="g-nav g2-nav vidro"><a href="#" aria-label="Mango, início" style="color:var(--ink)"><span class="logo"></span></a>${mega()}${acoes()}</header>
-<main>
+<main class="g2-pagina">
   <section class="g-hero"><h1 class="entra">Loja. <span>O jeito mais doce de comprar.</span></h1>
     <div class="g-hero-dir entra d1"><p>Precisa de ajuda pra escolher?</p><a class="mais" href="#" data-act="chat" style="font-size:15px">Fale com um especialista</a><a class="mais" href="#" style="font-size:15px">Encontre uma loja Mango</a></div></section>
 
-  <section class="anuncio g2-camp entra d2" aria-labelledby="g2-camp-t">${tag('Campanha da época · 21:9')}
-    <img class="mangy" src="marca/mascote/mangy-final-1.webp" alt="">
-    <h2 id="g2-camp-t">Presentes<br>doces.</h2><p>Tem um Mango pra cada pessoa da sua lista. E embrulho de presente grátis.</p>
-    <a class="pill" href="#presente">Ver ideias de presente</a></section>
+  <section class="anuncio g2-camp entra d2" id="presente" aria-labelledby="g2-camp-t">${tag('Campanha da época · 21:9')}
+    <div class="txt"><h2 id="g2-camp-t">Presentes<br>doces.</h2><p>Tem um Mango pra cada pessoa da sua lista. Na dúvida, dá o cartão-presente: vale pra loja inteira.</p>
+      <div class="g2-valores" role="group" aria-label="Valor do cartão-presente">${[50, 100, 300, 500].map(v => `<button data-vale-v="${v}" aria-pressed="${v === 100}">R$ ${v}</button>`).join('')}</div>
+      <div class="acoes-camp"><a class="pill" href="#">Dar um cartão-presente</a><a class="mais" href="#lancamentos">Ver ideias de presente</a></div></div>
+    <div class="cena" aria-hidden="true"><div class="g2-cartao"><span class="cab"></span><b data-vale><small>R$</small>100</b></div><img src="marca/mascote/produto-1.webp" alt=""></div></section>
 
   <nav class="trilho g-cats" aria-label="Categorias">${P.map(p => `<a class="g-cat" href="#prod-${p.id}" style="${vars(p)}"><span class="art">${art(p)}</span>${p.nome}${p.novo ? '<em>Novo</em>' : ''}</a>`).join('')}</nav>
 
-  <section class="g-bloco" id="lancamentos" aria-labelledby="g2-l-t">
+  <section class="g-bloco" id="lancamentos" aria-labelledby="g2-l-t" style="padding-top:64px">
     <div class="g-bloco-topo"><h2 class="h-sec" id="g2-l-t">Lançamentos. <span>Veja o que chegou.</span></h2>${setas('#g2-car')}</div>
     <div class="trilho g-car" id="g2-car">${P.slice(0, 6).map(p => `<article class="g-card lift" id="prod-${p.id}" style="${vars(p)}">${salvar(p)}
-      ${SELOS[p.id] ? `<span class="g2-selo" style="justify-self:start;align-self:flex-start">${SELOS[p.id]}</span>` : `<span class="selo" style="color:var(--ink-2)">${p.cat}</span>`}<h3>${p.nome}</h3><p class="frase">${p.frase}</p>
+      ${SELOS[p.id] ? `<span class="g2-selo" style="align-self:flex-start">${SELOS[p.id]}</span>` : `<span class="selo" style="color:var(--ink-2)">${p.cat}</span>`}<h3>${p.nome}</h3><p class="frase">${p.frase}</p>
       <div class="art">${art(p)}</div><div class="g-card-pe"><span class="preco">A partir de ${brl(p.preco)}</span>${comprar(p)}</div></article>`).join('')}</div></section>
 
-  <section class="g-bloco" aria-labelledby="g2-cz-t">
-    <div class="g-bloco-topo"><h2 class="h-sec" id="g2-cz-t">Na rua. <span>As campanhas da Mango.</span></h2>${setas('#g2-cz')}</div>
-    <div class="trilho g2-cartazes" id="g2-cz">${CARTAZES.map(c => `<article class="anuncio cartaz" style="--fundo:${c.fundo}">${tag('Cartaz · 4:5')}
-      <div class="art">${c.img ? `<img src="${c.img}" alt="" loading="lazy">` : art(byId(c.p))}</div><h3>${c.t}</h3><p>${c.d}</p></article>`).join('')}</div></section>
-
-  <section class="g-bloco g-cinza" id="servicos" aria-labelledby="g2-s-t">
-    <div class="g-bloco-topo"><h2 class="h-sec" id="g2-s-t">A diferença Mango Store. <span>Mais jeitos de comprar fácil.</span></h2>${setas('#g2-serv')}</div>
-    <div class="trilho g-serv" id="g2-serv">${SERV.map(s => `<button class="serv lift" style="--c:${s.c}" ${servBtn(s)}><span class="serv-ic">${icon(s.ic)}</span><h3>${s.t}</h3><p>${s.d}</p><span class="mais" style="font-size:15px">Saiba mais</span></button>`).join('')}</div></section>
-
-  <section class="g-bloco" id="kit" aria-labelledby="g2-k-t">
-    <div class="g-bloco-topo"><h2 class="h-sec" id="g2-k-t">Juntos é mais doce. <span>Monte o seu kit.</span></h2></div>
+  <section class="g-bloco g2-pico" id="kit" aria-labelledby="g2-k-t">
+    <h2 class="h-sec" id="g2-k-t">Juntos é mais doce. <span>Monte o seu kit.</span></h2>
+    <p class="lead">Escolha os aparelhos. A gente mostra o que eles fazem juntos e quanto você economiza.</p>
     <div class="g2-kit" data-kit>
-      <div><p class="lead" style="color:var(--ink)">Escolha os aparelhos. A gente mostra o que eles fazem juntos e quanto você economiza.</p>
-        <div class="g2-kit-escolhas" role="group" aria-label="Aparelhos do kit">${KIT.map(id => { const p = byId(id); return `<button class="g2-chip" style="${vars(p)}" data-kit-id="${id}" aria-pressed="${id === 'pure' || id === 'go'}">${p.nome}</button>`; }).join('')}</div>
+      <div><div class="g2-kit-escolhas" role="group" aria-label="Aparelhos do kit">${KIT.map(id => { const p = byId(id); return `<button class="g2-chip" style="${vars(p)}" data-kit-id="${id}" aria-pressed="${id === 'pure' || id === 'go'}">${p.nome}</button>`; }).join('')}</div>
         <div class="g2-palco" data-kit-palco aria-hidden="true"></div>
         <div class="g2-conta"><div><span class="total" data-kit-total></span><s data-kit-de></s><span class="economia" data-kit-eco></span></div><button class="pill" data-act="add" data-kit-add>Colocar o kit na sacola</button></div></div>
       <div><h3 style="font-size:21px;letter-spacing:-.02em;margin-bottom:12px">O que eles fazem juntos</h3><ul class="g2-juntos" data-kit-juntos aria-live="polite"></ul></div>
     </div></section>
 
+  <section class="g-bloco" aria-labelledby="g2-cz-t">
+    <div class="g-bloco-topo"><h2 class="h-sec curto" id="g2-cz-t">Na rua.</h2>${setas('#g2-cz')}</div>
+    <div class="trilho g2-cartazes" id="g2-cz">${CARTAZES.map(c => `<article class="anuncio cartaz" style="--fundo:${c.fundo}">${tag('Cartaz · 4:5')}
+      <div class="art">${c.img ? `<img src="${c.img}" alt="" loading="lazy">` : art(byId(c.p))}</div><h3>${c.t}</h3><p>${c.d}</p></article>`).join('')}</div></section>
+
   <section class="g-bloco" aria-labelledby="g2-p-t">
-    <div class="g-bloco-topo"><h2 class="h-sec" id="g2-p-t">Personalize. <span>Do seu jeito, de graça.</span></h2></div>
-    <div class="g2-duo">
-      <article class="g-card lift" style="${vars(byId('peels'))}">${salvar(byId('peels'))}<span class="selo">Mango Peels</span><h3>Adesivos que saem sem marca.</h3><p class="frase">${byId('peels').frase}</p>
-        <div class="art">${art(byId('peels'))}</div><div class="g-card-pe"><span class="preco">A partir de ${brl(byId('peels').preco)}</span>${comprar(byId('peels'))}</div></article>
-      <article class="g-card lift" style="--c:var(--manga);--t:#fff3d1"><span class="selo">Gravação grátis</span><h3>Escreva no seu MangoBook.</h3><p class="frase">Nome, uma frase, um emoji. A gente grava na tampa.</p>
-        <div class="g2-grav"><div class="g2-tampa"><span data-grav>Pense doce.</span></div></div>
-        <label class="sr" for="g2-grav">Texto da gravação</label><input id="g2-grav" class="g2-grav-in" maxlength="24" placeholder="Escreva aqui (até 24 letras)" data-grav-in></article>
+    <div class="g2-perso">
+      <div class="g2-mesa"><div class="g2-tampa"><span data-grav>Pense doce.</span></div><img class="adesivo" src="marca/mascote/expressions-6.webp" alt="Adesivo Mango Peels do Mangy piscando" loading="lazy"></div>
+      <div><h2 class="h-sec curto" id="g2-p-t">Personalize.</h2><p class="lead">Escreva o que quiser na tampa do MangoBook. A gravação é grátis.</p>
+        <label class="sr" for="g2-grav">Texto da gravação</label><input id="g2-grav" class="g2-grav-in" maxlength="24" placeholder="Seu nome, uma frase, um emoji" data-grav-in>
+        <p class="g2-conta-grav" data-grav-conta>Até 24 caracteres.</p>
+        <div class="g2-peels"><p><b>Mango Peels.</b> Adesivos que saem sem marca, a partir de ${brl(byId('peels').preco)}.</p>${comprar(byId('peels'))}</div></div>
     </div></section>
 
-  <section class="g-bloco" id="acessorios" aria-labelledby="g2-a-t">
-    <div class="g-bloco-topo"><h2 class="h-sec" id="g2-a-t">Som bem alto. <span>Acessórios que combinam.</span></h2></div>
-    <div class="g-acess">${[byId('seeds'), capa, pulseira].map(p => `<article class="g-card lift" style="${vars(p)}">${semSacola(p) ? '' : salvar(p)}<h3>${p.nome}</h3><p class="frase">${p.frase}</p>
-      <div class="art">${art(p)}</div>${semSacola(p) ? capas() : ''}<div class="g-card-pe" style="margin-top:14px"><span class="preco">${brl(p.preco)}</span>${semSacola(p) ? '<a class="mais" href="#" style="font-size:15px">Ver cores</a>' : comprar(p)}</div></article>`).join('')}</div></section>
+  <section class="g-bloco g-cinza" id="servicos" aria-labelledby="g2-s-t">
+    <div class="g-bloco-topo"><h2 class="h-sec curto" id="g2-s-t">A diferença Mango Store.</h2>${setas('#g2-serv')}</div>
+    <div class="trilho g-serv" id="g2-serv">${SERV.map(s => `<button class="serv lift" style="--c:${s.c}" ${servBtn(s)}><span class="serv-ic">${icon(s.ic)}</span><h3>${s.t}</h3><p>${s.d}</p><span class="mais" style="font-size:15px">Saiba mais</span></button>`).join('')}</div></section>
 
   <section class="g2-mango" aria-labelledby="g2-m-t">
     <h2 class="h-sec" id="g2-m-t">Por que Mango. <span>Mais que um aparelho bonito.</span></h2>
-    <figure class="anuncio g2-video">${tag('Vídeo-manifesto · 16:9')}<button class="g2-play" aria-label="Assistir ao vídeo">${icon('ph-play')}</button><figcaption>Pense doce.</figcaption></figure>
+    <figure class="anuncio g2-video">${tag('Vídeo-manifesto · 16:9')}<button class="g2-play" aria-label="Assistir ao manifesto">${icon('ph-play')}</button><figcaption>O manifesto da Mango · 1 min</figcaption></figure>
     <div class="g2-bento">
-      <article class="g2-b l4 cores" style="min-height:320px"><h3>Nossa cor são todas.</h3><p>Seis cores, um jeito de ser. Escolha a sua. Ou todas.</p><img src="marca/mascote/six-colors-1.webp" alt="O Mangy nas seis cores da Mango" loading="lazy"></article>
-      <article class="g2-b l2 mangy"><h3>Conheça o Mangy.</h3><p>O mascote da Mango. Cabeça de manga, coração doce.</p><img src="marca/mascote/mangy-final-1.webp" alt="" loading="lazy"><a class="mais" href="#">Ver a turma</a></article>
-      <article class="g2-b l2" style="--c:var(--verde)"><i class="ph-light ph-lock-simple ico-grande"></i><h3>Nada sai do aparelho.</h3><p>A Mango Intelligence pensa aí dentro. Seu assunto fica com você.</p><a class="mais" href="#">Privacidade</a></article>
-      <article class="g2-b l2" style="--c:var(--ciano)"><i class="ph-light ph-leaf ico-grande"></i><h3>Alumínio que volta.</h3><p>Todo MangoBook nasce de alumínio reciclado e volta pra gente no fim.</p><a class="mais" href="#">Meio ambiente</a></article>
-      <article class="g2-b l2" style="--c:var(--manga)"><i class="ph-light ph-arrows-clockwise ico-grande"></i><h3>Mango Renovado.</h3><p>Como novo, com garantia de um ano, por bem menos.</p><a class="mais" href="#">Ver renovados</a></article>
+      <article class="g2-b l4 cores"><h3>Nossa cor são todas.</h3><p>Seis cores, um jeito de ser. Escolha a sua. Ou todas.</p><img src="marca/mascote/six-colors-1.webp" alt="O Mangy nas seis cores da Mango" loading="lazy"></article>
+      <article class="g2-b l2 mangy"><h3>Conheça o Mangy.</h3><p>Cabeça de manga, coração doce.</p><img src="marca/mascote/mangy-final-1.webp" alt="" loading="lazy"><a class="mais" href="#">Ver a turma</a></article>
+      <article class="g2-b l3" style="--c:var(--verde)"><i class="ph-light ph-lock-simple ico-grande"></i><h3>Nada sai do aparelho.</h3><p>A Mango Intelligence pensa aí dentro. Seu assunto fica com você.</p><a class="mais" href="#">Privacidade</a></article>
+      <article class="g2-b l3" style="--c:var(--ciano)"><i class="ph-light ph-leaf ico-grande"></i><h3>Alumínio que volta.</h3><p>Todo MangoBook nasce de alumínio reciclado e volta pra gente no fim.</p><a class="mais" href="#">Meio ambiente</a></article>
     </div></section>
+
+  <section class="g-bloco" id="acessorios" aria-labelledby="g2-a-t">
+    <div class="g-bloco-topo"><h2 class="h-sec curto" id="g2-a-t">Acessórios.</h2></div>
+    <div class="g-acess">${[byId('seeds'), capa, pulseira].map(p => `<article class="g-card lift" style="${vars(p)}">${semSacola(p) ? '' : salvar(p)}<h3>${p.nome}</h3><p class="frase">${p.frase}</p>
+      <div class="art">${art(p)}</div>${semSacola(p) ? capas() : ''}<div class="g-card-pe" style="margin-top:14px"><span class="preco">${semSacola(p) ? 'A partir de ' : ''}${brl(p.preco)}</span>${semSacola(p) ? `<button class="pill sm claro">Escolher cor</button>` : comprar(p)}</div></article>`).join('')}</div></section>
 
   <section class="g-bloco" aria-labelledby="g2-h-t">
-    <div class="g-bloco-topo"><h2 class="h-sec" id="g2-h-t">Hoje na Mango. <span>Oficinas grátis na loja.</span></h2>${setas('#g2-hoje')}</div>
-    <div class="trilho g2-hoje" id="g2-hoje">${HOJE.map(h => `<article style="--c:${h.c};--fundo:${h.fundo}"><div class="foto">${tag('Foto · 3:2').replace('ph-megaphone-simple', 'ph-image')}${icon(h.ic)}</div>
-      <div class="txt"><span class="quando">${h.q}</span><h3>${h.t}</h3><p>${h.d}</p><a class="mais" href="#" style="font-size:15px;margin-top:8px">Reservar vaga</a></div></article>`).join('')}</div></section>
-
-  <section class="g-bloco" id="presente" aria-labelledby="g2-v-t">
-    <div class="g2-presente">
-      <div class="g2-cartao" role="img" aria-label="Cartão-presente Mango"><span class="cab"></span><b data-vale><small>R$</small>100</b><i>Pense doce</i></div>
-      <div><h2 class="h-sec" id="g2-v-t">Cartão-presente. <span>Na dúvida, dá doce.</span></h2>
-        <p class="lead" style="margin-top:12px">Vale pra qualquer coisa da loja. Chega na hora, por mensagem, ou num envelope com o Mangy.</p>
-        <div class="g2-valores" role="group" aria-label="Valor">${[50, 100, 300, 500].map(v => `<button class="g2-chip" style="--c:var(--rosa)" data-vale-v="${v}" aria-pressed="${v === 100}">R$ ${v}</button>`).join('')}</div>
-        <a class="pill" href="#">Comprar cartão-presente</a></div>
-    </div></section>
-
-  <section class="g-bloco" aria-labelledby="g2-pa-t">
-    <div class="g-bloco-topo"><h2 class="h-sec" id="g2-pa-t">Parceiros. <span>Quem cresce junto com a Mango.</span></h2></div>
-    <div class="g2-parc">${PARCEIROS.map(([n, f]) => `<a class="anuncio" href="#" style="--fundo:${f}">${tag('Patrocinado · 1:1')}<b>${n}<small>espaço do anúncio</small></b></a>`).join('')}</div></section>
+    <div class="g-bloco-topo"><h2 class="h-sec curto" id="g2-h-t">Hoje na Mango.</h2>${setas('#g2-hoje')}</div>
+    <div class="trilho g2-hoje" id="g2-hoje">${HOJE.map(h => `<article style="--c:${h.c}"><div class="foto">${icon(h.ic)}<span class="dia"><b>${h.dia}</b><small>${h.sem.split(' · ')[0]}</small></span></div>
+      <div class="txt"><p style="font-size:13px;font-weight:600;color:var(--c);letter-spacing:0">${h.sem} · grátis</p><h3>${h.t}</h3><p>${h.d}</p><a class="mais" href="#">Reservar vaga</a></div></article>`).join('')}</div></section>
 
   <section class="g-bloco" aria-labelledby="g2-lj-t">
-    <div class="g-bloco-topo"><h2 class="h-sec" id="g2-lj-t">Lojas especiais. <span>Preço e ajuda sob medida.</span></h2></div>
+    <div class="g-bloco-topo"><h2 class="h-sec curto" id="g2-lj-t">Lojas especiais.</h2></div>
     <div class="g2-lojas">
       <a class="g2-loja" href="#" style="--c:var(--roxo)"><i class="ph-light ph-student"></i><h3>Educação</h3><p>Até 10% off no MangoBook pra estudantes e professores.</p></a>
       <a class="g2-loja" href="#" style="--c:var(--azul)"><i class="ph-light ph-briefcase"></i><h3>Empresas</h3><p>Mango pra equipe inteira, com quem cuida da configuração.</p></a>
-      <a class="g2-loja" href="#" style="--c:var(--verde)"><i class="ph-light ph-recycle"></i><h3>Mango Renovado</h3><p>Aparelhos revisados, com garantia, por menos.</p></a>
+      <a class="g2-loja" href="#" style="--c:var(--verde)"><i class="ph-light ph-recycle"></i><h3>Mango Renovado</h3><p>Revisado, com garantia de um ano, por bem menos.</p></a>
     </div>
-    <nav class="g2-rapidos" aria-label="Links rápidos">${['Status do pedido', 'Devoluções', 'Itens salvos', 'Encontre uma loja', 'Parcelamento', 'Comparar modelos'].map(t => `<a href="#">${t}</a>`).join('')}</nav></section>
+    <nav class="g2-rapidos" aria-label="Links rápidos">${['Status do pedido', 'Devoluções', 'Itens salvos', 'Encontre uma loja', 'Parcelamento', 'Comparar modelos'].map(t => `<a href="#">${t}</a>`).join('')}</nav>
+    <div class="g2-parc" aria-label="Parceiros"><span>Patrocinado · 4 espaços 3:1</span>${PARCEIROS.map(n => `<a href="#">${n}</a>`).join('')}</div></section>
+
+  <section class="g2-fim" aria-labelledby="g2-fim-t"><img src="marca/mascote/eyes-1.webp" alt="Os olhos do Mangy" loading="lazy"><h2 id="g2-fim-t">Pense doce.</h2></section>
 </main>${rodape()}`,
 init(root) {
   const kit = root.querySelector('[data-kit]');
@@ -920,12 +940,19 @@ init(root) {
     const js = juntos(sel);
     kit.querySelector('[data-kit-juntos]').innerHTML = js.length
       ? js.map(j => `<li style="--c:${j.c}">${icon(j.ic)}<div><b>${j.t}</b><span>${j.d}</span></div></li>`).join('')
-      : `<li style="--c:var(--ink-3)">${icon('ph-plus-circle')}<div><b>Escolha mais um.</b><span>Com dois ou mais, aparece aqui o que eles fazem juntos.</span></div></li>`;
+      : `<li style="--c:var(--ink-2)">${icon('ph-plus-circle')}<div><b>Escolha mais um.</b><span>Com dois ou mais, aparece aqui o que eles fazem juntos.</span></div></li>`;
   };
   kit.addEventListener('click', e => { const b = e.target.closest('[data-kit-id]'); if (b) { b.setAttribute('aria-pressed', b.getAttribute('aria-pressed') !== 'true'); desenhar(); } });
   desenhar();
-  const gr = root.querySelector('[data-grav]');
-  root.querySelector('[data-grav-in]').addEventListener('input', e => { gr.textContent = e.target.value.trim() || 'Pense doce.'; });
+  // gravação: conta caracteres de verdade (um emoji conta como 1), corta em 24
+  const gr = root.querySelector('[data-grav]'), conta = root.querySelector('[data-grav-conta]');
+  root.querySelector('[data-grav-in]').addEventListener('input', e => {
+    const letras = [...e.target.value];
+    if (letras.length > 24) e.target.value = letras.slice(0, 24).join('');
+    const n = Math.min(letras.length, 24);
+    gr.textContent = e.target.value.trim() || 'Pense doce.';
+    conta.textContent = n ? `${n} de 24 caracteres.` : 'Até 24 caracteres.';
+  });
   const vale = root.querySelector('[data-vale]');
   root.querySelector('.g2-valores').addEventListener('click', e => {
     const b = e.target.closest('[data-vale-v]'); if (!b) return;

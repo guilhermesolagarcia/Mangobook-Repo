@@ -4,3 +4,6 @@ __pycache__/
 .ferramentas/2-animacao-3d/img2threejs/.cache/
 .playwright-mcp/
 .superpowers/
+
+# Impeccable: servidor ao vivo (token local)
+.impeccable/live/
